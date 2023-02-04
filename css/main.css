@@ -92,14 +92,6 @@ section:nth-child(1) {
   font-size: 3vw;
 }
 
-.faicons:hover {
-  color: #ED1B23;
-}
-
-.faicons:hover {
-  color: #ED1B23;
-}
-
 .faicons:active {
   color: #EC008B;
 }
@@ -109,7 +101,7 @@ a {
 }
 
 a:hover {
-  color: #ED1B23;
+  color: #FAD64A;
 }
 
 a:active {
@@ -118,6 +110,20 @@ a:active {
 
 .about {
   display: block;
+}
+
+.spann {
+  position: relative;
+}
+
+.marker {
+  position: absolute;
+  bottom: 30%;
+  right: 0;
+  background-color: #FAD64A;
+  width: 85%;
+  height: 20px;
+  z-index: -1;
 }
 
 footer {
@@ -193,6 +199,10 @@ footer div p {
 .arrows path.a3 {
   animation-delay: 0s;
   -webkit-animation-delay: 0s; /* Safari 和 Chrome */
+}
+
+body {
+  background-color: #CCEDFF;
 }
 
 /*# sourceMappingURL=main.css.map */
