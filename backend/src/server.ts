@@ -1,15 +1,13 @@
 import express from 'express';
 import config from './config';
+import routerProjects from './router/projects';
 
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-app.get('/', (_req, res) => {
-    console.log('HELLO!!')
-    res.send('HELLO!')
-})
+app.use('/api/projects', routerProjects);
 
 const PORT = config.PORT;
 console.log(PORT)
