@@ -12,7 +12,6 @@ class ProductValidator {
             urlGithubRepo: Joi.string(),
             photos: Joi.array(),
         });
-
         const { error } = productSchema.validate(product);
         return error;
     }

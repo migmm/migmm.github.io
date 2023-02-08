@@ -1,32 +1,35 @@
 import mongoose from "mongoose";
 import DBMongoDB from "./DBMongoDB";
 
-const projectSchema = new mongoose.Schema({
-    name: String,
-    description: String,
-    languajes: Array,
-    urlDeploy: String,
-    urlGithubRepo: String,
-    photos: Array
-});
+const projectSchema = new mongoose.Schema(
+    {
+        name: String,
+        description: String,
+        languajes: Array,
+        urlDeploy: String,
+        urlGithubRepo: String,
+        photos: Array,
+    },
+    {
+        versionKey: false,
+    }
+);
 
-mongoose.set('strictQuery', false);
+mongoose.set("strictQuery", false);
 
-const ProjectsModel = mongoose.model('projects', projectSchema);
-
+const ProjectsModel = mongoose.model("projects", projectSchema);
 
 class ProjectModelMongoDB {
-
     // CRUD - C: CREATE
-    async createProject(project:any) {
-        if (! await DBMongoDB.connectDB()) {
+    async createProject(project: any) {
+        if (!(await DBMongoDB.connectDB())) {
             return {};
         }
         try {
             const newProject = new ProjectsModel(project);
             await newProject.save();
             return DBMongoDB.getObjectWithId(newProject.toObject());
-        } catch (error:any) {
+        } catch (error: any) {
             console.error(`Error al intentar dar de alta el projecto: ${error.message}`);
             return {};
         }
@@ -34,56 +37,60 @@ class ProjectModelMongoDB {
 
     // CRUD - R: READ
     async readProjects() {
-        if (! await DBMongoDB.connectDB()) {
+        if (!(await DBMongoDB.connectDB())) {
             return [];
         }
         try {
             const projects = await ProjectsModel.find({}).lean();
             return DBMongoDB.getObjectWithId(projects);
-        } catch (error:any) {
+        } catch (error: any) {
             console.error(`Error al intentar obtener los productos: ${error.message}`);
             return [];
         }
     }
 
-    async readProject(id:any) {
-        if (! await DBMongoDB.connectDB()) {
+    async readProject(id: any) {
+        if (!(await DBMongoDB.connectDB())) {
             return {};
         }
         try {
-            const product = await ProjectsModel.findById(id).lean() || {};
+            const product = (await ProjectsModel.findById(id).lean()) || {};
             return DBMongoDB.getObjectWithId(product);
-        } catch (error:any) {
+        } catch (error: any) {
             console.error(`Error al intentar obtener el producto: ${error.message}`);
             return {};
         }
     }
 
     // CRUD - U: UPDATE
-    async updateProject(id:number, project:any) {
-        if (! await DBMongoDB.connectDB()) {
+    async updateProject(id: number, project: any) {
+        if (!(await DBMongoDB.connectDB())) {
             return {};
         }
         try {
-            const updatedProject = await ProjectsModel.findByIdAndUpdate(id, {$set: project}, {
-                returnDocument: 'after'
-            }).lean();
+            const updatedProject = await ProjectsModel.findByIdAndUpdate(
+                id,
+                { $set: project },
+                {
+                    returnDocument: "after",
+                }
+            ).lean();
             return DBMongoDB.getObjectWithId(updatedProject);
-        } catch (error:any) {
+        } catch (error: any) {
             console.error(`Error al intentar actualizar el projecto: ${error.message}`);
             return {};
         }
     }
 
     // CRUD - D: DELETE
-    async deleteProject(id:number) {
-        if (! await DBMongoDB.connectDB()) {
+    async deleteProject(id: number) {
+        if (!(await DBMongoDB.connectDB())) {
             return {};
         }
         try {
             const deletedProject = await ProjectsModel.findByIdAndDelete(id).lean();
             return DBMongoDB.getObjectWithId(deletedProject);
-        } catch (error:any) {
+        } catch (error: any) {
             console.error(`Error al intentar eliminar el projecto: ${error.message}`);
             return {};
         }
