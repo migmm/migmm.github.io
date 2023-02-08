@@ -5,6 +5,10 @@ const PERSISTENCE_TYPES = {
     TYPE_MONGODB: 'MONGODB',
 };
 
+const PRODUCT_IMG_UPLOAD_LOCATION = {
+    STORAGE_LOCATION: './tmp/uploads',
+}
+
 const config = {
     PORT: process.env.SERVER_PORT,
     PERSISTENCE_TYPE: PERSISTENCE_TYPES.TYPE_MONGODB,
@@ -12,4 +16,8 @@ const config = {
     MONGODB_TIMEOUT: 30000
 };
 
-export {PERSISTENCE_TYPES, config as default};
+export {
+    PERSISTENCE_TYPES,
+    PRODUCT_IMG_UPLOAD_LOCATION, 
+    config as default
+};

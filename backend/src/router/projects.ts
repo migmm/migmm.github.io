@@ -1,12 +1,13 @@
 import express from 'express';
 import projectsController from '../controller/projects';
+import multerFS from '../middlewares/multer';
 
 const routerProjects = express.Router();
 
 routerProjects.get('/', projectsController.getProjects);
 routerProjects.get('/:id', projectsController.getProject);
-routerProjects.post('/', projectsController.postProject);
-routerProjects.put('/:id', projectsController.putProject);
+routerProjects.post('/', multerFS.fieldConfig, projectsController.postProject);
+routerProjects.put('/:id', multerFS.fieldConfig, projectsController.putProject);
 routerProjects.delete('/:id', projectsController.deleteProject);
 
 export default routerProjects;
