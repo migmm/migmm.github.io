@@ -1,5 +1,5 @@
-// const {getProduct, getProducts} = require('../api/products');
 import api from '../api/projects';
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
@@ -10,7 +10,6 @@ const getProjects = async (_req:any, res:any) => {
 };
 
 const getProject = async (req:any, res:any) => {
-    // const id = Number(req.params.id);
     const id = req.params.id;
     res.json(await api.getProject(id));
 };
@@ -32,7 +31,6 @@ const postProject = async (req:any, res:any) => {
 //////////////////////////////////////////////////////////////////////////////
 
 const putProject = async (req:any, res:any) => {
-    // const id = Number(req.params.id);
     const id = req.params.id;
     const project = req.body;
 
@@ -46,7 +44,6 @@ const putProject = async (req:any, res:any) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const deleteProject = async (req:any, res:any) => {
-    // const id = Number(req.params.id);
     const id = req.params.id;
 
     const removedProject = await api.deleteProject(id) || {};
@@ -55,7 +52,7 @@ const deleteProject = async (req:any, res:any) => {
 
 
 export default {
-    getProjects,    // getProjects: getProjects
+    getProjects,
     getProject,
     postProject,
     putProject,

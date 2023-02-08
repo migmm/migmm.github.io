@@ -1,10 +1,10 @@
-import config, {PERSISTENCE_TYPES} from '../config';
+import config, {PERSISTENCE_TYPES} from '../../config';
 
 import ProjectModelMongoDB from './projects-mongodb';
 
 class ProjectModel {
     static get(type:any) {
-        console.log(`#### Persistencia -> ${config.PERSISTENCE_TYPE || 'por defecto'} ####`);
+        console.log(`#### Persistence -> ${config.PERSISTENCE_TYPE || 'by default'} ####`);
         switch (type) {
             case PERSISTENCE_TYPES.TYPE_MONGODB:
                 return new ProjectModelMongoDB();

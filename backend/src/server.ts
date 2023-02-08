@@ -10,6 +10,5 @@ app.use(express.json());
 app.use('/api/projects', routerProjects);
 
 const PORT = config.PORT;
-console.log(PORT)
 const server = app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));
 server.on('error', error => console.log('Error starting Express server: ' + error.message));

@@ -1,9 +1,6 @@
 import config from '../config';
-
-import ProjectModel from "../model/projects";
-
+import ProjectModel from "../model/projects/projects";
 import ProjectValidator from '../model/validators/project';
-
 
 const modelProjects = ProjectModel.get(config.PERSISTENCE_TYPE);
 
@@ -16,6 +13,7 @@ const getProjects = async () => {
     const projects = await modelProjects.readProjects();
     return projects;
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Get ONE                                //
@@ -33,9 +31,16 @@ const getProject = async (id:number) => {
 
 const createProject = async (project:any) => {
 
-        const createdProject = await modelProjects.createProject(project);
-        return createdProject;
-
+        const validationError = ProjectValidator.validate(project);
+    
+        if(!validationError) {
+            const createdProject = await modelProjects.createProject(project);
+            return createdProject;  
+        } else {
+            console.log(validationError);
+            console.error(`Error validating createProject: ${validationError.details[0].message}`);
+            return {};
+        }
 };
 
 
@@ -52,10 +57,9 @@ const updateProject = async (id:number, project:any) => {
         return updatedProject;    
     } else {
         console.log(validationError);
-        console.error(`Error de validación en updateProject: ${validationError.details[0].message}`);
+        console.error(`Error validating updateProject: ${validationError.details[0].message}`);
         return {};
     }
-
 };
 
 

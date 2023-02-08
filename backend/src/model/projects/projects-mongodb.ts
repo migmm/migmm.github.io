@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import DBMongoDB from "./DBMongoDB";
+import DBMongoDB from "../DBMongoDB";
 
 const projectSchema = new mongoose.Schema(
     {
@@ -30,7 +30,7 @@ class ProjectModelMongoDB {
             await newProject.save();
             return DBMongoDB.getObjectWithId(newProject.toObject());
         } catch (error: any) {
-            console.error(`Error al intentar dar de alta el projecto: ${error.message}`);
+            console.error(`Error adding project: ${error.message}`);
             return {};
         }
     }
@@ -44,7 +44,7 @@ class ProjectModelMongoDB {
             const projects = await ProjectsModel.find({}).lean();
             return DBMongoDB.getObjectWithId(projects);
         } catch (error: any) {
-            console.error(`Error al intentar obtener los productos: ${error.message}`);
+            console.error(`Error getting projects: ${error.message}`);
             return [];
         }
     }
@@ -57,7 +57,7 @@ class ProjectModelMongoDB {
             const product = (await ProjectsModel.findById(id).lean()) || {};
             return DBMongoDB.getObjectWithId(product);
         } catch (error: any) {
-            console.error(`Error al intentar obtener el producto: ${error.message}`);
+            console.error(`Error getting prject: ${error.message}`);
             return {};
         }
     }
@@ -77,7 +77,7 @@ class ProjectModelMongoDB {
             ).lean();
             return DBMongoDB.getObjectWithId(updatedProject);
         } catch (error: any) {
-            console.error(`Error al intentar actualizar el projecto: ${error.message}`);
+            console.error(`Error updating project: ${error.message}`);
             return {};
         }
     }
@@ -91,7 +91,7 @@ class ProjectModelMongoDB {
             const deletedProject = await ProjectsModel.findByIdAndDelete(id).lean();
             return DBMongoDB.getObjectWithId(deletedProject);
         } catch (error: any) {
-            console.error(`Error al intentar eliminar el projecto: ${error.message}`);
+            console.error(`Error deleting projecto: ${error.message}`);
             return {};
         }
     }

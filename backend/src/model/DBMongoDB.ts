@@ -1,6 +1,5 @@
 import config from '../config';
 import mongoose from "mongoose";
-//import { any, string } from 'joi';
 
 class DBMongoDB {
 
@@ -32,11 +31,11 @@ class DBMongoDB {
 
             mongoose.connect(config.MONGODB_CONNECTION_STR as any);
 
-            console.log('Conexión con MongoDB exitosa.');
+            console.log('Connected to MongoDB database.');
             return true;
 
         } catch (error:any) {
-            console.error(`Error al intentar establecer la conexión con MongoDB. Detalle: ${error.message}`);
+            console.error(`Error tying to connect MongoDB database: ${error.message}`);
             return false;
         }
     }
