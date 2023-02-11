@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Curriculum = () => {
-  return (
-    <div>Curriculum</div>
-  )
-}
+    return <>Curriculum</>;
+};
 
-export default Curriculum
+export default Curriculum;

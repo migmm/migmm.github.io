@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+
 import Certificates from "./components/Certificates/Certificates";
 import Contact from "./components/Contact/Contact";
 import Curriculum from "./components/Curriculum/Curriculum";
