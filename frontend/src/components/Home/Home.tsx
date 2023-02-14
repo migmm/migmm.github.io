@@ -1,15 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import logoGithub from "./github.svg"; 
+import logoGithub from "./github.svg";
 import logoTelegram from "./telegram.svg";
 import logoWhatsapp from "./whatsapp.svg";
 import logoEmail from "./email.svg";
 import logoLinkedin from "./linkedin.svg";
-
-declare module '*.svg'
-declare module '*.png'
-declare module '*.jpg'
 
 const Home = () => {
     return (
@@ -82,7 +78,7 @@ const HomeContainer = styled.nav`
             align-items: center;
             justify-content: center;
             border: 1px solid red;
-            height: 50%;
+            height: 60%;
 
             .text-home {
                 text-align: center;
@@ -95,28 +91,77 @@ const HomeContainer = styled.nav`
 
         .contact-icons {
             width: 100%;
-            height: 50%;
+            height: 40%;
             display: flex;
             flex: row;
             justify-content: center;
             align-items: center;
 
             a {
-                color: red;
+                img {
+                    width: 50px;
+                    height: 50px;
+                    color: red;
+                }
             }
         }
     }
 
     .projects-container {
+
+     
+        h1 {
+            text-align: center;
+            margin: 1em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        p {
+            text-align: center;
+            margin: 1em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
         .cards-container {
+            padding: 1em;
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+
             .big-card-container {
+                width: 65%;
+                background-color: red;
+                height: 400px;
+
+                .big-card {
+                    margin: 1em;
+                    width: calc(100% - 2em);
+                    height: calc(100% - 2em);
+                    background-color: blue;
+                }
             }
             .small-cards-container {
+                width: 25%;
+                height: 400px;
+                background-color: red;
+
+                .small-card {
+                    margin: 1em;
+                    width: calc(100% - 2em);
+                    height: calc(50% - 1.5em);
+                    background-color: blue;
+                }
             }
         }
+
         .view-more-container {
+            width: 100%;
+            border: 1px solid black;
+
             .view-more-link {
-                /*  a */
+                float: right;
+                text-align: right;
+                width: 100%;
             }
         }
     }
