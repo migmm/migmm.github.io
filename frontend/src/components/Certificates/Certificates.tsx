@@ -207,7 +207,7 @@ const Certificates = () => {
                     </div>
                 </div>
                 <div className="pagination-container">
-                    <span className="pages"><span className="pages">1</span><span className="pages">2</span><span className="pages">3</span></span>
+                    <span className="pages">Pages <span className="pages">1</span><span className="pages">2</span><span className="pages">3</span></span>
                 <select name="select" className="select-page" id="select-page" >
                         <option value="value3" selected>
                             select
@@ -224,5 +224,31 @@ const Certificates = () => {
 export default Certificates;
 
 const CertificatesStyles = styled.header`
+.certifications-container {
+    h1 {
+        text-align: center;
+    }
 
+    .selectors-container {
+        text-align: center;
+    }
+
+    .cards-container {
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1em;
+
+        .card {
+            width: 200px;
+            height: 200px;
+            background-color: aliceblue;
+        }
+    }
+
+    .pagination-container {
+        text-align: center;
+    }
+}
 `;
