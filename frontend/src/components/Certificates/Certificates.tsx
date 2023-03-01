@@ -7,210 +7,66 @@ const Certificates = () => {
             <div className="certifications-container">
                 <h1>Certifications</h1>
                 <div className="selectors-container">
-                    <label htmlFor="select-company">Company</label>
+                    <span>Browse by</span>
+                    {/* <label htmlFor="select-company">Company</label> */}
                     <select name="select" className="select-company" id="select-company" >
                         <option value="value3" selected>
-                            select
+                            Company
                         </option>
                         <option value="linkedin">linkedin</option>
                         <option value="udemy">udemy</option>
                     </select>
-                    <label htmlFor="select-category">Category</label>
+                    <span>or</span>
+                    {/* <label htmlFor="select-category">Category</label> */}
                     <select name="select" className="select-category" id="select-category" >
                         <option value="value3" selected>
-                            select
+                        Category
                         </option>
                         <option value="linkedin">nodejs</option>
                         <option value="udemy">scrum</option>
                     </select>
                 </div>
                 <div className="cards-container">
+
+                    {/* CARD */}
                     <div className="card">
                         <div className="image-container">
                             <img src="" alt="" />
                         </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
+                        <div className="img-miniature-container">
                             <img src="" alt="" />
                         </div>
                         <h2>Course</h2>
                     </div>
-                    <div className="card">
+
+                         {/* CARD */}
+                        <div className="card">
                         <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        <div className="img-miniature-container">
                             <img src="" alt="" />
                         </div>
                         <h2>Course</h2>
                     </div>
-                    <div className="card">
+
+                         {/* CARD */}
+                        <div className="card">
                         <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        <div className="img-miniature-container">
                             <img src="" alt="" />
                         </div>
                         <h2>Course</h2>
                     </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
-                    <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
-                        </div>
-                        <h2>Course</h2>
-                    </div>
+                    
                 </div>
                 <div className="pagination-container">
                     <span className="pages">Pages <span className="pages">1</span><span className="pages">2</span><span className="pages">3</span></span>
                 <select name="select" className="select-page" id="select-page" >
                         <option value="value3" selected>
-                            select
+                            Qty per page
                         </option>
                         <option value="linkedin">10</option>
                         <option value="udemy">20</option>
@@ -224,31 +80,83 @@ const Certificates = () => {
 export default Certificates;
 
 const CertificatesStyles = styled.header`
+
+max-width: 1900px;
+margin: 1em;
+
 .certifications-container {
     h1 {
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 800;
         text-align: center;
+        margin: 1em 1em .5em 1em;
     }
 
     .selectors-container {
         text-align: center;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 600;
+        margin-bottom: 1em;
+        font-size: 1.3em;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: .5em;
+
+        .select-company,
+        .select-category {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .select-company:hover,
+        .select-category:hover {
+            color: grey
+        }
     }
 
     .cards-container {
-        display:flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 1em;
 
         .card {
-            width: 200px;
+            width: 100%;
             height: 200px;
-            background-color: aliceblue;
+            margin-bottom: 2em;
+            
+            .image-container {
+                background-color: #0069c5;
+                height: 150px;
+                border-radius: 30px;
+            }
+
+            h2 {
+                font-family: 'Work Sans', sans-serif;
+                font-weight: 600;
+            }
         }
     }
 
     .pagination-container {
         text-align: center;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 600;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: .5em;
+        margin-bottom: 1em;
+        font-size: 1.3em;
+
+        select {
+            display:none;
+            border: none;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1em;
+        }
     }
 }
 `;
