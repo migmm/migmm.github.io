@@ -22,11 +22,13 @@ const Header = () => (
 export default Header;
 
 const HeaderContainer = styled.header`
-    width: 100%;
+    max-width: 1900px;
     display: flex;
     justify-content: center;
     background-color: #8fb3a5;
     height: 4em;
+    border-radius: 2em;
+    margin: 1em;
 
     header {
         display: flex;
