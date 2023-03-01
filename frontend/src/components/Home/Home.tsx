@@ -78,11 +78,14 @@ const HomeContainer = styled.nav`
             align-items: center;
             justify-content: center;
             border: 1px solid red;
-            height: 60%;
+            
 
             .text-home {
                 text-align: center;
                 font-size: 5vw;
+                font-family: 'Work Sans', sans-serif;
+                font-weight: 800;
+                //word-spacing: -10px;
 
                 .charge-text {
                 }
