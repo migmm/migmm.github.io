@@ -27,6 +27,7 @@ const HeaderContainer = styled.header`
     justify-content: center;
     background-color: #ffffff;
     height: 4em;
+    border: 1px solid #EBEBEB;
     border-radius: 2em;
     margin: 1em;
 
@@ -36,7 +37,6 @@ const HeaderContainer = styled.header`
         align-items: center;
         justify-content: space-between;
         width: 1600px;
-
         padding: 0 2em;
     }
 
