@@ -66,13 +66,17 @@ const HeaderContainer = styled.header`
         height: 65px;
         font-family: "Work Sans", sans-serif;
         color: white;
-        font-weight: 600;
+        font-weight: 500;
         line-height:65px;
         font-size: 1em;
         padding: 0 1em;
         border-radius: 20px;
         margin-right: 1em;
         cursor: pointer;
+
+        @media (min-width: 768px) {
+            display: none;
+        }
 
         :hover {
             background-color: #ce030a;
