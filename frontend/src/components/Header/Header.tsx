@@ -12,6 +12,7 @@ const Header = () => (
             <div className="navbar-container">
                 <NavBar />
             </div>
+            <span className="contact-button">Contact me!</span>
             <div className="hamburger-button-container">
                 <HamburgerButton />
             </div>
@@ -26,9 +27,9 @@ const HeaderContainer = styled.header`
     display: flex;
     justify-content: center;
     background-color: #ffffff;
-    height: 5em;
-    border: 1px solid #EBEBEB;
-    border-radius: 2.5em;
+    height: 5.5em;
+    border: 1px solid #ebebeb;
+    border-radius: 2.75em;
     margin: 1em;
 
     header {
@@ -41,12 +42,15 @@ const HeaderContainer = styled.header`
     }
 
     .logo-container {
-        width: 50px;
-        height: 50px;
+        width: 65px;
+        height: 65px;
+        flex-grow: 1;
+        cursor: pointer;
 
         img {
-            width: 100%;
+            //width: 100%;
             height: 100%;
+            object-fit: contain;
         }
     }
 
@@ -54,6 +58,28 @@ const HeaderContainer = styled.header`
         display: none;
         @media (min-width: 768px) {
             display: block;
+        }
+    }
+
+    .contact-button {
+        background-color: #ED1B23;
+        height: 65px;
+        font-family: "Work Sans", sans-serif;
+        color: white;
+        font-weight: 600;
+        line-height:65px;
+        font-size: 1em;
+        padding: 0 1em;
+        border-radius: 20px;
+        margin-right: 1em;
+        cursor: pointer;
+
+        :hover {
+            background-color: #ce030a;
+        }
+
+        :active {
+            background-color: #ff0000;
         }
     }
 
