@@ -26,9 +26,9 @@ const HeaderContainer = styled.header`
     display: flex;
     justify-content: center;
     background-color: #ffffff;
-    height: 4em;
+    height: 5em;
     border: 1px solid #EBEBEB;
-    border-radius: 2em;
+    border-radius: 2.5em;
     margin: 1em;
 
     header {

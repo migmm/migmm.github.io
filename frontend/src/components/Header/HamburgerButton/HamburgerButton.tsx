@@ -17,6 +17,16 @@ export default HamburgerButton;
 
 const BurgerButton = styled.nav`
 
+border-radius: 50%;
+background-color: #242424;
+padding: .4em;
+margin-right: -20px;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 65px;
+height: 65px;
+
     .nav-icon {
         width: 35px;
         height: 30px;
@@ -26,7 +36,7 @@ const BurgerButton = styled.nav`
         display: inline-block;
     }
     .nav-icon span {
-        background-color: #000;
+        background-color: #F3F3F1;
         position: absolute;
         border-radius: 2px;
         transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
