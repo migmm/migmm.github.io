@@ -33,9 +33,9 @@ const Certificates = () => {
                         <div className="image-container">
                             <img src="" alt="" />
                         </div>
-                        <div className="img-miniature-container">
+                       {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
-                        </div>
+                        </div> */}
                         <h2>Course</h2>
                     </div>
 
@@ -44,9 +44,9 @@ const Certificates = () => {
                         <div className="image-container">
                             <img src="" alt="" />
                         </div>
-                        <div className="img-miniature-container">
+                       {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
-                        </div>
+                        </div> */}
                         <h2>Course</h2>
                     </div>
 
@@ -55,9 +55,9 @@ const Certificates = () => {
                         <div className="image-container">
                             <img src="" alt="" />
                         </div>
-                        <div className="img-miniature-container">
+                       {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
-                        </div>
+                        </div> */}
                         <h2>Course</h2>
                     </div>
                     
@@ -135,7 +135,8 @@ margin: 1em;
 
             h2 {
                 font-family: 'Work Sans', sans-serif;
-                font-weight: 600;
+                font-weight: 700;
+                margin-top: .5em;
             }
         }
     }
