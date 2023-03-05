@@ -83,9 +83,11 @@ export default Certificates;
 
 const CertificatesStyles = styled.header`
     max-width: 1900px;
-    margin: 1em;
+    margin: 0 auto;
 
     .certifications-container {
+        margin: 1em;
+
         h1 {
             font-family: "Work Sans", sans-serif;
             font-weight: 800;

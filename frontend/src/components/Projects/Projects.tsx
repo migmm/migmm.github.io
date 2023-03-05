@@ -115,9 +115,11 @@ export default Projects;
 
 const ProjectsStyles = styled.header`
     max-width: 1900px;
-    margin: 1em;
+    margin: 0 auto;
 
     .projects-container {
+        margin: 1em;
+
         h1 {
             font-family: "Work Sans", sans-serif;
             font-weight: 800;
@@ -125,7 +127,7 @@ const ProjectsStyles = styled.header`
             margin: 1em 1em 0.5em 1em;
         }
 
-      /*   h2 {
+        /*   h2 {
             text-align: center;
         } */
 /* 

@@ -28,9 +28,9 @@ const HeaderContainer = styled.header`
     justify-content: center;
     background-color: #ffffff;
     height: 5.5em;
-    border: 1px solid #ebebeb;
+    border: 1px solid #ebebeb; //#E3E3E3
     border-radius: 2.75em;
-    margin: 1em;
+    margin: 1em auto;
 
     header {
         display: flex;
