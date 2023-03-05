@@ -26,15 +26,15 @@ export default Header;
 
 const HeaderStyles = styled.header`
     max-width: 1900px;
-    display: flex;
-    justify-content: center;
-    background-color: #ffffff;
-    height: 5.5em;
-    border: 1px solid #ebebeb; //#E3E3E3
-    border-radius: 2.75em;
-    margin: 0 auto;
 
+    margin: 0 auto;
     .header-container {
+        display: flex;
+        justify-content: center;
+        background-color: #ffffff;
+        height: 5.5em;
+        border: 1px solid #ebebeb; //#E3E3E3
+        border-radius: 2.75em;
         margin: 1em;
 
         header {
