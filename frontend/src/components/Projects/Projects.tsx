@@ -126,7 +126,7 @@ const ProjectsStyles = styled.header`
             font-family: "Work Sans", sans-serif;
             font-weight: 800;
             text-align: center;
-            margin: 1em 1em 0.5em 1em;
+            margin: 1em;
         }
 
         /*   h2 {
@@ -186,7 +186,7 @@ const ProjectsStyles = styled.header`
                     h2 {
                         font-family: "Work Sans", sans-serif;
                         font-weight: 700;
-                        margin-top: 0.5em;
+                        //margin-top: 0.5em;
                     }
                 }
 
