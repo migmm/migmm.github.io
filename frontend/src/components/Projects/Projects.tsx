@@ -18,7 +18,9 @@ const Projects = () => {
                 </div> */}
                 <div className="projects-cards-container">
                     <div className="projects-card">
-                        <div className="card-image-container"></div>
+                        <div className="card-image-container">
+                            <img src="img/cosmica-screens.png" alt="" />
+                        </div>
                         <div className="card-title-container">
                             <h2 className="card-title">Project title</h2>
                         </div>
@@ -29,7 +31,7 @@ const Projects = () => {
                         </div>
                     </div>
                     <div className="projects-card">
-                        <div className="card-image-container"></div>
+                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
                         <div className="card-title-container">
                             <h2 className="card-title">Project title</h2>
                         </div>
@@ -40,7 +42,7 @@ const Projects = () => {
                         </div>
                     </div>
                     <div className="projects-card">
-                        <div className="card-image-container"></div>
+                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
                         <div className="card-title-container">
                             <h2 className="card-title">Project title</h2>
                         </div>
@@ -51,7 +53,7 @@ const Projects = () => {
                         </div>
                     </div>
                     <div className="projects-card">
-                        <div className="card-image-container"></div>
+                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
                         <div className="card-title-container">
                             <h2 className="card-title">Project title</h2>
                         </div>
@@ -62,7 +64,7 @@ const Projects = () => {
                         </div>
                     </div>
                     <div className="projects-card">
-                        <div className="card-image-container"></div>
+                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
                         <div className="card-title-container">
                             <h2 className="card-title">Project title</h2>
                         </div>
@@ -73,7 +75,7 @@ const Projects = () => {
                         </div>
                     </div>
                     <div className="projects-card">
-                        <div className="card-image-container"></div>
+                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
                         <div className="card-title-container">
                             <h2 className="card-title">Project title</h2>
                         </div>
@@ -84,7 +86,7 @@ const Projects = () => {
                         </div>
                     </div>
                     <div className="projects-card">
-                        <div className="card-image-container"></div>
+                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
                         <div className="card-title-container">
                             <h2 className="card-title">Project title</h2>
                         </div>
@@ -95,7 +97,7 @@ const Projects = () => {
                         </div>
                     </div>
                     <div className="projects-card">
-                        <div className="card-image-container"></div>
+                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
                         <div className="card-title-container">
                             <h2 className="card-title">Project title</h2>
                         </div>
@@ -130,7 +132,7 @@ const ProjectsStyles = styled.header`
         /*   h2 {
             text-align: center;
         } */
-/* 
+        /* 
         .latest-project-container {
             display: flex;
             flex-direction: row;
@@ -172,15 +174,19 @@ const ProjectsStyles = styled.header`
                 margin-bottom: 2em;
 
                 .card-image-container {
-                    background-color: #0069c5;
-                    height: 150px;
+                    //background-color: #0069c5;
+                    width: 100%;
                     border-radius: 30px;
+
+                    img {
+                        width: 100%;
+                    }
                 }
                 .card-title-container {
                     h2 {
                         font-family: "Work Sans", sans-serif;
                         font-weight: 700;
-                        margin-top: .5em;
+                        margin-top: 0.5em;
                     }
                 }
 
@@ -192,11 +198,11 @@ const ProjectsStyles = styled.header`
                     span {
                         font-family: "Work Sans", sans-serif;
                         font-weight: 600;
-                        padding-right: .3em ;
+                        padding-right: 0.3em;
                         border-radius: 22px;
-                        margin: .5em .2em 0 0;
+                        margin: 0.5em 0.2em 0 0;
                         background-color: #ffffff;
-                        padding: .5em;
+                        padding: 0.5em;
                         border: 1px solid #ebebeb;
                     }
                 }
