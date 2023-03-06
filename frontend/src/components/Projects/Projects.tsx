@@ -8,29 +8,179 @@ const Projects = () => {
                 <h1>Projects</h1>
 
                 <div className="projects-cards-container">
+
                     <div className="projects-card">
                         <div className="card-left-part">
-                                <div className="card-image-container">
+                            <div className="card-image-container">
                                 <img src="img/cosmica-screens.png" alt="" />
                             </div>
                         </div>
                         <div className="card-right-part">
                             <div className="card-title-container">
-                                    <h2 className="card-title">Project title</h2>
-                                </div>
-                                <div className="info-container">
-                                    <p>
-                                        e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
-                                        Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                    </p>
-                                </div>
-                                <div className="card-languages-container">
-                                    <span>React</span>
-                                    <span>NodeJS</span>
-                                    <span>MongoDB</span>
-                                </div>
+                                <h2 className="card-title">Juguetería Cósmica</h2>
+                            </div>
+                            <div className="info-container">
+                                <p>
+                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
+                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                </p>
+                            </div>
+                            <div className="card-languages-container">
+                                <span>React</span>
+                                <span>NodeJS</span>
+                                <span>MongoDB</span>
+                            </div>
                         </div>
                     </div>
+
+                    <div className="projects-card">
+                        <div className="card-left-part">
+                            <div className="card-image-container">
+                                <img src="img/cosmica-screens.png" alt="" />
+                            </div>
+                        </div>
+                        <div className="card-right-part">
+                            <div className="card-title-container">
+                                <h2 className="card-title">Juguetería Cósmica</h2>
+                            </div>
+                            <div className="info-container">
+                                <p>
+                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
+                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                </p>
+                            </div>
+                            <div className="card-languages-container">
+                                <span>React</span>
+                                <span>NodeJS</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="projects-card">
+                        <div className="card-left-part">
+                            <div className="card-image-container">
+                                <img src="img/cosmica-screens.png" alt="" />
+                            </div>
+                        </div>
+                        <div className="card-right-part">
+                            <div className="card-title-container">
+                                <h2 className="card-title">Juguetería Cósmica</h2>
+                            </div>
+                            <div className="info-container">
+                                <p>
+                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
+                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                </p>
+                            </div>
+                            <div className="card-languages-container">
+                                <span>React</span>
+                                <span>NodeJS</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="projects-card">
+                        <div className="card-left-part">
+                            <div className="card-image-container">
+                                <img src="img/cosmica-screens.png" alt="" />
+                            </div>
+                        </div>
+                        <div className="card-right-part">
+                            <div className="card-title-container">
+                                <h2 className="card-title">Juguetería Cósmica</h2>
+                            </div>
+                            <div className="info-container">
+                                <p>
+                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
+                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                </p>
+                            </div>
+                            <div className="card-languages-container">
+                                <span>React</span>
+                                <span>NodeJS</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="projects-card">
+                        <div className="card-left-part">
+                            <div className="card-image-container">
+                                <img src="img/cosmica-screens.png" alt="" />
+                            </div>
+                        </div>
+                        <div className="card-right-part">
+                            <div className="card-title-container">
+                                <h2 className="card-title">Juguetería Cósmica</h2>
+                            </div>
+                            <div className="info-container">
+                                <p>
+                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
+                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                </p>
+                            </div>
+                            <div className="card-languages-container">
+                                <span>React</span>
+                                <span>NodeJS</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="projects-card">
+                        <div className="card-left-part">
+                            <div className="card-image-container">
+                                <img src="img/cosmica-screens.png" alt="" />
+                            </div>
+                        </div>
+                        <div className="card-right-part">
+                            <div className="card-title-container">
+                                <h2 className="card-title">Juguetería Cósmica</h2>
+                            </div>
+                            <div className="info-container">
+                                <p>
+                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
+                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                </p>
+                            </div>
+                            <div className="card-languages-container">
+                                <span>React</span>
+                                <span>NodeJS</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="projects-card">
+                        <div className="card-left-part">
+                            <div className="card-image-container">
+                                <img src="img/cosmica-screens.png" alt="" />
+                            </div>
+                        </div>
+                        <div className="card-right-part">
+                            <div className="card-title-container">
+                                <h2 className="card-title">Juguetería Cósmica</h2>
+                            </div>
+                            <div className="info-container">
+                                <p>
+                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
+                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                </p>
+                            </div>
+                            <div className="card-languages-container">
+                                <span>React</span>
+                                <span>NodeJS</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </ProjectsStyles>
@@ -42,6 +192,10 @@ export default Projects;
 const ProjectsStyles = styled.header`
     max-width: 1900px;
     margin: 0 auto;
+
+    @media (min-width: 768px) {
+        max-width: 1200px;
+    }
 
     .projects-container {
         margin: 1em;
@@ -89,15 +243,24 @@ const ProjectsStyles = styled.header`
  */
         .projects-cards-container {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             gap: 1em;
+
+            .projects-card:nth-child(odd) {
+
+                @media (min-width: 768px) {
+                    grid-column-start: 2;
+                    /* grid-auto-flow: column;  */
+                    direction: rtl; 
+                }
+            }
 
             .projects-card {
                 width: 100%;
                 //height: 200px;
                 margin: 1em 0 2em 0;
                 //background-color: red;
-                height: 200px;
+                //height: 200px;
 
                 @media (min-width: 768px) {
                     display: grid;
@@ -106,7 +269,6 @@ const ProjectsStyles = styled.header`
                 }
 
                 .card-left-part {
-
                     /*  @media (min-width: 768px) {
                         width: 40%;
                     } */
@@ -123,8 +285,7 @@ const ProjectsStyles = styled.header`
                 }
 
                 .card-right-part {
-
-                /*     @media (min-width: 768px) {
+                    /*     @media (min-width: 768px) {
                         width: 40%;
                     } */
 
