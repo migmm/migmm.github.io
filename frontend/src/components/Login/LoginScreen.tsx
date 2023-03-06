@@ -9,4 +9,4 @@ const LoginScreen = () => {
 
 export default LoginScreen
 
-const LoginScreenStyles = styled.div ``
+const LoginScreenStyles = styled.main ``

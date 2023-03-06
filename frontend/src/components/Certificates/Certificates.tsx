@@ -81,7 +81,7 @@ const Certificates = () => {
 
 export default Certificates;
 
-const CertificatesStyles = styled.header`
+const CertificatesStyles = styled.main`
     max-width: 1900px;
     margin: 0 auto;
 

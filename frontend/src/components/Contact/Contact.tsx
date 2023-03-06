@@ -48,7 +48,7 @@ function Contact() {
 
 export default Contact;
 
-const Contactstyles = styled.header`
+const Contactstyles = styled.main`
     max-width: 1900px;
     margin: 0 auto;
     

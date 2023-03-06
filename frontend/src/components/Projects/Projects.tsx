@@ -189,7 +189,7 @@ const Projects = () => {
 
 export default Projects;
 
-const ProjectsStyles = styled.header`
+const ProjectsStyles = styled.main`
     max-width: 1900px;
     margin: 0 auto;
 
