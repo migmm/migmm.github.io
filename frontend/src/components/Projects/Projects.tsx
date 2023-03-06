@@ -6,129 +6,29 @@ const Projects = () => {
         <ProjectsStyles>
             <div className="projects-container">
                 <h1>Projects</h1>
-                {/*    <h2>latest project</h2>
-                <div className="latest-project-container">
-                    <div className="latest-project-image-container"></div>
-                    <div className="latest-project-description"></div>
-                </div>
-                <div className="projects-tag-container">
-                    <span>React</span>
-                    <span>NodeJS</span>
-                    <span>MongoDB</span>
-                </div> */}
+
                 <div className="projects-cards-container">
                     <div className="projects-card">
-                        <div className="card-image-container">
-                            <img src="img/cosmica-screens.png" alt="" />
+                        <div className="card-left-part">
+                                <div className="card-image-container">
+                                <img src="img/cosmica-screens.png" alt="" />
+                            </div>
                         </div>
-                        <div className="card-title-container">
-                            <h2 className="card-title">Project title</h2>
-                        </div>
-                        <div className="info-container">
-                            <p> e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.</p>
-                        </div>
-                        <div className="card-languages-container">
-                            <span>React</span>
-                            <span>NodeJS</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                    <div className="projects-card">
-                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
-                        <div className="card-title-container">
-                            <h2 className="card-title">Project title</h2>
-                        </div>
-                        <div className="info-container">
-                            <p> e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.</p>
-                        </div>
-                        <div className="card-languages-container">
-                            <span>React</span>
-                            <span>NodeJS</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                    <div className="projects-card">
-                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
-                        <div className="card-title-container">
-                            <h2 className="card-title">Project title</h2>
-                        </div>
-                        <div className="info-container">
-                            <p> e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.</p>
-                        </div>
-                        <div className="card-languages-container">
-                            <span>React</span>
-                            <span>NodeJS</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                    <div className="projects-card">
-                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
-                        <div className="card-title-container">
-                            <h2 className="card-title">Project title</h2>
-                        </div>
-                        <div className="info-container">
-                            <p> e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.</p>
-                        </div>
-                        <div className="card-languages-container">
-                            <span>React</span>
-                            <span>NodeJS</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                    <div className="projects-card">
-                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
-                        <div className="card-title-container">
-                            <h2 className="card-title">Project title</h2>
-                        </div>
-                        <div className="info-container">
-                            <p> e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.</p>
-                        </div>
-                        <div className="card-languages-container">
-                            <span>React</span>
-                            <span>NodeJS</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                    <div className="projects-card">
-                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
-                        <div className="card-title-container">
-                            <h2 className="card-title">Project title</h2>
-                        </div>
-                        <div className="info-container">
-                            <p> e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.</p>
-                        </div>
-                        <div className="card-languages-container">
-                            <span>React</span>
-                            <span>NodeJS</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                    <div className="projects-card">
-                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
-                        <div className="card-title-container">
-                            <h2 className="card-title">Project title</h2>
-                        </div>
-                        <div className="info-container">
-                            <p> e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.</p>
-                        </div>
-                        <div className="card-languages-container">
-                            <span>React</span>
-                            <span>NodeJS</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                    <div className="projects-card">
-                        <div className="card-image-container"><img src="img/cosmica-screens.png" alt="" /></div>
-                        <div className="card-title-container">
-                            <h2 className="card-title">Project title</h2>
-                        </div>
-                        <div className="info-container">
-                            <p> e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.</p>
-                        </div>
-                        <div className="card-languages-container">
-                            <span>React</span>
-                            <span>NodeJS</span>
-                            <span>MongoDB</span>
+                        <div className="card-right-part">
+                            <div className="card-title-container">
+                                    <h2 className="card-title">Project title</h2>
+                                </div>
+                                <div className="info-container">
+                                    <p>
+                                        e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
+                                        Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                    </p>
+                                </div>
+                                <div className="card-languages-container">
+                                    <span>React</span>
+                                    <span>NodeJS</span>
+                                    <span>MongoDB</span>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -188,53 +88,76 @@ const ProjectsStyles = styled.header`
         }
  */
         .projects-cards-container {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: row;
             gap: 1em;
 
             .projects-card {
                 width: 100%;
                 //height: 200px;
                 margin: 1em 0 2em 0;
+                //background-color: red;
+                height: 200px;
 
-                .card-image-container {
-                    //background-color: #0069c5;
-                    width: 100%;
-                    border-radius: 30px;
+                @media (min-width: 768px) {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 2em;
+                }
 
-                    img {
+                .card-left-part {
+
+                    /*  @media (min-width: 768px) {
+                        width: 40%;
+                    } */
+
+                    .card-image-container {
+                        //background-color: #0069c5;
                         width: 100%;
-                    }
-                }
-                .card-title-container {
-                    h2 {
-                        font-family: "Work Sans", sans-serif;
-                        font-weight: 700;
-                        //margin-top: 0.5em;
+                        border-radius: 30px;
+
+                        img {
+                            width: 100%;
+                        }
                     }
                 }
 
-                .info-container {
-                    p {
-                        font-family: "Work Sans", sans-serif;
-                        font-weight: 500;
-                        margin: .5em 0 .5em 0
-                    }
-                }
-                .card-languages-container {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
+                .card-right-part {
 
-                    span {
-                        font-family: "Work Sans", sans-serif;
-                        font-weight: 600;
-                        padding-right: 0.3em;
-                        border-radius: 22px;
-                        margin: 0.5em 0.2em 0 0;
-                        background-color: #ffffff;
-                        padding: 0.5em;
-                        border: 1px solid #ebebeb;
+                /*     @media (min-width: 768px) {
+                        width: 40%;
+                    } */
+
+                    .card-title-container {
+                        h2 {
+                            font-family: "Work Sans", sans-serif;
+                            font-weight: 700;
+                            //margin-top: 0.5em;
+                        }
+                    }
+
+                    .info-container {
+                        p {
+                            font-family: "Work Sans", sans-serif;
+                            font-weight: 500;
+                            margin: 0.5em 0 0.5em 0;
+                        }
+                    }
+                    .card-languages-container {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+
+                        span {
+                            font-family: "Work Sans", sans-serif;
+                            font-weight: 600;
+                            padding-right: 0.3em;
+                            border-radius: 22px;
+                            margin: 0.5em 0.2em 0 0;
+                            background-color: #ffffff;
+                            padding: 0.5em;
+                            border: 1px solid #ebebeb;
+                        }
                     }
                 }
             }
