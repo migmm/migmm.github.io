@@ -9,9 +9,11 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer/Footer";
+import LoginScreen from "./components/Login/LoginScreen";
 import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -25,6 +27,7 @@ root.render(
                 <Route path="/certificates" element={<Certificates />} />
                 <Route path="/curriculum" element={<Curriculum />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/login" element={<LoginScreen />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
             <Footer/>
