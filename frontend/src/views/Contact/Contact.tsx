@@ -51,10 +51,10 @@ export default Contact;
 const Contactstyles = styled.main`
     max-width: 1900px;
     margin: 0 auto;
-    
+
     .contact-container {
-        
         margin: 1em;
+
         h1 {
             font-family: "Work Sans", sans-serif;
             font-weight: 800;

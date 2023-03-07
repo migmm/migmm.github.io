@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
-import Certificates from "./components/Certificates/Certificates";
-import Contact from "./components/Contact/Contact";
-import Curriculum from "./components/Curriculum/Curriculum";
+import Certificates from "./views/Certificates/Certificates";
+import Contact from "./views/Contact/Contact";
+import Curriculum from "./views/Curriculum/Curriculum";
 import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
-import Projects from "./components/Projects/Projects";
+import Home from "./views/Home/Home";
+import Projects from "./views/Projects/Projects";
 import Footer from "./components/Footer/Footer";
-import LoginScreen from "./components/Login/LoginScreen";
+import LoginScreen from "./views/Login/LoginScreen";
 import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
