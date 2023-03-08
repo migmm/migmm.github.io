@@ -12,7 +12,7 @@ function Contact() {
             <div className="contact-container">
                 <h1>Contact</h1>
                 <div className="column-container">
-                    <p className="column-text">You can contact me sending a mail to hi@miguedev.com or completing the form below.</p>
+                    <p className="column-text">You can contact me by sending an email to hi@miguedev.com or filling in the following form</p>
                     <div className="form-container">
                         <form action="#">
                             <div className="input-group">
