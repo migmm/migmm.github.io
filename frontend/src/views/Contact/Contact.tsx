@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "../../components/Form/Button/Button";
 
 function Contact() {
     return (
@@ -35,8 +36,8 @@ function Contact() {
                                 <textarea name="message" id="message"></textarea>
                             </div>
                             <div className="input-group">
-                                <button type="submit">Submit</button>
-                                <button type="reset">Reset</button>
+                                <Button type="submit">Login</Button>
+                                <Button type="reset">Reset</Button>
                             </div>
                         </form>
                     </div>
