@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "../../components/Form/Button/Button";
+
 
 const LoginScreen = () => {
     return (
@@ -24,8 +26,8 @@ const LoginScreen = () => {
                             </span>
                         </div>
                         <div className="input-group">
-                            <button type="submit">Login</button>
-                            <button type="reset">Reset</button>
+                            <Button type="submit">Login</Button>
+                            <Button type="reset">Reset</Button>
                         </div>
                     </form>
                 </div>
