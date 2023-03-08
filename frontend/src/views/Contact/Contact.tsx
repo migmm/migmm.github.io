@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
 import { Input } from "../../components/Form/Input/Input";
 import { Label } from "../../components/Form/Label/Label";
+import { Textarea } from "../../components/Form/Textarea/Textarea";
 
 
 function Contact() {
@@ -28,7 +29,7 @@ function Contact() {
                             </div>
                             <div className="input-group">
                                 <Label htmlFor="message">Message</Label>
-                                <textarea name="message" id="message"></textarea>
+                                <Textarea name="message" id="message"></Textarea>
                             </div>
                             <div className="input-group">
                                 <Button type="submit">Login</Button>
@@ -59,6 +60,7 @@ const Contactstyles = styled.main`
         }
 
         .column-container {
+
             .column-text {
                 font-family: "Work Sans", sans-serif;
                 font-weight: 600;
@@ -67,28 +69,10 @@ const Contactstyles = styled.main`
             }
 
             .form-container {
+
                 .input-group {
                     display: flex;
                     flex-direction: column;
-
-                    textarea {
-                        font-family: "Work Sans", sans-serif;
-                        font-weight: 600;
-                        text-align: center;
-                        font-size: 1em;
-                        margin-bottom: 1em;
-                        border-radius: 20px;
-                        padding: 0.5em;
-                        border: 1px solid #ebebeb;
-                        :focus {
-                            background-color: #e2e2e2;
-                        }
-                    }
-
-                    textarea {
-                        resize: vertical;
-                        height: 10em;
-                    }
                 }
 
                 .input-group:last-child {
