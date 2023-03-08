@@ -53,7 +53,7 @@ const LoginScreenStyles = styled.main`
             display: flex;
             flex-direction: column;
         }
-        
+
         .register-container {
             margin: 1em 1em 1em 1em;
             span {

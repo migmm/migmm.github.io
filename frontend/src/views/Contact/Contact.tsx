@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
+import { Input } from "../../components/Form/Input/Input";
 import { Label } from "../../components/Form/Label/Label";
 
 
@@ -15,15 +16,15 @@ function Contact() {
                         <form action="#">
                             <div className="input-group">
                                 <Label htmlFor="full-name">Full Name</Label>
-                                <input type="text" className="full-name" id="full-name" />
+                                <Input type="text" id="full-name" />
                             </div>
                             <div className="input-group">
                                 <Label htmlFor="telephone">Telephone</Label>
-                                <input type="text" className="telephone" id="telephonee" />
+                                <Input type="text" id="telephonee" />
                             </div>
                             <div className="input-group">
                                 <Label htmlFor="mail">E-mail</Label>
-                                <input type="text" className="mail" id="mail" />
+                                <Input type="text" id="mail" />
                             </div>
                             <div className="input-group">
                                 <Label htmlFor="message">Message</Label>
@@ -56,6 +57,7 @@ const Contactstyles = styled.main`
             text-align: center;
             margin: 1em 1em 0.5em 1em;
         }
+
         .column-container {
             .column-text {
                 font-family: "Work Sans", sans-serif;
@@ -63,12 +65,12 @@ const Contactstyles = styled.main`
                 text-align: center;
                 margin: 1em 1em 0.5em 1em;
             }
+
             .form-container {
                 .input-group {
                     display: flex;
                     flex-direction: column;
 
-                    input,
                     textarea {
                         font-family: "Work Sans", sans-serif;
                         font-weight: 600;
@@ -88,6 +90,7 @@ const Contactstyles = styled.main`
                         height: 10em;
                     }
                 }
+
                 .input-group:last-child {
                     display: flex;
                     flex-direction: row;
