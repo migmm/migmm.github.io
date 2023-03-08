@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
-import { Label } from "../../components/Form/Label/label";
+import { Label } from "../../components/Form/Label/Label";
 
 
 const LoginScreen = () => {
