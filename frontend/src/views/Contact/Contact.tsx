@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
+import { Label } from "../../components/Form/Label/label";
 
 function Contact() {
     return (
@@ -12,27 +13,19 @@ function Contact() {
                     <div className="form-container">
                         <form action="#">
                             <div className="input-group">
-                                <label htmlFor="full-name" className="full-name-label">
-                                    Name
-                                </label>
+                                <Label htmlFor="full-name">Full Name</Label>
                                 <input type="text" className="full-name" id="full-name" />
                             </div>
                             <div className="input-group">
-                                <label htmlFor="telephone" className="telephone">
-                                    Telephone
-                                </label>
+                                <Label htmlFor="telephone">Telephone</Label>
                                 <input type="text" className="telephone" id="telephonee" />
                             </div>
                             <div className="input-group">
-                                <label htmlFor="mail" className="mail">
-                                    E-mail
-                                </label>
+                                <Label htmlFor="mail">E-mail</Label>
                                 <input type="text" className="mail" id="mail" />
                             </div>
                             <div className="input-group">
-                                <label htmlFor="message" className="message">
-                                    Message
-                                </label>
+                                <Label htmlFor="message">Message</Label>
                                 <textarea name="message" id="message"></textarea>
                             </div>
                             <div className="input-group">
@@ -73,13 +66,6 @@ const Contactstyles = styled.main`
                 .input-group {
                     display: flex;
                     flex-direction: column;
-
-                    label {
-                        font-family: "Work Sans", sans-serif;
-                        font-weight: 600;
-                        text-align: center;
-                        margin-bottom: 0.5em;
-                    }
 
                     input,
                     textarea {
