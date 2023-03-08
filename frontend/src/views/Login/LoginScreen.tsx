@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
+import { Label } from "../../components/Form/Label/label";
 
 
 const LoginScreen = () => {
@@ -11,13 +12,9 @@ const LoginScreen = () => {
                 <div className="login-form-container">
                     <form action="#">
                         <div className="input-group">
-                            <label htmlFor="user" className="user-label">
-                                User
-                            </label>
+                            <Label htmlFor="user">User</Label>
                             <input type="text" className="user" id="user" />
-                            <label htmlFor="password" className="password-label">
-                                Password
-                            </label>
+                            <Label htmlFor="password">Password</Label>
                             <input type="password" className="password" id="password" />
                         </div>
                         <div className="register-container">
@@ -54,13 +51,6 @@ const LoginScreenStyles = styled.main`
         .input-group {
             display: flex;
             flex-direction: column;
-
-            label {
-                font-family: "Work Sans", sans-serif;
-                font-weight: 600;
-                text-align: center;
-                margin-bottom: 0.5em;
-            }
 
             input {
                 font-family: "Work Sans", sans-serif;
