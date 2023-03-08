@@ -5,7 +5,7 @@ const LoginScreen = () => {
     return (
         <LoginScreenStyles>
             <div className="contact-container">
-                <h1>Contact</h1>
+                <h1>Login</h1>
                 <div className="login-form-container">
                     <form action="#">
                         <div className="input-group">
