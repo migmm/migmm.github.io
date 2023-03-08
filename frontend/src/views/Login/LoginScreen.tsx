@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
 import { Label } from "../../components/Form/Label/Label";
+import { Input } from "../../components/Form/Input/Input";
 
 
 const LoginScreen = () => {
@@ -13,9 +14,9 @@ const LoginScreen = () => {
                     <form action="#">
                         <div className="input-group">
                             <Label htmlFor="user">User</Label>
-                            <input type="text" className="user" id="user" />
+                            <Input type="text" id="user"/>
                             <Label htmlFor="password">Password</Label>
-                            <input type="password" className="password" id="password" />
+                            <Input type="password" id="password" />
                         </div>
                         <div className="register-container">
                             <span>
@@ -51,22 +52,8 @@ const LoginScreenStyles = styled.main`
         .input-group {
             display: flex;
             flex-direction: column;
-
-            input {
-                font-family: "Work Sans", sans-serif;
-                font-weight: 600;
-                text-align: center;
-                font-size: 1em;
-                margin-bottom: 1em;
-                border-radius: 20px;
-                padding: 0.5em;
-                border: 1px solid #ebebeb;
-
-                :focus {
-                    background-color: #e2e2e2;
-                }
-            }
         }
+        
         .register-container {
             margin: 1em 1em 1em 1em;
             span {
