@@ -66,10 +66,12 @@ const Home = () => {
 export default Home;
 
 const HomeContainer = styled.nav`
+
+margin: 2em 0 2em 0;
     .hero-container {
         width: 100%;
-        height: calc(100vh - 65px);
-        border: 1px solid red;
+        // height: calc(100% - 65px);
+        //border: 1px solid red;
 
         .text-container {
             width: 100%;
@@ -77,16 +79,18 @@ const HomeContainer = styled.nav`
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid red;
+            //border: 1px solid blue;
+            padding-top: 1em;
+            padding-bottom: 3em;
             
 
             .text-home {
                 text-align: center;
-                font-size: 5vw;
+                font-size: 7vw;
                 font-family: 'Work Sans', sans-serif;
                 font-weight: 800;
                 //word-spacing: -10px;
-
+                
                 .charge-text {
                 }
             }
@@ -101,10 +105,17 @@ const HomeContainer = styled.nav`
             align-items: center;
 
             a {
+                fill: green !important;
+
                 img {
-                    width: 50px;
-                    height: 50px;
-                    color: red;
+                    width: 8vh;
+                    //height: 40px;
+                    fill: green !important;
+                    margin: 0 .5em;
+                }
+
+                :hover {
+                    fill: green !important;
                 }
             }
         }
@@ -112,11 +123,11 @@ const HomeContainer = styled.nav`
 
     .projects-container {
 
-     
         h1 {
+            font-family: "Work Sans", sans-serif;
+            font-weight: 800;
             text-align: center;
-            margin: 1em;
-            font-family: Arial, Helvetica, sans-serif;
+            margin: 2em 1em 0.5em 1em;
         }
 
         p {
