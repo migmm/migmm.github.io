@@ -39,17 +39,35 @@ const Home = () => {
             </div>
 
             <div className="projects-container">
-                <h1>Projects</h1>
+                <h1> Latest Project</h1>
 
-                <p>Featured projects that I've developed</p>
+                {/*                 <p>Featured projects that I've developed</p> */}
 
                 <div className="cards-container">
                     <div className="big-card-container">
-                        <div className="big-card"></div>
-                    </div>
-                    <div className="small-cards-container">
-                        <div className="small-card"></div>
-                        <div className="small-card"></div>
+                        <div className="big-card">
+                            <div className="card-left-part">
+                                <div className="card-image-container">
+                                    <img src="img/cosmica-screens.png" alt="" />
+                                </div>
+                            </div>
+                            <div className="card-right-part">
+                                <div className="card-title-container">
+                                    <h2 className="card-title">Juguetería Cósmica</h2>
+                                </div>
+                                <div className="info-container">
+                                    <p>
+                                        e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
+                                        Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                    </p>
+                                </div>
+                                <div className="card-languages-container">
+                                    <span>React</span>
+                                    <span>NodeJS</span>
+                                    <span>MongoDB</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -66,8 +84,7 @@ const Home = () => {
 export default Home;
 
 const HomeContainer = styled.nav`
-
-margin: 2em 0 2em 0;
+    margin: 2em 0 2em 0;
     .hero-container {
         width: 100%;
         // height: calc(100% - 65px);
@@ -82,15 +99,14 @@ margin: 2em 0 2em 0;
             //border: 1px solid blue;
             padding-top: 1em;
             padding-bottom: 3em;
-            
 
             .text-home {
                 text-align: center;
                 font-size: 7vw;
-                font-family: 'Work Sans', sans-serif;
+                font-family: "Work Sans", sans-serif;
                 font-weight: 800;
                 //word-spacing: -10px;
-                
+
                 .charge-text {
                 }
             }
@@ -111,7 +127,7 @@ margin: 2em 0 2em 0;
                     width: 8vh;
                     //height: 40px;
                     fill: green !important;
-                    margin: 0 .5em;
+                    margin: 0 0.5em;
                 }
 
                 :hover {
@@ -122,7 +138,6 @@ margin: 2em 0 2em 0;
     }
 
     .projects-container {
-
         h1 {
             font-family: "Work Sans", sans-serif;
             font-weight: 800;
@@ -144,14 +159,58 @@ margin: 2em 0 2em 0;
 
             .big-card-container {
                 width: 65%;
-                background-color: red;
-                height: 400px;
+                .card-left-part {
+                    /*  @media (min-width: 768px) {
+                        width: 40%;
+                    } */
 
-                .big-card {
-                    margin: 1em;
-                    width: calc(100% - 2em);
-                    height: calc(100% - 2em);
-                    background-color: blue;
+                    .card-image-container {
+                        //background-color: #0069c5;
+                        width: 100%;
+                        border-radius: 30px;
+
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .card-right-part {
+                    /*     @media (min-width: 768px) {
+                        width: 40%;
+                    } */
+
+                    .card-title-container {
+                        h2 {
+                            font-family: "Work Sans", sans-serif;
+                            font-weight: 700;
+                            //margin-top: 0.5em;
+                        }
+                    }
+
+                    .info-container {
+                        p {
+                            font-family: "Work Sans", sans-serif;
+                            font-weight: 500;
+                            margin: 0.5em 0 0.5em 0;
+                        }
+                    }
+                    .card-languages-container {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+
+                        span {
+                            font-family: "Work Sans", sans-serif;
+                            font-weight: 600;
+                            padding-right: 0.3em;
+                            border-radius: 22px;
+                            margin: 0.5em 0.2em 0 0;
+                            background-color: #ffffff;
+                            padding: 0.5em;
+                            border: 1px solid #ebebeb;
+                        }
+                    }
                 }
             }
             .small-cards-container {
