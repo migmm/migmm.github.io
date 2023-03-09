@@ -229,12 +229,16 @@ const HomeContainer = styled.nav`
 
         .view-more-container {
             width: 100%;
-            border: 1px solid black;
+            //border: 1px solid black;
 
             .view-more-link {
                 float: right;
                 text-align: right;
                 width: 100%;
+                font-family: "Work Sans", sans-serif;
+                font-weight: 500;
+                margin: 0.5em 0 0.5em 0;
+                text-decoration: none;
             }
         }
     }
