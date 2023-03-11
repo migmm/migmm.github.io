@@ -59,6 +59,83 @@ const Certificates = () => {
                         </div> */}
                         <h2>Course</h2>
                     </div>
+
+                    {/* CARD */}
+                    <div className="card">
+                        <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        {/*  <div className="img-miniature-container">
+                            <img src="" alt="" />
+                        </div> */}
+                        <h2>Course</h2>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="card">
+                        <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        {/*  <div className="img-miniature-container">
+                            <img src="" alt="" />
+                        </div> */}
+                        <h2>Course</h2>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="card">
+                        <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        {/*  <div className="img-miniature-container">
+                            <img src="" alt="" />
+                        </div> */}
+                        <h2>Course</h2>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="card">
+                        <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        {/*  <div className="img-miniature-container">
+                            <img src="" alt="" />
+                        </div> */}
+                        <h2>Course</h2>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="card">
+                        <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        {/*  <div className="img-miniature-container">
+                            <img src="" alt="" />
+                        </div> */}
+                        <h2>Course</h2>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="card">
+                        <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        {/*  <div className="img-miniature-container">
+                            <img src="" alt="" />
+                        </div> */}
+                        <h2>Course</h2>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="card">
+                        <div className="image-container">
+                            <img src="" alt="" />
+                        </div>
+                        {/*  <div className="img-miniature-container">
+                            <img src="" alt="" />
+                        </div> */}
+                        <h2>Course</h2>
+                    </div>
                 </div>
                 <div className="pagination-container">
                     <span className="pages">
@@ -124,11 +201,14 @@ const CertificatesStyles = styled.main`
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1em;
+            
 
             @media (min-width: 768px) {
                 display: flex;
                 flex-direction: row;
+                flex-wrap: wrap;
                 gap: 1em;
+                justify-content: center;
             }
 
             .card {
