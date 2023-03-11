@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
 import { Label } from "../../components/Form/Label/Label";
 import { Input } from "../../components/Form/Input/Input";
+import { H1 } from "../../Styles/H1/H1";
 
 
 const LoginScreen = () => {
     return (
         <LoginScreenStyles>
             <div className="contact-container">
-                <h1>Login</h1>
+                <H1>Login</H1>
                 <div className="login-form-container">
                     <form action="#">
                         <div className="input-group">
@@ -40,13 +41,6 @@ const LoginScreenStyles = styled.main`
     max-width: 1900px;
     margin: 0 auto;
     margin: 1em;
-
-    h1 {
-        font-family: "Work Sans", sans-serif;
-        font-weight: 800;
-        text-align: center;
-        margin: 1em 1em 0.5em 1em;
-    }
 
     .login-form-container {
         .input-group {
