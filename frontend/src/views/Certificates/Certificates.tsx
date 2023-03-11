@@ -125,6 +125,12 @@ const CertificatesStyles = styled.main`
             grid-template-columns: 1fr 1fr;
             gap: 1em;
 
+            @media (min-width: 768px) {
+                display: flex;
+                flex-direction: row;
+                gap: 1em;
+            }
+
             .card {
                 width: 100%;
                 height: 200px;
