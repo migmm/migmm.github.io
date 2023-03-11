@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { H1 } from "../../Styles/H1/H1";
 
 const Certificates = () => {
     return (
         <CertificatesStyles>
             <div className="certifications-container">
-                <h1>Certifications</h1>
+                <H1>Certifications</H1>
                 <div className="selectors-container">
                     <span>Browse by</span>
                     {/* <label htmlFor="select-company">Company</label> */}
@@ -164,13 +165,6 @@ const CertificatesStyles = styled.main`
 
     .certifications-container {
         margin: 1em;
-
-        h1 {
-            font-family: "Work Sans", sans-serif;
-            font-weight: 800;
-            text-align: center;
-            margin: 1em 1em 0.5em 1em;
-        }
 
         .selectors-container {
             text-align: center;

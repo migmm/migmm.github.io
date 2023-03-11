@@ -4,7 +4,7 @@ import { Button } from "../../components/Form/Button/Button";
 import { Input } from "../../components/Form/Input/Input";
 import { Label } from "../../components/Form/Label/Label";
 import { Textarea } from "../../components/Form/Textarea/Textarea";
-import { H1 } from "../../Styles/H1";
+import { H1 } from "../../Styles/H1/H1";
 
 function Contact() {
     return (
