@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { H1 } from "../../Styles/H1/H1"
 
 const Projects = () => {
     return (
         <ProjectsStyles>
             <div className="projects-container">
-                <h1>Projects</h1>
+                <H1>Projects</H1>
 
                 <div className="projects-cards-container">
 
@@ -199,13 +200,6 @@ const ProjectsStyles = styled.main`
 
     .projects-container {
         margin: 1em;
-
-        h1 {
-            font-family: "Work Sans", sans-serif;
-            font-weight: 800;
-            text-align: center;
-            margin: 1em;
-        }
 
         /*   h2 {
             text-align: center;
