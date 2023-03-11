@@ -4,13 +4,13 @@ import { Button } from "../../components/Form/Button/Button";
 import { Input } from "../../components/Form/Input/Input";
 import { Label } from "../../components/Form/Label/Label";
 import { Textarea } from "../../components/Form/Textarea/Textarea";
-
+import { H1 } from "../../Styles/H1";
 
 function Contact() {
     return (
         <Contactstyles>
             <div className="contact-container">
-                <h1>Contact</h1>
+                <H1>Contact</H1>
                 <div className="column-container">
                     <p className="column-text">You can contact me by sending an email to hi@miguedev.com or filling in the following form</p>
                     <div className="form-container">
@@ -51,13 +51,6 @@ const Contactstyles = styled.main`
 
     .contact-container {
         margin: 1em;
-
-        h1 {
-            font-family: "Work Sans", sans-serif;
-            font-weight: 800;
-            text-align: center;
-            margin: 1em 1em 0.5em 1em;
-        }
 
         .column-container {
 
