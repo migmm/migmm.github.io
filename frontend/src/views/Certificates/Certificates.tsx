@@ -122,7 +122,7 @@ const CertificatesStyles = styled.main`
 
         .cards-container {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 1em;
 
             .card {
