@@ -15,7 +15,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterStyles = styled.footer`
-    width: 20xp;
+    width: 100%;
 
     .footer-link-container {
         text-align: right;
