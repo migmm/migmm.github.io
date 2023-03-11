@@ -136,6 +136,10 @@ const CertificatesStyles = styled.main`
                 height: 200px;
                 margin-bottom: 2em;
 
+                @media (min-width: 768px) {
+                    max-width: 300px;
+                }
+
                 .image-container {
                     background-color: #0069c5;
                     height: 150px;
