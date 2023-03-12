@@ -66,6 +66,7 @@ const Contactstyles = styled.main`
                 .input-group {
                     display: flex;
                     flex-direction: column;
+                    justify-content: center;
                 }
 
                 .input-group:last-child {
