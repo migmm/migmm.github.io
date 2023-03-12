@@ -84,7 +84,7 @@ const Certificates = () => {
                         </div> */}
                         <h2>Course</h2>
                     </div>
-                    
+
                     <div className="card">
                         <div className="images-container">
                             <img src="img/example-certification.png" alt="" />
@@ -254,14 +254,14 @@ const CertificatesStyles = styled.main`
             .card {
                 width: 100%;
                 height: 200px;
-                margin-bottom: 2em;
+                margin-bottom: 4em;
 
                 @media (min-width: 768px) {
                     max-width: 300px;
                 }
 
                 .images-container {
-                    //background-color: #0069c5;
+                    // background-color: #0069c5;
                     height: 200px;
                     //border-radius: 30px;
                     position:relative;
@@ -275,17 +275,17 @@ const CertificatesStyles = styled.main`
                         :nth-child(2) {
                             position: absolute;
                             top: 50px;
-                            left: 20px;
+                            left: 50px;
                             width: 40px;
                         }
                     }
-                  
                 }
 
                 h2 {
                     font-family: "Work Sans", sans-serif;
                     font-weight: 700;
                     margin-top: 0.5em;
+                    margin-left: 1em;
                 }
             }
         }
