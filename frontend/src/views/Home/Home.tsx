@@ -7,6 +7,8 @@ import logoWhatsapp from "./whatsapp.svg";
 import logoEmail from "./email.svg";
 import logoLinkedin from "./linkedin.svg";
 
+import{ Paragraph } from "../../Styles/Paragraph/Paragraph"
+
 const Home = () => {
     return (
         <HomeContainer>
@@ -56,10 +58,10 @@ const Home = () => {
                                     <h2 className="card-title">Juguetería Cósmica</h2>
                                 </div>
                                 <div className="info-container">
-                                    <p>
+                                    <Paragraph>
                                         e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
                                         Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                    </p>
+                                    </Paragraph>
                                 </div>
                                 <div className="card-languages-container">
                                     <span>React</span>
@@ -143,12 +145,6 @@ const HomeContainer = styled.nav`
             font-weight: 800;
             text-align: center;
             margin: 2em 1em 0.5em 1em;
-        }
-
-        p {
-            text-align: center;
-            margin: 1em;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         .cards-container {
