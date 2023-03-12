@@ -5,6 +5,7 @@ import { Input } from "../../components/Form/Input/Input";
 import { Label } from "../../components/Form/Label/Label";
 import { Textarea } from "../../components/Form/Textarea/Textarea";
 import { H1 } from "../../Styles/H1/H1";
+import{ Paragraph } from "../../Styles/Paragraph/Paragraph"
 
 function Contact() {
     return (
@@ -12,7 +13,7 @@ function Contact() {
             <div className="contact-container">
                 <H1>Contact</H1>
                 <div className="column-container">
-                    <p className="column-text">You can contact me by sending an email to hi@miguedev.com or filling in the following form</p>
+                    <Paragraph>You can contact me by sending an email to hi@miguedev.com or filling in the following form</Paragraph>
                     <div className="form-container">
                         <form action="#">
                             <div className="input-group">
@@ -53,13 +54,6 @@ const Contactstyles = styled.main`
         margin: 1em;
 
         .column-container {
-
-            .column-text {
-                font-family: "Work Sans", sans-serif;
-                font-weight: 600;
-                text-align: center;
-                margin: 1em 1em 0.5em 1em;
-            }
 
             .form-container {
 
