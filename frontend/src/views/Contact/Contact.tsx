@@ -32,7 +32,7 @@ function Contact() {
                                 <Textarea name="message" id="message"></Textarea>
                             </div>
                             <div className="input-group">
-                                <Button type="submit">Login</Button>
+                                <Button type="submit">Send</Button>
                                 <Button type="reset">Reset</Button>
                             </div>
                         </form>
