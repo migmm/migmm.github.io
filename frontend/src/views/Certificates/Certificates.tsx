@@ -30,8 +30,12 @@ const Certificates = () => {
                 <div className="cards-container">
                     {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -39,10 +43,13 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -50,10 +57,13 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -61,10 +71,27 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
+                        </div>
+                        {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
+                        </div> */}
+                        <h2>Course</h2>
+                    </div>
+                    
+                    <div className="card">
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -72,10 +99,13 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -83,10 +113,13 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -94,10 +127,13 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -105,10 +141,13 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -116,10 +155,13 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
@@ -127,16 +169,20 @@ const Certificates = () => {
                         <h2>Course</h2>
                     </div>
 
-                    {/* CARD */}
                     <div className="card">
-                        <div className="image-container">
-                            <img src="" alt="" />
+                        <div className="images-container">
+                            <img src="img/example-certification.png" alt="" />
+                            <img src="img/example-favicon.png" alt="" />
+                        </div>
+                        <div className="favicon-container">
+                            
                         </div>
                         {/*  <div className="img-miniature-container">
                             <img src="" alt="" />
                         </div> */}
                         <h2>Course</h2>
                     </div>
+
                 </div>
                 <div className="pagination-container">
                     <span className="pages">
@@ -214,10 +260,26 @@ const CertificatesStyles = styled.main`
                     max-width: 300px;
                 }
 
-                .image-container {
-                    background-color: #0069c5;
-                    height: 150px;
-                    border-radius: 30px;
+                .images-container {
+                    //background-color: #0069c5;
+                    height: 200px;
+                    //border-radius: 30px;
+                    position:relative;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        border-radius: 30px;
+
+                        :nth-child(2) {
+                            position: absolute;
+                            top: 50px;
+                            left: 20px;
+                            width: 40px;
+                        }
+                    }
+                  
                 }
 
                 h2 {
