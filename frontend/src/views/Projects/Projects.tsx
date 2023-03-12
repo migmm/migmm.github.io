@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { H1 } from "../../Styles/H1/H1"
+import{ Paragraph } from "../../Styles/Paragraph/Paragraph"
 
 const Projects = () => {
     return (
@@ -21,10 +22,10 @@ const Projects = () => {
                                 <h2 className="card-title">Juguetería Cósmica</h2>
                             </div>
                             <div className="info-container">
-                                <p>
+                                <Paragraph>
                                     e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
                                     with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                </p>
+                                </Paragraph>
                             </div>
                             <div className="card-languages-container">
                                 <span>React</span>
@@ -45,35 +46,10 @@ const Projects = () => {
                                 <h2 className="card-title">Juguetería Cósmica</h2>
                             </div>
                             <div className="info-container">
-                                <p>
+                                <Paragraph>
                                     e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
                                     with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                </p>
-                            </div>
-                            <div className="card-languages-container">
-                                <span>React</span>
-                                <span>NodeJS</span>
-                                <span>MongoDB</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="projects-card">
-                        <div className="card-left-part">
-                            <div className="card-image-container">
-                                <img src="img/cosmica-screens.png" alt="" />
-                            </div>
-                        </div>
-                        <div className="card-right-part">
-                            <div className="card-title-container">
-                                <h2 className="card-title">Juguetería Cósmica</h2>
-                            </div>
-                            <div className="info-container">
-                                <p>
-                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
-                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                </p>
+                                </Paragraph>
                             </div>
                             <div className="card-languages-container">
                                 <span>React</span>
@@ -95,10 +71,10 @@ const Projects = () => {
                                 <h2 className="card-title">Juguetería Cósmica</h2>
                             </div>
                             <div className="info-container">
-                                <p>
+                                <Paragraph>
                                     e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
                                     with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                </p>
+                                </Paragraph>
                             </div>
                             <div className="card-languages-container">
                                 <span>React</span>
@@ -120,10 +96,10 @@ const Projects = () => {
                                 <h2 className="card-title">Juguetería Cósmica</h2>
                             </div>
                             <div className="info-container">
-                                <p>
+                                <Paragraph>
                                     e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
                                     with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                </p>
+                                </Paragraph>
                             </div>
                             <div className="card-languages-container">
                                 <span>React</span>
@@ -145,10 +121,35 @@ const Projects = () => {
                                 <h2 className="card-title">Juguetería Cósmica</h2>
                             </div>
                             <div className="info-container">
-                                <p>
+                                <Paragraph>
                                     e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
                                     with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                </p>
+                                </Paragraph>
+                            </div>
+                            <div className="card-languages-container">
+                                <span>React</span>
+                                <span>NodeJS</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="projects-card">
+                        <div className="card-left-part">
+                            <div className="card-image-container">
+                                <img src="img/cosmica-screens.png" alt="" />
+                            </div>
+                        </div>
+                        <div className="card-right-part">
+                            <div className="card-title-container">
+                                <h2 className="card-title">Juguetería Cósmica</h2>
+                            </div>
+                            <div className="info-container">
+                                <Paragraph>
+                                    e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
+                                    with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                </Paragraph>
                             </div>
                             <div className="card-languages-container">
                                 <span>React</span>
@@ -169,10 +170,10 @@ const Projects = () => {
                                 <h2 className="card-title">Juguetería Cósmica</h2>
                             </div>
                             <div className="info-container">
-                                <p>
+                                <Paragraph>
                                     e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and Javascript
                                     with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                </p>
+                                </Paragraph>
                             </div>
                             <div className="card-languages-container">
                                 <span>React</span>
@@ -291,13 +292,6 @@ const ProjectsStyles = styled.main`
                         }
                     }
 
-                    .info-container {
-                        p {
-                            font-family: "Work Sans", sans-serif;
-                            font-weight: 500;
-                            margin: 0.5em 0 0.5em 0;
-                        }
-                    }
                     .card-languages-container {
                         display: flex;
                         flex-direction: row;
