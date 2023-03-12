@@ -42,10 +42,13 @@ const LoginScreenStyles = styled.main`
     margin: 0 auto;
     margin: 1em;
 
+
     .login-form-container {
+        
         .input-group {
             display: flex;
             flex-direction: column;
+            justify-content: center;
         }
 
         .register-container {
