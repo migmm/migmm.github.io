@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
 import { Label } from "../../components/Form/Label/Label";
+import { LabelError } from "../../components/Form/LabelError/LabelError";
 import { Input } from "../../components/Form/Input/Input";
 import { H1 } from "../../Styles/H1/H1";
 
@@ -16,8 +17,10 @@ const LoginScreen = () => {
                         <div className="input-group">
                             <Label htmlFor="user">User</Label>
                             <Input type="text" id="user"/>
+                            <LabelError>Error</LabelError>
                             <Label htmlFor="password">Password</Label>
                             <Input type="password" id="password" />
+                            <LabelError>Error</LabelError>
                         </div>
                         <div className="register-container">
                             <span>
