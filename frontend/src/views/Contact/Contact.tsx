@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
 import { Input } from "../../components/Form/Input/Input";
 import { Label } from "../../components/Form/Label/Label";
+import { LabelError } from "../../components/Form/LabelError/LabelError";
 import { Textarea } from "../../components/Form/Textarea/Textarea";
 import { H1 } from "../../Styles/H1/H1";
 import{ Paragraph } from "../../Styles/Paragraph/Paragraph"
@@ -19,18 +20,22 @@ function Contact() {
                             <div className="input-group">
                                 <Label htmlFor="full-name">Full Name</Label>
                                 <Input type="text" id="full-name" />
+                                <LabelError> Error </LabelError>
                             </div>
                             <div className="input-group">
                                 <Label htmlFor="telephone">Telephone</Label>
                                 <Input type="text" id="telephonee" />
+                                <LabelError> Error </LabelError>
                             </div>
                             <div className="input-group">
                                 <Label htmlFor="mail">E-mail</Label>
                                 <Input type="text" id="mail" />
+                                <LabelError> Error </LabelError>
                             </div>
                             <div className="input-group">
                                 <Label htmlFor="message">Message</Label>
                                 <Textarea name="message" id="message"></Textarea>
+                                <LabelError> Error </LabelError>
                             </div>
                             <div className="input-group">
                                 <Button type="submit">Send</Button>
