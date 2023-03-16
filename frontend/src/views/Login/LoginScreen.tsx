@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/Form/Button/Button";
 import { Label } from "../../components/Form/Label/Label";
@@ -6,8 +6,29 @@ import { LabelError } from "../../components/Form/LabelError/LabelError";
 import { Input } from "../../components/Form/Input/Input";
 import { H1 } from "../../Styles/H1/H1";
 
-
 const LoginScreen = () => {
+    const [user, setUser] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleChange(name: string, value: string) {
+        if (name == "user") {
+            setUser(value);
+        } else {
+            setPassword(value);
+        } 
+
+        console.log("usuario:", user);
+    }
+
+    
+    function handleSubmit(e:any) {
+        
+        let loginData = { user, password};
+        if (loginData) {
+            console.log("Login", loginData);
+        }
+        e.preventDefault();
+    }
     return (
         <LoginScreenStyles>
             <div className="contact-container">
@@ -16,10 +37,10 @@ const LoginScreen = () => {
                     <form action="#">
                         <div className="input-group">
                             <Label htmlFor="user">User</Label>
-                            <Input type="text" id="user"/>
+                            <Input type="text" id="user" name="user" onChange={(e) => handleChange(e.target.name, e.target.value)} />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="password">Password</Label>
-                            <Input type="password" id="password" />
+                            <Input type="password" id="password" name="password" />
                             <LabelError>Error</LabelError>
                         </div>
                         <div className="register-container">
@@ -28,7 +49,9 @@ const LoginScreen = () => {
                             </span>
                         </div>
                         <div className="input-group">
-                            <Button type="submit">Login</Button>
+                            <Button type="submit" onClick={ handleSubmit }>
+                                Login
+                            </Button>
                             <Button type="reset">Reset</Button>
                         </div>
                     </form>
@@ -45,9 +68,7 @@ const LoginScreenStyles = styled.main`
     margin: 0 auto;
     margin: 1em;
 
-
     .login-form-container {
-        
         .input-group {
             display: flex;
             flex-direction: column;
