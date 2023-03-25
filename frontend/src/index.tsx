@@ -13,6 +13,7 @@ import LoginScreen from "./views/Login/LoginScreen";
 import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
+import AddCertificate from "./views/AddCertificate/AddCertificate";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
@@ -28,6 +29,7 @@ root.render(
                 <Route path="/curriculum" element={<Curriculum />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<LoginScreen />} />
+                <Route path="/addcertificate" element={<AddCertificate />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
             <Footer/>
