@@ -15,7 +15,16 @@ const Home = () => {
 
     const lockScroll = (option: string) => {
 
+        if(option === "enabled") {
+            document.body.style.overflow = "hidden";
+        document.body.style.userSelect = "none";
+        } else {
+            document.body.style.overflow = "auto";
+            document.body.style.userSelect = "auto";
+        }
+    }
 
+    lockScroll("enabled");
 
     useEffect(() => {
         const zoomElement = document.querySelector(".text-home") as HTMLElement;
