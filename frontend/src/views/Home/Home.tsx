@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import logoGithub from "./github.svg";
@@ -7,9 +7,38 @@ import logoWhatsapp from "./whatsapp.svg";
 import logoEmail from "./email.svg";
 import logoLinkedin from "./linkedin.svg";
 
-import{ Paragraph } from "../../Styles/Paragraph/Paragraph"
+import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
+
+    const zoom = () => {}
+
+    const lockScroll = (option: string) => {
+
+
+
+    useEffect(() => {
+        const zoomElement = document.querySelector(".text-home") as HTMLElement;
+        let zoom = 1;
+        const ZOOM_SPEED = 0.1;
+
+        document.addEventListener("wheel", function(e) {
+            let tt = zoom + ZOOM_SPEED;
+            console.log(tt);
+
+            if (e.deltaY > 0) {
+                zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
+            } else {
+                if (zoom + ZOOM_SPEED >= 1.2) {
+                    zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
+                }
+            }
+            console.log("scroll", zoomElement);
+        });
+
+        console.log(zoomElement);
+    }, []);
+
     return (
         <HomeContainer>
             <div className="hero-container">
@@ -140,7 +169,6 @@ const HomeContainer = styled.nav`
     }
 
     .projects-container {
-
         background-color: #000000;
         h1 {
             font-family: "Work Sans", sans-serif;
