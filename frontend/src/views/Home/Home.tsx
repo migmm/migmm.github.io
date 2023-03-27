@@ -89,7 +89,7 @@ const HomeContainer = styled.nav`
     margin: 2em 0 2em 0;
     .hero-container {
         width: 100%;
-        // height: calc(100% - 65px);
+        height: calc(100vh - 65px);
         //border: 1px solid red;
 
         .text-container {
@@ -140,6 +140,8 @@ const HomeContainer = styled.nav`
     }
 
     .projects-container {
+
+        background-color: #000000;
         h1 {
             font-family: "Work Sans", sans-serif;
             font-weight: 800;
@@ -180,6 +182,7 @@ const HomeContainer = styled.nav`
                         h2 {
                             font-family: "Work Sans", sans-serif;
                             font-weight: 700;
+                            color: white;
                             //margin-top: 0.5em;
                         }
                     }
@@ -189,6 +192,7 @@ const HomeContainer = styled.nav`
                             font-family: "Work Sans", sans-serif;
                             font-weight: 500;
                             margin: 0.5em 0 0.5em 0;
+                            color: white;
                         }
                     }
                     .card-languages-container {
