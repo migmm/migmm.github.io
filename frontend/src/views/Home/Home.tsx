@@ -29,18 +29,12 @@ const Home = () => {
         let opacity = 1;
         let zoom = 1;
         let y = 0;
+        
         document.addEventListener("wheel", (e) => {
             if (window.pageYOffset <= 0) {
                 lockScroll("enabled");
                 zoomElement.style.display = `block`;
             }
-
-            let tt = zoom + ZOOM_SPEED;
-            console.log(tt);
-
-            console.log("delta Y", e.deltaY);
-
-            console.log(window.pageYOffset);
 
             if (e.deltaY >= 0) {
                 zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
@@ -57,8 +51,6 @@ const Home = () => {
                 zoomElement.style.display = `none`;
             }
 
-            console.log("scroll", zoomElement);
-            console.log("opacity", opacity);
         });
     }, []);
 
