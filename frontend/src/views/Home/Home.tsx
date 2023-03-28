@@ -25,14 +25,15 @@ const Home = () => {
     useEffect(() => {
         const zoomElement = document.querySelector(".text-home") as HTMLElement;
         const OPACITY_STEP = 0.05;
-        const ZOOM_SPEED = 0.1;
+        const ZOOM_SPEED = 0.2;
         let opacity = 1;
         let zoom = 1;
-        
-        document.addEventListener("wheel", (e) => {
 
-            lockScroll("enabled");
-            zoomElement.style.display = `block`;
+        document.addEventListener("wheel", (e) => {
+            if (window.pageYOffset <= 0) {
+                lockScroll("enabled");
+                zoomElement.style.display = `block`;
+            }
 
             let tt = zoom + ZOOM_SPEED;
             console.log(tt);
