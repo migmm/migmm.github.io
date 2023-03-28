@@ -161,6 +161,7 @@ const HomeContainer = styled.nav`
                 font-weight: 800;
                 //word-spacing: -10px;
                 opacity: 1;
+                transition: transform 330ms ease-in-out;
 
                 .charge-text {
                 }
