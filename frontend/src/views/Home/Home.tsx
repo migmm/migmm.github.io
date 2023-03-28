@@ -30,7 +30,7 @@ const Home = () => {
         let opacity = 1;
         let zoom = 1;
 
-        document.addEventListener("wheel", function(e) {
+        document.addEventListener("wheel", (e) => {
             let tt = zoom + ZOOM_SPEED;
             console.log(tt);
 
