@@ -10,7 +10,6 @@ import logoLinkedin from "./linkedin.svg";
 import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
-    const zoom = () => {};
 
     const lockScroll = (option: string) => {
         if (option === "enabled") {
@@ -26,10 +25,10 @@ const Home = () => {
 
     useEffect(() => {
         const zoomElement = document.querySelector(".text-home") as HTMLElement;
-        let zoom = 1;
+        const opacityStep = .05;
         const ZOOM_SPEED = 0.1;
         let opacity = 1;
-        const opacityStep = .05;
+        let zoom = 1;
 
         document.addEventListener("wheel", function(e) {
             let tt = zoom + ZOOM_SPEED;
@@ -49,7 +48,6 @@ const Home = () => {
             console.log("opacity" , opacity);
         });
 
-        console.log(zoomElement);
     }, []);
 
     return (
