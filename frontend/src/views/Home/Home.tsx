@@ -24,11 +24,11 @@ const Home = () => {
 
     useEffect(() => {
         const zoomElement = document.querySelector(".text-home") as HTMLElement;
-        const OPACITY_STEP = 0.05;
+        const OPACITY_STEP = 0.1;
         const ZOOM_SPEED = 0.2;
         let opacity = 1;
         let zoom = 1;
-
+        let y = 0;
         document.addEventListener("wheel", (e) => {
             if (window.pageYOffset <= 0) {
                 lockScroll("enabled");
@@ -42,11 +42,11 @@ const Home = () => {
 
             console.log(window.pageYOffset);
 
-            if (e.deltaY > 0) {
+            if (e.deltaY >= 0) {
                 zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
                 zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
             } else {
-                if (zoom + ZOOM_SPEED >= 1.2) {
+                if (zoom + ZOOM_SPEED > 1.2) {
                     zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
                     zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
                 }
