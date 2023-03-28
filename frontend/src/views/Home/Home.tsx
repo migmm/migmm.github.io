@@ -10,19 +10,17 @@ import logoLinkedin from "./linkedin.svg";
 import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
-
-    const zoom = () => {}
+    const zoom = () => {};
 
     const lockScroll = (option: string) => {
-
-        if(option === "enabled") {
+        if (option === "enabled") {
             document.body.style.overflow = "hidden";
-        document.body.style.userSelect = "none";
+            document.body.style.userSelect = "none";
         } else {
             document.body.style.overflow = "auto";
             document.body.style.userSelect = "auto";
         }
-    }
+    };
 
     lockScroll("enabled");
 
@@ -30,6 +28,8 @@ const Home = () => {
         const zoomElement = document.querySelector(".text-home") as HTMLElement;
         let zoom = 1;
         const ZOOM_SPEED = 0.1;
+        let opacity = 1;
+        const opacityStep = .05;
 
         document.addEventListener("wheel", function(e) {
             let tt = zoom + ZOOM_SPEED;
@@ -37,12 +37,16 @@ const Home = () => {
 
             if (e.deltaY > 0) {
                 zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
+                zoomElement.style.opacity = `${(opacity = opacity - opacityStep)}`;
+
             } else {
                 if (zoom + ZOOM_SPEED >= 1.2) {
                     zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
+                    zoomElement.style.opacity = `${(opacity = opacity + opacityStep)}`;
                 }
             }
             console.log("scroll", zoomElement);
+            console.log("opacity" , opacity);
         });
 
         console.log(zoomElement);
@@ -146,6 +150,7 @@ const HomeContainer = styled.nav`
                 font-family: "Work Sans", sans-serif;
                 font-weight: 800;
                 //word-spacing: -10px;
+                opacity: 1;
 
                 .charge-text {
                 }
