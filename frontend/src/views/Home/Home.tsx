@@ -10,7 +10,6 @@ import logoLinkedin from "./linkedin.svg";
 import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
-
     const lockScroll = (option: string) => {
         if (option === "enabled") {
             document.body.style.overflow = "hidden";
@@ -25,29 +24,41 @@ const Home = () => {
 
     useEffect(() => {
         const zoomElement = document.querySelector(".text-home") as HTMLElement;
-        const opacityStep = .05;
+        const OPACITY_STEP = 0.05;
         const ZOOM_SPEED = 0.1;
         let opacity = 1;
         let zoom = 1;
-
+        
         document.addEventListener("wheel", (e) => {
+
+            lockScroll("enabled");
+            zoomElement.style.display = `block`;
+
             let tt = zoom + ZOOM_SPEED;
             console.log(tt);
 
+            console.log("delta Y", e.deltaY);
+
+            console.log(window.pageYOffset);
+
             if (e.deltaY > 0) {
                 zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
-                zoomElement.style.opacity = `${(opacity = opacity - opacityStep)}`;
-
+                zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
             } else {
                 if (zoom + ZOOM_SPEED >= 1.2) {
                     zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
-                    zoomElement.style.opacity = `${(opacity = opacity + opacityStep)}`;
+                    zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
                 }
             }
-            console.log("scroll", zoomElement);
-            console.log("opacity" , opacity);
-        });
 
+            if (opacity <= 0) {
+                lockScroll("disabled");
+                zoomElement.style.display = `none`;
+            }
+
+            console.log("scroll", zoomElement);
+            console.log("opacity", opacity);
+        });
     }, []);
 
     return (
