@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../../components/Form/Button/Button";
-import { Label } from "../../components/Form/Label/Label";
-import { LabelError } from "../../components/Form/LabelError/LabelError";
-import { Input } from "../../components/Form/Input/Input";
-import { Textarea } from "../../components/Form/Textarea/Textarea";
-import { InputFile } from "../../components/Form/InputFile/InputFile";
+import { Button } from "../../Styles/Form/Button/Button";
+import { Label } from "../../Styles/Form/Label/Label";
+import { LabelError } from "../../Styles/Form/LabelError/LabelError";
+import { Input } from "../../Styles/Form/Input/Input";
+import { Textarea } from "../../Styles/Form/Textarea/Textarea";
+import { InputFile } from "../../Styles/Form/InputFile/InputFile";
 import { H1 } from "../../Styles/H1/H1";
 
 const AddCertificate = () => {
