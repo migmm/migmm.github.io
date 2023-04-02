@@ -5,7 +5,7 @@ import { Label } from "../../Styles/Form/Label/Label";
 import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { Input } from "../../Styles/Form/Input/Input";
 import { Textarea } from "../../Styles/Form/Textarea/Textarea";
-import { InputFile } from "../../Styles/Form/InputFile/InputFile";
+import InputFile  from "../../Styles/Form/InputFile/InputFile";
 import { H1 } from "../../Styles/H1/H1";
 
 const AddCertificate = () => {
@@ -28,8 +28,8 @@ const AddCertificate = () => {
                             <Label htmlFor="certification-description">Description</Label>
                             <Textarea name="certificationDescription" id="certification-description"></Textarea>
                             <LabelError>Error</LabelError>
-                            <Label htmlFor="certification-description">Image</Label>
-                            <InputFile type="file" id="certification-image" name="certificationImage" accept="image/png, image/jpeg"></InputFile>
+                            <Label htmlFor="certification-image">Image</Label>
+                            <InputFile ></InputFile>
                             <LabelError>Error</LabelError>
                         </div>
                         <div className="input-group">
