@@ -12,7 +12,7 @@ const InputFile = () => {
                 accept="image/png, image/jpeg, image/bmp"
             ></input>
             <label htmlFor="certification-image" className="custom-file-upload">
-                Selecciona un archivo
+                Select file
             </label>
         </InputFileStyled>
     );
