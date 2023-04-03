@@ -41,7 +41,6 @@ export default Header;
 const HeaderStyles = styled.header`
     max-width: 1900px;
     margin: 0 auto;
-    //opacity: 1;
 
     .header-container {
         display: flex;
@@ -51,6 +50,7 @@ const HeaderStyles = styled.header`
         border: 1px solid #ebebeb; //#E3E3E3
         border-radius: 2.75em;
         margin: 1em;
+        transition: opacity .5s;
 
         header {
             display: flex;
