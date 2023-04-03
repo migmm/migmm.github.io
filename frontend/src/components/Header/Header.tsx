@@ -1,33 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HamburgerButton from "./HamburgerButton/HamburgerButton";
 import NavBar from "./Navbar/NavBar";
 import styled from "styled-components";
 
-const Header = () => (
-    <HeaderStyles>
-        <div className="header-container">
-            <header>
-                <div className="logo-container">
-                    <img src="img/logo.png" alt="Logo" />
-                </div>
-                <div className="navbar-container">
-                    <NavBar />
-                </div>
-                <span className="contact-button">Contact me!</span>
-                <div className="hamburger-button-container">
-                    <HamburgerButton />
-                </div>
-            </header>
-        </div>
-    </HeaderStyles>
-);
+const Header = () => {
+    useEffect(() => {
+        const headerComponent = document.querySelector(".header-container") as HTMLElement;
+
+        document.addEventListener("wheel", (e) => {
+            if (e.deltaY >= 0) {
+                headerComponent.style.opacity = "0";
+            } else {
+                headerComponent.style.opacity = "1";
+            }
+        });
+    }, []);
+
+    return (
+        <HeaderStyles>
+            <div className="header-container">
+                <header>
+                    <div className="logo-container">
+                        <img src="img/logo.png" alt="Logo" />
+                    </div>
+                    <div className="navbar-container">
+                        <NavBar />
+                    </div>
+                    <span className="contact-button">Contact me!</span>
+                    <div className="hamburger-button-container">
+                        <HamburgerButton />
+                    </div>
+                </header>
+            </div>
+        </HeaderStyles>
+    );
+};
 
 export default Header;
 
 const HeaderStyles = styled.header`
     max-width: 1900px;
-
     margin: 0 auto;
+    //opacity: 1;
+
     .header-container {
         display: flex;
         justify-content: center;
