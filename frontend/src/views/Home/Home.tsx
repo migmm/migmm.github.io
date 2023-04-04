@@ -136,8 +136,11 @@ const HomeContainer = styled.nav`
     margin: 2em 0 2em 0;
     .hero-container {
         width: 100%;
-        height: calc(100vh - 65px);
-        //border: 1px solid red;
+        height: calc(100vh - 130px);
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         .text-container {
             width: 100%;
@@ -145,7 +148,6 @@ const HomeContainer = styled.nav`
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            //border: 1px solid blue;
             padding-top: 1em;
             padding-bottom: 3em;
 
@@ -164,7 +166,7 @@ const HomeContainer = styled.nav`
 
         .contact-icons {
             width: 100%;
-            height: 40%;
+            height: 25%;
             display: flex;
             flex: row;
             justify-content: center;
