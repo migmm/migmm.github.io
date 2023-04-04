@@ -24,6 +24,7 @@ const Home = () => {
 
     useEffect(() => {
         const zoomElement = document.querySelector(".text-home") as HTMLElement;
+        const contactIcons = document.querySelector(".contact-icons") as HTMLElement;
         const OPACITY_STEP = 0.1;
         const ZOOM_SPEED = 0.2;
         let opacity = 1;
@@ -39,10 +40,12 @@ const Home = () => {
             if (e.deltaY >= 0) {
                 zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
                 zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
+                contactIcons.style.opacity = "0";
             } else {
                 if (zoom + ZOOM_SPEED > 1.2) {
                     zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
                     zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
+                    contactIcons.style.opacity = "1";
                 }
             }
 
@@ -166,6 +169,7 @@ const HomeContainer = styled.nav`
             flex: row;
             justify-content: center;
             align-items: center;
+            transition: opacity .5s;
 
             a {
                 fill: green !important;
