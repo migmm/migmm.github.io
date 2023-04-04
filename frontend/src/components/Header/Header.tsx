@@ -8,10 +8,11 @@ const Header = () => {
         const headerComponent = document.querySelector(".header-container") as HTMLElement;
 
         document.addEventListener("wheel", (e) => {
-            if (e.deltaY >= 0) {
-                headerComponent.style.opacity = "0";
-            } else {
+            console.log(window.pageYOffset)
+            if (window.pageYOffset <= 101) {
                 headerComponent.style.opacity = "1";
+            } else {
+                headerComponent.style.opacity = "0";
             }
         });
     }, []);

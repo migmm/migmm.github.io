@@ -10,53 +10,55 @@ import logoLinkedin from "./linkedin.svg";
 import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
-    const lockScroll = (option: string) => {
-        if (option === "enabled") {
-            document.body.style.overflow = "hidden";
-            document.body.style.userSelect = "none";
-        } else {
-            document.body.style.overflow = "auto";
-            document.body.style.userSelect = "auto";
-        }
-    };
-
-    lockScroll("enabled");
-
-    useEffect(() => {
-        const zoomElement = document.querySelector(".text-home") as HTMLElement;
-        const contactIcons = document.querySelector(".contact-icons") as HTMLElement;
-        const OPACITY_STEP = 0.1;
-        const ZOOM_SPEED = 0.2;
-        let opacity = 1;
-        let zoom = 1;
-        let y = 0;
-        
-        document.addEventListener("wheel", (e) => {
-            if (window.pageYOffset <= 0) {
-                lockScroll("enabled");
-                zoomElement.style.display = `block`;
-            }
-
-            if (e.deltaY >= 0) {
-                zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
-                zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
-                contactIcons.style.opacity = "0";
+    let url = window.location.pathname;
+    
+    if (url === "") {
+        const lockScroll = (option: string) => {
+            if (option === "enabled") {
+                document.body.style.overflow = "hidden";
+                document.body.style.userSelect = "none";
             } else {
-                if (zoom + ZOOM_SPEED > 1.2) {
-                    zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
-                    zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
-                    contactIcons.style.opacity = "1";
+                document.body.style.overflow = "auto";
+                document.body.style.userSelect = "auto";
+            }
+        };
+
+        lockScroll("enabled");
+
+        useEffect(() => {
+            const zoomElement = document.querySelector(".text-home") as HTMLElement;
+            const contactIcons = document.querySelector(".contact-icons") as HTMLElement;
+            const OPACITY_STEP = 0.1;
+            const ZOOM_SPEED = 0.2;
+            let opacity = 1;
+            let zoom = 1;
+            let y = 0;
+
+            document.addEventListener("wheel", (e) => {
+                if (window.pageYOffset <= 0) {
+                    lockScroll("enabled");
+                    zoomElement.style.display = `block`;
                 }
-            }
 
-            if (opacity <= 0) {
-                lockScroll("disabled");
-                zoomElement.style.display = `none`;
-            }
+                if (e.deltaY >= 0) {
+                    zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
+                    zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
+                    contactIcons.style.opacity = "0";
+                } else {
+                    if (zoom + ZOOM_SPEED > 1.2) {
+                        zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
+                        zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
+                        contactIcons.style.opacity = "1";
+                    }
+                }
 
-        });
-    }, []);
-
+                if (opacity <= 0) {
+                    lockScroll("disabled");
+                    zoomElement.style.display = `none`;
+                }
+            });
+        }, []);
+    }
     return (
         <HomeContainer>
             <div className="hero-container">
@@ -137,7 +139,7 @@ const HomeContainer = styled.nav`
     .hero-container {
         width: 100%;
         height: calc(100vh - 130px);
-        display:flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -171,7 +173,7 @@ const HomeContainer = styled.nav`
             flex: row;
             justify-content: center;
             align-items: center;
-            transition: opacity .5s;
+            transition: opacity 0.5s;
 
             a {
                 fill: green !important;
