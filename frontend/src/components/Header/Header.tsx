@@ -1,21 +1,28 @@
 import React, { useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import HamburgerButton from "./HamburgerButton/HamburgerButton";
 import NavBar from "./Navbar/NavBar";
 import styled from "styled-components";
 
 const Header = () => {
-    useEffect(() => {
-        const headerComponent = document.querySelector(".header-container") as HTMLElement;
 
-        document.addEventListener("wheel", (e) => {
-            console.log(window.pageYOffset)
-            if (window.pageYOffset <= 101) {
-                headerComponent.style.opacity = "1";
-            } else {
-                headerComponent.style.opacity = "0";
-            }
-        });
-    }, []);
+    const location = useLocation();
+
+        useEffect(() => {
+            const headerComponent = document.querySelector(".header-container") as HTMLElement;
+
+            document.addEventListener("scroll", (e) => {
+
+                console.log(window.pageYOffset);
+                const scrollTop = window.pageYOffset;
+                
+                if (scrollTop > 50 && location.pathname === '/') {
+                    headerComponent.style.opacity = "0";
+                } else {
+                    headerComponent.style.opacity = "1";
+                }
+            });
+        }, []);
 
     return (
         <HeaderStyles>
@@ -51,7 +58,7 @@ const HeaderStyles = styled.header`
         border: 1px solid #ebebeb; //#E3E3E3
         border-radius: 2.75em;
         margin: 1em;
-        transition: opacity .5s;
+        transition: opacity 0.5s;
 
         header {
             display: flex;

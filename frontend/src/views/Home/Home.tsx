@@ -11,9 +11,13 @@ import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
     let url = window.location.pathname;
-    
-    if (url === "") {
+    url = url.slice(1,1)
+
+    console.log(url)
+
+    if (!url) {
         const lockScroll = (option: string) => {
+            console.log(url)
             if (option === "enabled") {
                 document.body.style.overflow = "hidden";
                 document.body.style.userSelect = "none";
@@ -59,6 +63,8 @@ const Home = () => {
             });
         }, []);
     }
+
+
     return (
         <HomeContainer>
             <div className="hero-container">
