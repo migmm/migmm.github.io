@@ -16,12 +16,26 @@ const Header = () => {
                 console.log(window.pageYOffset);
                 const scrollTop = window.pageYOffset;
                 
+                if (scrollTop <= 0 && location.pathname === '/') {
+                    headerComponent.style.opacity = "0";
+                } else {
+                    headerComponent.style.opacity = "1";
+                }
+            });
+
+            document.addEventListener("wheel", (e) => {
+
+                console.log(e.deltaY);
+                const scrollTop = e.deltaY;
+                
                 if (scrollTop > 50 && location.pathname === '/') {
                     headerComponent.style.opacity = "0";
                 } else {
                     headerComponent.style.opacity = "1";
                 }
             });
+
+
         }, []);
 
     return (
