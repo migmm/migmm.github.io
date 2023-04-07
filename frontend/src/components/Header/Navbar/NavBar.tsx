@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Navbar = () => {
+const Navbar = (props:any) => {
+
+    const className = props.menuAbierto ? 'menu-hamburguesa__items menu-hamburguesa__items--abierto' : 'menu-hamburguesa__items';
+
     return (
         <NavContainer>
             <nav>
@@ -31,6 +34,7 @@ const Navbar = () => {
 export default Navbar;
 
 const NavContainer = styled.nav`
+
     nav ul {
         display: flex;
         flex-direction: column;
