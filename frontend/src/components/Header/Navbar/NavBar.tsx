@@ -40,7 +40,7 @@ const NavContainer = styled.nav`
         flex-direction: column;
         list-style: none;
 
-        display: none;
+        //display: none;
             @media (min-width: 768px) {
                 display: flex;
             }

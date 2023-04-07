@@ -1,56 +1,60 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import HamburgerButton from "./HamburgerButton/HamburgerButton";
 import NavBar from "./Navbar/NavBar";
 import styled from "styled-components";
 
 const Header = () => {
 
+    // NavBar
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleHamburgerClick = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+
+    // Zoom
     const location = useLocation();
 
-        useEffect(() => {
-            const headerComponent = document.querySelector(".header-container") as HTMLElement;
+    useEffect(() => {
+        const headerComponent = document.querySelector(".header-container") as HTMLElement;
 
-            document.addEventListener("scroll", (e) => {
+        document.addEventListener("scroll", (e) => {
+            console.log(window.pageYOffset);
+            const scrollTop = window.pageYOffset;
 
-                console.log(window.pageYOffset);
-                const scrollTop = window.pageYOffset;
-                
-                if (scrollTop <= 0 && location.pathname === '/') {
-                    headerComponent.style.opacity = "0";
-                } else {
-                    headerComponent.style.opacity = "1";
-                }
-            });
+            if (scrollTop <= 0 && location.pathname === "/") {
+                headerComponent.style.opacity = "0";
+            } else {
+                headerComponent.style.opacity = "1";
+            }
+        });
 
-            document.addEventListener("wheel", (e) => {
+        document.addEventListener("wheel", (e) => {
+            console.log(e.deltaY);
+            const scrollTop = e.deltaY;
 
-                console.log(e.deltaY);
-                const scrollTop = e.deltaY;
-                
-                if (scrollTop > 50 && location.pathname === '/') {
-                    headerComponent.style.opacity = "0";
-                } else {
-                    headerComponent.style.opacity = "1";
-                }
-            });
-
-
-        }, []);
+            if (scrollTop > 50 && location.pathname === "/") {
+                headerComponent.style.opacity = "0";
+            } else {
+                headerComponent.style.opacity = "1";
+            }
+        });
+    }, []);
 
     return (
-        
         <HeaderStyles>
             <div className="header-container">
                 <header>
                     <div className="logo-container">
                         <img src="img/logo.png" alt="Logo" />
                     </div>
-                    <div className="navbar-container">
+                    <div className={`navbar-container ${isMenuOpen ? "open" : ""}`}>
                         <NavBar />
                     </div>
                     <span className="contact-button">Contact me!</span>
-                    <div className="hamburger-button-container">
+                    <div className="hamburger-button-container" onClick={handleHamburgerClick}>
                         <HamburgerButton />
                     </div>
                 </header>
@@ -97,12 +101,23 @@ const HeaderStyles = styled.header`
             }
         }
 
-     /*    .navbar-container {
+        .navbar-container {
+            display: none;
+        }
+        /*    .navbar-container {
             display: block;
             @media (min-width: 768px) {
                 display: block;
             }
         } */
+
+        .menu {
+
+        }
+
+        .open{
+            display:block;
+        }
 
         .contact-button {
             background-color: #ed1b23;
