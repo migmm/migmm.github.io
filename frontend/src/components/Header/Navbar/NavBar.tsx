@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 const Navbar = (props:any) => {
 
-    const className = props.menuAbierto ? 'menu-hamburguesa__items menu-hamburguesa__items--abierto' : 'menu-hamburguesa__items';
+    const className = props.menuAbierto ? '.open-menu' : "";
 
     return (
         <NavContainer>
-            <nav>
+            <nav className={className}>
                 <ul>
                     <li>
                         <Link to="/">Home</Link>
@@ -36,9 +36,14 @@ export default Navbar;
 const NavContainer = styled.nav`
 
     nav ul {
-        display: flex;
+        //display: flex;
         flex-direction: column;
         list-style: none;
+
+        display: none;
+            @media (min-width: 768px) {
+                display: flex;
+            }
 
         li {
             margin: 0 1em;
@@ -56,6 +61,10 @@ const NavContainer = styled.nav`
             :active {
                 color: #a3a3a3;
             }
+        }
+
+        .open-menu {
+            display:flex;
         }
 
         @media (min-width: 768px) {

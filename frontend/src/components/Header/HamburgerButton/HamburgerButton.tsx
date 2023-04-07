@@ -1,22 +1,28 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const HamburgerButton = () => {
-    
-    const [clicked, setClicked] = useState(false);
+const HamburgerButton = (props:any) => {
 
-    const handleClick = () => {
-        setClicked(!clicked);
-        console.log("clicked");
-    };
+        const [menuAbierto, setMenuAbierto] = useState(false);
+
+        const handleClick = () => {
+            setMenuAbierto(!menuAbierto);
+        };
 
     return (
+
         <BurgerButton onClick={handleClick}>
             <div className="icon nav-icon">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+
+        {menuAbierto && props.children({
+        menuAbierto: menuAbierto,
+        closeMenu: () => setMenuAbierto(false)
+        })}
+
         </BurgerButton>
     );
 };

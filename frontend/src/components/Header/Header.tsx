@@ -39,6 +39,7 @@ const Header = () => {
         }, []);
 
     return (
+        
         <HeaderStyles>
             <div className="header-container">
                 <header>
@@ -96,12 +97,12 @@ const HeaderStyles = styled.header`
             }
         }
 
-        .navbar-container {
-            display: none;
+     /*    .navbar-container {
+            display: block;
             @media (min-width: 768px) {
                 display: block;
             }
-        }
+        } */
 
         .contact-button {
             background-color: #ed1b23;
