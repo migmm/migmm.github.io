@@ -114,7 +114,7 @@ const HeaderStyles = styled.header`
         }
 
         .hamburger-button-container.open span:nth-child(1) {
-            transform: translateY(6px) rotate(45deg);
+            transform: translateY(13px) translateX(1px) rotate(45deg);
         }
 
         .hamburger-button-container.open span:nth-child(2) {
@@ -122,7 +122,7 @@ const HeaderStyles = styled.header`
         }
 
         .hamburger-button-container.open span:nth-child(3) {
-            transform: translateY(-6px) rotate(-45deg);
+            transform: translateY(-13px) translateX(1px) rotate(-45deg);
         }
 
         .contact-button {
