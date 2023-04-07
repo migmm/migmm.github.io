@@ -5,14 +5,12 @@ import NavBar from "./Navbar/NavBar";
 import styled from "styled-components";
 
 const Header = () => {
-
     // NavBar
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleHamburgerClick = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
 
     // Zoom
     const location = useLocation();
@@ -54,7 +52,7 @@ const Header = () => {
                         <NavBar />
                     </div>
                     <span className="contact-button">Contact me!</span>
-                    <div className="hamburger-button-container" onClick={handleHamburgerClick}>
+                    <div className={`hamburger-button-container ${isMenuOpen ? "open" : ""}`} onClick={handleHamburgerClick}>
                         <HamburgerButton />
                     </div>
                 </header>
@@ -95,7 +93,6 @@ const HeaderStyles = styled.header`
             cursor: pointer;
 
             img {
-                //width: 100%;
                 height: 100%;
                 object-fit: contain;
             }
@@ -104,19 +101,28 @@ const HeaderStyles = styled.header`
         .navbar-container {
             display: none;
         }
-        /*    .navbar-container {
-            display: block;
-            @media (min-width: 768px) {
-                display: block;
-            }
-        } */
 
         .menu {
-
         }
 
-        .open{
-            display:block;
+        .open {
+            display: block;
+        }
+
+        .hamburger-button-container span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger-button-container.open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .hamburger-button-container.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-button-container.open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
         }
 
         .contact-button {
