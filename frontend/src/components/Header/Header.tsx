@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import HamburgerButton from "./HamburgerButton/HamburgerButton";
 import NavBar from "./Navbar/NavBar";

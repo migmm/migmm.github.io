@@ -1,28 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const HamburgerButton = (props:any) => {
-
-        const [menuAbierto, setMenuAbierto] = useState(false);
-
-        const handleClick = () => {
-            setMenuAbierto(!menuAbierto);
-        };
-
+const HamburgerButton = () => {
     return (
-
-        <BurgerButton onClick={handleClick}>
+        <BurgerButton>
             <div className="icon nav-icon">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-
-        {menuAbierto && props.children({
-        menuAbierto: menuAbierto,
-        closeMenu: () => setMenuAbierto(false)
-        })}
-
         </BurgerButton>
     );
 };
@@ -48,6 +34,7 @@ const BurgerButton = styled.nav`
         cursor: pointer;
         display: inline-block;
     }
+
     .nav-icon span {
         background-color: #f3f3f1;
         position: absolute;

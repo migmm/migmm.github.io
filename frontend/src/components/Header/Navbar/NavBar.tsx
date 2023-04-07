@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 const Navbar = (props:any) => {
 
-    const className = props.menuAbierto ? '.open-menu' : "";
 
     return (
         <NavContainer>
-            <nav className={className}>
+            <nav >
+            
                 <ul>
                     <li>
                         <Link to="/">Home</Link>
