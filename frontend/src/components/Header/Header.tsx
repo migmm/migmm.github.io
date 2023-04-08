@@ -146,7 +146,7 @@ const HeaderStyles = styled.header`
         }
 
         .hamburger-button-container span {
-            transition: all 0.3s ease-in-out;
+            transition: all 0.1s ease-in-out;
         }
 
         .hamburger-button-container.open span:nth-child(1) {

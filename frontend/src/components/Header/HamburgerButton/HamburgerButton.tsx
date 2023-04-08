@@ -40,10 +40,10 @@ const BurgerButton = styled.nav`
         background-color: #f3f3f1;
         position: absolute;
         border-radius: 2px;
-        transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+        //transition: 0.01s cubic-bezier(0.8, 0.5, 0.2, 1.4);
         width: 100%;
         height: 4px;
-        transition-duration: 250ms;
+        //transition-duration: 2ms;
     }
     .nav-icon span:nth-child(1) {
         top: 0px;
