@@ -48,7 +48,7 @@ const Header = () => {
                     <div className="logo-container">
                         <img src="img/logo.png" alt="Logo" />
                     </div>
-                    <div className={`navbar-container ${isMenuOpen ? "open" : ""}`}>
+                    <div className={`navbar-container ${isMenuOpen ? "menu-open" : ""}`}>
                         <NavBar />
                     </div>
                     <span className="contact-button">Contact me!</span>
@@ -100,11 +100,47 @@ const HeaderStyles = styled.header`
 
         .navbar-container {
             display: none;
+
+            @media (min-width: 768px) {
+                display: flex;
+            }
         }
 
-        .menu {
+        // Warning
+        // Styles affects to Navbar
+        .menu-open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position:absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            z-index: 90;
+
+            a{
+                font-size: 2em;
+                color: #ffffff;
+
+                :hover {
+                    color: #ed1b23;
+                }
+
+                :active {
+                    color: #ff0000;
+                }
+            }
+
+            li{
+                font-size: 1.5em;
+                margin:.1em;
+            }
         }
 
+        // Warning
+        // Styles affect to Hamburger button
         .open {
             display: block;
         }

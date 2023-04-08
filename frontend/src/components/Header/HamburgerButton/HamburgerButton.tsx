@@ -33,6 +33,7 @@ const BurgerButton = styled.nav`
         position: relative;
         cursor: pointer;
         display: inline-block;
+        z-index: 100;
     }
 
     .nav-icon span {

@@ -8,7 +8,6 @@ const Navbar = (props:any) => {
     return (
         <NavContainer>
             <nav >
-            
                 <ul>
                     <li>
                         <Link to="/">Home</Link>
@@ -36,13 +35,12 @@ export default Navbar;
 const NavContainer = styled.nav`
 
     nav ul {
-        //display: flex;
         flex-direction: column;
         list-style: none;
-
-        //display: none;
+        display: flex;
+        flex-direction: column;
             @media (min-width: 768px) {
-                display: flex;
+                flex-direction: row;
             }
 
         li {
@@ -51,7 +49,7 @@ const NavContainer = styled.nav`
 
         a {
             text-decoration: none;
-            color: black;
+            color: #000000;
             font-family: Arial, Helvetica, sans-serif;
 
             :hover {
@@ -60,6 +58,10 @@ const NavContainer = styled.nav`
 
             :active {
                 color: #a3a3a3;
+            }
+
+            @media (min-width: 768px) {
+                color: #000000;
             }
         }
 
