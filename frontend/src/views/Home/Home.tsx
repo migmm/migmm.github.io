@@ -11,13 +11,13 @@ import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
     let url = window.location.pathname;
-    url = url.slice(1,1)
+    url = url.slice(1, 1);
 
-    console.log(url)
+    console.log(url);
 
     if (!url) {
         const lockScroll = (option: string) => {
-            console.log(url)
+            console.log(url);
             if (option === "enabled") {
                 document.body.style.overflow = "hidden";
                 document.body.style.userSelect = "none";
@@ -63,7 +63,6 @@ const Home = () => {
             });
         }, []);
     }
-
 
     return (
         <HomeContainer>
@@ -142,6 +141,7 @@ export default Home;
 
 const HomeContainer = styled.nav`
     margin: 2em 0 2em 0;
+
     .hero-container {
         width: 100%;
         height: calc(100vh - 130px);
@@ -191,8 +191,10 @@ const HomeContainer = styled.nav`
                     margin: 0 0.5em;
                 }
 
-                :hover {
-                    fill: green !important;
+                @media (hover: hover) {
+                    :hover {
+                        fill: green !important;
+                    }
                 }
             }
         }
@@ -215,6 +217,7 @@ const HomeContainer = styled.nav`
 
             .big-card-container {
                 width: 65%;
+                
                 .card-left-part {
                     /*  @media (min-width: 768px) {
                         width: 40%;
