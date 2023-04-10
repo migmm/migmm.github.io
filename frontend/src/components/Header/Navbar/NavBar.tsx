@@ -2,12 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Navbar = (props:any) => {
-
-
+const Navbar = (props: any) => {
     return (
         <NavContainer>
-            <nav >
+            <nav>
                 <ul>
                     <li>
                         <Link to="/">Home</Link>
@@ -33,15 +31,14 @@ const Navbar = (props:any) => {
 export default Navbar;
 
 const NavContainer = styled.nav`
-
     nav ul {
         flex-direction: column;
         list-style: none;
         display: flex;
         flex-direction: column;
-            @media (min-width: 768px) {
-                flex-direction: row;
-            }
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
 
         li {
             margin: 0 1em;
@@ -51,11 +48,12 @@ const NavContainer = styled.nav`
             text-decoration: none;
             color: #000000;
             font-family: Arial, Helvetica, sans-serif;
-
-            :hover {
-                color: #ffffff;
+            
+            @media (hover: hover) {
+                :hover {
+                    color: #ffffff;
+                }
             }
-
             :active {
                 color: #a3a3a3;
             }
@@ -66,7 +64,7 @@ const NavContainer = styled.nav`
         }
 
         .open-menu {
-            display:flex;
+            display: flex;
         }
 
         @media (min-width: 768px) {
