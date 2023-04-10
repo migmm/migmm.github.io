@@ -112,30 +112,31 @@ const HeaderStyles = styled.header`
             display: flex;
             align-items: center;
             justify-content: center;
-            position:absolute;
-            top:0;
-            left:0;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background-color: #000000;
             z-index: 90;
 
-            a{
+            a {
                 font-size: 2em;
                 color: #ffffff;
 
-                :hover {
-                    color: #ed1b23;
+                @media (hover: hover) {
+                    :hover {
+                        color: #ed1b23;
+                    }
                 }
-
                 :active {
                     color: #ff0000;
                 }
             }
 
-            li{
+            li {
                 font-size: 1.5em;
-                margin:.1em;
+                margin: 0.1em;
             }
         }
 
