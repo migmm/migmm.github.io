@@ -129,6 +129,7 @@ const HeaderStyles = styled.header`
                         color: #ed1b23;
                     }
                 }
+                
                 :active {
                     color: #ff0000;
                 }
@@ -179,8 +180,10 @@ const HeaderStyles = styled.header`
                 display: none;
             }
 
-            :hover {
-                background-color: #ce030a;
+            @media (hover: hover) {
+                :hover {
+                    background-color: #ce030a;
+                }
             }
 
             :active {
