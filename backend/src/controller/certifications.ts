@@ -11,7 +11,7 @@ const getCertifications = async (_req:any, res:any) => {
 
 const getCertification = async (req:any, res:any) => {
     const id = req.params.id;
-    res.json(await api.getCertification(id));
+    res.json(await api.getCertification(id, res));
 };
 
 
@@ -21,7 +21,7 @@ const getCertification = async (req:any, res:any) => {
 
 const postCertification = async (req:any, res:any) => {
     let certification = req.body;
-    const newCertification = await api.createCertification(certification);
+    const newCertification = await api.createCertification(certification, res);
     res.json(newCertification);
 };
 
@@ -34,7 +34,7 @@ const putCertification = async (req:any, res:any) => {
     const id = req.params.id;
     const certification = req.body;
 
-    const updatedCertification = await api.updateCertification(id, certification) || {};
+    const updatedCertification = await api.updateCertification(id, certification, res) || {};
     res.json(updatedCertification);
 };
 
@@ -46,7 +46,7 @@ const putCertification = async (req:any, res:any) => {
 const deleteCertification = async (req:any, res:any) => {
     const id = req.params.id;
 
-    const removedCertification = await api.deleteCertification(id) || {};
+    const removedCertification = await api.deleteCertification(id, res) || {};
     res.json(removedCertification);
 };
 
