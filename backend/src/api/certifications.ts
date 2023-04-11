@@ -19,8 +19,11 @@ const getCertifications = async () => {
 //                                API Get ONE                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getCertification = async (id:number) => {
+const getCertification = async (id:number, res:any) => {
     const certification = await modelCertifications.readCertification(id);
+    if (!certification) {
+        return res.status(400).json({ "message": `Certification ID ${id} not found` });
+    }
     return certification;
 };
 
@@ -29,7 +32,7 @@ const getCertification = async (id:number) => {
 //                                API Create                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const createCertification = async (certification:any) => {
+const createCertification = async (certification:any, res:any) => {
 
         const validationError = CertificationValidator.validate(certification);
     
@@ -39,7 +42,7 @@ const createCertification = async (certification:any) => {
         } else {
             console.log(validationError);
             console.error(`Error validating createCertification: ${validationError.details[0].message}`);
-            return {};
+            return res.status(400).json({ 'message': 'Error creating certificate.' });
         }
 };
 
@@ -48,7 +51,7 @@ const createCertification = async (certification:any) => {
 //                                API Update                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const updateCertification = async (id:number, certification:any) => {
+const updateCertification = async (id:number, certification:any, res: any) => {
 
     const validationError = CertificationValidator.validate(certification);
 
@@ -58,7 +61,7 @@ const updateCertification = async (id:number, certification:any) => {
     } else {
         console.log(validationError);
         console.error(`Error validating updateCertification: ${validationError.details[0].message}`);
-        return {};
+        return res.status(400).json({ 'message': 'Error updating certificate.' });
     }
 };
 
@@ -67,7 +70,11 @@ const updateCertification = async (id:number, certification:any) => {
 //                                API Delete                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const deleteCertification = async (id:number) => {
+const deleteCertification = async (id:number, res:any) => {
+    const certification = await modelCertifications.readCertification(id);
+    if (!certification) {
+        return res.status(400).json({ "message": `Certification ID ${id} not found` });
+    }
     const removedCertification = await modelCertifications.deleteCertification(id);
     return removedCertification;
 };
