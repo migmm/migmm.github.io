@@ -1,17 +1,27 @@
 import api from "../api/certifications";
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
 const getCertifications = async (_req: any, res: any) => {
-    res.json(await api.getCertifications());
+    try {
+        res.status(200).json(await api.getCertifications());
+    } catch (error) {
+        res.status(500).json({ message: `Certifications not found` });
+    }
 };
 
 const getCertification = async (req: any, res: any) => {
     const id = req.params.id;
-    res.json(await api.getCertification(id));
+    try {
+        res.status(200).json(await api.getCertification(id));
+    } catch (error) {
+        res.status(500).json({ message: `Certification ID ${id} not found` });
+    }
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              POST Controllers                             //
@@ -19,9 +29,14 @@ const getCertification = async (req: any, res: any) => {
 
 const postCertification = async (req: any, res: any) => {
     let certification = req.body;
-    const newCertification = await api.createCertification(certification);
-    res.json(newCertification);
+    try {
+        const newCertification = await api.createCertification(certification);
+        res.status(201).json(newCertification);
+    } catch (error) {
+        return res.status(500).json({ message: "Error creating certification." });
+    }
 };
+
 
 //////////////////////////////////////////////////////////////////////////////
 //                              PUT Controllers                             //
@@ -31,9 +46,14 @@ const putCertification = async (req: any, res: any) => {
     const id = req.params.id;
     const certification = req.body;
 
-    const updatedCertification = (await api.updateCertification(id, certification)) || {};
-    res.json(updatedCertification);
+    try {
+        const updatedCertification = (await api.updateCertification(id, certification)) || {};
+        res.status(201).json(updatedCertification);
+    } catch (error) {
+        return res.status(500).json({ message: "Error updating certification." });
+    }
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                             DELETE Controllers                            //
@@ -42,8 +62,12 @@ const putCertification = async (req: any, res: any) => {
 const deleteCertification = async (req: any, res: any) => {
     const id = req.params.id;
 
-    const removedCertification = (await api.deleteCertification(id)) || {};
-    res.json(removedCertification);
+    try {
+        const removedCertification = (await api.deleteCertification(id)) || {};
+        res.status(201).json(removedCertification);
+    } catch (error) {
+        res.status(500).json({ message: `Error deleting Certification ID ${id}` });
+    }
 };
 
 export default {

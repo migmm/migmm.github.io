@@ -4,6 +4,7 @@ import CertificationValidator from "../model/validators/certifications";
 
 const modelCertifications = CertificationModel.get(config.PERSISTENCE_TYPE);
 
+
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Get ALL                                //
 ///////////////////////////////////////////////////////////////////////////////
@@ -17,6 +18,7 @@ const getCertifications = async () => {
     }
 };
 
+
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Get ONE                                //
 ///////////////////////////////////////////////////////////////////////////////
@@ -29,6 +31,7 @@ const getCertification = async (id: number) => {
         throw error;
     }
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Create                                 //
@@ -46,6 +49,7 @@ const createCertification = async (certification: any) => {
         }
 };
 
+
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Update                                 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -61,6 +65,7 @@ const updateCertification = async (id: number, certification: any) => {
         }
 
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Delete                                 //
