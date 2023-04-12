@@ -35,7 +35,7 @@ const getCertification = async (id: number) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const createCertification = async (certification: any) => {
-    try {
+    
         const validationError = CertificationValidator.validate(certification);
 
         if (!validationError) {
@@ -44,9 +44,6 @@ const createCertification = async (certification: any) => {
         } else {
             throw new Error("Error creating certificate.");
         }
-    } catch (error) {
-        throw error;
-    }
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -54,18 +51,15 @@ const createCertification = async (certification: any) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const updateCertification = async (id: number, certification: any) => {
-    try {
+    
         const validationError = CertificationValidator.validate(certification);
-
         if (!validationError) {
             const updatedCertification = await modelCertifications.updateCertification(id, certification);
             return updatedCertification;
         } else {
             throw new Error("Error updating certificate.");
         }
-    } catch (error) {
-        throw error;
-    }
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
