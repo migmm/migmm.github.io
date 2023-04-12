@@ -64,7 +64,7 @@ const deleteCertification = async (req: any, res: any) => {
 
     try {
         const removedCertification = (await api.deleteCertification(id)) || {};
-        res.status(201).json(removedCertification);
+        res.status(204).json(removedCertification);
     } catch (error) {
         res.status(500).json({ message: `Error deleting Certification ID ${id}` });
     }
