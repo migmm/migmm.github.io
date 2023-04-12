@@ -11,7 +11,6 @@ const modelCertifications = CertificationModel.get(config.PERSISTENCE_TYPE);
 
 const getCertifications = async () => {
         const certifications = await modelCertifications.readCertifications();
-        console.log(certifications)
         return certifications;
 };
 
@@ -21,12 +20,8 @@ const getCertifications = async () => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const getCertification = async (id: number) => {
-    try {
         const certification = await modelCertifications.readCertification(id);
         return certification;
-    } catch (error) {
-        throw error;
-    }
 };
 
 
@@ -42,7 +37,9 @@ const createCertification = async (certification: any) => {
             const createdCertification = await modelCertifications.createCertification(certification);
             return createdCertification;
         } else {
-            throw new Error("Error creating certificate.");
+            console.log(validationError);
+            console.error(`Error validating createCertificate: ${validationError.details[0].message}`);
+            return {};
         }
 };
 
@@ -54,13 +51,15 @@ const createCertification = async (certification: any) => {
 const updateCertification = async (id: number, certification: any) => {
     
         const validationError = CertificationValidator.validate(certification);
+
         if (!validationError) {
             const updatedCertification = await modelCertifications.updateCertification(id, certification);
             return updatedCertification;
         } else {
-            throw new Error("Error updating certificate.");
+            console.log(validationError);
+            console.error(`Error validating updateCertification: ${validationError.details[0].message}`);
+            return {};
         }
-
 };
 
 
@@ -69,12 +68,8 @@ const updateCertification = async (id: number, certification: any) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const deleteCertification = async (id: number) => {
-    try {
         const removedCertification = await modelCertifications.deleteCertification(id);
         return removedCertification;
-    } catch (error) {
-        throw error;
-    }
 };
 
 export default {
