@@ -48,7 +48,7 @@ const putCertification = async (req: any, res: any) => {
 
     try {
         const updatedCertification = (await api.updateCertification(id, certification)) || {};
-        res.status(201).json(updatedCertification);
+        res.status(200).json(updatedCertification);
     } catch (error) {
         return res.status(500).json({ message: "Error updating certification." });
     }
@@ -64,7 +64,7 @@ const deleteCertification = async (req: any, res: any) => {
 
     try {
         const removedCertification = (await api.deleteCertification(id)) || {};
-        res.status(204).json(removedCertification);
+        res.status(200).json(removedCertification);
     } catch (error) {
         res.status(500).json({ message: `Error deleting Certification ID ${id}` });
     }
