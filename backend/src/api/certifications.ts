@@ -10,12 +10,9 @@ const modelCertifications = CertificationModel.get(config.PERSISTENCE_TYPE);
 ///////////////////////////////////////////////////////////////////////////////
 
 const getCertifications = async () => {
-    try {
         const certifications = await modelCertifications.readCertifications();
+        console.log(certifications)
         return certifications;
-    } catch (error) {
-        throw error;
-    }
 };
 
 

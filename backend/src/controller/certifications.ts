@@ -6,20 +6,12 @@ import api from "../api/certifications";
 ////////////////////////////////////////////////////////////////////////////////
 
 const getCertifications = async (_req: any, res: any) => {
-    try {
-        res.status(200).json(await api.getCertifications());
-    } catch (error) {
-        res.status(500).json({ message: `Certifications not found` });
-    }
+    res.status(200).json(await api.getCertifications());
 };
 
 const getCertification = async (req: any, res: any) => {
     const id = req.params.id;
-    try {
-        res.status(200).json(await api.getCertification(id));
-    } catch (error) {
-        res.status(500).json({ message: `Certification ID ${id} not found` });
-    }
+    res.status(200).json(await api.getCertification(id));
 };
 
 
@@ -29,12 +21,8 @@ const getCertification = async (req: any, res: any) => {
 
 const postCertification = async (req: any, res: any) => {
     let certification = req.body;
-    try {
-        const newCertification = await api.createCertification(certification);
-        res.status(201).json(newCertification);
-    } catch (error) {
-        return res.status(500).json({ message: "Error creating certification." });
-    }
+    const newCertification = await api.createCertification(certification);
+    res.status(201).json(newCertification);
 };
 
 
@@ -45,13 +33,8 @@ const postCertification = async (req: any, res: any) => {
 const putCertification = async (req: any, res: any) => {
     const id = req.params.id;
     const certification = req.body;
-
-    try {
-        const updatedCertification = (await api.updateCertification(id, certification)) || {};
-        res.status(200).json(updatedCertification);
-    } catch (error) {
-        return res.status(500).json({ message: "Error updating certification." });
-    }
+    const updatedCertification = (await api.updateCertification(id, certification)) || {};
+    res.status(200).json(updatedCertification);
 };
 
 
@@ -61,14 +44,10 @@ const putCertification = async (req: any, res: any) => {
 
 const deleteCertification = async (req: any, res: any) => {
     const id = req.params.id;
-
-    try {
-        const removedCertification = (await api.deleteCertification(id)) || {};
-        res.status(200).json(removedCertification);
-    } catch (error) {
-        res.status(500).json({ message: `Error deleting Certification ID ${id}` });
-    }
+    const removedCertification = (await api.deleteCertification(id)) || {};
+    res.status(200).json(removedCertification);
 };
+
 
 export default {
     getCertifications,
