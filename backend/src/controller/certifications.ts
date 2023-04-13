@@ -1,32 +1,26 @@
 import api from "../api/certifications";
-
+import { Request, Response } from "express";
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
-const getCertifications = async (_req: any, res: any) => {
+const getCertifications = async (_req: any, res: Response) => {
     const certifications = await api.getCertifications();
 
     try {
-        if(!certifications.length){
-            throw new Error ();
-        } 
         res.status(200).json(certifications);
-
     } catch (error) {
         res.status(500).send('Error getting certifications')
     }
 };
 
-const getCertification = async (req: any, res: any) => {
-    const id = req.params.id;
+const getCertification = async (req: Request, res: Response) => {
+    const id:any = req.params.id;
+    const certification = await api.getCertification(id)
 
     try {
-        if(!id){
-            throw new Error ();
-        } 
-        res.status(200).json(await api.getCertification(id));
+        res.status(200).json(certification);
     } catch (e) {
         res.status(500).send('Error getting certification')
     }
@@ -37,7 +31,7 @@ const getCertification = async (req: any, res: any) => {
 //                              POST Controllers                             //
 ///////////////////////////////////////////////////////////////////////////////
 
-const postCertification = async (req: any, res: any) => {
+const postCertification = async (req: any, res: Response) => {
     let certification = req.body;
 
     try {
@@ -53,7 +47,7 @@ const postCertification = async (req: any, res: any) => {
 //                              PUT Controllers                             //
 //////////////////////////////////////////////////////////////////////////////
 
-const putCertification = async (req: any, res: any) => {
+const putCertification = async (req: any, res: Response) => {
     const id = req.params.id;
     const certification = req.body;
     
@@ -63,8 +57,6 @@ const putCertification = async (req: any, res: any) => {
     } catch (e) {
         res.status(500).send('Error modifying certification')
     }
-    
-    
 };
 
 
@@ -72,14 +64,14 @@ const putCertification = async (req: any, res: any) => {
 //                             DELETE Controllers                            //
 ///////////////////////////////////////////////////////////////////////////////
 
-const deleteCertification = async (req: any, res: any) => {
+const deleteCertification = async (req: any, res: Response) => {
     const id = req.params.id;
 
     try {
     const removedCertification = (await api.deleteCertification(id)) || {};
     res.status(200).json(removedCertification);
     } catch (e) {
-        res.status(500).send('Error modifying certification')
+        res.status(500).send('Error deleting certification')
     }
 };
 
