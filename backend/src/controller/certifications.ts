@@ -6,12 +6,30 @@ import api from "../api/certifications";
 ////////////////////////////////////////////////////////////////////////////////
 
 const getCertifications = async (_req: any, res: any) => {
-    res.status(200).json(await api.getCertifications());
+    const certifications = await api.getCertifications();
+
+    try {
+        if(!certifications.length){
+            throw new Error ();
+        } 
+        res.status(200).json(certifications);
+
+    } catch (error) {
+        res.status(500).send('Error getting certifications')
+    }
 };
 
 const getCertification = async (req: any, res: any) => {
     const id = req.params.id;
-    res.status(200).json(await api.getCertification(id));
+
+    try {
+        if(!id){
+            throw new Error ();
+        } 
+        res.status(200).json(await api.getCertification(id));
+    } catch (e) {
+        res.status(500).send('Error getting certification')
+    }
 };
 
 
@@ -21,8 +39,13 @@ const getCertification = async (req: any, res: any) => {
 
 const postCertification = async (req: any, res: any) => {
     let certification = req.body;
-    const newCertification = await api.createCertification(certification);
-    res.status(201).json(newCertification);
+
+    try {
+        const newCertification = await api.createCertification(certification);
+        res.status(201).json(newCertification);
+    } catch (e) {
+        res.status(500).send('Error creating certification')
+    }
 };
 
 
@@ -33,8 +56,15 @@ const postCertification = async (req: any, res: any) => {
 const putCertification = async (req: any, res: any) => {
     const id = req.params.id;
     const certification = req.body;
-    const updatedCertification = (await api.updateCertification(id, certification)) || {};
-    res.status(200).json(updatedCertification);
+    
+    try {
+        const updatedCertification = (await api.updateCertification(id, certification)) || {};
+        res.status(200).json(updatedCertification);
+    } catch (e) {
+        res.status(500).send('Error modifying certification')
+    }
+    
+    
 };
 
 
@@ -44,10 +74,14 @@ const putCertification = async (req: any, res: any) => {
 
 const deleteCertification = async (req: any, res: any) => {
     const id = req.params.id;
+
+    try {
     const removedCertification = (await api.deleteCertification(id)) || {};
     res.status(200).json(removedCertification);
+    } catch (e) {
+        res.status(500).send('Error modifying certification')
+    }
 };
-
 
 export default {
     getCertifications,
