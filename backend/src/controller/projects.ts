@@ -6,12 +6,25 @@ import api from '../api/projects';
 ////////////////////////////////////////////////////////////////////////////////
 
 const getProjects = async (_req:any, res:any) => {
-    res.json(await api.getProjects());
+    const projects = await api.getProjects();
+
+    try {
+        res.status(200).json(projects);
+    } catch (error) {
+        res.status(500).send('Error getting projects')
+    }
+
 };
 
 const getProject = async (req:any, res:any) => {
     const id = req.params.id;
-    res.json(await api.getProject(id));
+    const project = await api.getProject(id);
+
+    try {
+        res.status(200).json(project);
+    } catch (error) {
+        res.status(500).send('Error getting project')
+    }
 };
 
 
@@ -21,8 +34,13 @@ const getProject = async (req:any, res:any) => {
 
 const postProject = async (req:any, res:any) => {
     let project = req.body;
-    const newProject = await api.createProject(project);
-    res.json(newProject);
+
+    try {
+        const newProject = await api.createProject(project);
+        res.status(201).json(newProject);
+    } catch (error) {
+        res.status(500).send('Error posting projects')
+    }
 };
 
 
@@ -34,8 +52,12 @@ const putProject = async (req:any, res:any) => {
     const id = req.params.id;
     const project = req.body;
 
-    const updatedProject = await api.updateProject(id, project) || {};
-    res.json(updatedProject);
+    try {
+        const updatedProject = await api.updateProject(id, project) || {};
+        res.status(200).json(updatedProject);
+    } catch (error) {
+        res.status(500).send('Error updating project')
+    }
 };
 
 
@@ -46,8 +68,13 @@ const putProject = async (req:any, res:any) => {
 const deleteProject = async (req:any, res:any) => {
     const id = req.params.id;
 
-    const removedProject = await api.deleteProject(id) || {};
-    res.json(removedProject);
+    try {
+        const removedProject = await api.deleteProject(id) || {};
+        res.status(200).res.json(removedProject);
+    } catch (error) {
+        res.status(500).send('Error removing project')
+    }
+
 };
 
 
