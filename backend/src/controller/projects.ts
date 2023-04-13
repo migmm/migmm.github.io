@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import api from '../api/projects';
 
 
@@ -5,7 +6,7 @@ import api from '../api/projects';
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
-const getProjects = async (_req:any, res:any) => {
+const getProjects = async (_req:Request, res:Response) => {
     const projects = await api.getProjects();
 
     try {
@@ -16,8 +17,8 @@ const getProjects = async (_req:any, res:any) => {
 
 };
 
-const getProject = async (req:any, res:any) => {
-    const id = req.params.id;
+const getProject = async (req:Request, res:Response) => {
+    const id:any = req.params.id;
     const project = await api.getProject(id);
 
     try {
@@ -32,7 +33,7 @@ const getProject = async (req:any, res:any) => {
 //                              POST Controllers                             //
 ///////////////////////////////////////////////////////////////////////////////
 
-const postProject = async (req:any, res:any) => {
+const postProject = async (req:Request, res:Response) => {
     let project = req.body;
 
     try {
@@ -48,8 +49,8 @@ const postProject = async (req:any, res:any) => {
 //                              PUT Controllers                             //
 //////////////////////////////////////////////////////////////////////////////
 
-const putProject = async (req:any, res:any) => {
-    const id = req.params.id;
+const putProject = async (req:Request, res:Response) => {
+    const id:any = req.params.id;
     const project = req.body;
 
     try {
@@ -65,12 +66,12 @@ const putProject = async (req:any, res:any) => {
 //                             DELETE Controllers                            //
 ///////////////////////////////////////////////////////////////////////////////
 
-const deleteProject = async (req:any, res:any) => {
-    const id = req.params.id;
+const deleteProject = async (req:Request, res:Response) => {
+    const id:any = req.params.id;
 
     try {
         const removedProject = await api.deleteProject(id) || {};
-        res.status(200).res.json(removedProject);
+        res.status(200).json(removedProject);
     } catch (error) {
         res.status(500).send('Error removing project')
     }
