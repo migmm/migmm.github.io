@@ -11,6 +11,19 @@ app.use(express.json());
 app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
 
+
+// in case of using another URL
+app.all('*', (req, res) => {
+    res.status(404);
+    if(req.accepts('html')) {
+        res.json({error:'404 Not Found'});
+    }else if (req.accepts('json')) {
+        res.json({error:'404 Not Found'});
+    }else {
+        res.type('txt').send('404 Not Found');
+    }
+})
+
 const PORT = config.PORT;
 const server = app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));
 server.on('error', error => console.log('Error starting Express server: ' + error.message));
