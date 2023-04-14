@@ -29,7 +29,7 @@ class DBMongoDB {
                 return true;
             }
 
-            mongoose.connect(config.MONGODB_CONNECTION_STR as any);
+            mongoose.connect(config.MONGODB_CONNECTION_STR as string);
 
             console.log('Connected to MongoDB database.');
             return true;
