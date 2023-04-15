@@ -3,6 +3,7 @@ import config from './config';
 import routerProjects from './router/projects';
 import routerCertifications from './router/certifications';
 import routerUsers from './router/users';
+import routerAuth from './router/auth';
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
 app.use('/api/register', routerUsers);
+app.use('/api/auth', routerAuth);
 
 // in case of using another route
 app.all('*', (req, res) => {
