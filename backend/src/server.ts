@@ -13,7 +13,7 @@ app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
 app.use('/api/register', routerUsers);
 
-// in case of using another URL
+// in case of using another route
 app.all('*', (req, res) => {
     res.status(404);
     if(req.accepts('html')) {
