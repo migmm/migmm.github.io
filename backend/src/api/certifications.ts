@@ -1,6 +1,6 @@
 import config from "../config";
 import CertificationModel from "../model/certifications/certifications";
-import CertificationValidator from "../model/validators/certifications";
+import CertificationValidator from "../model/validators/certification";
 
 const modelCertifications = CertificationModel.get(config.PERSISTENCE_TYPE);
 
