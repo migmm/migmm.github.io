@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
-app.use(/api/register, routerUsers)
+app.use('/api/register', routerUsers);
 
 // in case of using another URL
 app.all('*', (req, res) => {
