@@ -9,7 +9,7 @@ const modelAuth = UserModel.get(config.PERSISTENCE_TYPE);
 //                                API Get ALL                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getAuth = async () => {
+const getAuths = async () => {
     const auth = await modelAuth.readUsers();
     return auth;
 };
@@ -19,7 +19,7 @@ const getAuth = async () => {
 //                                API Get ONE                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getUser = async (username:string) => {
+const getAuth = async (username:string) => {
     const user = await modelAuth.findUserName(username);
     return user;
 };
@@ -29,7 +29,7 @@ const getUser = async (username:string) => {
 //                                API Create                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const createUser = async (user:any) => {
+const createAuth = async (user:any) => {
 
         const validationError = UserValidator.validate(user);
     
@@ -48,7 +48,7 @@ const createUser = async (user:any) => {
 //                                API Update                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const updateUser = async (id:number, user:any) => {
+const updateAuth = async (id:number, user:any) => {
 
     const validationError = UserValidator.validate(user);
 
@@ -67,16 +67,16 @@ const updateUser = async (id:number, user:any) => {
 //                                API Delete                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const deleteUser = async (id:number) => {
+const deleteAuth = async (id:number) => {
     const removedUser = await modelAuth.deleteUser(id);
     return removedUser;
 };
 
 
 export default {
+    getAuths,
     getAuth,
-    getUser,
-    createUser,
-    updateUser,
-    deleteUser
+    createAuth,
+    updateAuth,
+    deleteAuth
 };
