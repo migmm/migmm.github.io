@@ -70,20 +70,21 @@ class UserModelMongoDB {
             const product = (await UsersModel.findById(id).lean()) || {};
             return DBMongoDB.getObjectWithId(product);
         } catch (error: any) {
-            console.error(`Error getting prject: ${error.message}`);
+            console.error(`Error getting user: ${error.message}`);
             return {};
         }
     }
 
-    async findUserName(username: string) {
+    // Route to find by any value in database
+    async findByAny(value: any) {
         if (!(await DBMongoDB.connectDB())) {
             return {};
         }
         try {
-            const product = (await UsersModel.findOne({username}).lean()) || {};
+            const product = (await UsersModel.findOne({value}).lean()) || {};
             return DBMongoDB.getObjectWithId(product);
         } catch (error: any) {
-            console.error(`Error getting prject: ${error.message}`);
+            console.error(`Error getting user: ${error.message}`);
             return {};
         }
     }
