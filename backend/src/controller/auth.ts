@@ -36,7 +36,6 @@ const getAuth = async (req:Request, res:Response) => {
 const postAuth = async (req:Request, res:Response) => {
     const { username, password } = req.body
 
- 
     if (!username || !password) {
         return res.status(400).json({ message: 'All fields are required' })
     }
@@ -51,15 +50,8 @@ const postAuth = async (req:Request, res:Response) => {
 
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
 
-
     res.status(201).json(foundAuth);
-console.log(foundAuth)
-    /* try {
-        const newAuth = await api.createAuth(auth);
-        res.status(201).json(newAuth);
-    } catch (error) {
-        res.status(500).send('Error posting auths')
-    } */
+
 };
 
 
