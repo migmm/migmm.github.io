@@ -20,7 +20,7 @@ const getAuths = async () => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const getAuth = async (username:string) => {
-    const user = await modelAuth.findUserName(username);
+    const user = await modelAuth.findByAny(username);
     return user;
 };
 
