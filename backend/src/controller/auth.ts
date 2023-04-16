@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import api from '../api/users';
+import api from '../api/auth';
 import bcrypt from "bcrypt";
 
 ////////////////////////////////////////////////////////////////////////////////
