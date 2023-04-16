@@ -1,13 +1,12 @@
 import express from 'express';
 import usersController from '../controller/auth';
-import multerFS from '../middlewares/multer';
 
 const routerAuth = express.Router();
 
-routerAuth.get('/', usersController.getUsers);
-routerAuth.get('/:id', usersController.getUser);
-routerAuth.post('/', multerFS.fieldConfig, usersController.postUser);
-routerAuth.put('/:id', multerFS.fieldConfig, usersController.putUser);
-routerAuth.delete('/:id', usersController.deleteUser);
+routerAuth.get('/', usersController.getAuth);
+routerAuth.get('/:id', usersController.getAuth);
+routerAuth.post('/', usersController.postAuth);
+routerAuth.put('/:id', usersController.putAuth);
+routerAuth.delete('/:id', usersController.deleteAuth);
 
 export default routerAuth;

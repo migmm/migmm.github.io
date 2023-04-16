@@ -6,25 +6,25 @@ import bcrypt from "bcrypt";
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
-const getUsers = async (_req:Request, res:Response) => {
-    const users = await api.getUsers();
+const getAuths = async (_req:Request, res:Response) => {
+    const auths = await api.getAuths();
 
     try {
-        res.status(200).json(users);
+        res.status(200).json(auths);
     } catch (error) {
-        res.status(500).send('Error getting users')
+        res.status(500).send('Error getting auths')
     }
 
 };
 
-const getUser = async (req:Request, res:Response) => {
+const getAuth = async (req:Request, res:Response) => {
     const id:any = req.params.id;
-    const user = await api.getUser(id);
+    const auth = await api.getAuth(id);
 
     try {
-        res.status(200).json(user);
+        res.status(200).json(auth);
     } catch (error) {
-        res.status(500).send('Error getting user')
+        res.status(500).send('Error getting auth')
     }
 };
 
@@ -33,31 +33,31 @@ const getUser = async (req:Request, res:Response) => {
 //                              POST Controllers                             //
 ///////////////////////////////////////////////////////////////////////////////
 
-const postUser = async (req:Request, res:Response) => {
-    const { username, password } = req.body
+const postAuth = async (req:Request, res:Response) => {
+    const { authname, password } = req.body
 
-    if (!username || !password) {
+    if (!authname || !password) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
-    const foundUser = await api.getUser(username);
-    console.log(foundUser)
-    if (!foundUser) {
+    const foundAuth = await api.getAuth(authname);
+    console.log(foundAuth)
+    if (!foundAuth) {
         return res.status(401).json({ message: 'Unauthorized' })
     }
 
-    const match = await bcrypt.compare(password, foundUser.password)
+    const match = await bcrypt.compare(password, foundAuth.password)
 
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
 
 
-    res.status(201).json(foundUser);
-console.log(foundUser)
+    res.status(201).json(foundAuth);
+console.log(foundAuth)
     /* try {
-        const newUser = await api.createUser(user);
-        res.status(201).json(newUser);
+        const newAuth = await api.createAuth(auth);
+        res.status(201).json(newAuth);
     } catch (error) {
-        res.status(500).send('Error posting users')
+        res.status(500).send('Error posting auths')
     } */
 };
 
@@ -66,15 +66,15 @@ console.log(foundUser)
 //                              PUT Controllers                             //
 //////////////////////////////////////////////////////////////////////////////
 
-const putUser = async (req:Request, res:Response) => {
+const putAuth = async (req:Request, res:Response) => {
     const id:any = req.params.id;
-    const user = req.body;
+    const auth = req.body;
 
     try {
-        const updatedUser = await api.updateUser(id, user) || {};
-        res.status(200).json(updatedUser);
+        const updatedAuth = await api.updateAuth(id, auth) || {};
+        res.status(200).json(updatedAuth);
     } catch (error) {
-        res.status(500).send('Error updating user')
+        res.status(500).send('Error updating auth')
     }
 };
 
@@ -83,23 +83,23 @@ const putUser = async (req:Request, res:Response) => {
 //                             DELETE Controllers                            //
 ///////////////////////////////////////////////////////////////////////////////
 
-const deleteUser = async (req:Request, res:Response) => {
+const deleteAuth = async (req:Request, res:Response) => {
     const id:any = req.params.id;
 
     try {
-        const removedUser = await api.deleteUser(id) || {};
-        res.status(200).json(removedUser);
+        const removedAuth = await api.deleteAuth(id) || {};
+        res.status(200).json(removedAuth);
     } catch (error) {
-        res.status(500).send('Error removing user')
+        res.status(500).send('Error removing auth')
     }
 
 };
 
 
 export default {
-    getUsers,
-    getUser,
-    postUser,
-    putUser,
-    deleteUser,
+    getAuths,
+    getAuth,
+    postAuth,
+    putAuth,
+    deleteAuth,
 };
