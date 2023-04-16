@@ -2,16 +2,16 @@ import config from '../config';
 import UserModel from "../model/users/users";
 import UserValidator from '../model/validators/user';
 
-const modelUsers = UserModel.get(config.PERSISTENCE_TYPE);
+const modelAuth = UserModel.get(config.PERSISTENCE_TYPE);
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Get ALL                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getUsers = async () => {
-    const users = await modelUsers.readUsers();
-    return users;
+const getAuth = async () => {
+    const auth = await modelAuth.readUsers();
+    return auth;
 };
 
 
@@ -19,8 +19,8 @@ const getUsers = async () => {
 //                                API Get ONE                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getUser = async (id:number) => {
-    const user = await modelUsers.readUser(id);
+const getUser = async (username:string) => {
+    const user = await modelAuth.findUserName(username);
     return user;
 };
 
@@ -34,7 +34,7 @@ const createUser = async (user:any) => {
         const validationError = UserValidator.validate(user);
     
         if(!validationError) {
-            const createdUser = await modelUsers.createUser(user);
+            const createdUser = await modelAuth.createUser(user);
             return createdUser;  
         } else {
             console.log(validationError);
@@ -53,7 +53,7 @@ const updateUser = async (id:number, user:any) => {
     const validationError = UserValidator.validate(user);
 
     if(!validationError) {
-        const updatedUser = await modelUsers.updateUser(id, user);
+        const updatedUser = await modelAuth.updateUser(id, user);
         return updatedUser;    
     } else {
         console.log(validationError);
@@ -68,13 +68,13 @@ const updateUser = async (id:number, user:any) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const deleteUser = async (id:number) => {
-    const removedUser = await modelUsers.deleteUser(id);
+    const removedUser = await modelAuth.deleteUser(id);
     return removedUser;
 };
 
 
 export default {
-    getUsers,
+    getAuth,
     getUser,
     createUser,
     updateUser,
