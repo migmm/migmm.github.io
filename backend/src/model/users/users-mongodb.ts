@@ -75,6 +75,19 @@ class UserModelMongoDB {
         }
     }
 
+    async findUserName(username: string) {
+        if (!(await DBMongoDB.connectDB())) {
+            return {};
+        }
+        try {
+            const product = (await UsersModel.findOne({username}).lean()) || {};
+            return DBMongoDB.getObjectWithId(product);
+        } catch (error: any) {
+            console.error(`Error getting prject: ${error.message}`);
+            return {};
+        }
+    }
+
     // CRUD - U: UPDATE
     async updateUser(id: number, user: any) {
         if (!(await DBMongoDB.connectDB())) {
