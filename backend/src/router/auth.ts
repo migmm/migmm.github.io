@@ -1,5 +1,5 @@
 import express from 'express';
-import usersController from '../controller/users';
+import usersController from '../controller/auth';
 import multerFS from '../middlewares/multer';
 
 const routerAuth = express.Router();
