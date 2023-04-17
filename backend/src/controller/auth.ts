@@ -6,17 +6,6 @@ import bcrypt from "bcrypt";
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
-const getAuths = async (_req:Request, res:Response) => {
-    const auths = await api.getAuths();
-
-    try {
-        res.status(200).json(auths);
-    } catch (error) {
-        res.status(500).send('Error getting auths')
-    }
-
-};
-
 const getAuth = async (req:Request, res:Response) => {
     const id:any = req.params.id;
     const auth = await api.getAuth(id);
@@ -55,44 +44,7 @@ const postAuth = async (req:Request, res:Response) => {
 };
 
 
-//////////////////////////////////////////////////////////////////////////////
-//                              PUT Controllers                             //
-//////////////////////////////////////////////////////////////////////////////
-
-const putAuth = async (req:Request, res:Response) => {
-    const id:any = req.params.id;
-    const auth = req.body;
-
-    try {
-        const updatedAuth = await api.updateAuth(id, auth) || {};
-        res.status(200).json(updatedAuth);
-    } catch (error) {
-        res.status(500).send('Error updating auth')
-    }
-};
-
-
-///////////////////////////////////////////////////////////////////////////////
-//                             DELETE Controllers                            //
-///////////////////////////////////////////////////////////////////////////////
-
-const deleteAuth = async (req:Request, res:Response) => {
-    const id:any = req.params.id;
-
-    try {
-        const removedAuth = await api.deleteAuth(id) || {};
-        res.status(200).json(removedAuth);
-    } catch (error) {
-        res.status(500).send('Error removing auth')
-    }
-
-};
-
-
 export default {
-    getAuths,
     getAuth,
     postAuth,
-    putAuth,
-    deleteAuth,
 };
