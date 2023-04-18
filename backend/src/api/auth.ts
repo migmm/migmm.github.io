@@ -34,9 +34,6 @@ const createAuth = async (user:any) => {
 };
 
 
-
-
-
 export default {
     getAuth,
     createAuth,

@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import api from '../api/auth';
 import bcrypt from "bcrypt";
+//import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config(); 
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
@@ -29,17 +34,18 @@ const postAuth = async (req:Request, res:Response) => {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
-    const foundAuth = await api.getAuth(username);
-    console.log(foundAuth)
-    if (!foundAuth) {
+    const foundUser = await api.getAuth(username);
+
+    console.log(foundUser)
+    if (!foundUser) {
         return res.status(401).json({ message: 'Unauthorized' })
     }
 
-    const match = await bcrypt.compare(password, foundAuth.password)
+    const match = await bcrypt.compare(password, foundUser.password)
 
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
 
-    res.status(201).json(foundAuth);
+    res.status(201).json(foundUser); 
 
 };
 

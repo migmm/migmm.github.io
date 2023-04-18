@@ -77,16 +77,16 @@ class UserModelMongoDB {
 
     // Route to find by any value in database
     async findByAny(value: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
-        try {
-            const product = (await UsersModel.findOne({value}).lean()) || {};
-            return DBMongoDB.getObjectWithId(product);
-        } catch (error: any) {
-            console.error(`Error getting user: ${error.message}`);
-            return {};
-        }
+            if (!(await DBMongoDB.connectDB())) {
+                return {};
+            }
+            try {
+                const product = (await UsersModel.findOne({ username:value }).lean()) || {};
+                return DBMongoDB.getObjectWithId(product);
+            } catch (error: any) {
+                console.error(`Error getting user: ${error.message}`);
+                return {};
+            }
     }
 
     // CRUD - U: UPDATE
