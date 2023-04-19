@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import api from '../api/auth';
 import bcrypt from "bcrypt";
-//import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config(); 
@@ -45,7 +45,21 @@ const postAuth = async (req:Request, res:Response) => {
 
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
 
-    res.status(201).json(foundUser); 
+    const secretKey:string = process.env.ACCESS_TOKEN_SECRET as string;
+
+
+    const accessToken = jwt.sign(
+        { "username": foundUser.username },
+        secretKey,
+        { expiresIn: '1w' }
+    );
+
+    return res.cookie('jwt', accessToken, {
+        httpOnly: true, 
+        secure: true, 
+        sameSite: 'none', 
+        maxAge: 7 * 24 * 60 * 60 * 1000 
+    }).status(201).json({ accessToken });
 
 };
 
