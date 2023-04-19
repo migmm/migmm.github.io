@@ -5,10 +5,16 @@ import routerCertifications from './router/certifications';
 import routerUsers from './router/users';
 import routerAuth from './router/auth';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import corsOptions from './cors';
+
 
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
+
+app.use(cors(corsOptions))
+
 app.use(cookieParser())
 app.use(express.json());
 

@@ -18,6 +18,6 @@ const config = {
 
 export {
     PERSISTENCE_TYPES,
-    PRODUCT_IMG_UPLOAD_LOCATION, 
+    PRODUCT_IMG_UPLOAD_LOCATION,
     config as default
 };
