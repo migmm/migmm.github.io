@@ -5,5 +5,7 @@ const routerAuth = express.Router();
 
 routerAuth.get('/:user', authController.getAuth);
 routerAuth.post('/', authController.postAuth);
+routerAuth.post('/logout', authController.logout);
+
 
 export default routerAuth;

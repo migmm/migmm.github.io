@@ -51,20 +51,41 @@ const postAuth = async (req:Request, res:Response) => {
     const accessToken = jwt.sign(
         { "username": foundUser.username },
         secretKey,
-        { expiresIn: '1w' }
+        { expiresIn: '1d' }
     );
 
-    return res.cookie('jwt', accessToken, {
-        httpOnly: true, 
-        secure: true, 
-        sameSite: 'none', 
-        maxAge: 7 * 24 * 60 * 60 * 1000 
-    }).status(201).json({ accessToken });
+    const cookieOptions:any = {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+    };
+
+    return res.cookie('jwt', accessToken, cookieOptions).status(201).json({ accessToken });
 
 };
+
+
+const logout = async (req:Request, res:Response) => {
+    const cookies = await req.cookies;
+    console.log(req.cookies);
+
+    console.log('cookies',cookies)
+
+    if (!cookies?.jwt) return res.sendStatus(204) 
+
+    res.clearCookie('jwt', { 
+        httpOnly: true, 
+        sameSite: 'none', 
+        secure: true 
+    })
+
+    res.json({ message: 'Cookie cleared' })
+}
 
 
 export default {
     getAuth,
     postAuth,
+    logout
 };
