@@ -1,4 +1,4 @@
-import config from '../config';
+import config from '../config/config';
 import ProjectModel from "../model/projects/projects";
 import ProjectValidator from '../model/validators/project';
 

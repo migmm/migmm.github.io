@@ -1,4 +1,4 @@
-import config from '../config';
+import config from '../config/config';
 import UserModel from "../model/users/users";
 import UserValidator from '../model/validators/user';
 

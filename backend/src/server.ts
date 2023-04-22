@@ -1,12 +1,12 @@
 import express from 'express';
-import config from './config';
+import config from './config/config';
 import routerProjects from './router/projects';
 import routerCertifications from './router/certifications';
 import routerUsers from './router/users';
 import routerAuth from './router/auth';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import corsOptions from './cors';
+import corsOptions from './config/cors';
 
 
 const app = express();

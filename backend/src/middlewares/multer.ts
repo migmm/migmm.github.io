@@ -1,5 +1,5 @@
 import multer from "multer";
-import { PRODUCT_IMG_UPLOAD_LOCATION } from "../config";
+import { PRODUCT_IMG_UPLOAD_LOCATION } from "../config/config";
 
 
 const storage = multer.diskStorage({

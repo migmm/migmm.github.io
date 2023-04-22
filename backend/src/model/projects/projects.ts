@@ -1,4 +1,4 @@
-import config, {PERSISTENCE_TYPES} from '../../config';
+import config, {PERSISTENCE_TYPES} from '../../config/config';
 
 import ProjectModelMongoDB from './projects-mongodb';
 
