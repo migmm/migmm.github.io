@@ -22,10 +22,10 @@ const getAuth = async (username:string) => {
 const createAuth = async (user:any) => {
 
         const validationError = UserValidator.validate(user);
-    
+
         if(!validationError) {
             const createdUser = await modelAuth.createUser(user);
-            return createdUser;  
+            return createdUser;
         } else {
             console.log(validationError);
             console.error(`Error validating createUser: ${validationError.details[0].message}`);

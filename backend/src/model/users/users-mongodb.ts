@@ -81,7 +81,7 @@ class UserModelMongoDB {
                 return {};
             }
             try {
-                const product = (await UsersModel.findOne({ username:value }).lean()) || {};
+                const product = (await UsersModel.findOne({ username:value }).exec()) || {};
                 return DBMongoDB.getObjectWithId(product);
             } catch (error: any) {
                 console.error(`Error getting user: ${error.message}`);
