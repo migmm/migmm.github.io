@@ -7,6 +7,7 @@ class ProjectValidator {
             password: Joi.string().min(6).max(1000).required(),
             mail: Joi.string().required(),
             role: Joi.string().valid(...allowedRoles).required(),
+            banned: Joi.boolean().required().default(false)
         });
         const { error } = projectSchema.validate(project);
         return error;

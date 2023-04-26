@@ -20,8 +20,14 @@ const userSchema = new mongoose.Schema(
         },
         role: { 
             type: String, 
-            default: "Basic", 
-            required: true },
+            default: "User", 
+            required: true 
+        },
+        banned: { 
+            type: String, 
+            default: false, 
+            required: true 
+        },
     },
     {
         versionKey: false,
