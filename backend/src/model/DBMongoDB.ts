@@ -17,8 +17,7 @@ class DBMongoDB {
                 delete el[DBMongoDB.primaryKey];
             });
         } else {
-            obj.id = obj[DBMongoDB.primaryKey];
-            delete obj[DBMongoDB.primaryKey];
+            obj = '';
         }
         return obj;
     }
