@@ -47,7 +47,6 @@ const postAuth = async (req:Request, res:Response) => {
 
     const secretKey:string = process.env.ACCESS_TOKEN_SECRET as string;
 
-
     const accessToken = jwt.sign(
         { "username": foundUser.username },
         secretKey,
@@ -62,7 +61,6 @@ const postAuth = async (req:Request, res:Response) => {
     };
 
     return res.cookie('jwt', accessToken, cookieOptions).status(201).json({ accessToken });
-
 };
 
 
