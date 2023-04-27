@@ -37,9 +37,14 @@ const postAuth = async (req:Request, res:Response) => {
     let foundUser = await api.getAuth(username);
 
     console.log(foundUser)
-    if (!foundUser) {
+
+    if(!foundUser || foundUser.id === undefined) {
         return res.status(401).json({ message: 'Unauthorized' })
     }
+
+ /*    if (!foundUser) {
+        return res.status(401).json({ message: 'Unauthorized' })
+    } */
 
     const match = await bcrypt.compare(password, foundUser.password)
 

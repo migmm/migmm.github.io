@@ -1,4 +1,4 @@
-import multer from "multer";
+/* import multer from "multer";
 import { PRODUCT_IMG_UPLOAD_LOCATION } from "../config/config";
 
 
@@ -28,4 +28,4 @@ export default {
     fieldConfig
 }
 
-
+ */
