@@ -23,7 +23,6 @@ interface User {
     id: string;
     name: string;
     password: string;
-    // Otras propiedades necesarias
 }
 
 function authRole(roles: string[]) {

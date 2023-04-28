@@ -11,7 +11,6 @@ interface User {
     username: string;
     name: string;
     password: string;
-    // Otras propiedades necesarias
 }
 
 ////////////////////////////////////////////////////////////////////////////////
