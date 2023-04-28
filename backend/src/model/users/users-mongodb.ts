@@ -13,14 +13,14 @@ const userSchema = new mongoose.Schema(
             minlength: 6, 
             required: true 
         },
-        mail: {
+        email: {
             type: String,
             unique: true,
             required: true,
         },
         role: { 
             type: String, 
-            default: "User", 
+            default: "user", 
             required: true 
         },
         banned: { 

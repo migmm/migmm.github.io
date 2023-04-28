@@ -38,12 +38,12 @@ const postUser = async (req:Request, res:Response) => {
 
     const user = req.body;
 
-    if (!user.username || !user.password || !user.mail) {
+    if (!user.username || !user.password || !user.email) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
     const foundUser = await api.getByField('username', user.username);
-    const foundEmail = await api.getByField('mail', user.mail);
+    const foundEmail = await api.getByField('mail', user.email);
 
     if(foundUser) {
         return res.status(401).json({ message: 'Existing username' });
@@ -95,7 +95,6 @@ const deleteUser = async (req:Request, res:Response) => {
     } catch (error) {
         res.status(500).send('Error removing user');
     }
-
 };
 
 
