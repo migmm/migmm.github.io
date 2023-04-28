@@ -44,10 +44,11 @@ const postUser = async (req:Request, res:Response) => {
     }
 
     const foundUser = await api.getByField('username', user.username);
-    const foundEmail = await api.getByField('mail', user.email);
+    const foundEmail = await api.getByField('mail', user.mail);
     console.log("foundUser", foundUser)
+    console.log("foundEmail", foundEmail)
 
-    if(foundUser ) {
+    if(foundUser) {
         return res.status(401).json({ message: 'Existing username' });
     }
 
