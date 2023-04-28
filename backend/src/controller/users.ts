@@ -16,7 +16,6 @@ const getUsers = async (_req:Request, res:Response) => {
     } catch (error) {
         res.status(500).send('Error getting users');
     }
-
 };
 
 const getUser = async (req:Request, res:Response) => {
@@ -45,8 +44,6 @@ const postUser = async (req:Request, res:Response) => {
 
     const foundUser = await api.getByField('username', user.username);
     const foundEmail = await api.getByField('mail', user.mail);
-    console.log("foundUser", foundUser)
-    console.log("foundEmail", foundEmail)
 
     if(foundUser) {
         return res.status(401).json({ message: 'Existing username' });
