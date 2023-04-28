@@ -24,6 +24,10 @@ const getUser = async (id:number) => {
     return user;
 };
 
+const getByField = async (field:string, value: string) => {
+    const user = await modelUsers.findByAny(field, value);
+    return user;
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Create                                 //
@@ -76,6 +80,7 @@ const deleteUser = async (id:number) => {
 export default {
     getUsers,
     getUser,
+    getByField,
     createUser,
     updateUser,
     deleteUser

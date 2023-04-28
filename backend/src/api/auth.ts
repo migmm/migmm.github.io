@@ -6,11 +6,11 @@ const modelAuth = UserModel.get(config.PERSISTENCE_TYPE);
 
 
 ///////////////////////////////////////////////////////////////////////////////
-//                                API Get ONE                                //
+//                                  API Get                                  //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getAuth = async (username:string) => {
-    const user = await modelAuth.findByAny(username);
+const getAuth = async (field:string, username:string) => {
+    const user = await modelAuth.findByAny(field, username);
     return user;
 };
 

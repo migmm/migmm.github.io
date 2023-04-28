@@ -6,15 +6,22 @@ import dotenv from 'dotenv';
 
 dotenv.config(); 
 
+interface User {
+    id: string;
+    username: string;
+    name: string;
+    password: string;
+    // Otras propiedades necesarias
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
 
-const getAuth = async (req:Request, res:Response) => {
-    const id:any = req.params.id;
-    const auth = await api.getAuth(id);
-
+const getAuth = async (_req:Request, res:Response) => {
+    //const id:any = req.params.id;
+    const auth = await api.getAuth('username', 'username');
+    console.log('auth controller', auth)
     try {
         res.status(200).json(auth);
     } catch (error) {
@@ -34,8 +41,8 @@ const postAuth = async (req:Request, res:Response) => {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
-    const foundUser = await api.getAuth(username);
-    
+    const foundUser = await api.getAuth('username',username) as User; 
+
     if(!foundUser || foundUser.id === undefined) {
         return res.status(401).json({ message: 'Unauthorized' })
     }

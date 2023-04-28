@@ -11,7 +11,7 @@ class DBMongoDB {
     static primaryKey = '_id';
 
     static getObjectWithId(obj:any) {
-        if (Array.isArray(obj)) {
+        if (Array.isArray(obj) ) {
             obj.forEach(el => {
                 el.id = el[DBMongoDB.primaryKey];
                 delete el[DBMongoDB.primaryKey];
@@ -20,6 +20,7 @@ class DBMongoDB {
             obj.id = obj[DBMongoDB.primaryKey];
             delete obj[DBMongoDB.primaryKey];
         }
+        console.log('dfddffd', obj)
         return obj;
     }
 

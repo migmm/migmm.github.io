@@ -82,13 +82,13 @@ class UserModelMongoDB {
     }
 
     // Route to find by any value in database
-    async findByAny(value: any) {
+    async findByAny(field: any, value:any) {
             if (!(await DBMongoDB.connectDB())) {
                 return {};
             }
             try {
-                const product = (await UsersModel.findOne({ username:value }).exec()) || {};
-                return DBMongoDB.getObjectWithId(product);
+                const product = (await UsersModel.findOne({ [field] : value }).exec());
+                return (product);
             } catch (error: any) {
                 console.error(`Error getting user: ${error.message}`);
                 return {};

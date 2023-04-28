@@ -1,8 +1,8 @@
 import { Request as ExpressRequest, Response, NextFunction } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import allowedRoles from "../config/userRoles";
-import api from '../api/auth';
+import api from "../api/auth";
 
 interface TokenPayload {
     id: string;
@@ -13,6 +13,19 @@ interface RequestWithUser extends ExpressRequest {
     user: TokenPayload;
 }
 
+interface AuthPayload {
+    id: string;
+    role: string;
+    password: string;
+}
+
+interface User {
+    id: string;
+    name: string;
+    password: string;
+    // Otras propiedades necesarias
+}
+
 function authRole(roles: string[]) {
     return async function (req: RequestWithUser, res: Response, next: NextFunction) {
         try {
@@ -21,17 +34,17 @@ function authRole(roles: string[]) {
                 return res.status(401).json({ message: "Unauthorized" });
             }
 
-            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as JwtPayload;
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as AuthPayload;
 
             if (!decoded || !decoded.id || !decoded.role) {
                 return res.status(401).json({ message: "Unauthorized" });
             }
 
-            const foundUser = await api.getAuth(decoded.id);
+            const foundUser = (await api.getAuth("id", decoded.id)) as User;
 
             if (!foundUser) {
-                console.log("foundUser", foundUser)
-                return res.status(401).json({ message: 'Unauthorized' })
+                console.log("foundUser", foundUser);
+                return res.status(401).json({ message: "Unauthorized" });
             }
 
             const passwordMatch = await bcrypt.compare(foundUser.password, decoded.password);

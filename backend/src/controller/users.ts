@@ -34,7 +34,25 @@ const getUser = async (req:Request, res:Response) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const postUser = async (req:Request, res:Response) => {
-    let user = req.body;
+
+    const user = req.body
+
+    if (!user.username || !user.password || !user.mail) {
+        return res.status(400).json({ message: 'All fields are required' })
+    }
+
+    const foundUser = await api.getByField('username', user.username);
+    const foundEmail = await api.getByField('mail', user.email);
+    console.log("foundUser", foundUser)
+
+    if(foundUser ) {
+        return res.status(401).json({ message: 'Existing username' })
+    }
+
+    if(foundEmail) {
+        return res.status(401).json({ message: 'Existing email' })
+    }
+
 
     try {
         const newUser = await api.createUser(user);
