@@ -34,10 +34,8 @@ const postAuth = async (req:Request, res:Response) => {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
-    let foundUser = await api.getAuth(username);
-
-    console.log(foundUser)
-
+    const foundUser = await api.getAuth(username);
+    
     if(!foundUser || foundUser.id === undefined) {
         return res.status(401).json({ message: 'Unauthorized' })
     }
