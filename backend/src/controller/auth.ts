@@ -40,10 +40,6 @@ const postAuth = async (req:Request, res:Response) => {
         return res.status(401).json({ message: 'Unauthorized' })
     }
 
- /*    if (!foundUser) {
-        return res.status(401).json({ message: 'Unauthorized' })
-    } */
-
     const match = await bcrypt.compare(password, foundUser.password)
 
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
