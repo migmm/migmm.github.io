@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
-app.use('/api/register', routerUsers);
+app.use('/api/users', routerUsers);
 app.use('/api/auth', routerAuth);
 
 // in case of using another route
