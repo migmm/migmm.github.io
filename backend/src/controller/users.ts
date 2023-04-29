@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 
 import api from "../api/users";
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
@@ -27,6 +28,7 @@ const getUser = async (req: Request, res: Response) => {
         res.status(500).send("Error getting user");
     }
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              POST Controllers                             //
@@ -61,6 +63,7 @@ const postUser = async (req: Request, res: Response) => {
     }
 };
 
+
 //////////////////////////////////////////////////////////////////////////////
 //                              PUT Controllers                             //
 //////////////////////////////////////////////////////////////////////////////
@@ -68,6 +71,7 @@ const postUser = async (req: Request, res: Response) => {
 const putUser = async (req: Request, res: Response) => {
     const id: any = req.params.id;
     const { email, password } = req.body;
+
     try {
         const user = await api.getUser(id);
         console.log ("user", user)
@@ -108,6 +112,7 @@ const putUser = async (req: Request, res: Response) => {
     }
 };
 
+
 ///////////////////////////////////////////////////////////////////////////////
 //                             DELETE Controllers                            //
 ///////////////////////////////////////////////////////////////////////////////
@@ -122,6 +127,7 @@ const deleteUser = async (req: Request, res: Response) => {
         res.status(500).send("Error removing user");
     }
 };
+
 
 export default {
     getUsers,

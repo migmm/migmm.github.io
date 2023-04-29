@@ -1,3 +1,25 @@
-const allowedRoles = ['user', 'mod', 'admin'];
+interface RolePermissions {
+    [role: string]: {
+        canUpdate: boolean;
+        canDelete: boolean;
+        canCreate: boolean;
+        canBan: boolean;
+    };
+}
 
-export default allowedRoles;
+const rolesPermissions: RolePermissions = {
+    admin: {
+        canUpdate: true,
+        canDelete: true,
+        canCreate: true,
+        canBan: true,
+    },
+    user: {
+        canUpdate: false,
+        canDelete: false,
+        canCreate: false,
+        canBan: false,
+    },
+};
+
+export default rolesPermissions;

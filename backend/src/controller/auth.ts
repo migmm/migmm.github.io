@@ -11,7 +11,10 @@ interface User {
     username: string;
     name: string;
     password: string;
+    role: string;
+    banned: string;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
@@ -41,8 +44,9 @@ const postAuth = async (req:Request, res:Response) => {
     }
 
     const foundUser = await api.getAuth('username',username) as User; 
-
-    if(!foundUser || foundUser.id === undefined) {
+    console.log("user auth", foundUser);
+    
+    if(!foundUser) {
         return res.status(401).json({ message: 'Unauthorized' })
     }
 
@@ -53,7 +57,7 @@ const postAuth = async (req:Request, res:Response) => {
     const secretKey:string = process.env.ACCESS_TOKEN_SECRET as string;
 
     const accessToken = jwt.sign(
-        { "username": foundUser.username },
+        {  "id" : foundUser.id },
         secretKey,
         { expiresIn: '1d' }
     );
@@ -61,7 +65,7 @@ const postAuth = async (req:Request, res:Response) => {
     const cookieOptions:any = {
         httpOnly: true,
         sameSite: 'none',
-        secure: true,
+        //secure: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
     };
 

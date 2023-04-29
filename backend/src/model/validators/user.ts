@@ -1,5 +1,9 @@
 import Joi from "joi";
-import allowedRoles from '../../config/userRoles';
+
+import rolesPermissions from '../../config/userRoles';
+const allowedRoles = Object.keys(rolesPermissions);
+
+
 class ProjectValidator {
     static validate(project: object) {
         const projectSchema = Joi.object({
