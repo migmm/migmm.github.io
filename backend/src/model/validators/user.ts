@@ -3,6 +3,7 @@ import allowedRoles from '../../config/userRoles';
 class ProjectValidator {
     static validate(project: object) {
         const projectSchema = Joi.object({
+            id: Joi.object(),
             username: Joi.string().required(),
             password: Joi.string().min(6).max(1000).required(),
             email: Joi.string().required(),
