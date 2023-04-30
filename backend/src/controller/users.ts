@@ -89,12 +89,12 @@ const putUser = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "Password is the same that stored in database." });
         }
         user.password = password;
-    
+
         // Check if email is different than actual
         if (email == user.email) {
             return res.status(400).json({ message: "Email is the same that stored in database." });
         }
-        
+
         // Check if email exist in database
         const foundEmail = await api.getByField("email", email);
         console.log ("email", foundEmail)
