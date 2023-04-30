@@ -15,6 +15,7 @@ const authRole = (roles: string[]) => async (req: Request & { currentUser: UserP
         // Get JWT token from HTTPS Cookies and ID from URL
         const token = req.cookies.jwt;
         const id: any = req.params.id;
+        console.log("roles", roles)
 
         // Ckeck if you have a token, if not, you are unauthorized
         if (!token) {
@@ -36,15 +37,20 @@ const authRole = (roles: string[]) => async (req: Request & { currentUser: UserP
             return res.status(404).json({ message: "User not found." });
         }
 
-        // First check if user is admin or has required role
+        // First check if user is admin or has required role specified in the route
         if (!roles.includes(userAuth.role)) {
-            return res.status(403).json({ message: "Forbidden 1" });
+            return res.status(403).json({ message: "Forbidden" });
         }
 
         // Check if user is trying to modify their own information
         // If admin is logged just go on
         if (id && id !== userAuth.id && userAuth.role !== "admin") {
-            return res.status(403).json({ message: "Forbidden 2" });
+            return res.status(403).json({ message: "Forbidden" });
+        }
+
+          // Check if user has permission to get
+        if (req.body && req.method === "GET" && !rolesPermissions[userAuth.role].canGet) {
+            return res.status(403).json({ message: "Forbidden" });
         }
 
         // Check if user has permission to update
@@ -70,7 +76,13 @@ const authRole = (roles: string[]) => async (req: Request & { currentUser: UserP
             return res.status(403).json({ message: "Forbidden 3" });
         }
 
-        return res.status(403).json({ message: "you are an admin" });
+        // If role property is in body
+        // If Actual User is an Admin
+        // Or if role permission can change banned status
+        // User check is negation in order to throw an error if is true
+        if (req.body.hasOwnProperty("role") && (userAuth.role !== "admin" || !rolesPermissions[userAuth.role].canBan)) {
+            return res.status(403).json({ message: "Forbidden 3" });
+        }
 
         next();
     } catch (err) {

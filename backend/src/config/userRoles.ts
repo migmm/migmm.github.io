@@ -1,5 +1,6 @@
 interface RolePermissions {
     [role: string]: {
+        canGet: boolean;
         canUpdate: boolean;
         canDelete: boolean;
         canCreate: boolean;
@@ -7,17 +8,21 @@ interface RolePermissions {
     };
 }
 
+// User have permission to do CRUD and extra things.
 const rolesPermissions: RolePermissions = {
     admin: {
+        canGet: true,
+        canCreate: true,
         canUpdate: true,
         canDelete: true,
-        canCreate: true,
+        
         canBan: true,
     },
     user: {
+        canGet: true,
+        canCreate: true,
         canUpdate: true,
         canDelete: true,
-        canCreate: true,
         canBan: false,
     },
 };
