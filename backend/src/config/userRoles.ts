@@ -15,7 +15,6 @@ const rolesPermissions: RolePermissions = {
         canCreate: true,
         canUpdate: true,
         canDelete: true,
-        
         canBan: true,
     },
     user: {
