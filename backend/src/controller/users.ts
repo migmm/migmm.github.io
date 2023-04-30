@@ -71,10 +71,10 @@ const postUser = async (req: Request, res: Response) => {
 const putUser = async (req: Request, res: Response) => {
     const id: any = req.params.id;
     const { email, password } = req.body;
-
+    const userToChange = req.body;
     try {
         const user = await api.getUser(id);
-        console.log ("user", user)
+        console.log ("user from database", user)
 
         // Check if user exist
         if (!user) {
@@ -102,12 +102,13 @@ const putUser = async (req: Request, res: Response) => {
         if (foundEmail) {
             return res.status(400).json({ message: "Email exist in database." });
         }
-        user.email = email;
+        userToChange.email = email;
 
         const hashedPwd = await bcrypt.hash(user.password, 10);
-        user.password = hashedPwd;
+        userToChange.password = hashedPwd;
 
-        const updatedUser = (await api.updateUser(id, user)) || {};
+        console.log("modified user", userToChange)
+        const updatedUser = (await api.updateUser(id, userToChange)) || {};
         res.status(200).json(updatedUser);
     } catch (error) {
         res.status(500).send("Error updating user");
