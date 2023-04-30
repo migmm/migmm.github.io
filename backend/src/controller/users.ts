@@ -84,7 +84,6 @@ const putUser = async (req: Request, res: Response) => {
         console.log("email", email, user.email)
         console.log("password", password, user.password)
 
-        
         // Check if password is different than actual
         if (password == user.password) {
             return res.status(400).json({ message: "Password is the same that stored in database." });
@@ -104,6 +103,9 @@ const putUser = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "Email exist in database." });
         }
         user.email = email;
+
+        const hashedPwd = await bcrypt.hash(user.password, 10);
+        user.password = hashedPwd;
 
         const updatedUser = (await api.updateUser(id, user)) || {};
         res.status(200).json(updatedUser);
