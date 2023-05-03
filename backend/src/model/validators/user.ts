@@ -1,5 +1,6 @@
-import Joi from "joi";
+import Joi from 'joi';
 
+import userStatus from '../../config/userStatus';
 import rolesPermissions from '../../config/userRoles';
 const allowedRoles = Object.keys(rolesPermissions);
 
@@ -12,7 +13,7 @@ class ProjectValidator {
             password: Joi.string().min(6).max(1000).required(),
             email: Joi.string().required(),
             role: Joi.string().valid(...allowedRoles).default('user'),
-            banned: Joi.boolean().default(false)
+            status: Joi.string().valid(...userStatus).default('active')
         });
         const { error } = projectSchema.validate(project);
         return error;
