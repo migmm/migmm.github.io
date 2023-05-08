@@ -18,28 +18,24 @@ const Header = () => {
     useEffect(() => {
         const headerComponent = document.querySelector(".header-container") as HTMLElement;
 
-        document.addEventListener("scroll", (e) => {
-            console.log(window.pageYOffset);
-            const scrollTop = window.pageYOffset;
+        document.addEventListener("scroll", handleScroll);
+        document.addEventListener("wheel", handleScroll);
 
-            if (scrollTop <= 0 && location.pathname === "/") {
-                headerComponent.style.opacity = "0";
-            } else {
-                headerComponent.style.opacity = "1";
-            }
-        });
+        return () => {
+            document.removeEventListener("scroll", handleScroll);
+            document.removeEventListener("wheel", handleScroll);
+        };
 
-        document.addEventListener("wheel", (e) => {
-            console.log(e.deltaY);
+        function handleScroll(e:any) {
             const scrollTop = e.deltaY;
-
-            if (scrollTop > 50 && location.pathname === "/") {
-                headerComponent.style.opacity = "0";
-            } else {
+            console.log(scrollTop)
+            if (scrollTop < 0 && location.pathname === "/") {
                 headerComponent.style.opacity = "1";
+            } else {
+                headerComponent.style.opacity = "0";
             }
-        });
-    }, []);
+        }
+    }, [location.pathname]);
 
     return (
         <HeaderStyles>
@@ -129,7 +125,7 @@ const HeaderStyles = styled.header`
                         color: #ed1b23;
                     }
                 }
-                
+
                 :active {
                     color: #ff0000;
                 }
