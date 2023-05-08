@@ -18,23 +18,23 @@ const Header = () => {
     useEffect(() => {
         const headerComponent = document.querySelector(".header-container") as HTMLElement;
 
-        document.addEventListener("scroll", handleScroll);
-        document.addEventListener("wheel", handleScroll);
-
-        return () => {
-            document.removeEventListener("scroll", handleScroll);
-            document.removeEventListener("wheel", handleScroll);
-        };
-
         function handleScroll(e:any) {
             const scrollTop = e.deltaY;
             console.log(scrollTop)
-            if (scrollTop < 0 && location.pathname === "/") {
-                headerComponent.style.opacity = "1";
-            } else {
+            if (scrollTop > 0 && location.pathname === "/") {
                 headerComponent.style.opacity = "0";
+            } else {
+                headerComponent.style.opacity = "1";
             }
         }
+
+       
+        document.addEventListener("wheel", handleScroll);
+
+        return () => {
+         ;
+            document.removeEventListener("wheel", handleScroll);
+        };
     }, [location.pathname]);
 
     return (
