@@ -1,13 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import logoGithub from "./github.png";
-import logoTelegram from "./telegram.png";
-import logoWhatsapp from "./whatsapp.png";
-import logoEmail from "./email.png";
-import logoLinkedin from "./linkedin.png";
-import logoYoutube from "./youtube.png";
-
 import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
