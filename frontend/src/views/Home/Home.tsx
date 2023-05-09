@@ -1,71 +1,71 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import logoGithub from "./github.svg";
-import logoTelegram from "./telegram.svg";
-import logoWhatsapp from "./whatsapp.svg";
-import logoEmail from "./email.svg";
-import logoLinkedin from "./linkedin.svg";
+import logoGithub from "./github.png";
+import logoTelegram from "./telegram.png";
+import logoWhatsapp from "./whatsapp.png";
+import logoEmail from "./email.png";
+import logoLinkedin from "./linkedin.png";
+import logoYoutube from "./youtube.png";
 
 import { Paragraph } from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
-  useEffect(() => {
-    let url = window.location.pathname;
-    url = url.slice(1, 1);
+    useEffect(() => {
+        let url = window.location.pathname;
+        url = url.slice(1, 1);
 
-    const lockScroll = (option: string) => {
-        console.log(url);
-        if (option === "enabled") {
-            document.body.style.overflow = "hidden";
-            document.body.style.userSelect = "none";
-        } else {
-            document.body.style.overflow = "auto";
-            document.body.style.userSelect = "auto";
-        }
-    };
+        const lockScroll = (option: string) => {
+            console.log(url);
+            if (option === "enabled") {
+                document.body.style.overflow = "hidden";
+                document.body.style.userSelect = "none";
+            } else {
+                document.body.style.overflow = "auto";
+                document.body.style.userSelect = "auto";
+            }
+        };
 
-    const zoomElement = document.querySelector(".text-home") as HTMLElement;
-    const contactIcons = document.querySelector(".contact-icons") as HTMLElement;
-    const OPACITY_STEP = 0.1;
-    const ZOOM_SPEED = 0.2;
-    let opacity = 1;
-    let zoom = 1;
-    let y = 0;
+        const zoomElement = document.querySelector(".text-home") as HTMLElement;
+        const contactIcons = document.querySelector(".contact-icons") as HTMLElement;
+        const OPACITY_STEP = 0.1;
+        const ZOOM_SPEED = 0.2;
+        let opacity = 1;
+        let zoom = 1;
+        let y = 0;
 
-    function handleScroll (e:any){
-        if (window.pageYOffset <= 0) {
-            lockScroll("enabled");
-            zoomElement.style.display = `block`;
-        }
+        function handleScroll(e: any) {
+            if (window.pageYOffset <= 0) {
+                lockScroll("enabled");
+                zoomElement.style.display = `block`;
+            }
 
-        if (e.deltaY >= 0) {
-            zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
-            zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
-            contactIcons.style.opacity = "0";
-        } else {
-            if (zoom + ZOOM_SPEED > 1.2) {
-                zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
-                zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
-                contactIcons.style.opacity = "1";
+            if (e.deltaY >= 0) {
+                zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
+                zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
+                contactIcons.style.opacity = "0";
+            } else {
+                if (zoom + ZOOM_SPEED > 1.2) {
+                    zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
+                    zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
+                    contactIcons.style.opacity = "1";
+                }
+            }
+
+            if (opacity <= 0) {
+                lockScroll("disabled");
+                zoomElement.style.display = `none`;
             }
         }
 
-        if (opacity <= 0) {
+        window.addEventListener("wheel", handleScroll);
+        lockScroll("enabled");
+
+        return () => {
+            window.removeEventListener("wheel", handleScroll);
             lockScroll("disabled");
-            zoomElement.style.display = `none`;
-        }
-    }
-
-    window.addEventListener("wheel", handleScroll);
-    lockScroll("enabled");
-
-    return () => {
-        window.removeEventListener('wheel', handleScroll);
-        lockScroll("disabled");
-    };
-}, []);
-    
+        };
+    }, []);
 
     return (
         <HomeContainer>
@@ -79,20 +79,23 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="contact-icons">
-                    <a href="https://github.com/migmm" target="_blank">
-                        <img src={logoGithub} alt="" />
+                    <a href="#" target="_blank">
+                        <i className="fab fa-github fa-3x"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/miguelmiche/" target="_blank">
-                        <img src={logoLinkedin} alt="" />
+                        <i className="fab fa-linkedin fa-3x"></i>
                     </a>
                     <a href="mailto:hi@miguedev.com" target="_blank">
-                        <img src={logoEmail} alt="" />
+                        <i className="fas fa-envelope fa-3x"></i>
                     </a>
                     <a href="https://api.whatsapp.com/send?phone=5492914144624" target="_blank">
-                        <img src={logoWhatsapp} alt="" />
+                        <i className="fab fa-whatsapp fa-3x"></i>
                     </a>
                     <a href="https://t.me/micmig" target="_blank">
-                        <img src={logoTelegram} alt="" />
+                        <i className="fab fa-telegram fa-3x"></i>
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank">
+                        <i className="fab fa-youtube fa-3x"></i>
                     </a>
                 </div>
             </div>
@@ -151,7 +154,7 @@ const HomeContainer = styled.nav`
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        margin-top: 150px;
 
         .text-container {
             width: 100%;
@@ -177,7 +180,7 @@ const HomeContainer = styled.nav`
 
         .contact-icons {
             width: 100%;
-            height: 25%;
+            height: 100px;
             display: flex;
             flex: row;
             justify-content: center;
@@ -185,19 +188,19 @@ const HomeContainer = styled.nav`
             transition: opacity 0.5s;
 
             a {
-                fill: green !important;
-
-                img {
-                    width: 8vh;
-                    //height: 40px;
-                    fill: green !important;
-                    margin: 0 0.5em;
-                }
+                height: 50px;
+                width: 50px;
+                color: black;
+                margin: 0.2em;
 
                 @media (hover: hover) {
-                    :hover {
-                        fill: green !important;
-                    }
+                :hover {
+                    color: red;
+                }
+            }
+                i {
+                    width: 100%;
+                    height: 100%;
                 }
             }
         }
@@ -220,7 +223,7 @@ const HomeContainer = styled.nav`
 
             .big-card-container {
                 width: 65%;
-                
+
                 .card-left-part {
                     /*  @media (min-width: 768px) {
                         width: 40%;
