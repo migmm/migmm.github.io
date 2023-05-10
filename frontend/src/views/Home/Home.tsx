@@ -176,7 +176,7 @@ const HomeContainer = styled.nav`
 
         .contact-icons {
             width: 100%;
-            height: 200px;
+            height: 100px;
             display: flex;
             flex: row;
             justify-content: center;
