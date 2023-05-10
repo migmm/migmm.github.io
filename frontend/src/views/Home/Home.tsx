@@ -201,12 +201,12 @@ const HomeContainer = styled.nav`
 
                 @media (hover: hover) {
                     :hover {
-                        color: red;
+                        color: #ed1b23;
                     }
                 }
-                i {
-                    width: 100%;
-                    height: 100%;
+
+                :active {
+                    color: #ff0000;
                 }
             }
         }
