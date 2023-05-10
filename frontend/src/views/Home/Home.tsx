@@ -162,7 +162,6 @@ const HomeContainer = styled.nav`
             justify-content: center;
             padding-top: 1em;
             padding-bottom: 3em;
-            border: solid 1px red;
 
             .text-home {
                 text-align: center;
@@ -184,9 +183,9 @@ const HomeContainer = styled.nav`
             align-items: center;
             transition: opacity 0.5s;
 
-            @media (min-width: 768px) {
+            @media (min-width: 900px) {
                 .fa-3x {
-                    font-size: 4em;
+                    font-size: 4.5em;
                 }
             }
 
@@ -196,8 +195,8 @@ const HomeContainer = styled.nav`
                 color: black;
                 margin: 0.2em;
 
-                @media (min-width: 768px) {
-                    margin: 1em;
+                @media (min-width: 900px) {
+                    margin: 1.5em;
                 }
 
                 @media (hover: hover) {
