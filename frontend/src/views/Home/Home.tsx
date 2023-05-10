@@ -149,48 +149,62 @@ const HomeContainer = styled.nav`
         align-items: center;
         margin-top: 150px;
 
+        @media (min-width: 768px) {
+            justify-content: center;
+            margin-top: unset;
+        }
+
         .text-container {
-            width: 100%;
+            max-width: 1600px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding-top: 1em;
             padding-bottom: 3em;
+            border: solid 1px red;
 
             .text-home {
                 text-align: center;
-                font-size: 7vw;
+                font-size: 6vw;
                 font-family: "Work Sans", sans-serif;
                 font-weight: 800;
                 //word-spacing: -10px;
                 opacity: 1;
                 transition: transform 330ms ease-in-out, opacity 0.2s ease;
-                .charge-text {
-                }
             }
         }
 
         .contact-icons {
             width: 100%;
-            height: 100px;
+            height: 200px;
             display: flex;
             flex: row;
             justify-content: center;
             align-items: center;
             transition: opacity 0.5s;
 
+            @media (min-width: 768px) {
+                .fa-3x {
+                    font-size: 4em;
+                }
+            }
+
             a {
-                height: 50px;
                 width: 50px;
+                height: 50px;
                 color: black;
                 margin: 0.2em;
 
-                @media (hover: hover) {
-                :hover {
-                    color: red;
+                @media (min-width: 768px) {
+                    margin: 1em;
                 }
-            }
+
+                @media (hover: hover) {
+                    :hover {
+                        color: red;
+                    }
+                }
                 i {
                     width: 100%;
                     height: 100%;
