@@ -1,15 +1,8 @@
 import nodemailer from "nodemailer";
 import generateEmailContent from "./emailContentGenerator";
-import * as dotenv from "dotenv";
-dotenv.config();
+import smtpConfig from "../config/smtpConfig";
 
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.SENDER_EMAIL,
-        pass: process.env.SENDER_EMAIL_PASSWORD,
-    },
-});
+const transporter = nodemailer.createTransport(smtpConfig);
 
 const sendConfirmationEmail = (user: { id: number; email: string }): void => {
     const content = generateEmailContent(user);
