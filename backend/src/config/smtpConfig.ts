@@ -4,8 +4,8 @@ dotenv.config();
 const smtpConfig = {
     provider: 'gmail',
     auth: {
-        user: process.env.SENDER_EMAIL,
-        pass: process.env.SENDER_EMAIL_PASSWORD,
+        user: process.env.SMTP_SENDER_EMAIL,
+        pass: process.env.SMTP_SENDER_EMAIL_PASSWORD,
     },
 };
 
