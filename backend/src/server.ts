@@ -6,7 +6,7 @@ import routerUsers from './router/users';
 import routerAuth from './router/auth';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import corsOptions from './config/cors';
+import corsOptions from './services/cors';
 
 
 const app = express();
