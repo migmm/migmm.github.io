@@ -9,4 +9,9 @@ const smtpConfig = {
     },
 };
 
-export default smtpConfig;
+const fromEmail = 'contact@fromEmail.com';
+
+export {
+    smtpConfig,
+    fromEmail,
+} ;

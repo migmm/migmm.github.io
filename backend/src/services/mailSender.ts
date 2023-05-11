@@ -1,6 +1,6 @@
-import nodemailer from "nodemailer";
-import generateEmailContent from "./emailContentGenerator";
-import smtpConfig from "../config/smtpConfig";
+import nodemailer from 'nodemailer';
+import generateEmailContent from './emailContentGenerator';
+import { smtpConfig, fromEmail } from '../config/smtpConfig';
 
 const transporter = nodemailer.createTransport(smtpConfig);
 
@@ -8,9 +8,9 @@ const sendConfirmationEmail = (user: { id: number; email: string }): void => {
     const content = generateEmailContent(user);
 
     const mailOptions = {
-        from: "your-email@example.com",
+        from: fromEmail,
         to: user.email,
-        subject: "Confirmation Email",
+        subject: 'Confirmation Email',
         html: content,
     };
 
