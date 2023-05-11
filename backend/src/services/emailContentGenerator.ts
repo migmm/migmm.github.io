@@ -1,4 +1,4 @@
-import generateToken from "./JWTtokenGenerator";
+import generateToken from './JWTtokenGenerator';
 
 export function generateEmailContent(user: { id: number; email: string }): string {
     const token = generateToken(user);
