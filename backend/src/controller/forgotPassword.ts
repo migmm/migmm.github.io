@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import sendMail from "../services/mailSender";
 import { generatePasswordResetEmailContent } from "../services/emailContentGenerator";
 import generateToken from "../services/JWTtokenGenerator";
-import api from "../api/passwordReset";
+import api from "../api/forgotPassword";
 
 interface User {
     id: string;

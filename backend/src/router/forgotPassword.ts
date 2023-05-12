@@ -1,5 +1,5 @@
 import express from 'express';
-import forgotPassword from '../controller/passwordReset';
+import forgotPassword from '../controller/forgotPassword';
 
 const routerPasswordReset = express.Router();
 
