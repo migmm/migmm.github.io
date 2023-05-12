@@ -1,26 +1,24 @@
 import nodemailer from 'nodemailer';
-import generateEmailContent from './emailContentGenerator';
 import { smtpConfig, fromEmail } from '../config/smtpConfig';
+
 
 const transporter = nodemailer.createTransport(smtpConfig);
 
-const sendConfirmationEmail = (user: { id: number; email: string }): void => {
-    const content = generateEmailContent(user);
+// USAGE
+// sendmail(email, subject, content)
+const sendMail= async (email: string, subject: string, content: string): Promise<void> => {
+    try {
+        const mailOptions = {
+            from: fromEmail,
+            to: email,
+            subject: subject,
+            html: content,
+        };
+        console.log(mailOptions)
+        await transporter.sendMail(mailOptions);
+    } catch (error) {
+        throw new Error('Error sending email');
+    }
+};
 
-    const mailOptions = {
-        from: fromEmail,
-        to: user.email,
-        subject: 'Confirmation Email',
-        html: content,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error(error);
-        } else {
-            console.log(`Email sent: ${info.response}`);
-        }
-    });
-}
-
-export default sendConfirmationEmail;
+export default sendMail;

@@ -4,6 +4,7 @@ import routerProjects from './router/projects';
 import routerCertifications from './router/certifications';
 import routerUsers from './router/users';
 import routerAuth from './router/auth';
+import routerPasswordReset from './router/passwordReset';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import corsOptions from './services/cors';
@@ -22,6 +23,7 @@ app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
 app.use('/api/users', routerUsers);
 app.use('/api/auth', routerAuth);
+app.use('/api/forgotpassword', routerPasswordReset);
 
 // in case of using another route
 app.all('*', (req, res) => {
