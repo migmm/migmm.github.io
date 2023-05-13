@@ -8,6 +8,7 @@ import routerforgotPassword from './router/forgotPassword';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import corsOptions from './services/cors';
+import routerResetPassword from './router/resetPassword';
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/certifications', routerCertifications);
 app.use('/api/users', routerUsers);
 app.use('/api/auth', routerAuth);
 app.use('/api/auth/forgotpassword', routerforgotPassword);
+app.use('/api/auth/resetpassword', routerResetPassword);
 
 // in case of using another route
 app.all('*', (req, res) => {
