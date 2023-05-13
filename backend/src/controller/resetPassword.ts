@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import api from "../api/resetPassword";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
 
 interface ResetTokenPayload {
     id: number;
@@ -18,6 +20,10 @@ export const resetPassword = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "All fields are required" });
         }
 
+        if (newPassword.length < 6) {
+            return res.status(400).json({ message: "Password must have at least 6 characters" });
+        }
+
         const decodedToken = jwt.verify(resetToken, process.env.ACCESS_TOKEN_SECRET as string) as ResetTokenPayload;
 
         if (!decodedToken) {
@@ -32,13 +38,11 @@ export const resetPassword = async (req: Request, res: Response) => {
             return res.status(401).json({ message: "Unauthorized" });
         }
 
-        foundUser.password = newPassword;
+        const hashedPwd = await bcrypt.hash(newPassword.password, 10);
+        foundUser.password = hashedPwd;
 
-        // Actualizar la contraseña del usuario
+        // Update password in database
         await api.updatePassword(decodedToken.id, foundUser);
-
-        // Eliminar el token de restablecimiento de contraseña
-        //await userService.clearResetToken(decodedToken.id);
 
         res.status(200).json({ message: "Password reset successful" });
     } catch (error) {
