@@ -9,6 +9,14 @@ const projectSchema = new mongoose.Schema(
         urlDeploy: String,
         urlGithubRepo: String,
         photos: Array,
+        created_at: { 
+            type: Date, 
+            default: Date.now 
+        },
+        modified_at: { 
+            type: Date, 
+            default: Date.now 
+        },
     },
     {
         versionKey: false,
