@@ -26,6 +26,14 @@ const userSchema = new mongoose.Schema(
         favourites: { 
             type: Array, 
         },
+        created_at: { 
+            type: Date, 
+            default: Date.now 
+        },
+        modified_at: { 
+            type: Date, 
+            default: Date.now 
+        },
     },
     {
         versionKey: false,
