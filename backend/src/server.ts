@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import corsOptions from './utils/cors';
 import routerResetPassword from './router/resetPassword';
+import routerFavourite from './router/favorites';
 
 
 const app = express();
@@ -26,6 +27,7 @@ app.use('/api/users', routerUsers);
 app.use('/api/auth', routerAuth);
 app.use('/api/auth/forgotpassword', routerforgotPassword);
 app.use('/api/auth/resetpassword', routerResetPassword);
+app.use('/api/addfavourite', routerFavourite);
 
 // in case of using another route
 app.all('*', (req, res) => {
