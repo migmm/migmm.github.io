@@ -23,11 +23,15 @@ app.use(express.json());
 
 app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
+
 app.use('/api/users', routerUsers);
 app.use('/api/auth', routerAuth);
+
 app.use('/api/auth/forgotpassword', routerforgotPassword);
 app.use('/api/auth/resetpassword', routerResetPassword);
+
 app.use('/api/addfavourite', routerFavourite);
+app.use('/api/removefavourite', routerFavourite);
 
 // in case of using another route
 app.all('*', (req, res) => {
