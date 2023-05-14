@@ -7,7 +7,7 @@ import routerAuth from './router/auth';
 import routerforgotPassword from './router/forgotPassword';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import corsOptions from './services/cors';
+import corsOptions from './utils/cors';
 import routerResetPassword from './router/resetPassword';
 
 
