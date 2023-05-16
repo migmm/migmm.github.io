@@ -1,6 +1,5 @@
 import express from 'express';
 import certificationsController from '../controller/certifications';
-//import multerFS from '../middlewares/multer';
 
 const routerCertifications = express.Router();
 
