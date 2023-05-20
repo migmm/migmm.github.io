@@ -30,9 +30,7 @@ const ProjectsModel = mongoose.model("projects", projectSchema);
 class ProjectModelMongoDB {
     // CRUD - C: CREATE
     async createProject(project: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+        await DBMongoDB.getInstance();
         try {
             const newProject = new ProjectsModel(project);
             await newProject.save();
@@ -45,9 +43,7 @@ class ProjectModelMongoDB {
 
     // CRUD - R: READ
     async readProjects() {
-        if (!(await DBMongoDB.connectDB())) {
-            return [];
-        }
+        await DBMongoDB.getInstance();
         try {
             const projects = await ProjectsModel.find({}).lean();
             return DBMongoDB.getObjectWithId(projects);
@@ -58,9 +54,7 @@ class ProjectModelMongoDB {
     }
 
     async readProject(id: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+        await DBMongoDB.getInstance();
         try {
             const product = (await ProjectsModel.findById(id).lean()) || {};
             return DBMongoDB.getObjectWithId(product);
@@ -72,9 +66,7 @@ class ProjectModelMongoDB {
 
     // CRUD - U: UPDATE
     async updateProject(id: number, project: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+        await DBMongoDB.getInstance();
         try {
             const updatedProject = await ProjectsModel.findByIdAndUpdate(
                 id,
@@ -92,9 +84,7 @@ class ProjectModelMongoDB {
 
     // CRUD - D: DELETE
     async deleteProject(id: number) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+        await DBMongoDB.getInstance();
         try {
             const deletedProject = await ProjectsModel.findByIdAndDelete(id).lean();
             return DBMongoDB.getObjectWithId(deletedProject);

@@ -30,9 +30,7 @@ const CertificationsModel = mongoose.model("certifications", certificationSchema
 class CertificationModelMongoDB {
     // CRUD - C: CREATE
     async createCertification(certification: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+        await DBMongoDB.getInstance();
         try {
             const newCertification = new CertificationsModel(certification);
             await newCertification.save();
@@ -45,9 +43,7 @@ class CertificationModelMongoDB {
 
     // CRUD - R: READ
     async readCertifications() {
-        if (!(await DBMongoDB.connectDB())) {
-            return [];
-        }
+        await DBMongoDB.getInstance();
         try {
             const certifications = await CertificationsModel.find({}).lean();
             return DBMongoDB.getObjectWithId(certifications);
@@ -58,9 +54,7 @@ class CertificationModelMongoDB {
     }
 
     async readCertification(id: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+        await DBMongoDB.getInstance();
         try {
             const product = (await CertificationsModel.findById(id).lean()) || {};
             return DBMongoDB.getObjectWithId(product);
@@ -72,9 +66,7 @@ class CertificationModelMongoDB {
 
     // CRUD - U: UPDATE
     async updateCertification(id: number, certification: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+        await DBMongoDB.getInstance();
         try {
             const updatedCertification = await CertificationsModel.findByIdAndUpdate(
                 id,
@@ -92,9 +84,7 @@ class CertificationModelMongoDB {
 
     // CRUD - D: DELETE
     async deleteCertification(id: number) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+        await DBMongoDB.getInstance();
         try {
             const deletedCertification = await CertificationsModel.findByIdAndDelete(id).lean();
             return DBMongoDB.getObjectWithId(deletedCertification);
