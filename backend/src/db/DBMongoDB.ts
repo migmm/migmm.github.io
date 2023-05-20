@@ -34,7 +34,7 @@ class DBMongoDB {
         console.log('Connected to MongoDB database.');
     }
 
-    static async getInstance(): Promise<DBMongoDB> {
+    static async getInstance() {
         if (!DBMongoDB.instance) {
             DBMongoDB.connectionPromise = mongoose.connect(database.MONGODB_CONNECTION_STR as string);
             DBMongoDB.instance = new DBMongoDB();
