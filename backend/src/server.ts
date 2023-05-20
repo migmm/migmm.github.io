@@ -4,14 +4,14 @@ import cors from "cors";
 import corsOptions from "./utils/cors";
 import config from "./config/config";
 
-import routerProjects from "./router/projects";
-import routerCertifications from "./router/certifications";
+/* import routerProjects from "./router/projects";
+import routerCertifications from "./router/certifications"; */
 import routerUsers from "./router/users";
-import routerAuth from "./router/auth";
+/* import routerAuth from "./router/auth";
 import routerforgotPassword from "./router/forgotPassword";
 import routerResetPassword from "./router/resetPassword";
 import routerFavourite from "./router/favorites";
-import routerImages from "./router/aws";
+import routerImages from "./router/aws"; */
 
 const app = express();
 
@@ -22,11 +22,11 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 
-app.use("/api/projects", routerProjects);
-app.use("/api/certifications", routerCertifications);
+/* app.use("/api/projects", routerProjects);
+app.use("/api/certifications", routerCertifications); */
 
 app.use("/api/users", routerUsers);
-app.use("/api/auth", routerAuth);
+/* app.use("/api/auth", routerAuth);
 
 app.use("/api/auth/forgotpassword", routerforgotPassword);
 app.use("/api/auth/resetpassword", routerResetPassword);
@@ -34,7 +34,7 @@ app.use("/api/auth/resetpassword", routerResetPassword);
 app.use("/api/addfavourite", routerFavourite);
 app.use("/api/removefavourite", routerFavourite);
 
-app.use("/api/images", routerImages);
+app.use("/api/images", routerImages); */
 
 
 // in case of using another route

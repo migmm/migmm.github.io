@@ -1,7 +1,12 @@
 import config from '../config/config';
 import mongoose from "mongoose";
 
+
+// Using Singleton pattern to you ensure that only one instance 
+// of the DBMongoDB class is created, which represents a single database connection
 class DBMongoDB {
+    private static instance: DBMongoDB;
+    private static connectionPromise: Promise<typeof mongoose> | null = null;
 
     static READY_STATE_DISCONNECTED = 0;
     static READY_STATE_CONNECTED = 1;
@@ -10,8 +15,8 @@ class DBMongoDB {
 
     static primaryKey = '_id';
 
-    static getObjectWithId(obj:any) {
-        if (Array.isArray(obj) ) {
+    static getObjectWithId(obj: any) {
+        if (Array.isArray(obj)) {
             obj.forEach(el => {
                 el.id = el[DBMongoDB.primaryKey];
                 delete el[DBMongoDB.primaryKey];
@@ -24,23 +29,22 @@ class DBMongoDB {
         return obj;
     }
 
-    static async connectDB() {
-        try {
-            if (mongoose.connection.readyState === DBMongoDB.READY_STATE_CONNECTED) {
-                return true;
-            }
-
-            mongoose.connect(config.MONGODB_CONNECTION_STR as string);
-
-            console.log('Connected to MongoDB database.');
-            return true;
-
-        } catch (error:any) {
-            console.error(`Error tying to connect MongoDB database: ${error.message}`);
-            return false;
-        }
+    private constructor() {
+        mongoose.connect(config.MONGODB_CONNECTION_STR as string);
+        console.log('Connected to MongoDB database.');
     }
 
+    static async getInstance(): Promise<DBMongoDB> {
+        if (!DBMongoDB.instance) {
+            DBMongoDB.connectionPromise = mongoose.connect(config.MONGODB_CONNECTION_STR as string);
+            DBMongoDB.instance = new DBMongoDB();
+        } else if (DBMongoDB.connectionPromise) {
+            // If a connection is in progress, await it before returning the instance
+            await DBMongoDB.connectionPromise;
+        }
+
+        return DBMongoDB.instance;
+    }
 }
 
 export default DBMongoDB;

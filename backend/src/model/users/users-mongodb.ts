@@ -7,32 +7,32 @@ const userSchema = new mongoose.Schema(
             type: String,
             unique: true,
         },
-        password: { 
-            type: String, 
-            minlength: 6, 
+        password: {
+            type: String,
+            minlength: 6,
         },
         email: {
             type: String,
             unique: true,
         },
-        role: { 
-            type: String, 
-            default: "user",  
+        role: {
+            type: String,
+            default: "user",
         },
-        status: { 
-            type: String, 
-            default: "active", 
+        status: {
+            type: String,
+            default: "active",
         },
-        favourites: { 
-            type: Array, 
+        favourites: {
+            type: Array,
         },
-        created_at: { 
-            type: Date, 
-            default: Date.now 
+        created_at: {
+            type: Date,
+            default: Date.now,
         },
-        modified_at: { 
-            type: Date, 
-            default: Date.now 
+        modified_at: {
+            type: Date,
+            default: Date.now,
         },
     },
     {
@@ -46,10 +46,7 @@ const UsersModel = mongoose.model("users", userSchema);
 
 class UserModelMongoDB {
     // CRUD - C: CREATE
-    async createUser(user: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+    static async createUser(user: any) {
         try {
             const newUser = new UsersModel(user);
             await newUser.save();
@@ -61,10 +58,8 @@ class UserModelMongoDB {
     }
 
     // CRUD - R: READ
-    async readUsers() {
-        if (!(await DBMongoDB.connectDB())) {
-            return [];
-        }
+    static async readUsers() {
+        await DBMongoDB.getInstance();
         try {
             const users = await UsersModel.find({}).lean();
             return DBMongoDB.getObjectWithId(users);
@@ -74,13 +69,10 @@ class UserModelMongoDB {
         }
     }
 
-    async readUser(id: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+    static async readUser(id: any) {
         try {
-            const product = (await UsersModel.findById(id).lean()) || {};
-            return DBMongoDB.getObjectWithId(product);
+            const user = await UsersModel.findById(id).lean();
+            return DBMongoDB.getObjectWithId(user);
         } catch (error: any) {
             console.error(`Error getting user: ${error.message}`);
             return {};
@@ -88,32 +80,20 @@ class UserModelMongoDB {
     }
 
     // Route to find by any value in database
-    async findByAny(field: any, value:any) {
-            if (!(await DBMongoDB.connectDB())) {
-                return {};
-            }
-            try {
-                const product = (await UsersModel.findOne({ [field] : value }).exec());
-                return (product);
-            } catch (error: any) {
-                console.error(`Error getting user: ${error.message}`);
-                return {};
-            }
+    static async findByAny(field: any, value: any) {
+        try {
+            const user = await UsersModel.findOne({ [field]: value }).exec();
+            return user ? DBMongoDB.getObjectWithId(user) : {};
+        } catch (error: any) {
+            console.error(`Error getting user: ${error.message}`);
+            return {};
+        }
     }
 
     // CRUD - U: UPDATE
-    async updateUser(id: number, user: any) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+    static async updateUser(id: number, user: any) {
         try {
-            const updatedUser = await UsersModel.findByIdAndUpdate(
-                id,
-                { $set: user },
-                {
-                    returnDocument: "after",
-                }
-            ).lean();
+            const updatedUser = await UsersModel.findByIdAndUpdate(id, { $set: user }, { returnDocument: "after" }).lean();
             return DBMongoDB.getObjectWithId(updatedUser);
         } catch (error: any) {
             console.error(`Error updating user: ${error.message}`);
@@ -122,10 +102,7 @@ class UserModelMongoDB {
     }
 
     // CRUD - D: DELETE
-    async deleteUser(id: number) {
-        if (!(await DBMongoDB.connectDB())) {
-            return {};
-        }
+    static async deleteUser(id: number) {
         try {
             const deletedUser = await UsersModel.findByIdAndDelete(id).lean();
             return DBMongoDB.getObjectWithId(deletedUser);
