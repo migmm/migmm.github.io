@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import DBMongoDB from "../DBMongoDB";
+import DBMongoDB from "../../db/DBMongoDB";
 
 const projectSchema = new mongoose.Schema(
     {
