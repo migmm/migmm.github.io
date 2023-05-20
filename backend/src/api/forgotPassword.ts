@@ -1,7 +1,7 @@
-import config from '../config/config';
+import database from '../config/database';
 import UserModel from "../model/users/users";
 
-const userModel = UserModel.get(config.PERSISTENCE_TYPE);
+const userModel = UserModel.get(database.PERSISTENCE_TYPE);
 
 
 ///////////////////////////////////////////////////////////////////////////////

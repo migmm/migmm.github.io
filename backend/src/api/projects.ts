@@ -1,8 +1,8 @@
-import config from '../config/config';
+import database from '../config/database';
 import ProjectModel from "../model/projects/projects";
 import ProjectValidator from '../model/validators/project';
 
-const modelProjects = ProjectModel.get(config.PERSISTENCE_TYPE);
+const modelProjects = ProjectModel.get(database.PERSISTENCE_TYPE);
 
 
 ///////////////////////////////////////////////////////////////////////////////

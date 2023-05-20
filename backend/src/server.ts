@@ -2,7 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import corsOptions from "./utils/cors";
-import config from "./config/config";
+import config from "./config/server";
 
 /* import routerProjects from "./router/projects";
 import routerCertifications from "./router/certifications"; */
