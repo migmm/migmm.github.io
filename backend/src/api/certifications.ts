@@ -1,6 +1,6 @@
 import database from '../config/database';
-import CertificationModel from "../model/certifications/certifications";
-import CertificationValidator from "../model/validators/certification";
+import CertificationModel from '../model/certifications/certifications';
+import CertificationValidator from '../model/validators/certification';
 
 const modelCertifications = CertificationModel.get(database.PERSISTENCE_TYPE);
 

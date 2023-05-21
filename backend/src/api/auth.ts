@@ -1,8 +1,8 @@
 import database from '../config/database';
-import UserModel from "../model/users/users";
+import UserModel from '../model/users/users';
 import UserValidator from '../model/validators/user';
 
-const modelAuth = UserModel.get(database.PERSISTENCE_TYPE);
+const modelUsers = UserModel.get(database.PERSISTENCE_TYPE, 'Auth');
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -10,7 +10,7 @@ const modelAuth = UserModel.get(database.PERSISTENCE_TYPE);
 ///////////////////////////////////////////////////////////////////////////////
 
 const getAuth = async (field:string, username:string) => {
-    const user = await modelAuth.findByAny(field, username);
+    const user = await modelUsers.findByAny(field, username);
     return user;
 };
 
@@ -24,7 +24,7 @@ const createAuth = async (user:any) => {
         const validationError = UserValidator.validate(user);
 
         if(!validationError) {
-            const createdUser = await modelAuth.createUser(user);
+            const createdUser = await modelUsers.createUser(user);
             return createdUser;
         } else {
             console.log(validationError);

@@ -1,7 +1,7 @@
 import database from '../config/database';
-import UserModel from "../model/users/users";
+import UserModel from '../model/users/users';
 
-const userModel = UserModel.get(database.PERSISTENCE_TYPE);
+const modelUsers = UserModel.get(database.PERSISTENCE_TYPE, 'Forgot Password');
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -9,7 +9,7 @@ const userModel = UserModel.get(database.PERSISTENCE_TYPE);
 ///////////////////////////////////////////////////////////////////////////////
 
 const getUser = async (field:string, email:string) => {
-    const user = await userModel.findByAny(field, email);
+    const user = await modelUsers.findByAny(field, email);
     return user;
 };
 
