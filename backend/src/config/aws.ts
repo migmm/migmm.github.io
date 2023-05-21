@@ -1,5 +1,5 @@
-import { S3 } from "@aws-sdk/client-s3";
-import * as dotenv from "dotenv";
+import { S3 } from '@aws-sdk/client-s3';
+import * as dotenv from 'dotenv';
 dotenv.config();
 
 // S3 configuration

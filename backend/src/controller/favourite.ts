@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import api from "../api/favorites";
-//import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { Request, Response } from 'express';
+import api from '../api/favorites';
+//import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 //import dotenv from 'dotenv';
 
 interface UserPayload {
@@ -23,7 +23,7 @@ const addFavorite = async (req: Request, res: Response) => {
         const userID = await api.getUser(decodedToken.id) as UserPayload;
 
         if (!userID) {
-            return res.status(401).json({ message: "Unauthorized" });
+            return res.status(401).json({ message: 'Unauthorized' });
         }
 
         // TO DO
@@ -44,7 +44,7 @@ const addFavorite = async (req: Request, res: Response) => {
 
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: "An error occurred while adding the favorite." });
+        res.status(500).json({ error: 'An error occurred while adding the favorite.' });
     }
 };
 
@@ -61,7 +61,7 @@ const removeFavorite = async (req: Request, res: Response) => {
         const userID = await api.getUser(decodedToken.id) as UserPayload;
 
         if (!userID) {
-            return res.status(401).json({ message: "Unauthorized" });
+            return res.status(401).json({ message: 'Unauthorized' });
         }
 
         // TO DO
@@ -82,7 +82,7 @@ const removeFavorite = async (req: Request, res: Response) => {
         
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: "An error occurred while adding the favorite." });
+        res.status(500).json({ error: 'An error occurred while adding the favorite.' });
     }
 };
 export default { 

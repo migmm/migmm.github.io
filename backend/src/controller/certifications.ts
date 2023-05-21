@@ -1,5 +1,5 @@
-import api from "../api/certifications";
-import { Request, Response } from "express";
+import api from '../api/certifications';
+import { Request, Response } from 'express';
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //

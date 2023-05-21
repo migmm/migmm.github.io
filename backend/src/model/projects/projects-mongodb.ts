@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import DBMongoDB from "../../db/DBMongoDB";
+import mongoose from 'mongoose';
+import DBMongoDB from '../../db/DBMongoDB';
 
 const projectSchema = new mongoose.Schema(
     {
@@ -23,9 +23,9 @@ const projectSchema = new mongoose.Schema(
     }
 );
 
-mongoose.set("strictQuery", false);
+mongoose.set('strictQuery', false);
 
-const ProjectsModel = mongoose.model("projects", projectSchema);
+const ProjectsModel = mongoose.model('projects', projectSchema);
 
 class ProjectModelMongoDB {
     // CRUD - C: CREATE
@@ -72,7 +72,7 @@ class ProjectModelMongoDB {
                 id,
                 { $set: project },
                 {
-                    returnDocument: "after",
+                    returnDocument: 'after',
                 }
             ).lean();
             return DBMongoDB.getObjectWithId(updatedProject);

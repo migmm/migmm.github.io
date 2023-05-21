@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import DBMongoDB from "../../db/DBMongoDB";
+import mongoose from 'mongoose';
+import DBMongoDB from '../../db/DBMongoDB';
 
 const certificationSchema = new mongoose.Schema(
     {
@@ -23,9 +23,9 @@ const certificationSchema = new mongoose.Schema(
     }
 );
 
-mongoose.set("strictQuery", false);
+mongoose.set('strictQuery', false);
 
-const CertificationsModel = mongoose.model("certifications", certificationSchema);
+const CertificationsModel = mongoose.model('certifications', certificationSchema);
 
 class CertificationModelMongoDB {
     // CRUD - C: CREATE
@@ -72,7 +72,7 @@ class CertificationModelMongoDB {
                 id,
                 { $set: certification },
                 {
-                    returnDocument: "after",
+                    returnDocument: 'after',
                 }
             ).lean();
             return DBMongoDB.getObjectWithId(updatedCertification);

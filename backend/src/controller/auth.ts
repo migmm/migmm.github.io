@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import api from '../api/auth';
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
@@ -44,7 +44,7 @@ const postAuth = async (req:Request, res:Response) => {
     }
 
     const foundUser = await api.getAuth('username',username) as User; 
-    console.log("user auth", foundUser);
+    console.log('user auth', foundUser);
     
     if(!foundUser) {
         return res.status(401).json({ message: 'Unauthorized' })
@@ -57,7 +57,7 @@ const postAuth = async (req:Request, res:Response) => {
     const secretKey:string = process.env.ACCESS_TOKEN_SECRET as string;
 
     const accessToken = jwt.sign(
-        {  "id" : foundUser.id },
+        {  'id' : foundUser.id },
         secretKey,
         { expiresIn: '1d' }
     );

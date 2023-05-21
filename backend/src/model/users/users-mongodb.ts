@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import DBMongoDB from "../../db/DBMongoDB";
+import mongoose from 'mongoose';
+import DBMongoDB from '../../db/DBMongoDB';
 
 const userSchema = new mongoose.Schema(
     {
@@ -17,11 +17,11 @@ const userSchema = new mongoose.Schema(
         },
         role: {
             type: String,
-            default: "user",
+            default: 'user',
         },
         status: {
             type: String,
-            default: "active",
+            default: 'active',
         },
         favourites: {
             type: Array,
@@ -40,9 +40,9 @@ const userSchema = new mongoose.Schema(
     }
 );
 
-mongoose.set("strictQuery", false);
+mongoose.set('strictQuery', false);
 
-const UsersModel = mongoose.model("users", userSchema);
+const UsersModel = mongoose.model('users', userSchema);
 
 class UserModelMongoDB {
     // CRUD - C: CREATE
@@ -97,7 +97,7 @@ class UserModelMongoDB {
     static async updateUser(id: number, user: any) {
         await DBMongoDB.getInstance();
         try {
-            const updatedUser = await UsersModel.findByIdAndUpdate(id, { $set: user }, { returnDocument: "after" }).lean();
+            const updatedUser = await UsersModel.findByIdAndUpdate(id, { $set: user }, { returnDocument: 'after' }).lean();
             return DBMongoDB.getObjectWithId(updatedUser);
         } catch (error: any) {
             console.error(`Error updating user: ${error.message}`);

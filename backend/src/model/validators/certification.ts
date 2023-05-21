@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi from 'joi';
 
 class CertificationValidator {
     static validate(certification: object) {

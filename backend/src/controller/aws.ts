@@ -1,8 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
-import { GetObjectCommand, ListObjectsCommand, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
-import { getSignedUrl as getPresignedUrl } from "@aws-sdk/s3-request-presigner";
-import { Request, Response } from "express";
-import s3Client, { AWS_BUCKET_NAME }  from "../config/aws";
+import { v4 as uuidv4 } from 'uuid';
+import { GetObjectCommand, ListObjectsCommand, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl as getPresignedUrl } from '@aws-sdk/s3-request-presigner';
+import { Request, Response } from 'express';
+import s3Client, { AWS_BUCKET_NAME }  from '../config/aws';
 
 
 // Function to get the signed URL
@@ -17,7 +17,7 @@ const getSignedUrl = async (key: string): Promise<string> => {
         const url = await getPresignedUrl(s3Client, new GetObjectCommand(bucketParams), { expiresIn: 15 * 60 });
         return url;
     } catch (err) {
-        console.log("Error", err);
+        console.log('Error', err);
         throw err;
     }
 };
@@ -28,11 +28,11 @@ const getImage = async (req: Request, res: Response) => {
 
     try {
         const url = await getSignedUrl(id);
-        console.log("URL:", url);
+        console.log('URL:', url);
         res.status(200).json({ url });
     } catch (error) {
-        console.error("Error retrieving the image:", error);
-        res.status(500).json({ error: "Error retrieving the image" });
+        console.error('Error retrieving the image:', error);
+        res.status(500).json({ error: 'Error retrieving the image' });
     }
 };
 
@@ -44,11 +44,11 @@ const getImages = async (_req: Request, res: Response) => {
 
     try {
         const data = await s3Client.send(new ListObjectsCommand(listParams));
-        const images = data.Contents?.map((obj) => obj.Key || "") || [];
+        const images = data.Contents?.map((obj) => obj.Key || '') || [];
         res.status(200).json(images);
     } catch (err) {
-        console.log("Error", err);
-        res.status(500).json({ error: "Error getting the images" });
+        console.log('Error', err);
+        res.status(500).json({ error: 'Error getting the images' });
     }
 };
 
@@ -62,7 +62,7 @@ const getImagesPresignedURL = async (_req: Request, res: Response) => {
         const data = await s3Client.send(new ListObjectsCommand(listParams));
         const images =
             data.Contents?.map(async (obj) => {
-                const signedUrl = await getSignedUrl(obj.Key || "");
+                const signedUrl = await getSignedUrl(obj.Key || '');
                 return { key: obj.Key, url: signedUrl };
             }) || [];
 
@@ -70,8 +70,8 @@ const getImagesPresignedURL = async (_req: Request, res: Response) => {
 
         res.status(200).json(imagesWithUrls);
     } catch (err) {
-        console.log("Error", err);
-        res.status(500).json({ error: "Error getting the images" });
+        console.log('Error', err);
+        res.status(500).json({ error: 'Error getting the images' });
     }
 };
 
@@ -98,8 +98,8 @@ const uploadImages = async (req: Request, res: Response) => {
         const urls = await Promise.all(uploadPromises);
         res.status(201).json({ urls });
     } catch (error) {
-        console.error("Error uploading the images:", error);
-        res.status(500).json({ error: "Error uploading the images" });
+        console.error('Error uploading the images:', error);
+        res.status(500).json({ error: 'Error uploading the images' });
     }
 };
 
@@ -114,10 +114,10 @@ const deleteImage = async (req: Request, res: Response) => {
         };
 
         await s3Client.send(new DeleteObjectCommand(deleteParams));
-        res.status(204).json({ message: "Image deleted successfully" });
+        res.status(204).json({ message: 'Image deleted successfully' });
     } catch (error) {
-        console.error("Error deleting the image:", error);
-        res.status(500).json({ error: "Error deleting the image" });
+        console.error('Error deleting the image:', error);
+        res.status(500).json({ error: 'Error deleting the image' });
     }
 };
 

@@ -1,5 +1,5 @@
 import database from '../config/database';
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 
 // Using Singleton pattern to you ensure that only one instance 
