@@ -23,8 +23,21 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: 'active',
         },
-        favourites: {
-            type: Array,
+        projects: {
+            type : [
+                { 
+                    type: mongoose.Schema.Types.ObjectId, 
+                    ref: 'projects' 
+                }
+            ],
+        },
+        certifications: {
+            type : [
+                { 
+                    type: mongoose.Schema.Types.ObjectId, 
+                    ref: 'certifications' 
+                }
+            ],
         },
         created_at: {
             type: Date,
@@ -62,7 +75,10 @@ class UserModelMongoDB {
     static async readUsers() {
         await DBMongoDB.getInstance();
         try {
-            const users = await UsersModel.find({}).lean();
+            const users = await UsersModel.find({})
+            .populate({ path: 'certifications', options: { strictPopulate: false } })
+            .populate({ path: 'projects', options: { strictPopulate: false } })
+            .exec();
             return DBMongoDB.getObjectWithId(users);
         } catch (error: any) {
             console.error(`Error getting users: ${error.message}`);
