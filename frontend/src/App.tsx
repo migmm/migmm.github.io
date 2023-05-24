@@ -11,6 +11,7 @@ import Home from "./views/Home/Home";
 import Projects from "./views/Projects/Projects";
 import Footer from "./components/Footer/Footer";
 import LoginScreen from "./views/Login/LoginScreen";
+import RegisterScreen from "./views/Register/RegisterScreen";
 import "./index.css";
 
 import AddCertificate from "./views/AddCertificate/AddCertificate";
@@ -40,6 +41,7 @@ const App = () => {
                     <Route path="/curriculum" element={<Curriculum />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<LoginScreen />} />
+                    <Route path="/register" element={<RegisterScreen />} />
                     <Route path="/addcertificate" element={<AddCertificate />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
