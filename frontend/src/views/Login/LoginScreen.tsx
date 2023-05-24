@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
@@ -17,6 +18,7 @@ const LoginScreen: React.FC = () => {
         username: "",
         password: "",
     });
+    const navigate = useNavigate();
 
     const handleChange = (name: string, value: string) => {
         if (name === "user") {
@@ -45,6 +47,7 @@ const LoginScreen: React.FC = () => {
         e.preventDefault();
         setError("");
         setIsLoading(true);
+
         if (validateForm()) {
             try {
                 const response = await axios.post(
@@ -57,12 +60,17 @@ const LoginScreen: React.FC = () => {
                     }
                 );
 
+                if (response.status === 201) {
+                    navigate("/");
+                }
                 console.log(response);
+
             } catch (err:any) {
                 if (err.response && err.response.status === 400) {
                     setError("Invalid username or password.");
                 } else {
                     setError("An error occurred. Please try again later.");
+                    console.error(error)
                 }
             }
         }

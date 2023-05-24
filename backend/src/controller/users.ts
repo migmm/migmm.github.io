@@ -36,7 +36,7 @@ const getUser = async (req: Request, res: Response) => {
 
 const postUser = async (req: Request, res: Response) => {
     const user = req.body;
-
+    console.log(user)
     if (!user.username || !user.password || !user.email) {
         return res.status(400).json({ message: 'All fields are required' });
     }
@@ -44,6 +44,7 @@ const postUser = async (req: Request, res: Response) => {
     const foundUser = await api.getByField('username', user.username);
     const foundEmail = await api.getByField('email', user.email);
 
+    console.log(foundUser)
     if (foundUser) {
         return res.status(401).json({ message: 'Existing username' });
     }

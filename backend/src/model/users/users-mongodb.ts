@@ -102,7 +102,7 @@ class UserModelMongoDB {
         await DBMongoDB.getInstance();
         try {
             const user = await UsersModel.findOne({ [field]: value }).exec();
-            return user ? DBMongoDB.getObjectWithId(user) : {};
+            return user ? DBMongoDB.getObjectWithId(user) : '';
         } catch (error: any) {
             console.error(`Error getting user: ${error.message}`);
             return {};
