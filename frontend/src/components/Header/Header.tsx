@@ -4,7 +4,7 @@ import HamburgerButton from "./HamburgerButton/HamburgerButton";
 import NavBar from "./Navbar/NavBar";
 import styled from "styled-components";
 
-const Header = () => {
+const Header = ({ user }: any)=> {
     // NavBar
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -28,11 +28,9 @@ const Header = () => {
             }
         }
 
-       
         document.addEventListener("wheel", handleScroll);
 
         return () => {
-         ;
             document.removeEventListener("wheel", handleScroll);
         };
     }, [location.pathname]);
@@ -45,7 +43,7 @@ const Header = () => {
                         <img src="img/logo.png" alt="Logo" />
                     </div>
                     <div className={`navbar-container ${isMenuOpen ? "menu-open" : ""}`}>
-                        <NavBar />
+                        <NavBar user={user} />
                     </div>
                     <span className="contact-button">Contact me!</span>
                     <div className={`hamburger-button-container ${isMenuOpen ? "open" : ""}`} onClick={handleHamburgerClick}>

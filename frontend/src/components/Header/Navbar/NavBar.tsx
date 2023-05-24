@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Navbar = (props: any) => {
+const Navbar = (props: any, { user }: any) => {
     return (
         <NavContainer>
             <nav>
@@ -19,9 +19,11 @@ const Navbar = (props: any) => {
                     <li>
                         <Link to="/curriculum">Curriculum</Link>
                     </li>
+                    {user && user.roles.includes("admin") && (
                     <li>
                         <Link to="/contact">Contact</Link>
                     </li>
+                    )}
                 </ul>
             </nav>
         </NavContainer>

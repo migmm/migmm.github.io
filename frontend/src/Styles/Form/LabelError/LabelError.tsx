@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const LabelError = styled.label`
-
+    display:block;
     font-family: "Work Sans", sans-serif;
     color:red;
     font-weight: 500;

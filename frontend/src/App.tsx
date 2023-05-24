@@ -1,5 +1,7 @@
-import React from "react";
+import React , { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import jwtDecode from 'jwt-decode';
+import Cookies from "js-cookie";
 
 import Certificates from "./views/Certificates/Certificates";
 import Contact from "./views/Contact/Contact";
@@ -13,13 +15,24 @@ import "./index.css";
 
 import AddCertificate from "./views/AddCertificate/AddCertificate";
 
-
 const App = () => {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const token = Cookies.get("nombreDeTuCookie");
+
+        if (token) {
+            const decodedToken: any = jwtDecode(token);
+            setUser(decodedToken);
+        } else {
+            setUser(null);
+        }
+    }, []);
 
     return (
         <React.StrictMode>
             <BrowserRouter>
-                <Header />
+                <Header user={user}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/projects" element={<Projects />} />
@@ -34,7 +47,6 @@ const App = () => {
             </BrowserRouter>
         </React.StrictMode>
     );
-
-}
+};
 
 export default App;
