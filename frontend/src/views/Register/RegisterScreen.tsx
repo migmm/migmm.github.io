@@ -8,7 +8,6 @@ import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { Input } from "../../Styles/Form/Input/Input";
 import { H1 } from "../../Styles/H1/H1";
 
-
 const RegisterScreen: React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -25,7 +24,7 @@ const RegisterScreen: React.FC = () => {
     const handleChange = (name: string, value: string) => {
         if (name === "user") {
             setUsername(value);
-        } 
+        }
         if (name === "password") {
             setPassword(value);
         }
@@ -86,16 +85,29 @@ const RegisterScreen: React.FC = () => {
                     navigate("/");
                 }
                 console.log(response);
-
-            } catch (err:any) {
-                if (err.response && err.response.status === 400) {
-                    setError("Invalid username or password.");
-                } else {
-                    setError("An error occurred. Please try again later.");
-                    console.error(error)
+            } catch (err: any) {
+                if (err.response) {
+                    const { status, data } = err.response;
+                    if (status === 401) {
+                        if (data.message === "Existing username") {
+                            setValidationErrors((prevErrors) => ({
+                                ...prevErrors,
+                                username: "Username already exists.",
+                            }));
+                        } else if (data.message === "Existing email") {
+                            setValidationErrors((prevErrors) => ({
+                                ...prevErrors,
+                                email: "Email already exists.",
+                            }));
+                        }
+                    } else {
+                        setError("An error occurred. Please try again later.");
+                        console.error(error);
+                    }
                 }
             }
         }
+
         setIsLoading(false);
     };
 
@@ -117,7 +129,12 @@ const RegisterScreen: React.FC = () => {
                         </div>
                         <div className="input-group">
                             <Label htmlFor="repassword">Repeat Password</Label>
-                            <Input type="repassword" id="repassword" name="repassword" onChange={(e) => handleChange(e.target.name, e.target.value)} />
+                            <Input
+                                type="repassword"
+                                id="repassword"
+                                name="repassword"
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
                             <InvisibleLabelError visible={!!validationErrors.repassword}>{validationErrors.repassword}</InvisibleLabelError>
                         </div>
                         <div className="input-group">
@@ -127,7 +144,9 @@ const RegisterScreen: React.FC = () => {
                         </div>
                         <InvisibleLabelError visible={!!error}>{error}</InvisibleLabelError>
                         <div className="input-group">
-                            <Button type="submit" disabled={isLoading}>{isLoading ? "Please wait..." : "Register"}</Button>
+                            <Button type="submit" disabled={isLoading}>
+                                {isLoading ? "Please wait..." : "Register"}
+                            </Button>
                             <Button type="reset">Reset</Button>
                         </div>
                     </form>
