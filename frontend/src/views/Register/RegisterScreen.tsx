@@ -57,6 +57,8 @@ const RegisterScreen: React.FC = () => {
 
         if (!email) {
             errors.email = "Email is required.";
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            errors.email = "Invalid email format.";
         }
 
         setValidationErrors(errors);
@@ -116,7 +118,7 @@ const RegisterScreen: React.FC = () => {
             <div className="contact-container">
                 <H1>Register</H1>
                 <div className="register-form-container">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} noValidate>
                         <div className="input-group">
                             <Label htmlFor="user">User</Label>
                             <Input type="text" id="user" name="user" onChange={(e) => handleChange(e.target.name, e.target.value)} />
