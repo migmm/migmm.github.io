@@ -51,7 +51,7 @@ const RegisterScreen: React.FC = () => {
             errors.repassword = "Password repeat is required.";
         }
 
-        if (password != repassword) {
+        if (password !== repassword) {
             errors.repassword = "Passwords do not match.";
         }
 
