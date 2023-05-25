@@ -136,7 +136,7 @@ const RegisterScreen: React.FC = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                autoComplete="off"
+                                autoComplete="new-password"
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <InvisibleLabelError visible={!!validationErrors.password}>{validationErrors.password}</InvisibleLabelError>
