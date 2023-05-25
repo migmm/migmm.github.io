@@ -121,12 +121,24 @@ const RegisterScreen: React.FC = () => {
                     <form onSubmit={handleSubmit} noValidate>
                         <div className="input-group">
                             <Label htmlFor="user">User</Label>
-                            <Input type="text" id="user" name="user" onChange={(e) => handleChange(e.target.name, e.target.value)} />
+                            <Input
+                                type="text"
+                                id="user"
+                                name="user"
+                                autoComplete="off"
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
                             <InvisibleLabelError visible={!!validationErrors.username}>{validationErrors.username}</InvisibleLabelError>
                         </div>
                         <div className="input-group">
                             <Label htmlFor="password">Password</Label>
-                            <Input type="password" id="password" name="password" onChange={(e) => handleChange(e.target.name, e.target.value)} />
+                            <Input
+                                type="password"
+                                id="password"
+                                name="password"
+                                autoComplete="off"
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
                             <InvisibleLabelError visible={!!validationErrors.password}>{validationErrors.password}</InvisibleLabelError>
                         </div>
                         <div className="input-group">
@@ -135,13 +147,20 @@ const RegisterScreen: React.FC = () => {
                                 type="repassword"
                                 id="repassword"
                                 name="repassword"
+                                autoComplete="off"
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <InvisibleLabelError visible={!!validationErrors.repassword}>{validationErrors.repassword}</InvisibleLabelError>
                         </div>
                         <div className="input-group">
                             <Label htmlFor="email">E Mail</Label>
-                            <Input type="email" id="email" name="email" onChange={(e) => handleChange(e.target.name, e.target.value)} />
+                            <Input
+                                type="email"
+                                id="email"
+                                name="email"
+                                autoComplete="off"
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
                             <InvisibleLabelError visible={!!validationErrors.email}>{validationErrors.email}</InvisibleLabelError>
                         </div>
                         <InvisibleLabelError visible={!!error}>{error}</InvisibleLabelError>
