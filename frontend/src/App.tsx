@@ -12,9 +12,11 @@ import Projects from "./views/Projects/Projects";
 import Footer from "./components/Footer/Footer";
 import LoginScreen from "./views/Login/LoginScreen";
 import RegisterScreen from "./views/Register/RegisterScreen";
-import "./index.css";
 
 import AddCertificate from "./views/AddCertificate/AddCertificate";
+import AddProject from "./views/AddProject/AddProject";
+
+import "./index.css";
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -43,6 +45,7 @@ const App = () => {
                     <Route path="/login" element={<LoginScreen />} />
                     <Route path="/register" element={<RegisterScreen />} />
                     <Route path="/addcertificate" element={<AddCertificate />} />
+                    <Route path="/addproject" element={<AddProject />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 <Footer />
