@@ -11,11 +11,12 @@ const Editor = ({ placeholder }: any) => {
         setEditorHtml(html);
     };
 
-    const editorContainerStyle: React.CSSProperties = {
+    const editorStyle: React.CSSProperties = {
         height: "400px",
         maxWidth: '1050px',
         resize: "vertical" as Resize,
         overflow: "auto",
+        borderRadius: '10px'
     };
 
     const modules = {
@@ -63,7 +64,7 @@ const Editor = ({ placeholder }: any) => {
                 formats={formats} 
                 bounds=".app" 
                 placeholder={placeholder}
-                style={editorContainerStyle}
+                style={editorStyle}
                 />
             </div>
         </div>
