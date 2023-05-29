@@ -31,16 +31,16 @@ const getProject = async (id:number) => {
 
 const createProject = async (project:any) => {
 
-        const validationError = ProjectValidator.validate(project);
-    
-        if(!validationError) {
+       // const validationError = ProjectValidator.validate(project);
+/* 
+        if(!validationError) { */
             const createdProject = await modelProjects.createProject(project);
             return createdProject;  
-        } else {
+ /*        } else {
             console.log(validationError);
             console.error(`Error validating createProject: ${validationError.details[0].message}`);
             return {};
-        }
+        } */
 };
 
 

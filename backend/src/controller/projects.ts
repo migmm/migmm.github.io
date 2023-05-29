@@ -35,6 +35,7 @@ const getProject = async (req:Request, res:Response) => {
 
 const postProject = async (req:Request, res:Response) => {
     let project = req.body;
+    console.log("enviado", project)
 
     try {
         const newProject = await api.createProject(project);

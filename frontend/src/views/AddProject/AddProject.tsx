@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import axios from "axios";
 
 import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
@@ -13,9 +14,37 @@ type Resize = "none" | "both" | "horizontal" | "vertical" | "initial" | "inherit
 
 const AddProject = ({ placeholder }: any) => {
     const [editorHtml, setEditorHtml] = useState("");
+    const [projectName, setProjectName] = useState("");
+    const [projectVendor, setProjectVendor] = useState("");
+    const [projectUrl, setProjectUrl] = useState("");
+    const [error, setError] = useState("");
 
     const handleChange = (html: any) => {
         setEditorHtml(html);
+    };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setError("");
+
+        axios
+            .post("http://localhost:8080/api/projects", {
+                projectName,
+                projectVendor,
+                projectUrl,
+                editorHtml,
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                if (error.response && error.response.data) {
+                    setError(error.response.data.message);
+                } else {
+                    setError("An error occurred. Please try again later.");
+                }
+                console.error(error);
+            });
     };
 
     const editorStyle: React.CSSProperties = {
@@ -66,18 +95,43 @@ const AddProject = ({ placeholder }: any) => {
             <div className="project-container">
                 <H1>Add Project</H1>
                 <div className="add-form-container">
-                    <form action="#">
+                    <form onSubmit={handleSubmit}>
                         <div className="input-group">
                             <Label htmlFor="project-name">Project title</Label>
-                            <Input type="text" id="projectName" name="projectName" />
+                            <Input
+                                type="text"
+                                id="projectName"
+                                name="projectName"
+                                value={projectName}
+                                onChange={(event) => setProjectName(event.target.value)}
+                            />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="project-vendor">Vendor</Label>
-                            <Input type="text" name="projectVendor" id="project-vendor"></Input>
+                            <Input
+                                type="text"
+                                name="projectVendor"
+                                id="project-vendor"
+                                value={projectVendor}
+                                onChange={(event) => setProjectVendor(event.target.value)}
+                            />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="project-url">URL</Label>
-                            <Input type="text" id="project-url" name="projectUrl" />
+                            <Input
+                                type="text"
+                                id="project-url"
+                                name="projectUrl"
+                                value={projectUrl}
+                                onChange={(event) => setProjectUrl(event.target.value)}
+                            />
                             <LabelError>Error</LabelError>
-                            <div style={{ backgroundColor: "white", width: "100%", borderRadius: "10px", margin: "0 auto" }}>
+                            <div
+                                style={{
+                                    backgroundColor: "white",
+                                    width: "100%",
+                                    borderRadius: "10px",
+                                    margin: "0 auto",
+                                }}
+                            >
                                 <ReactQuill
                                     onChange={handleChange}
                                     value={editorHtml}
@@ -88,7 +142,6 @@ const AddProject = ({ placeholder }: any) => {
                                     style={editorStyle}
                                 />
                             </div>
-
                             <LabelError>Error</LabelError>
                         </div>
                         <div className="input-group">
@@ -98,6 +151,7 @@ const AddProject = ({ placeholder }: any) => {
                     </form>
                 </div>
             </div>
+            {error && <div>Error: {error}</div>}
         </AddProjectStyles>
     );
 };
