@@ -6,9 +6,12 @@ import axios from "axios";
 
 import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
+import { Input } from "../../Styles/Form/Input/Input";
+import { Select } from "../../Styles/Form/Select/Select"
 import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { H1 } from "../../Styles/H1/H1";
 import { MAX_IMAGE_COUNT } from "../../config/quill";
+import InputFile from "../../Styles/Form/InputFile/InputFile";
 
 type Resize = "none" | "both" | "horizontal" | "vertical" | "initial" | "inherit";
 
@@ -146,7 +149,7 @@ const AddProject = ({ placeholder }: any) => {
                     <form onSubmit={handleSubmit}>
                         <div className="input-group">
                             <Label htmlFor="project-name">Project title</Label>
-                            <input
+                            <Input
                                 type="text"
                                 id="projectName"
                                 name="projectName"
@@ -155,7 +158,7 @@ const AddProject = ({ placeholder }: any) => {
                             />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="project-status">Status</Label>
-                            <select
+                            <Select
                                 name="projectStatus"
                                 id="project-status"
                                 value={projectStatus}
@@ -165,16 +168,19 @@ const AddProject = ({ placeholder }: any) => {
                                 <option value="inProgress">In Progress</option>
                                 <option value="finished">Finished</option>
                                 <option value="cancelled">Cancelled</option>
-                            </select>
+                            </Select>
                             <LabelError>Error</LabelError>
                             <Label htmlFor="project-url">URL</Label>
-                            <input
+                            <Input
                                 type="text"
                                 id="project-url"
                                 name="projectUrl"
                                 value={projectUrl}
                                 onChange={(event) => setProjectUrl(event.target.value)}
                             />
+                            <LabelError>Error</LabelError>
+                            <Label htmlFor="certification-image">Image</Label>
+                            <InputFile ></InputFile>
                             <LabelError>Error</LabelError>
                             <div
                                 style={{
