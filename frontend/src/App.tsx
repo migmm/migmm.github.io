@@ -15,6 +15,7 @@ import RegisterScreen from "./views/Register/RegisterScreen";
 
 import AddCertificate from "./views/AddCertificate/AddCertificate";
 import AddProject from "./views/AddProject/AddProject";
+import ViewProject from "./views/ViewProject/ViewProject";
 
 import "./index.css";
 
@@ -46,6 +47,7 @@ const App = () => {
                     <Route path="/register" element={<RegisterScreen />} />
                     <Route path="/addcertificate" element={<AddCertificate />} />
                     <Route path="/addproject" element={<AddProject />} />
+                    <Route path="/viewproject" element={<ViewProject />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 <Footer />
