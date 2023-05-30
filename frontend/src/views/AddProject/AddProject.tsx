@@ -179,7 +179,7 @@ const AddProject = ({ placeholder }: any) => {
                                 onChange={(event) => setProjectUrl(event.target.value)}
                             />
                             <LabelError>Error</LabelError>
-                            <Label htmlFor="certification-image">Image</Label>
+                            <Label htmlFor="certification-image">Cover Image</Label>
                             <InputFile ></InputFile>
                             <LabelError>Error</LabelError>
                             <div
