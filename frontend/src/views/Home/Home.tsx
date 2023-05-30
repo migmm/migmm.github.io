@@ -25,7 +25,6 @@ const Home = () => {
         const ZOOM_SPEED = 0.2;
         let opacity = 1;
         let zoom = 1;
-        let y = 0;
 
         function handleScroll(e: any) {
             if (window.pageYOffset <= 0) {
@@ -72,22 +71,22 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="contact-icons">
-                    <a href="#" target="_blank">
+                    <a href="https://github.com/migmm" target="_blank" rel="noreferrer">
                         <i className="fab fa-github fa-3x"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/miguelmiche/" target="_blank">
+                    <a href="https://www.linkedin.com/in/miguelmiche/" target="_blank" rel="noreferrer">
                         <i className="fab fa-linkedin fa-3x"></i>
                     </a>
-                    <a href="mailto:hi@miguedev.com" target="_blank">
+                    <a href="mailto:hi@miguedev.com" target="_blank" rel="noreferrer">
                         <i className="fas fa-envelope fa-3x"></i>
                     </a>
-                    <a href="https://api.whatsapp.com/send?phone=5492914144624" target="_blank">
+                    <a href="https://api.whatsapp.com/send?phone=5492914144624" target="_blank" rel="noreferrer">
                         <i className="fab fa-whatsapp fa-3x"></i>
                     </a>
-                    <a href="https://t.me/micmig" target="_blank">
+                    <a href="https://t.me/micmig" target="_blank" rel="noreferrer">
                         <i className="fab fa-telegram fa-3x"></i>
                     </a>
-                    <a href="https://www.youtube.com/" target="_blank">
+                    <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
                         <i className="fab fa-youtube fa-3x"></i>
                     </a>
                 </div>
