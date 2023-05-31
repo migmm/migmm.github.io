@@ -7,11 +7,12 @@ import axios from "axios";
 import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
 import { Input } from "../../Styles/Form/Input/Input";
-import { Select } from "../../Styles/Form/Select/Select"
+import { Select } from "../../Styles/Form/Select/Select";
+import InputFile from "../../Styles/Form/InputFile/InputFile";
 import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { H1 } from "../../Styles/H1/H1";
 import { MAX_IMAGE_COUNT } from "../../config/quill";
-import InputFile from "../../Styles/Form/InputFile/InputFile";
+
 
 type Resize = "none" | "both" | "horizontal" | "vertical" | "initial" | "inherit";
 
@@ -180,7 +181,7 @@ const AddProject = ({ placeholder }: any) => {
                             />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="certification-image">Cover Image</Label>
-                            <InputFile ></InputFile>
+                            <InputFile></InputFile>
                             <LabelError>Error</LabelError>
                             <div
                                 style={{
@@ -224,27 +225,17 @@ const AddProjectStyles = styled.main`
     .project-container {
         margin: 1em;
 
-        .add-form-container {
-            form {
-                .input-group {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
+        form {
+            .input-group {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
 
-                    input,
-                    select {
-                        padding: 0.5em;
-                        font-size: 16px;
-                        border: 1px solid #ccc;
-                        border-radius: 4px;
-                    }
-                }
-
-                .input-group:last-child {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 1em;
-                }
+            .input-group:last-child {
+                display: flex;
+                flex-direction: row;
+                gap: 1em;
             }
         }
     }
