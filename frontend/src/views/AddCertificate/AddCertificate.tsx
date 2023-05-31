@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
 import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { Input } from "../../Styles/Form/Input/Input";
 import { Textarea } from "../../Styles/Form/Textarea/Textarea";
-import InputFile  from "../../Styles/Form/InputFile/InputFile";
 import { H1 } from "../../Styles/H1/H1";
 
 const AddCertificate = () => {
+    const [imagePreview, setImagePreview] = useState("");
+    const inputFileRef = useRef<HTMLInputElement | null>(null);
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImagePreview(reader.result as string);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleRemoveImage = () => {
+        setImagePreview("");
+        if (inputFileRef.current) {
+            inputFileRef.current.value = "";
+        }
+    };
+
+    const handleReset = () => {
+        setImagePreview("");
+        if (inputFileRef.current) {
+            inputFileRef.current.value = "";
+        }
+    };
+
     return (
         <AddScreenStyles>
             <div className="certification-container">
@@ -29,12 +58,25 @@ const AddCertificate = () => {
                             <Textarea name="certificationDescription" id="certification-description"></Textarea>
                             <LabelError>Error</LabelError>
                             <Label htmlFor="certification-image">Image</Label>
-                            <InputFile ></InputFile>
+                            <div className="image-preview-container">
+                                {imagePreview && (
+                                    <div className="image-preview-wrapper">
+                                        <img src={imagePreview} alt="Preview" className="image-preview" />
+                                        <button className="remove-image-button" onClick={handleRemoveImage}>
+                                            X
+                                        </button>
+                                    </div>
+                                )}
+                                {!imagePreview && <div className="image-preview-placeholder"></div>}
+                            </div>
+                            <Input type="file" ref={inputFileRef} onChange={handleFileChange} />
                             <LabelError>Error</LabelError>
                         </div>
                         <div className="input-group">
                             <Button type="submit">Add</Button>
-                            <Button type="reset">Reset</Button>
+                            <Button type="reset" onClick={handleReset}>
+                                Reset
+                            </Button>
                         </div>
                     </form>
                 </div>
@@ -43,13 +85,10 @@ const AddCertificate = () => {
     );
 };
 
-export default AddCertificate;
-
 const AddScreenStyles = styled.main`
     max-width: 1900px;
     margin: 0 auto;
     .certification-container {
-
         margin: 1em;
 
         .add-form-container {
@@ -65,8 +104,45 @@ const AddScreenStyles = styled.main`
                     flex-direction: row;
                     gap: 1em;
                 }
-
             }
         }
     }
+
+    .image-preview-placeholder {
+        width: 200px;
+        height: 200px;
+        border: 1px dashed gray;
+    }
+
+    .image-preview-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-preview-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-preview {
+        max-width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+    }
+
+    .remove-image-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: transparent;
+        border: none;
+        color: red;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: pointer;
+        transform: translate(50%, -50%);
+        z-index: 1;
+    }
 `;
+
+export default AddCertificate;
