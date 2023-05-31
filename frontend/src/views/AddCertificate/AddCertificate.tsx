@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
@@ -6,83 +6,49 @@ import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { Input } from "../../Styles/Form/Input/Input";
 import { Textarea } from "../../Styles/Form/Textarea/Textarea";
 import { H1 } from "../../Styles/H1/H1";
+import InputFile from "../../Styles/Form/InputFile/InputFile";
 
 const AddCertificate = () => {
-    const [imagePreview, setImagePreview] = useState("");
-    const inputFileRef = useRef<HTMLInputElement | null>(null);
+  const [imagePreview, setImagePreview] = useState("");
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        const reader = new FileReader();
+  const handleReset = () => {
+    setImagePreview("");
+  };
 
-        reader.onloadend = () => {
-            setImagePreview(reader.result as string);
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    };
-
-    const handleRemoveImage = () => {
-        setImagePreview("");
-        if (inputFileRef.current) {
-            inputFileRef.current.value = "";
-        }
-    };
-
-    const handleReset = () => {
-        setImagePreview("");
-        if (inputFileRef.current) {
-            inputFileRef.current.value = "";
-        }
-    };
-
-    return (
-        <AddScreenStyles>
-            <div className="certification-container">
-                <H1>Add Certification</H1>
-                <div className="add-form-container">
-                    <form action="#">
-                        <div className="input-group">
-                            <Label htmlFor="certification-name">Certification title</Label>
-                            <Input type="text" id="certificationName" name="certificationName" />
-                            <LabelError>Error</LabelError>
-                            <Label htmlFor="certification-vendor">Vendor</Label>
-                            <Input type="text" name="certificationVendor" id="certification-vendor"></Input>
-                            <LabelError>Error</LabelError>
-                            <Label htmlFor="certification-url">URL</Label>
-                            <Input type="text" id="certification-url" name="certificationUrl" />
-                            <LabelError>Error</LabelError>
-                            <Label htmlFor="certification-description">Description</Label>
-                            <Textarea name="certificationDescription" id="certification-description"></Textarea>
-                            <LabelError>Error</LabelError>
-                            <Label htmlFor="certification-image">Image</Label>
-                            <div className="image-preview-container">
-                                {imagePreview && (
-                                    <div className="image-preview-wrapper">
-                                        <img src={imagePreview} alt="Preview" className="image-preview" />
-                                        <button className="remove-image-button" onClick={handleRemoveImage}>
-                                            X
-                                        </button>
-                                    </div>
-                                )}
-                                {!imagePreview && <div className="image-preview-placeholder"></div>}
-                            </div>
-                            <Input type="file" ref={inputFileRef} onChange={handleFileChange} />
-                            <LabelError>Error</LabelError>
-                        </div>
-                        <div className="input-group">
-                            <Button type="submit">Add</Button>
-                            <Button type="reset" onClick={handleReset}>
-                                Reset
-                            </Button>
-                        </div>
-                    </form>
-                </div>
+  return (
+    <AddScreenStyles>
+      <div className="certification-container">
+        <H1>New Certification</H1>
+        <div className="add-form-container">
+          <form action="#">
+            <div className="input-group">
+              <Label htmlFor="certification-name">Certification title</Label>
+              <Input type="text" id="certificationName" name="certificationName" />
+              <LabelError>Error</LabelError>
+              <Label htmlFor="certification-vendor">Vendor</Label>
+              <Input type="text" name="certificationVendor" id="certification-vendor"></Input>
+              <LabelError>Error</LabelError>
+              <Label htmlFor="certification-url">URL</Label>
+              <Input type="text" id="certification-url" name="certificationUrl" />
+              <LabelError>Error</LabelError>
+              <Label htmlFor="certification-description">Description</Label>
+              <Textarea name="certificationDescription" id="certification-description"></Textarea>
+              <LabelError>Error</LabelError>
+              <Label htmlFor="certification-image">Image</Label>
+              <InputFile setImagePreview={setImagePreview} imagePreview={imagePreview} />
+              <LabelError>Error</LabelError>
             </div>
-        </AddScreenStyles>
-    );
+            <div className="input-group">
+              <Button type="submit">Add</Button>
+              <Button type="reset" onClick={handleReset}>
+                Reset
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </AddScreenStyles>
+  );
 };
 
 const AddScreenStyles = styled.main`

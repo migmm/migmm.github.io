@@ -1,7 +1,31 @@
-import React from "react";
+// InputFile.js
+import React, { useRef } from "react";
 import styled from "styled-components";
+import "@fortawesome/fontawesome-free/css/all.css";
 
-const InputFile = () => {
+const InputFile = ({ setImagePreview, imagePreview }: any) => {
+    const inputFileRef = useRef<HTMLInputElement>(null);
+
+    const handleFileChange = (event: any) => {
+        const file = event.target.files?.[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImagePreview(reader.result);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleRemoveImage = () => {
+        setImagePreview("");
+        if (inputFileRef.current) {
+            inputFileRef.current.value = "";
+        }
+    };
+
     return (
         <InputFileStyled>
             <input
@@ -10,19 +34,28 @@ const InputFile = () => {
                 className="certification-image"
                 name="certificationImage"
                 accept="image/png, image/jpeg, image/bmp"
-            ></input>
+                ref={inputFileRef}
+                onChange={handleFileChange}
+            />
             <label htmlFor="certification-image" className="custom-file-upload">
                 Select file
             </label>
+            {imagePreview && (
+                <div className="image-preview-container">
+                    <div className="image-preview-wrapper">
+                        <img src={imagePreview} alt="Preview" className="image-preview" />
+                        <button className="remove-image-button" onClick={handleRemoveImage}></button>
+                    </div>
+                </div>
+            )}
+            {!imagePreview && <div className="image-preview-placeholder"></div>}
         </InputFileStyled>
     );
 };
 
-export default InputFile;
-
 const InputFileStyled = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -42,7 +75,8 @@ const InputFileStyled = styled.div`
         text-align: center;
         font-size: 1em;
         width: 50%;
-        cursor: pointer;
+        cursor: pointer; 
+        margin-bottom: .5em;
 
         @media (min-width: 768px) {
             max-width: 300px;
@@ -56,4 +90,62 @@ const InputFileStyled = styled.div`
             background-color: #0088ff;
         }
     }
+
+    .image-preview-placeholder {
+        width: 200px;
+        height: 200px;
+        border: 1px dashed gray;
+        margin-bottom: 1em;
+        border-radius: 20px;
+    }
+
+    .image-preview-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-preview-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-preview {
+        max-width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+        border-radius: 20px;
+        margin-bottom: 1em;
+    }
+
+    .remove-image-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #0069C5;
+        padding: 0.3em;
+        border-radius: 30%;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: pointer;
+        transform: translate(50%, -50%);
+        z-index: 1;
+
+        :hover {
+            background-color: #004a8b;
+        }
+
+        :active {
+            background-color: #0088ff;
+        }
+    }
+    .remove-image-button::before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f00d"; /* Código de icono para la "X" */
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
 `;
+
+export default InputFile;

@@ -8,7 +8,7 @@ import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
 import { Input } from "../../Styles/Form/Input/Input";
 import { Select } from "../../Styles/Form/Select/Select";
-import InputFile from "../../Styles/Form/InputFile/InputFile";
+//import InputFile from "../../Styles/Form/InputFile/InputFile";
 import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { H1 } from "../../Styles/H1/H1";
 import { MAX_IMAGE_COUNT } from "../../config/quill";
@@ -181,7 +181,7 @@ const AddProject = ({ placeholder }: any) => {
                             />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="certification-image">Cover Image</Label>
-                            <InputFile></InputFile>
+                            <Input></Input>
                             <LabelError>Error</LabelError>
                             <div
                                 style={{
