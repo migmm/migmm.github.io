@@ -28,23 +28,23 @@ const InputFile = ({ setImagePreview, imagePreview }: any) => {
     };
 
     const handleImagePreviewClick = () => {
-      if (!imagePreview && inputFileRef.current) {
-          inputFileRef.current.click();
-      }
-  };
+        if (!imagePreview && inputFileRef.current) {
+            inputFileRef.current.click();
+        }
+    };
 
     return (
         <InputFileStyled>
             <input
                 type="file"
-                id="certification-image"
-                className="certification-image"
-                name="certificationImage"
+                id="image"
+                className="image"
+                name="Image"
                 accept="image/png, image/jpeg, image/bmp"
                 ref={inputFileRef}
                 onChange={handleFileChange}
             />
-            <label htmlFor="certification-image" className="custom-file-upload" onClick={handleImagePreviewClick}>
+            <label htmlFor="image" className="custom-file-upload" onClick={handleImagePreviewClick}>
                 Select file
             </label>
             {imagePreview && (
@@ -55,7 +55,7 @@ const InputFile = ({ setImagePreview, imagePreview }: any) => {
                     </div>
                 </div>
             )}
-           {!imagePreview && (
+            {!imagePreview && (
                 <div className="image-preview-placeholder" onClick={handleImagePreviewClick}>
                     <i className="fas fa-upload fa-5x placeholder-icon"></i>
                 </div>
@@ -71,7 +71,7 @@ const InputFileStyled = styled.div`
     justify-content: center;
     width: 100%;
 
-    .certification-image {
+    .image {
         display: none;
     }
 
@@ -111,14 +111,14 @@ const InputFileStyled = styled.div`
         border: 1px dashed gray;
         margin-bottom: 1em;
         border-radius: 20px;
-        background-color: #EBEBEB;
+        background-color: #ebebeb;
 
         :hover {
             background-color: #dbd6d6;
         }
 
         :active {
-            background-color: #F0F0EE;
+            background-color: #f0f0ee;
         }
     }
 
