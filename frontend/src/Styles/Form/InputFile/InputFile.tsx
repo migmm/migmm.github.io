@@ -141,9 +141,9 @@ const InputFileStyled = styled.div`
 
     .remove-image-button {
         position: absolute;
-        top: 0;
-        right: 0;
-        background-color: #0069c5;
+        top: 25px;
+        right: 25px;
+        background-color: #000000;
         padding: 0.3em;
         border-radius: 30%;
         color: #ffffff;
