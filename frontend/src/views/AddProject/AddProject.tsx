@@ -8,7 +8,7 @@ import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
 import { Input } from "../../Styles/Form/Input/Input";
 import { Select } from "../../Styles/Form/Select/Select";
-//import InputFile from "../../Styles/Form/InputFile/InputFile";
+import InputFile from "../../Styles/Form/InputFile/InputFile";
 import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { H1 } from "../../Styles/H1/H1";
 import { MAX_IMAGE_COUNT } from "../../config/quill";
@@ -25,6 +25,11 @@ const AddProject = ({ placeholder }: any) => {
     const [projectUrl, setProjectUrl] = useState("");
     const [error, setError] = useState("");
     const [imageCount, setImageCount] = useState(0);
+    const [imagePreview, setImagePreview] = useState("");
+
+    const handleReset = () => {
+      setImagePreview("");
+    };
 
     const handleChange = (html: any) => {
         const tempDiv = document.createElement("div");
@@ -181,8 +186,9 @@ const AddProject = ({ placeholder }: any) => {
                             />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="certification-image">Cover Image</Label>
-                            <Input></Input>
+                            <InputFile setImagePreview={setImagePreview} imagePreview={imagePreview} />
                             <LabelError>Error</LabelError>
+                            <Label htmlFor="project-description">Project description</Label>
                             <div
                                 style={{
                                     backgroundColor: "white",
@@ -206,7 +212,7 @@ const AddProject = ({ placeholder }: any) => {
                         </div>
                         <div className="input-group">
                             <Button type="submit">Add</Button>
-                            <Button type="reset">Reset</Button>
+                            <Button type="reset" onClick={handleReset}>Reset</Button>
                         </div>
                     </form>
                 </div>
