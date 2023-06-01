@@ -107,18 +107,18 @@ const InputFileStyled = styled.div`
         justify-content: center;
         width: 200px;
         height: 200px;
-        border: 1px dashed gray;
+        border: 1px solid #EBEBEB;
         margin-bottom: 1em;
         border-radius: 20px;
-        background-color: #ebebeb;
+        background-color: #fff;
         cursor:pointer;
 
         :hover {
-            background-color: #dbd6d6;
+            background-color: #e2e2e2;
         }
 
         :active {
-            background-color: #f0f0ee;
+            background-color: #e2e2e2;
         }
     }
 

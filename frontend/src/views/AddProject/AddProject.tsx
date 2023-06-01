@@ -149,7 +149,7 @@ const AddProject = ({ placeholder }: any) => {
     return (
         <AddProjectStyles>
             <div className='project-container'>
-                <H1>Add Project</H1>
+                <H1>New Project</H1>
                 <div className='add-form-container'>
                     <form onSubmit={handleSubmit}>
                         <div className='input-group'>
