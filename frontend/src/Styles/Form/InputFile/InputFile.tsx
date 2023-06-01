@@ -19,10 +19,17 @@ const InputFile = ({ setImagePreview, imagePreview }: any) => {
         }
     };
 
-    const handleRemoveImage = () => {
+    const handleRemoveImage = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
         setImagePreview("");
         if (inputFileRef.current) {
             inputFileRef.current.value = "";
+        }
+    };
+
+    const handleImagePreviewClick = () => {
+        if (inputFileRef.current) {
+            inputFileRef.current.click();
         }
     };
 
@@ -37,18 +44,18 @@ const InputFile = ({ setImagePreview, imagePreview }: any) => {
                 ref={inputFileRef}
                 onChange={handleFileChange}
             />
-            <label htmlFor="certification-image" className="custom-file-upload">
+            <label htmlFor="certification-image" className="custom-file-upload" onClick={handleImagePreviewClick}>
                 Select file
             </label>
             {imagePreview && (
-                <div className="image-preview-container">
+                <div className="image-preview-container" onClick={handleImagePreviewClick}>
                     <div className="image-preview-wrapper">
                         <img src={imagePreview} alt="Preview" className="image-preview" />
                         <button className="remove-image-button" onClick={handleRemoveImage}></button>
                     </div>
                 </div>
             )}
-            {!imagePreview && <div className="image-preview-placeholder"></div>}
+            {!imagePreview && <div className="image-preview-placeholder" onClick={handleImagePreviewClick}></div>}
         </InputFileStyled>
     );
 };
@@ -75,8 +82,8 @@ const InputFileStyled = styled.div`
         text-align: center;
         font-size: 1em;
         width: 50%;
-        cursor: pointer; 
-        margin-bottom: .5em;
+        cursor: pointer;
+        margin-bottom: 0.5em;
 
         @media (min-width: 768px) {
             max-width: 300px;
@@ -121,7 +128,7 @@ const InputFileStyled = styled.div`
         position: absolute;
         top: 0;
         right: 0;
-        background-color: #0069C5;
+        background-color: #0069c5;
         padding: 0.3em;
         border-radius: 30%;
         color: #ffffff;
