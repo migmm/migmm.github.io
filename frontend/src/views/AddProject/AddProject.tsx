@@ -1,40 +1,39 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import axios from "axios";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import axios from 'axios';
 
-import { Button } from "../../Styles/Form/Button/Button";
-import { Label } from "../../Styles/Form/Label/Label";
-import { Input } from "../../Styles/Form/Input/Input";
-import { Select } from "../../Styles/Form/Select/Select";
-import InputFile from "../../Styles/Form/InputFile/InputFile";
-import { LabelError } from "../../Styles/Form/LabelError/LabelError";
-import { H1 } from "../../Styles/H1/H1";
-import { MAX_IMAGE_COUNT } from "../../config/quill";
+import { Button } from '../../Styles/Form/Button/Button';
+import { Label } from '../../Styles/Form/Label/Label';
+import { Input } from '../../Styles/Form/Input/Input';
+import { Select } from '../../Styles/Form/Select/Select';
+import InputFile from '../../Styles/Form/InputFile/InputFile';
+import { LabelError } from '../../Styles/Form/LabelError/LabelError';
+import { H1 } from '../../Styles/H1/H1';
+import { MAX_IMAGE_COUNT } from '../../config/quill';
 
-
-type Resize = "none" | "both" | "horizontal" | "vertical" | "initial" | "inherit";
+type Resize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | 'inherit';
 
 const MAX_IMAGE_IN_QUILL_EDITOR = MAX_IMAGE_COUNT;
 
 const AddProject = ({ placeholder }: any) => {
-    const [editorHtml, setEditorHtml] = useState("");
-    const [projectName, setProjectName] = useState("");
-    const [projectStatus, setProjectStatus] = useState("");
-    const [projectUrl, setProjectUrl] = useState("");
-    const [error, setError] = useState("");
+    const [editorHtml, setEditorHtml] = useState('');
+    const [projectName, setProjectName] = useState('');
+    const [projectStatus, setProjectStatus] = useState('');
+    const [projectUrl, setProjectUrl] = useState('');
+    const [error, setError] = useState('');
     const [imageCount, setImageCount] = useState(0);
-    const [imagePreview, setImagePreview] = useState("");
+    const [imagePreview, setImagePreview] = useState('');
 
     const handleReset = () => {
-      setImagePreview("");
+        setImagePreview('');
     };
 
     const handleChange = (html: any) => {
-        const tempDiv = document.createElement("div");
+        const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
-        const images = tempDiv.getElementsByTagName("img");
+        const images = tempDiv.getElementsByTagName('img');
 
         if (images.length > MAX_IMAGE_IN_QUILL_EDITOR) {
             setError(`Exceeded the maximum image count. You can only add ${MAX_IMAGE_IN_QUILL_EDITOR} images.`);
@@ -47,10 +46,10 @@ const AddProject = ({ placeholder }: any) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setError("");
+        setError('');
 
         axios
-            .post("http://localhost:8080/api/projects", {
+            .post('http://localhost:8080/api/projects', {
                 projectName,
                 projectStatus,
                 projectUrl,
@@ -66,7 +65,7 @@ const AddProject = ({ placeholder }: any) => {
         event.stopPropagation();
 
         const files = event.dataTransfer.files;
-        const images = Array.from(files).filter((file) => file.type.includes("image/"));
+        const images = Array.from(files).filter((file) => file.type.includes('image/'));
         const remainingSlots = MAX_IMAGE_IN_QUILL_EDITOR - imageCount;
 
         if (images.length > remainingSlots) {
@@ -78,7 +77,7 @@ const AddProject = ({ placeholder }: any) => {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onloadend = () => {
-                    const base64Data = reader.result?.toString() || "";
+                    const base64Data = reader.result?.toString() || '';
                     resolve(base64Data);
                 };
                 reader.onerror = (error) => {
@@ -91,7 +90,7 @@ const AddProject = ({ placeholder }: any) => {
         Promise.all(promises)
             .then((base64Images) => {
                 const updatedHtml: any = base64Images.reduce((html, base64Image) => {
-                    const imgTag = `<img src="${base64Image}" alt="Image" />`;
+                    const imgTag = `<img src='${base64Image}' alt='Image' />`;
                     return html + imgTag;
                 }, editorHtml);
 
@@ -99,29 +98,29 @@ const AddProject = ({ placeholder }: any) => {
                 setImageCount(imageCount + images.length);
             })
             .catch((error) => {
-                setError("An error occurred while processing the images.");
+                setError('An error occurred while processing the images.');
                 console.error(error);
             });
     };
 
     const editorStyle: React.CSSProperties = {
-        height: "400px",
-        width: "100%",
-        resize: "vertical" as Resize,
-        overflow: "auto",
-        borderRadius: "10px",
+        height: '400px',
+        width: '100%',
+        resize: 'vertical' as Resize,
+        overflow: 'auto',
+        borderRadius: '10px',
     };
 
     const modules = {
         toolbar: [
-            [{ header: "1" }, { header: "2" }, { font: [] }],
+            [{ header: '1' }, { header: '2' }, { font: [] }],
             [{ size: [] }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
             [{ align: [] }],
-            [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
-            ["link", "image", "video"],
-            ["clean"],
-            ["code"],
+            [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+            ['link', 'image', 'video'],
+            ['clean'],
+            ['code'],
         ],
         clipboard: {
             matchVisual: false,
@@ -129,72 +128,72 @@ const AddProject = ({ placeholder }: any) => {
     };
 
     const formats = [
-        "header",
-        "font",
-        "size",
-        "bold",
-        "italic",
-        "underline",
-        "strike",
-        "blockquote",
-        "align",
-        "list",
-        "bullet",
-        "indent",
-        "link",
-        "image",
-        "video",
-        "code",
+        'header',
+        'font',
+        'size',
+        'bold',
+        'italic',
+        'underline',
+        'strike',
+        'blockquote',
+        'align',
+        'list',
+        'bullet',
+        'indent',
+        'link',
+        'image',
+        'video',
+        'code',
     ];
 
     return (
         <AddProjectStyles>
-            <div className="project-container">
+            <div className='project-container'>
                 <H1>Add Project</H1>
-                <div className="add-form-container">
+                <div className='add-form-container'>
                     <form onSubmit={handleSubmit}>
-                        <div className="input-group">
-                            <Label htmlFor="project-name">Project title</Label>
+                        <div className='input-group'>
+                            <Label htmlFor='project-name'>Project title</Label>
                             <Input
-                                type="text"
-                                id="projectName"
-                                name="projectName"
+                                type='text'
+                                id='projectName'
+                                name='projectName'
                                 value={projectName}
                                 onChange={(event) => setProjectName(event.target.value)}
                             />
                             <LabelError>Error</LabelError>
-                            <Label htmlFor="project-status">Status</Label>
+                            <Label htmlFor='project-status'>Status</Label>
                             <Select
-                                name="projectStatus"
-                                id="project-status"
+                                name='projectStatus'
+                                id='project-status'
                                 value={projectStatus}
                                 onChange={(event) => setProjectStatus(event.target.value)}
                             >
-                                <option value="">Select status</option>
-                                <option value="inProgress">In Progress</option>
-                                <option value="finished">Finished</option>
-                                <option value="cancelled">Cancelled</option>
+                                <option value=''>Select status</option>
+                                <option value='inProgress'>In Progress</option>
+                                <option value='finished'>Finished</option>
+                                <option value='cancelled'>Cancelled</option>
                             </Select>
                             <LabelError>Error</LabelError>
-                            <Label htmlFor="project-url">URL</Label>
+                            <Label htmlFor='project-url'>URL</Label>
                             <Input
-                                type="text"
-                                id="project-url"
-                                name="projectUrl"
+                                type='text'
+                                id='project-url'
+                                name='projectUrl'
                                 value={projectUrl}
                                 onChange={(event) => setProjectUrl(event.target.value)}
                             />
                             <LabelError>Error</LabelError>
-                            <Label htmlFor="certification-image">Cover Image</Label>
+                            <Label htmlFor='certification-image'>Cover Image</Label>
                             <InputFile setImagePreview={setImagePreview} imagePreview={imagePreview} />
                             <LabelError>Error</LabelError>
-                            <Label htmlFor="project-description">Project description</Label>
+                            <Label htmlFor='project-description'>Project description</Label>
                             <div
                                 style={{
-                                    backgroundColor: "white",
-                                    width: "100%",
-                                    borderRadius: "10px",
-                                    margin: "0 auto",
+                                    backgroundColor: 'white',
+                                    width: '100%',
+                                    borderRadius: '10px',
+                                    margin: '0 auto',
                                 }}
                                 onDrop={handleDrop}
                             >
@@ -203,16 +202,18 @@ const AddProject = ({ placeholder }: any) => {
                                     value={editorHtml}
                                     modules={modules}
                                     formats={formats}
-                                    bounds=".app"
+                                    bounds='.app'
                                     placeholder={placeholder}
                                     style={editorStyle}
                                 />
                             </div>
                             <LabelError>Error</LabelError>
                         </div>
-                        <div className="input-group">
-                            <Button type="submit">Add</Button>
-                            <Button type="reset" onClick={handleReset}>Reset</Button>
+                        <div className='input-group'>
+                            <Button type='submit'>Add</Button>
+                            <Button type='reset' onClick={handleReset}>
+                                Reset
+                            </Button>
                         </div>
                     </form>
                 </div>
