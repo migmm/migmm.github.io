@@ -111,6 +111,7 @@ const InputFileStyled = styled.div`
         margin-bottom: 1em;
         border-radius: 20px;
         background-color: #ebebeb;
+        cursor:pointer;
 
         :hover {
             background-color: #dbd6d6;
