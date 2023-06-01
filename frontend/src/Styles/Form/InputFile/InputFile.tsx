@@ -1,4 +1,3 @@
-// InputFile.js
 import React, { useRef } from "react";
 import styled from "styled-components";
 import "@fortawesome/fontawesome-free/css/all.css";
