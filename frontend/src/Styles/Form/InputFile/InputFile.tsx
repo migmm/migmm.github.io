@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import styled from "styled-components";
-import "@fortawesome/fontawesome-free/css/all.css";
+import React, { useRef } from 'react';
+import styled from 'styled-components';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 const InputFile = ({ setImagePreview, imagePreview }: any) => {
     const inputFileRef = useRef<HTMLInputElement>(null);
@@ -20,9 +20,9 @@ const InputFile = ({ setImagePreview, imagePreview }: any) => {
 
     const handleRemoveImage = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
-        setImagePreview("");
+        setImagePreview('');
         if (inputFileRef.current) {
-            inputFileRef.current.value = "";
+            inputFileRef.current.value = '';
         }
     };
 
@@ -35,28 +35,28 @@ const InputFile = ({ setImagePreview, imagePreview }: any) => {
     return (
         <InputFileStyled>
             <input
-                type="file"
-                id="image"
-                className="image"
-                name="Image"
-                accept="image/png, image/jpeg, image/bmp"
+                type='file'
+                id='image'
+                className='image'
+                name='Image'
+                accept='image/png, image/jpeg, image/bmp'
                 ref={inputFileRef}
                 onChange={handleFileChange}
             />
-            <label htmlFor="image" className="custom-file-upload" onClick={handleImagePreviewClick}>
+            <label htmlFor='image' className='custom-file-upload' onClick={handleImagePreviewClick}>
                 Select file
             </label>
             {imagePreview && (
-                <div className="image-preview-container" onClick={handleImagePreviewClick}>
-                    <div className="image-preview-wrapper">
-                        <img src={imagePreview} alt="Preview" className="image-preview" />
-                        <button className="remove-image-button" onClick={handleRemoveImage}></button>
+                <div className='image-preview-container' onClick={handleImagePreviewClick}>
+                    <div className='image-preview-wrapper'>
+                        <img src={imagePreview} alt='Preview' className='image-preview' />
+                        <button className='remove-image-button' onClick={handleRemoveImage}></button>
                     </div>
                 </div>
             )}
             {!imagePreview && (
-                <div className="image-preview-placeholder" onClick={handleImagePreviewClick}>
-                    <i className="fas fa-upload fa-5x placeholder-icon"></i>
+                <div className='image-preview-placeholder' onClick={handleImagePreviewClick}>
+                    <i className='fas fa-upload fa-5x placeholder-icon'></i>
                 </div>
             )}
         </InputFileStyled>
@@ -80,7 +80,7 @@ const InputFileStyled = styled.div`
         border: 1px solid #ebebeb;
         background-color: #0069c5;
         color: #ffffff;
-        font-family: "Work Sans", sans-serif;
+        font-family: 'Work Sans', sans-serif;
         font-weight: 600;
         text-align: center;
         font-size: 1em;
@@ -162,8 +162,8 @@ const InputFileStyled = styled.div`
         }
     }
     .remove-image-button::before {
-        font-family: "Font Awesome 5 Free";
-        content: "\f00d"; /* Código de icono para la "X" */
+        font-family: 'Font Awesome 5 Free';
+        content: '\f00d'; /* Código de icono para la 'X' */
         display: block;
         height: 100%;
         width: 100%;
