@@ -108,7 +108,9 @@ const AddProject = ({ placeholder }: any) => {
         width: '100%',
         resize: 'vertical' as Resize,
         overflow: 'auto',
-        borderRadius: '10px',
+        borderRadius: '20px',
+        border: '1px solid #EBEBEB',
+        backgroundColor: '#fff'
     };
 
     const modules = {
@@ -190,9 +192,7 @@ const AddProject = ({ placeholder }: any) => {
                             <Label htmlFor='project-description'>Project description</Label>
                             <div
                                 style={{
-                                    backgroundColor: 'white',
                                     width: '100%',
-                                    borderRadius: '10px',
                                     margin: '0 auto',
                                 }}
                                 onDrop={handleDrop}
@@ -247,3 +247,5 @@ const AddProjectStyles = styled.main`
         }
     }
 `;
+
+
