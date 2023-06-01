@@ -28,10 +28,10 @@ const InputFile = ({ setImagePreview, imagePreview }: any) => {
     };
 
     const handleImagePreviewClick = () => {
-        if (inputFileRef.current) {
-            inputFileRef.current.click();
-        }
-    };
+      if (!imagePreview && inputFileRef.current) {
+          inputFileRef.current.click();
+      }
+  };
 
     return (
         <InputFileStyled>
@@ -55,7 +55,11 @@ const InputFile = ({ setImagePreview, imagePreview }: any) => {
                     </div>
                 </div>
             )}
-            {!imagePreview && <div className="image-preview-placeholder" onClick={handleImagePreviewClick}></div>}
+           {!imagePreview && (
+                <div className="image-preview-placeholder" onClick={handleImagePreviewClick}>
+                    <i className="fas fa-upload fa-5x placeholder-icon"></i>
+                </div>
+            )}
         </InputFileStyled>
     );
 };
@@ -99,11 +103,23 @@ const InputFileStyled = styled.div`
     }
 
     .image-preview-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 200px;
         height: 200px;
         border: 1px dashed gray;
         margin-bottom: 1em;
         border-radius: 20px;
+        background-color: #EBEBEB;
+
+        :hover {
+            background-color: #dbd6d6;
+        }
+
+        :active {
+            background-color: #F0F0EE;
+        }
     }
 
     .image-preview-container {
