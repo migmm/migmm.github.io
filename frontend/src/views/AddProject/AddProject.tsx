@@ -17,6 +17,10 @@ type Resize = "none" | "both" | "horizontal" | "vertical" | "initial" | "inherit
 
 const MAX_IMAGE_IN_QUILL_EDITOR = MAX_IMAGE_COUNT;
 
+const Font = ReactQuill.Quill.import("formats/font");
+Font.whitelist = ["Work-Sans"]; // allow ONLY these fonts and the default
+ReactQuill.Quill.register(Font, true);
+
 const AddProject = ({ placeholder }: any) => {
     const [editorHtml, setEditorHtml] = useState("");
     const [projectName, setProjectName] = useState("");
@@ -115,7 +119,8 @@ const AddProject = ({ placeholder }: any) => {
 
     const modules = {
         toolbar: [
-            [{ header: "1" }, { header: "2" }, { font: [] }],
+            [{ header: "1" }, { header: "2" }],
+            [{ font: Font.whitelist }],
             [{ size: [] }],
             ["bold", "italic", "underline", "strike", "blockquote"],
             [{ align: [] }],
@@ -245,5 +250,35 @@ const AddProjectStyles = styled.main`
                 gap: 1em;
             }
         }
+    }
+
+    .ql-picker.ql-font {
+        .ql-picker-item {
+            font-size: 0;
+            &:before {
+                content: attr(data-value) !important;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .ql-picker.ql-font {
+        .ql-active {
+            &:before {
+                content: attr(data-value) !important;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .ql-picker.ql-font .ql-picker-label[data-value="Work-Sans"]::before,
+    .ql-picker.ql-font .ql-picker-item[data-value="Work-Sans"]::before {
+        font-family: "Work Sans", cursive;
+        content: "Work Sans" !important;
+    }
+
+    /* Set content font-families */
+    .ql-font-Work-Sans {
+        font-family: "Work Sans";
     }
 `;
