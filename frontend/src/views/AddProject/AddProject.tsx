@@ -115,6 +115,8 @@ const AddProject = ({ placeholder }: any) => {
         borderRadius: "20px",
         border: "1px solid #EBEBEB",
         backgroundColor: "#fff",
+        overflowX: "auto",
+        overflowY: "hidden",
     };
 
     const modules = {
@@ -277,8 +279,17 @@ const AddProjectStyles = styled.main`
         content: "Work Sans" !important;
     }
 
-    /* Set content font-families */
     .ql-font-Work-Sans {
         font-family: "Work Sans";
+    }
+
+    .ql-container {
+        position: relative;
+        height: 400px;
+    }
+
+    .ql-container .ql-editor {
+        height: 100%;
+        overflow-y: auto;
     }
 `;
