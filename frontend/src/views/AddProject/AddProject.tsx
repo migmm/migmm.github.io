@@ -12,6 +12,7 @@ import { InputFile } from "../../Styles/Form/InputFile/InputFile";
 import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { Textarea } from "../../Styles/Form/Textarea/Textarea";
 import { H1 } from "../../Styles/H1/H1";
+import Checkbox from "../../Styles/Form/CheckBox/CheckBox";
 import { MAX_IMAGE_COUNT } from "../../config/quill";
 
 type Resize = "none" | "both" | "horizontal" | "vertical" | "initial" | "inherit";
@@ -31,6 +32,10 @@ const AddProject = ({ placeholder }: any) => {
     const [error, setError] = useState("");
     const [imageCount, setImageCount] = useState(0);
     const [imagePreview, setImagePreview] = useState("");
+    const [isCheckedA, setIsCheckedA] = useState(false);
+    const handleChangeA = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsCheckedA(e.target.checked);
+    };
 
     const handleReset = () => {
         setImagePreview("");
@@ -62,7 +67,6 @@ const AddProject = ({ placeholder }: any) => {
                 shortDescription,
                 imagePreview,
                 editorHtml,
-                
             })
             .then((response) => {
                 console.log(response.data);
@@ -189,6 +193,19 @@ const AddProject = ({ placeholder }: any) => {
                                 <option value="cancelled">Cancelled</option>
                             </Select>
                             <LabelError>Error</LabelError>
+
+                            <div style={{
+                                    fontFamily: "Work Sans",
+                                    margin: "0 auto",
+                                    padding: "0 0 1em 0",
+                                }}>
+                                <Checkbox 
+                                handleChange={handleChangeA} 
+                                isChecked={isCheckedA} 
+                                label=" Show on landing page" 
+                                id="checkbox-main-project" />
+                            </div>
+
                             <Label htmlFor="project-url">URL</Label>
                             <Input
                                 type="text"
