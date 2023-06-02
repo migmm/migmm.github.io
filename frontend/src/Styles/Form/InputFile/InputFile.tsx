@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-const InputFile = ({ setImagePreview, imagePreview }: any) => {
+export const InputFile = ({ setImagePreview, imagePreview }: any) => {
     const inputFileRef = useRef<HTMLInputElement>(null);
 
     const handleFileChange = (event: any) => {
@@ -170,5 +170,3 @@ const InputFileStyled = styled.div`
         width: 100%;
     }
 `;
-
-export default InputFile;

@@ -8,8 +8,9 @@ import { Button } from "../../Styles/Form/Button/Button";
 import { Label } from "../../Styles/Form/Label/Label";
 import { Input } from "../../Styles/Form/Input/Input";
 import { Select } from "../../Styles/Form/Select/Select";
-import InputFile from "../../Styles/Form/InputFile/InputFile";
+import { InputFile } from "../../Styles/Form/InputFile/InputFile";
 import { LabelError } from "../../Styles/Form/LabelError/LabelError";
+import { Textarea } from "../../Styles/Form/Textarea/Textarea";
 import { H1 } from "../../Styles/H1/H1";
 import { MAX_IMAGE_COUNT } from "../../config/quill";
 
@@ -26,6 +27,7 @@ const AddProject = ({ placeholder }: any) => {
     const [projectName, setProjectName] = useState("");
     const [projectStatus, setProjectStatus] = useState("");
     const [projectUrl, setProjectUrl] = useState("");
+    const [shortDescription, setshortDescription] = useState("");
     const [error, setError] = useState("");
     const [imageCount, setImageCount] = useState(0);
     const [imagePreview, setImagePreview] = useState("");
@@ -57,7 +59,10 @@ const AddProject = ({ placeholder }: any) => {
                 projectName,
                 projectStatus,
                 projectUrl,
+                shortDescription,
+                imagePreview,
                 editorHtml,
+                
             })
             .then((response) => {
                 console.log(response.data);
@@ -191,6 +196,15 @@ const AddProject = ({ placeholder }: any) => {
                                 name="projectUrl"
                                 value={projectUrl}
                                 onChange={(event) => setProjectUrl(event.target.value)}
+                            />
+                            <LabelError>Error</LabelError>
+
+                            <Label htmlFor="short-description">Short description</Label>
+                            <Textarea
+                                id="short-description"
+                                name="shortDescription"
+                                value={shortDescription}
+                                onChange={(event) => setshortDescription(event.target.value)}
                             />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="certification-image">Cover Image</Label>
