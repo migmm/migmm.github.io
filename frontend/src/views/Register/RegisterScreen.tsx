@@ -8,66 +8,57 @@ import { LabelError } from "../../Styles/Form/LabelError/LabelError";
 import { Input } from "../../Styles/Form/Input/Input";
 import { H1 } from "../../Styles/H1/H1";
 import { useFormFields } from "../../hooks/useFormFields";
+import { useValidation } from "../../hooks/useValidations";
 
-const RegisterScreen: React.FC = () => {
+const RegisterScreen = () => {
     const [fields, handleChange] = useFormFields({
         username: "",
         password: "",
         repassword: "",
         email: "",
     });
+
+    const validations = {
+        username: {
+            required: true,
+            errorMessage: "Username is required.",
+        },
+        password: {
+            required: true,
+            errorMessage: "Password is required.",
+        },
+        repassword: {
+            required: true,
+            errorMessage: "Password repeat is required.",
+            validate: () => fields.password === fields.repassword,
+            validateErrorMessage: "Passwords do not match.",
+        },
+        email: {
+            required: true,
+            errorMessage: "Email is required.",
+            validate: () => {
+                if (fields.email) {
+                    return /\S+@\S+\.\S+/.test(fields.email);
+                }
+                return true;
+            },
+            validateErrorMessage: "Invalid email format.",
+        },
+    };
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
-
     const navigate = useNavigate();
+    const { errors, validateForm } = useValidation(validations);
 
-    const validateForm = () => {
-        const validations: Record<string, { required: boolean; errorMessage: string; validate?: () => boolean; validateErrorMessage?: string }> = {
-            username: {
-                required: true,
-                errorMessage: "Username is required.",
-            },
-            password: {
-                required: true,
-                errorMessage: "Password is required.",
-            },
-            repassword: {
-                required: true,
-                errorMessage: "Password repeat is required.",
-                validate: () => fields.password === fields.repassword,
-                validateErrorMessage: "Passwords do not match.",
-            },
-            email: {
-                required: true,
-                errorMessage: "Email is required.",
-                validate: () => {
-                    if (fields.email) {
-                        return /\S+@\S+\.\S+/.test(fields.email);
-                    }
-                    return true;
-                },
-                validateErrorMessage: "Invalid email format.",
-            },
-        };
+    function setValidationErrors(arg0: (prevErrors: any) => any) {
+        throw new Error("Function not implemented.");
+    }
 
-        const errors: Record<string, string> = {};
-
-        Object.entries(validations).forEach(([fieldName, fieldValidation]) => {
-            const fieldValue = fields[fieldName];
-
-            if (fieldValidation.required && !fieldValue) {
-                errors[fieldName] = fieldValidation.errorMessage;
-            }
-
-            if (fieldValidation.validate && !fieldValidation.validate()) {
-                errors[fieldName] = fieldValidation.validateErrorMessage || "";
-            }
-        });
-
-        setValidationErrors(errors);
-
-        return Object.keys(errors).length === 0;
+    const handleReset = () => {
+        handleChange("username", "");
+        handleChange("password", "");
+        handleChange("repassword", "");
+        handleChange("email", "");
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,7 +66,7 @@ const RegisterScreen: React.FC = () => {
         setError("");
         setIsLoading(true);
 
-        if (validateForm()) {
+        if (validateForm(fields)) {
             try {
                 const response = await axios.post(
                     "http://localhost:8080/api/users",
@@ -136,9 +127,7 @@ const RegisterScreen: React.FC = () => {
                                 value={fields.username}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelErrorContainer>
-                                {validationErrors.username && <LabelError>{validationErrors.username}</LabelError>}
-                            </LabelErrorContainer>
+                            <LabelErrorContainer>{errors.username && <LabelError>{errors.username}</LabelError>}</LabelErrorContainer>
                         </div>
                         <div className="input-group">
                             <Label htmlFor="password">Password</Label>
@@ -149,9 +138,7 @@ const RegisterScreen: React.FC = () => {
                                 value={fields.password}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelErrorContainer>
-                                {validationErrors.password && <LabelError>{validationErrors.password}</LabelError>}
-                            </LabelErrorContainer>
+                            <LabelErrorContainer>{errors.password && <LabelError>{errors.password}</LabelError>}</LabelErrorContainer>
                         </div>
                         <div className="input-group">
                             <Label htmlFor="repassword">Confirm Password</Label>
@@ -162,9 +149,7 @@ const RegisterScreen: React.FC = () => {
                                 value={fields.repassword}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelErrorContainer>
-                                {validationErrors.repassword && <LabelError>{validationErrors.repassword}</LabelError>}
-                            </LabelErrorContainer>
+                            <LabelErrorContainer>{errors.repassword && <LabelError>{errors.repassword}</LabelError>}</LabelErrorContainer>
                         </div>
                         <div className="input-group">
                             <Label htmlFor="email">Email</Label>
@@ -175,14 +160,14 @@ const RegisterScreen: React.FC = () => {
                                 value={fields.email}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelErrorContainer>{validationErrors.email && <LabelError>{validationErrors.email}</LabelError>}</LabelErrorContainer>
+                            <LabelErrorContainer>{errors.email && <LabelError>{errors.email}</LabelError>}</LabelErrorContainer>
                         </div>
                         {error && <LabelError>{error}</LabelError>}
                         <div className="input-group">
                             <Button type="submit" disabled={isLoading}>
                                 {isLoading ? "Loading..." : "Register"}
                             </Button>
-                            <Button type="reset">Reset</Button>
+                            <Button type="reset" onClick={handleReset}>Reset</Button>
                         </div>
                     </form>
                 </div>
