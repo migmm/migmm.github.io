@@ -1,75 +1,78 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Button } from "../../Styles/Form/Button/Button";
-import { Label } from "../../Styles/Form/Label/Label";
-import { LabelError } from "../../Styles/Form/LabelError/LabelError";
-import { Input } from "../../Styles/Form/Input/Input";
-import { H1 } from "../../Styles/H1/H1";
-import { useFormFields } from "../../hooks/useFormFields";
-import { useValidation } from "../../hooks/useValidations";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Button } from '../../Styles/Form/Button/Button';
+import { Label } from '../../Styles/Form/Label/Label';
+import { LabelError } from '../../Styles/Form/LabelError/LabelError';
+import { Input } from '../../Styles/Form/Input/Input';
+import { H1 } from '../../Styles/H1/H1';
+import { useFormFields } from '../../hooks/useFormFields';
+import { useValidation } from '../../hooks/useValidations';
 
 const RegisterScreen = () => {
-    const [fields, handleChange] = useFormFields({
-        username: "",
-        password: "",
-        repassword: "",
-        email: "",
-    });
-
     const validations = {
         username: {
             required: true,
-            errorMessage: "Username is required.",
+            errorMessage: 'Username is required.',
         },
         password: {
             required: true,
-            errorMessage: "Password is required.",
+            errorMessage: 'Password is required.',
         },
         repassword: {
             required: true,
-            errorMessage: "Password repeat is required.",
+            errorMessage: 'Password repeat is required.',
             validate: () => fields.password === fields.repassword,
-            validateErrorMessage: "Passwords do not match.",
+            validateErrorMessage: 'Passwords do not match.',
         },
         email: {
             required: true,
-            errorMessage: "Email is required.",
+            errorMessage: 'Email is required.',
             validate: () => {
                 if (fields.email) {
                     return /\S+@\S+\.\S+/.test(fields.email);
                 }
                 return true;
             },
-            validateErrorMessage: "Invalid email format.",
+            validateErrorMessage: 'Invalid email format.',
         },
     };
-    const [error, setError] = useState("");
+
+    const fieldNames = Object.keys(validations);
+
+    const [fields, handleChange] = useFormFields(
+        fieldNames.reduce((acc, fieldName) => {
+            acc[fieldName] = '';
+            return acc;
+        }, {} as Record<string, string>)
+    );
+
+    const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const { errors, validateForm } = useValidation(validations);
 
-    function setValidationErrors(arg0: (prevErrors: any) => any) {
-        throw new Error("Function not implemented.");
+    // TODO: check
+    function setValidationErrors(_arg0: (prevErrors: any) => any) {
+        throw new Error('Function not implemented.');
     }
 
     const handleReset = () => {
-        handleChange("username", "");
-        handleChange("password", "");
-        handleChange("repassword", "");
-        handleChange("email", "");
+        fieldNames.forEach((fieldName) => {
+            handleChange(fieldName, '');
+        });
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setError("");
+        setError('');
         setIsLoading(true);
 
         if (validateForm(fields)) {
             try {
                 const response = await axios.post(
-                    "http://localhost:8080/api/users",
+                    'http://localhost:8080/api/users',
                     {
                         username: fields.username,
                         password: fields.password,
@@ -77,32 +80,32 @@ const RegisterScreen = () => {
                     },
                     {
                         headers: {
-                            "Content-Type": "application/json",
+                            'Content-Type': 'application/json',
                         },
                     }
                 );
 
                 if (response.status === 201) {
-                    navigate("/");
+                    navigate('/');
                 }
                 console.log(response);
             } catch (err: any) {
                 if (err.response) {
                     const { status, data } = err.response;
                     if (status === 401) {
-                        if (data.message === "Existing username") {
+                        if (data.message === 'Existing username') {
                             setValidationErrors((prevErrors) => ({
                                 ...prevErrors,
-                                username: "Username already exists.",
+                                username: 'Username already exists.',
                             }));
-                        } else if (data.message === "Existing email") {
+                        } else if (data.message === 'Existing email') {
                             setValidationErrors((prevErrors) => ({
                                 ...prevErrors,
-                                email: "Email already exists.",
+                                email: 'Email already exists.',
                             }));
                         }
                     } else {
-                        setError("An error occurred. Please try again later.");
+                        setError('An error occurred. Please try again later.');
                         console.error(error);
                     }
                 }
@@ -114,60 +117,62 @@ const RegisterScreen = () => {
 
     return (
         <RegisterScreenStyles>
-            <div className="contact-container">
+            <div className='contact-container'>
                 <H1>Register</H1>
-                <div className="register-form-container">
+                <div className='register-form-container'>
                     <form onSubmit={handleSubmit} noValidate>
-                        <div className="input-group">
-                            <Label htmlFor="username">Username</Label>
+                        <div className='input-group'>
+                            <Label htmlFor='username'>Username</Label>
                             <Input
-                                type="text"
-                                id="username"
-                                name="username"
+                                type='text'
+                                id='username'
+                                name='username'
                                 value={fields.username}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelErrorContainer>{errors.username && <LabelError>{errors.username}</LabelError>}</LabelErrorContainer>
                         </div>
-                        <div className="input-group">
-                            <Label htmlFor="password">Password</Label>
+                        <div className='input-group'>
+                            <Label htmlFor='password'>Password</Label>
                             <Input
-                                type="password"
-                                id="password"
-                                name="password"
+                                type='password'
+                                id='password'
+                                name='password'
                                 value={fields.password}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelErrorContainer>{errors.password && <LabelError>{errors.password}</LabelError>}</LabelErrorContainer>
                         </div>
-                        <div className="input-group">
-                            <Label htmlFor="repassword">Confirm Password</Label>
+                        <div className='input-group'>
+                            <Label htmlFor='repassword'>Confirm Password</Label>
                             <Input
-                                type="password"
-                                id="repassword"
-                                name="repassword"
+                                type='password'
+                                id='repassword'
+                                name='repassword'
                                 value={fields.repassword}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelErrorContainer>{errors.repassword && <LabelError>{errors.repassword}</LabelError>}</LabelErrorContainer>
                         </div>
-                        <div className="input-group">
-                            <Label htmlFor="email">Email</Label>
+                        <div className='input-group'>
+                            <Label htmlFor='email'>Email</Label>
                             <Input
-                                type="email"
-                                id="email"
-                                name="email"
+                                type='email'
+                                id='email'
+                                name='email'
                                 value={fields.email}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelErrorContainer>{errors.email && <LabelError>{errors.email}</LabelError>}</LabelErrorContainer>
                         </div>
                         {error && <LabelError>{error}</LabelError>}
-                        <div className="input-group">
-                            <Button type="submit" disabled={isLoading}>
-                                {isLoading ? "Loading..." : "Register"}
+                        <div className='input-group'>
+                            <Button type='submit' disabled={isLoading}>
+                                {isLoading ? 'Loading...' : 'Register'}
                             </Button>
-                            <Button type="reset" onClick={handleReset}>Reset</Button>
+                            <Button type='reset' onClick={handleReset}>
+                                Reset
+                            </Button>
                         </div>
                     </form>
                 </div>
@@ -193,7 +198,7 @@ const RegisterScreenStyles = styled.main`
         .register-container {
             margin: 1em 1em 1em 1em;
             span {
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 font-weight: 600;
                 text-align: center;
             }
