@@ -67,6 +67,7 @@ const AddProject = ({ placeholder }: any) => {
                 shortDescription,
                 imagePreview,
                 editorHtml,
+                isCheckedA,
             })
             .then((response) => {
                 console.log(response.data);
@@ -205,7 +206,7 @@ const AddProject = ({ placeholder }: any) => {
                                 label=" Show on landing page" 
                                 id="checkbox-main-project" />
                             </div>
-
+                            <LabelError>Error</LabelError>
                             <Label htmlFor="project-url">URL</Label>
                             <Input
                                 type="text"
