@@ -14,7 +14,19 @@ const RegisterScreen = () => {
     const validations = {
         username: {
             required: true,
-            errorMessage: 'Username is required.',
+            errorMessage: 'Password is required.',
+            validate: (value: any) => {
+                if (!value) {
+                    return 'Username is required.';
+                }
+                if (value.length < 6) {
+                    return 'Username must be at least 6 characters long.';
+                }
+                if (!/^[a-zA-Z0-9]+$/.test(value)) {
+                    return 'Username should only contain letters and numbers.';
+                }
+                return true;
+            },
         },
         password: {
             required: true,

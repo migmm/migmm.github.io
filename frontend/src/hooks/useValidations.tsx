@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 interface Validations {
     [key: string]: {
         required: boolean;
         errorMessage: string;
-        validate?: () => boolean;
+        validate?: (value: any) => boolean | string;
         validateErrorMessage?: string;
     };
 }
@@ -19,11 +19,12 @@ export const useValidation = (validations: Validations) => {
             const fieldValue = fields[fieldName];
 
             if (fieldValidation.required && !fieldValue) {
-                newErrors[fieldName] = fieldValidation.errorMessage;
-            }
-
-            if (fieldValidation.validate && !fieldValidation.validate()) {
-                newErrors[fieldName] = fieldValidation.validateErrorMessage || "";
+                newErrors[fieldName] = fieldValidation.errorMessage || 'Field is required.';
+            } else if (fieldValidation.validate) {
+                const validationResult = fieldValidation.validate(fieldValue);
+                if (typeof validationResult === 'string') {
+                    newErrors[fieldName] = validationResult;
+                }
             }
         });
 
