@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import HamburgerButton from "./HamburgerButton/HamburgerButton";
-import NavBar from "./Navbar/NavBar";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import HamburgerButton from './HamburgerButton/HamburgerButton';
+import NavBar from './Navbar/NavBar';
+import styled from 'styled-components';
 
 const Header = ({ user }: any)=> {
     // NavBar
@@ -12,41 +12,45 @@ const Header = ({ user }: any)=> {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
     // Zoom
     const location = useLocation();
 
     useEffect(() => {
-        const headerComponent = document.querySelector(".header-container") as HTMLElement;
+        const headerComponent = document.querySelector('.header-container') as HTMLElement;
 
         function handleScroll(e:any) {
             const scrollTop = e.deltaY;
             console.log(scrollTop)
-            if (scrollTop > 0 && location.pathname === "/") {
-                headerComponent.style.opacity = "0";
+            if (scrollTop > 0 && location.pathname === '/') {
+                headerComponent.style.opacity = '0';
             } else {
-                headerComponent.style.opacity = "1";
+                headerComponent.style.opacity = '1';
             }
         }
 
-        document.addEventListener("wheel", handleScroll);
+        document.addEventListener('wheel', handleScroll);
 
         return () => {
-            document.removeEventListener("wheel", handleScroll);
+            document.removeEventListener('wheel', handleScroll);
         };
     }, [location.pathname]);
 
     return (
         <HeaderStyles>
-            <div className="header-container">
+            <div className='header-container'>
                 <header>
-                    <div className="logo-container">
-                        <img src="img/logo.png" alt="Logo" />
+                    <div className='logo-container'>
+                        <img src='img/logo.png' alt='Logo' />
                     </div>
-                    <div className={`navbar-container ${isMenuOpen ? "menu-open" : ""}`}>
-                        <NavBar user={user} />
+                    <div className={`navbar-container ${isMenuOpen ? 'menu-open' : ''}`}>
+                        <NavBar user={user} closeMenu={closeMenu} />
                     </div>
-                    <span className="contact-button">Contact me!</span>
-                    <div className={`hamburger-button-container ${isMenuOpen ? "open" : ""}`} onClick={handleHamburgerClick}>
+                    <span className='contact-button'>Contact me!</span>
+                    <div className={`hamburger-button-container ${isMenuOpen ? 'open' : ''}`} onClick={handleHamburgerClick}>
                         <HamburgerButton />
                     </div>
                 </header>
@@ -160,7 +164,7 @@ const HeaderStyles = styled.header`
         .contact-button {
             background-color: #ed1b23;
             height: 65px;
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             color: white;
             font-weight: 500;
             line-height: 65px;

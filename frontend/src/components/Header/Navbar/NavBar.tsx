@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Navbar = (props: any, { user }: any) => {
     return (
@@ -8,20 +8,20 @@ const Navbar = (props: any, { user }: any) => {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to='/' onClick={props.closeMenu}>Home</Link>
                     </li>
                     <li>
-                        <Link to="/projects">Projects</Link>
+                        <Link to='/projects' onClick={props.closeMenu}>Projects</Link>
                     </li>
                     <li>
-                        <Link to="/certificates">Certificates</Link>
+                        <Link to='/certificates' onClick={props.closeMenu}>Certificates</Link>
                     </li>
                     <li>
-                        <Link to="/curriculum">Curriculum</Link>
+                        <Link to='/curriculum' onClick={props.closeMenu}>Curriculum</Link>
                     </li>
-                    {user && user.roles.includes("admin") && (
+                    {user && user.roles.includes('admin') && (
                     <li>
-                        <Link to="/contact">Contact</Link>
+                        <Link to='/contact' onClick={props.closeMenu}>Contact</Link>
                     </li>
                     )}
                 </ul>
