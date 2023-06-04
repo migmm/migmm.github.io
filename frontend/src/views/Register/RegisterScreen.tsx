@@ -18,6 +18,7 @@ const RegisterScreen = () => {
         username: {
             required: true,
             errorMessage: 'Username is required.',
+            existingMessage: 'User already exists.',
             validate: (value: any) => {
                 if (value.length < 6) {
                     return 'Username must be at least 6 characters long.';
@@ -55,6 +56,7 @@ const RegisterScreen = () => {
         email: {
             required: true,
             errorMessage: 'Email is required.',
+            existingMessage: 'User already exists.',
             validate: (value:any) => {
                 if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{3,})?$/.test(value)) {
                     return 'Invalid email format';
@@ -62,13 +64,23 @@ const RegisterScreen = () => {
                 return true;
             },
         },
+        commonError: {
+            required: false,
+            errorMessage: 'An error occurred. Please try again later.',
+        },
     };
 
-    const { fields, handleChange, handleReset } = useFormReset({}); 
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const { errors, validateForm } = useValidation(validations);
+
+    const { fields, handleChange, handleReset } = useFormReset({
+        username: '',
+        password: '',
+        repassword: '',
+        email: '',
+    });
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -100,12 +112,12 @@ const RegisterScreen = () => {
                     const { status, data } = err.response;
                     if (status === 401) {
                         if (data.message === 'Existing username') {
-                            // Handle username error
+                            setError(validations.username.existingMessage);
                         } else if (data.message === 'Existing email') {
-                            // Handle email error
+                            setError(validations.email.existingMessage);
                         }
                     } else {
-                        setError('An error occurred. Please try again later.');
+                        setError(validations.commonError.errorMessage);
                         console.error(error);
                     }
                 }
@@ -165,7 +177,7 @@ const RegisterScreen = () => {
                             />
                             <LabelErrorContainer>{errors.email && <LabelError>{errors.email}</LabelError>}</LabelErrorContainer>
                         </div>
-                        {error && <LabelError>{error}</LabelError>}
+                        <LabelErrorContainer>{errors.commonError && <LabelError>{errors.commonError}</LabelError>}</LabelErrorContainer>
                         <div className='input-group'>
                             <Button type='submit' disabled={isLoading}>
                                 {isLoading ? 'Loading...' : 'Register'}
