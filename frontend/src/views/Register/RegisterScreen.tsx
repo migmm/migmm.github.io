@@ -12,7 +12,6 @@ import { useValidation } from '../../hooks/useValidations';
 import useFormReset from '../../hooks/useFormReset';
 
 
-
 const RegisterScreen = () => {
     const validations = {
         username: {
@@ -116,10 +115,10 @@ const RegisterScreen = () => {
                         } else if (data.message === 'Existing email') {
                             setError(validations.email.existingMessage);
                         }
-                    } else {
-                        setError(validations.commonError.errorMessage);
-                        console.error(error);
-                    }
+                    } 
+                }else {
+                    setError(validations.commonError.errorMessage);
+                    console.error(err);
                 }
             }
         }
@@ -178,6 +177,7 @@ const RegisterScreen = () => {
                             <LabelErrorContainer>{errors.email && <LabelError>{errors.email}</LabelError>}</LabelErrorContainer>
                         </div>
                         <LabelErrorContainer>{errors.commonError && <LabelError>{errors.commonError}</LabelError>}</LabelErrorContainer>
+                        {!errors.commonError && error && <LabelError>{error}</LabelError>}
                         <div className='input-group'>
                             <Button type='submit' disabled={isLoading}>
                                 {isLoading ? 'Loading...' : 'Register'}
