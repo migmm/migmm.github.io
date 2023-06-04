@@ -14,11 +14,8 @@ const RegisterScreen = () => {
     const validations = {
         username: {
             required: true,
-            errorMessage: 'Password is required.',
+            errorMessage: 'Username is required.',
             validate: (value: any) => {
-                if (!value) {
-                    return 'Username is required.';
-                }
                 if (value.length < 6) {
                     return 'Username must be at least 6 characters long.';
                 }
@@ -31,23 +28,36 @@ const RegisterScreen = () => {
         password: {
             required: true,
             errorMessage: 'Password is required.',
+            validate: (value: any) => {
+                if (value.length < 8) {
+                    return 'Password must be between 8 an 16 characters long.';
+                }
+                if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,16}$/.test(value)) {
+                    return 'Password must contain at least one digit, one uppercase letter, one lowercase letter, and two special characters';
+                }
+                return true;
+            },
+            
         },
         repassword: {
             required: true,
             errorMessage: 'Password repeat is required.',
-            validate: () => fields.password === fields.repassword,
-            validateErrorMessage: 'Passwords do not match.',
+            validate: (value:any, formData:any) => {
+                if (value !== formData.password) {
+                    return 'Password confirmation does not match.';
+                }
+                return true;
+            },
         },
         email: {
             required: true,
             errorMessage: 'Email is required.',
-            validate: () => {
-                if (fields.email) {
-                    return /\S+@\S+\.\S+/.test(fields.email);
+            validate: (value:any) => {
+                if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{3,})?$/.test(value)) {
+                    return 'Invalid email format';
                 }
                 return true;
             },
-            validateErrorMessage: 'Invalid email format.',
         },
     };
 

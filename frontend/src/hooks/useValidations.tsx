@@ -4,7 +4,7 @@ interface Validations {
     [key: string]: {
         required: boolean;
         errorMessage: string;
-        validate?: (value: any) => boolean | string;
+        validate?: (value: any, formData?: Record<string, string>) => boolean | string;
         validateErrorMessage?: string;
     };
 }
@@ -21,12 +21,18 @@ export const useValidation = (validations: Validations) => {
             if (fieldValidation.required && !fieldValue) {
                 newErrors[fieldName] = fieldValidation.errorMessage || 'Field is required.';
             } else if (fieldValidation.validate) {
-                const validationResult = fieldValidation.validate(fieldValue);
+                const validationResult = fieldValidation.validate(fieldValue, fields); // Pasamos los campos del formulario
+
                 if (typeof validationResult === 'string') {
                     newErrors[fieldName] = validationResult;
                 }
             }
         });
+
+        // Validación de la coincidencia entre password y repassword
+        if (fields.password && fields.repassword && fields.password !== fields.repassword) {
+            newErrors.repassword = 'Password confirmation does not match.';
+        }
 
         setErrors(newErrors);
 
