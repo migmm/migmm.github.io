@@ -7,8 +7,11 @@ import { Label } from '../../Styles/Form/Label/Label';
 import { LabelError } from '../../Styles/Form/LabelError/LabelError';
 import { Input } from '../../Styles/Form/Input/Input';
 import { H1 } from '../../Styles/H1/H1';
-import { useFormFields } from '../../hooks/useFormFields';
+
 import { useValidation } from '../../hooks/useValidations';
+import useFormReset from '../../hooks/useFormReset';
+
+
 
 const RegisterScreen = () => {
     const validations = {
@@ -61,20 +64,11 @@ const RegisterScreen = () => {
         },
     };
 
-    const [fields, handleChange] = useFormFields({});
-
+    const { fields, handleChange, handleReset } = useFormReset({}); 
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const { errors, validateForm } = useValidation(validations);
-
-    const fieldNames = Object.keys(validations); 
-
-    const handleReset = () => {
-        fieldNames.forEach((fieldName) => {
-          handleChange(fieldName, '');
-        });
-    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
