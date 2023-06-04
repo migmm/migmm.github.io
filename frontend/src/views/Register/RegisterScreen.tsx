@@ -176,8 +176,7 @@ const RegisterScreen = () => {
                             />
                             <LabelErrorContainer>{errors.email && <LabelError>{errors.email}</LabelError>}</LabelErrorContainer>
                         </div>
-                        <LabelErrorContainer>{errors.commonError && <LabelError>{errors.commonError}</LabelError>}</LabelErrorContainer>
-                        {!errors.commonError && error && <LabelError>{error}</LabelError>}
+                        <LabelErrorContainer>{!errors.commonError && error && <LabelError>{error}</LabelError>}</LabelErrorContainer>
                         <div className='input-group'>
                             <Button type='submit' disabled={isLoading}>
                                 {isLoading ? 'Loading...' : 'Register'}
