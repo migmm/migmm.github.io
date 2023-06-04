@@ -61,28 +61,18 @@ const RegisterScreen = () => {
         },
     };
 
-    const fieldNames = Object.keys(validations);
-
-    const [fields, handleChange] = useFormFields(
-        fieldNames.reduce((acc, fieldName) => {
-            acc[fieldName] = '';
-            return acc;
-        }, {} as Record<string, string>)
-    );
+    const [fields, handleChange] = useFormFields({});
 
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const { errors, validateForm } = useValidation(validations);
 
-    // TODO: check
-    function setValidationErrors(_arg0: (prevErrors: any) => any) {
-        throw new Error('Function not implemented.');
-    }
+    const fieldNames = Object.keys(validations); 
 
     const handleReset = () => {
         fieldNames.forEach((fieldName) => {
-            handleChange(fieldName, '');
+          handleChange(fieldName, '');
         });
     };
 
@@ -116,15 +106,9 @@ const RegisterScreen = () => {
                     const { status, data } = err.response;
                     if (status === 401) {
                         if (data.message === 'Existing username') {
-                            setValidationErrors((prevErrors) => ({
-                                ...prevErrors,
-                                username: 'Username already exists.',
-                            }));
+                            // Handle username error
                         } else if (data.message === 'Existing email') {
-                            setValidationErrors((prevErrors) => ({
-                                ...prevErrors,
-                                email: 'Email already exists.',
-                            }));
+                            // Handle email error
                         }
                     } else {
                         setError('An error occurred. Please try again later.');
