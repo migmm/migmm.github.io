@@ -15,7 +15,7 @@ import useFormReset from '../../hooks/useFormReset';
 const RegisterScreen = () => {
 
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [buttonMessage, setButtonMessage] = useState(false);
     const navigate = useNavigate();
     const { errors, validateForm } = useValidation(validations);
 
@@ -29,7 +29,7 @@ const RegisterScreen = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError('');
-        setIsLoading(true);
+        setButtonMessage(true);
 
         if (validateForm(fields)) {
             try {
@@ -68,7 +68,7 @@ const RegisterScreen = () => {
             }
         }
 
-        setIsLoading(false);
+        setButtonMessage(false);
     };
 
     return (
@@ -123,8 +123,8 @@ const RegisterScreen = () => {
                         </div>
                         <LabelError>{error}</LabelError>
                         <div className='input-group'>
-                            <Button type='submit' disabled={isLoading}>
-                                {isLoading ? 'Loading...' : 'Register'}
+                            <Button type='submit' disabled={buttonMessage}>
+                                {buttonMessage ? 'Loading...' : 'Register'}
                             </Button>
                             <Button type='reset' onClick={handleReset}>
                                 Reset
