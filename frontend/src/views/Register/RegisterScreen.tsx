@@ -29,7 +29,7 @@ const RegisterScreen = () => {
 
         if (validateForm(fields)) {
 
-            const data = Object.keys(fields).reduce((formData : any, fieldName) => {
+            const data = Object.keys(fields).reduce((formData : Record<string, any>, fieldName : string) => {
                 formData[fieldName] = fields[fieldName];
                 return formData;
             }, {});
@@ -49,9 +49,9 @@ const RegisterScreen = () => {
                     navigate('/');
                 }
 
-            } catch (err: any) {
-                if (err.response) {
-                    const { status, data } = err.response;
+            } catch (error : any) {
+                if (error.response) {
+                    const { status, data } = error.response;
                     if (status === 401) {
                         if (data.message === 'Existing username') {
                             setError(validations.username.existingMessage);
@@ -61,7 +61,7 @@ const RegisterScreen = () => {
                     } 
                 }else {
                     setError(validations.commonError.errorMessage);
-                    console.error(err);
+                    console.error(error);
                 }
             }
         }
