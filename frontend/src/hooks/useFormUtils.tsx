@@ -1,7 +1,6 @@
-// useResetFields.js
 import { useState } from 'react';
 
-const useFormReset = (initialFields: any) => {
+const useFormUtils = (initialFields: any) => {
     const [fields, setFields] = useState(initialFields);
 
     const handleReset = () => {
@@ -18,4 +17,4 @@ const useFormReset = (initialFields: any) => {
     return { fields, handleChange, handleReset };
 };
 
-export default useFormReset;
+export default useFormUtils;

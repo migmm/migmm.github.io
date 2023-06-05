@@ -9,7 +9,7 @@ import { Input } from '../../Styles/Form/Input/Input';
 import { H1 } from '../../Styles/H1/H1';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
-import useFormReset from '../../hooks/useFormReset';
+import useFormUtils from '../../hooks/useFormUtils';
 
 
 const RegisterScreen = () => {
@@ -17,9 +17,9 @@ const RegisterScreen = () => {
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
     const navigate = useNavigate();
+    
     const { errors, validateForm } = useValidation(validations);
-
-    const { fields, handleChange, handleReset } = useFormReset({initialFields});
+    const { fields, handleChange, handleReset } = useFormUtils({initialFields});
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
