@@ -86,7 +86,7 @@ const RegisterScreen = () => {
                                 value={fields.username}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelErrorContainer>{errors.username && <LabelError>{errors.username}</LabelError>}</LabelErrorContainer>
+                            <LabelError>{errors.username}</LabelError>
                         </div>
                         <div className='input-group'>
                             <Label htmlFor='password'>Password</Label>
@@ -97,7 +97,7 @@ const RegisterScreen = () => {
                                 value={fields.password}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelErrorContainer>{errors.password && <LabelError>{errors.password}</LabelError>}</LabelErrorContainer>
+                            <LabelError>{errors.password}</LabelError>
                         </div>
                         <div className='input-group'>
                             <Label htmlFor='repassword'>Confirm Password</Label>
@@ -108,7 +108,7 @@ const RegisterScreen = () => {
                                 value={fields.repassword}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelErrorContainer>{errors.repassword && <LabelError>{errors.repassword}</LabelError>}</LabelErrorContainer>
+                            <LabelError>{errors.repassword}</LabelError>
                         </div>
                         <div className='input-group'>
                             <Label htmlFor='email'>Email</Label>
@@ -119,9 +119,9 @@ const RegisterScreen = () => {
                                 value={fields.email}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelErrorContainer>{errors.email && <LabelError>{errors.email}</LabelError>}</LabelErrorContainer>
+                            <LabelError>{errors.email}</LabelError>
                         </div>
-                        <LabelErrorContainer>{!errors.commonError && error && <LabelError>{error}</LabelError>}</LabelErrorContainer>
+                        <LabelError>{error}</LabelError>
                         <div className='input-group'>
                             <Button type='submit' disabled={isLoading}>
                                 {isLoading ? 'Loading...' : 'Register'}
@@ -166,8 +166,4 @@ const RegisterScreenStyles = styled.main`
         flex-direction: row;
         gap: 1em;
     }
-`;
-
-const LabelErrorContainer = styled.div`
-    height: 1.5em;
 `;
