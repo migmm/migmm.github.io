@@ -17,7 +17,7 @@ const RegisterScreen = () => {
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
     const navigate = useNavigate();
-    
+
     const { errors, validateForm } = useValidation(validations);
     const { fields, handleChange, handleReset } = useFormUtils({initialFields});
 
@@ -47,7 +47,7 @@ const RegisterScreen = () => {
                 if (response.status === 201) {
                     navigate('/');
                 }
-                console.log(response);
+
             } catch (err: any) {
                 if (err.response) {
                     const { status, data } = err.response;
@@ -70,11 +70,11 @@ const RegisterScreen = () => {
 
     return (
         <RegisterScreenStyles>
-            <div className='contact-container'>
-                <H1>Register</H1>
-                <div className='register-form-container'>
+            <div>
+                <H1>Registration</H1>
+                <div>
                     <form onSubmit={handleSubmit} noValidate>
-                        <div className='input-group'>
+                        <InputGroup>
                             <Label htmlFor='username'>Username</Label>
                             <Input
                                 type='text'
@@ -84,8 +84,8 @@ const RegisterScreen = () => {
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError>{errors.username}</LabelError>
-                        </div>
-                        <div className='input-group'>
+                        </InputGroup>
+                        <InputGroup>
                             <Label htmlFor='password'>Password</Label>
                             <Input
                                 type='password'
@@ -95,8 +95,8 @@ const RegisterScreen = () => {
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError>{errors.password}</LabelError>
-                        </div>
-                        <div className='input-group'>
+                        </InputGroup>
+                        <InputGroup>
                             <Label htmlFor='repassword'>Confirm Password</Label>
                             <Input
                                 type='password'
@@ -106,8 +106,8 @@ const RegisterScreen = () => {
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError>{errors.repassword}</LabelError>
-                        </div>
-                        <div className='input-group'>
+                        </InputGroup>
+                        <InputGroup>
                             <Label htmlFor='email'>Email</Label>
                             <Input
                                 type='email'
@@ -117,16 +117,22 @@ const RegisterScreen = () => {
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError>{errors.email}</LabelError>
-                        </div>
+                        </InputGroup>
                         <LabelError>{error}</LabelError>
-                        <div className='input-group'>
-                            <Button type='submit' disabled={buttonMessage}>
-                                {buttonMessage ? 'Loading...' : 'Register'}
+                        <InputGroup>
+                            <Button 
+                                type='submit' 
+                                disabled={buttonMessage}
+                            >
+                                {buttonMessage ? 'Wait..' : 'Register'}
                             </Button>
-                            <Button type='reset' onClick={handleReset}>
+                            <Button 
+                                type='reset' 
+                                onClick={handleReset}
+                            >
                                 Reset
                             </Button>
-                        </div>
+                        </InputGroup>
                     </form>
                 </div>
             </div>
@@ -140,27 +146,16 @@ const RegisterScreenStyles = styled.main`
     max-width: 1900px;
     margin: 0 auto;
     margin: 1em;
+`;
 
-    .register-form-container {
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+const InputGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-        .register-container {
-            margin: 1em 1em 1em 1em;
-            span {
-                font-family: 'Work Sans', sans-serif;
-                font-weight: 600;
-                text-align: center;
-            }
-        }
-    }
-
-    .input-group:last-child {
+    :last-child {
         display: flex;
         flex-direction: row;
         gap: 1em;
     }
-`;
+`
