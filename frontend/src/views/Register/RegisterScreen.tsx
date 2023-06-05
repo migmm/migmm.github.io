@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { CommonStyles } from '../../Styles/CommonStyles/CommonStyles';
 import { Button } from '../../Styles/Form/Button/Button';
 import { Label } from '../../Styles/Form/Label/Label';
 import { LabelError } from '../../Styles/Form/LabelError/LabelError';
@@ -69,7 +70,7 @@ const RegisterScreen = () => {
     };
 
     return (
-        <RegisterScreenStyles>
+        <CommonStyles>
             <div>
                 <H1>Registration</H1>
                 <div>
@@ -136,17 +137,13 @@ const RegisterScreen = () => {
                     </form>
                 </div>
             </div>
-        </RegisterScreenStyles>
+        </CommonStyles>
     );
 };
 
 export default RegisterScreen;
 
-const RegisterScreenStyles = styled.main`
-    max-width: 1900px;
-    margin: 0 auto;
-    margin: 1em;
-`;
+
 
 const InputGroup = styled.div`
     display: flex;
