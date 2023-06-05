@@ -7,7 +7,7 @@ import { Label } from '../../Styles/Form/Label/Label';
 import { LabelError } from '../../Styles/Form/LabelError/LabelError';
 import { Input } from '../../Styles/Form/Input/Input';
 import { H1 } from '../../Styles/H1/H1';
-import { validations } from './validations';
+import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormReset from '../../hooks/useFormReset';
 
@@ -19,12 +19,7 @@ const RegisterScreen = () => {
     const navigate = useNavigate();
     const { errors, validateForm } = useValidation(validations);
 
-    const { fields, handleChange, handleReset } = useFormReset({
-        username: '',
-        password: '',
-        repassword: '',
-        email: '',
-    });
+    const { fields, handleChange, handleReset } = useFormReset({initialFields});
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
