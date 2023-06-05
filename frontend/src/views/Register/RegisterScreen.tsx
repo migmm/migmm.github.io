@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CommonStyles } from '../../Styles/CommonStyles/CommonStyles';
+import { InputGroup } from '../../Styles/Form/InputGroup/InputGroup';
 import { Button } from '../../Styles/Form/Button/Button';
 import { Label } from '../../Styles/Form/Label/Label';
 import { LabelError } from '../../Styles/Form/LabelError/LabelError';
@@ -145,14 +145,4 @@ export default RegisterScreen;
 
 
 
-const InputGroup = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    :last-child {
-        display: flex;
-        flex-direction: row;
-        gap: 1em;
-    }
-`
