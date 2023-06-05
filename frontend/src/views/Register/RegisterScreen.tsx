@@ -27,14 +27,16 @@ const RegisterScreen = () => {
         setButtonMessage(true);
 
         if (validateForm(fields)) {
+
+            const data = Object.keys(fields).reduce((formData : any, fieldName) => {
+                formData[fieldName] = fields[fieldName];
+                return formData;
+            }, {});
+
             try {
                 const response = await axios.post(
                     'http://localhost:8080/api/users',
-                    {
-                        username: fields.username,
-                        password: fields.password,
-                        email: fields.email,
-                    },
+                        data,
                     {
                         headers: {
                             'Content-Type': 'application/json',
