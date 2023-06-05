@@ -81,6 +81,7 @@ const RegisterScreen = () => {
                                 type='text'
                                 id='username'
                                 name='username'
+                                autoComplete='off'
                                 value={fields.username}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
@@ -114,6 +115,7 @@ const RegisterScreen = () => {
                                 type='email'
                                 id='email'
                                 name='email'
+                                autoComplete='off'
                                 value={fields.email}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
