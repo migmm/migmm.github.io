@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 
 import Button from "../../Styles/Form/Button/Button";
@@ -13,157 +11,74 @@ import LabelError from "../../Styles/Form/LabelError/LabelError";
 import Textarea from "../../Styles/Form/Textarea/Textarea";
 import H1 from "../../Styles/H1/H1";
 import Checkbox from "../../Styles/Form/CheckBox/CheckBox";
-import { MAX_IMAGE_COUNT } from "../../config/quill";
+import QuillEditor from "./Quill";
 
-type Resize = "none" | "both" | "horizontal" | "vertical" | "initial" | "inherit";
-
-const MAX_IMAGE_IN_QUILL_EDITOR = MAX_IMAGE_COUNT;
-
-const Font = ReactQuill.Quill.import("formats/font");
-Font.whitelist = ["Work-Sans"]; // allow ONLY these fonts and the default
-ReactQuill.Quill.register(Font, true);
-
-const AddProject = ({ placeholder }: any) => {
-    const [editorHtml, setEditorHtml] = useState("");
-    const [projectName, setProjectName] = useState("");
-    const [projectStatus, setProjectStatus] = useState("");
-    const [projectUrl, setProjectUrl] = useState("");
-    const [shortDescription, setshortDescription] = useState("");
-    const [error, setError] = useState("");
-    const [imageCount, setImageCount] = useState(0);
+const AddProject = () => {
     const [imagePreview, setImagePreview] = useState("");
-    const [isCheckedA, setIsCheckedA] = useState(false);
-    const handleChangeA = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIsCheckedA(e.target.checked);
+    const [editorHtml, setEditorHtml] = useState("");
+
+    const [formData, setFormData] = useState({
+        title: "",
+        errorTitle: "",
+        category: "",
+        errorCategory: "",
+        projectName: "",
+        projectStatus: "",
+        projectUrl: "",
+        shortDescription: "",
+        error: "",
+        imageCount: 0,
+        isCheckedA: false,
+    });
+
+    const handleChange = (event: any) => {
+        const { name, value } = event.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }));
     };
 
-    const handleReset = () => {
-        setImagePreview("");
+    const handleCheckboxChange = (event: any) => {
+        const { name, checked } = event.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: checked,
+        }));
     };
 
-    const handleChange = (html: any) => {
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = html;
-        const images = tempDiv.getElementsByTagName("img");
+    const {
+        title,
+        category,
+        projectName,
+        projectStatus,
+        projectUrl,
+        shortDescription,
+        isCheckedA,
+    } = formData;
 
-        if (images.length > MAX_IMAGE_IN_QUILL_EDITOR) {
-            setError(`Exceeded the maximum image count. You can only add ${MAX_IMAGE_IN_QUILL_EDITOR} images.`);
-            return;
-        }
-
+    const handleEditorChange = (html: string) => {
         setEditorHtml(html);
-        setImageCount(images.length);
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        setError("");
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("category", category);
 
         axios
-            .post("http://localhost:8080/api/projects", {
-                projectName,
-                projectStatus,
-                projectUrl,
-                shortDescription,
-                imagePreview,
-                editorHtml,
-                isCheckedA,
-            })
+            .post("/api/projects", formData)
             .then((response) => {
+                
                 console.log(response.data);
-            });
-    };
-
-    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const files = event.dataTransfer.files;
-        const images = Array.from(files).filter((file) => file.type.includes("image/"));
-        const remainingSlots = MAX_IMAGE_IN_QUILL_EDITOR - imageCount;
-
-        if (images.length > remainingSlots) {
-            setError(`Exceeded the maximum image count. You can only add ${remainingSlots} more images.`);
-            return;
-        }
-
-        const promises = images.map((image) => {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const base64Data = reader.result?.toString() || "";
-                    resolve(base64Data);
-                };
-                reader.onerror = (error) => {
-                    reject(error);
-                };
-                reader.readAsDataURL(image);
-            });
-        });
-
-        Promise.all(promises)
-            .then((base64Images) => {
-                const updatedHtml: any = base64Images.reduce((html, base64Image) => {
-                    const imgTag = `<img src='${base64Image}' alt='Image' />`;
-                    return html + imgTag;
-                }, editorHtml);
-
-                setEditorHtml(updatedHtml);
-                setImageCount(imageCount + images.length);
             })
             .catch((error) => {
-                setError("An error occurred while processing the images.");
+                
                 console.error(error);
             });
     };
-
-    const editorStyle: React.CSSProperties = {
-        height: "400px",
-        width: "100%",
-        resize: "vertical" as Resize,
-        overflow: "auto",
-        borderRadius: "20px",
-        border: "1px solid #EBEBEB",
-        backgroundColor: "#fff",
-        overflowX: "auto",
-        overflowY: "hidden",
-    };
-
-    const modules = {
-        toolbar: [
-            [{ header: "1" }, { header: "2" }],
-            [{ font: Font.whitelist }],
-            [{ size: [] }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
-            [{ align: [] }],
-            [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
-            ["link", "image", "video"],
-            ["clean"],
-            ["code"],
-        ],
-        clipboard: {
-            matchVisual: false,
-        },
-    };
-
-    const formats = [
-        "header",
-        "font",
-        "size",
-        "bold",
-        "italic",
-        "underline",
-        "strike",
-        "blockquote",
-        "align",
-        "list",
-        "bullet",
-        "indent",
-        "link",
-        "image",
-        "video",
-        "code",
-    ];
 
     return (
         <AddProjectStyles>
@@ -173,21 +88,10 @@ const AddProject = ({ placeholder }: any) => {
                     <form onSubmit={handleSubmit}>
                         <div className="input-group">
                             <Label htmlFor="project-name">Project title</Label>
-                            <Input
-                                type="text"
-                                id="projectName"
-                                name="projectName"
-                                value={projectName}
-                                onChange={(event) => setProjectName(event.target.value)}
-                            />
+                            <Input type="text" id="projectName" name="projectName" value={projectName} onChange={handleChange} />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="project-status">Status</Label>
-                            <Select
-                                name="projectStatus"
-                                id="project-status"
-                                value={projectStatus}
-                                onChange={(event) => setProjectStatus(event.target.value)}
-                            >
+                            <Select name="projectStatus" id="project-status" value={projectStatus} onChange={handleChange}>
                                 <option value="">Select status</option>
                                 <option value="inProgress">In Progress</option>
                                 <option value="finished">Finished</option>
@@ -195,35 +99,29 @@ const AddProject = ({ placeholder }: any) => {
                             </Select>
                             <LabelError>Error</LabelError>
 
-                            <div style={{
+                            <div
+                                style={{
                                     fontFamily: "Work Sans",
                                     margin: "0 auto",
                                     padding: "0 0 1em 0",
-                                }}>
-                                <Checkbox 
-                                handleChange={handleChangeA} 
-                                isChecked={isCheckedA} 
-                                label=" Show on landing page" 
-                                id="checkbox-main-project" />
+                                }}
+                            >
+                                {
+                                    <Checkbox
+                                        handleChange={handleCheckboxChange}
+                                        isChecked={isCheckedA}
+                                        label=" Show on landing page"
+                                        id="checkbox-main-project"
+                                    />
+                                }
                             </div>
                             <LabelError>Error</LabelError>
                             <Label htmlFor="project-url">URL</Label>
-                            <Input
-                                type="text"
-                                id="project-url"
-                                name="projectUrl"
-                                value={projectUrl}
-                                onChange={(event) => setProjectUrl(event.target.value)}
-                            />
+                            <Input type="text" id="project-url" name="projectUrl" value={projectUrl} onChange={handleChange} />
                             <LabelError>Error</LabelError>
 
                             <Label htmlFor="short-description">Short description</Label>
-                            <Textarea
-                                id="short-description"
-                                name="shortDescription"
-                                value={shortDescription}
-                                onChange={(event) => setshortDescription(event.target.value)}
-                            />
+                            <Textarea id="short-description" name="shortDescription" value={shortDescription} onChange={handleChange} />
                             <LabelError>Error</LabelError>
                             <Label htmlFor="certification-image">Cover Image</Label>
                             <InputFile setImagePreview={setImagePreview} imagePreview={imagePreview} />
@@ -234,30 +132,23 @@ const AddProject = ({ placeholder }: any) => {
                                     width: "100%",
                                     margin: "0 auto",
                                 }}
-                                onDrop={handleDrop}
+                                /*   onDrop={handleDrop} */
                             >
-                                <ReactQuill
-                                    onChange={handleChange}
-                                    value={editorHtml}
-                                    modules={modules}
-                                    formats={formats}
-                                    bounds=".app"
-                                    placeholder={placeholder}
-                                    style={editorStyle}
+                                <QuillEditor 
+                                    placeholder="Enter text..." 
+                                    onChange={handleEditorChange}
+                                    value={editorHtml} 
                                 />
                             </div>
                             <LabelError>Error</LabelError>
                         </div>
                         <div className="input-group">
                             <Button type="submit">Add</Button>
-                            <Button type="reset" onClick={handleReset}>
-                                Reset
-                            </Button>
+                            {/*  <Button onClick={handleReset}>Reset</Button> */}
                         </div>
                     </form>
                 </div>
             </div>
-            {error && <div>Error: {error}</div>}
         </AddProjectStyles>
     );
 };
@@ -284,44 +175,5 @@ const AddProjectStyles = styled.main`
                 gap: 1em;
             }
         }
-    }
-
-    .ql-picker.ql-font {
-        .ql-picker-item {
-            font-size: 0;
-            &:before {
-                content: attr(data-value) !important;
-                font-size: 14px;
-            }
-        }
-    }
-
-    .ql-picker.ql-font {
-        .ql-active {
-            &:before {
-                content: attr(data-value) !important;
-                font-size: 14px;
-            }
-        }
-    }
-
-    .ql-picker.ql-font .ql-picker-label[data-value="Work-Sans"]::before,
-    .ql-picker.ql-font .ql-picker-item[data-value="Work-Sans"]::before {
-        font-family: "Work Sans", cursive;
-        content: "Work Sans" !important;
-    }
-
-    .ql-font-Work-Sans {
-        font-family: "Work Sans";
-    }
-
-    .ql-container {
-        position: relative;
-        height: 400px;
-    }
-
-    .ql-container .ql-editor {
-        height: 100%;
-        overflow-y: auto;
     }
 `;
