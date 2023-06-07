@@ -11,7 +11,7 @@ import LabelError from "../../Styles/Form/LabelError/LabelError";
 import Textarea from "../../Styles/Form/Textarea/Textarea";
 import H1 from "../../Styles/H1/H1";
 import Checkbox from "../../Styles/Form/CheckBox/CheckBox";
-import QuillEditor from "./Quill";
+import QuillEditor from "../../components/Quill/Quill";
 
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState("");
