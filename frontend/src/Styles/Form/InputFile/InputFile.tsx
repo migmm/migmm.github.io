@@ -71,10 +71,7 @@ const InputFile = ({ setImagePreview, imagePreview } : any) => {
                 <ImagePreviewPlaceholder  
                     onClick={handleImagePreviewClick}
                     >
-                    <i 
-                        className='fas fa-upload fa-5x'
-                    >
-                    </i>
+                    <i className='fas fa-upload fa-5x'></i>
                 </ImagePreviewPlaceholder>
             )}
         </InputFileStyled>
