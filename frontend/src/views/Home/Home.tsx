@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import { Paragraph } from "../../Styles/Paragraph/Paragraph";
+import Paragraph from "../../Styles/Paragraph/Paragraph";
 
 const Home = () => {
     useEffect(() => {

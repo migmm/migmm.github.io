@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Textarea = styled.textarea`
 
-    font-family: "Work Sans", sans-serif;
+const Textarea = styled.textarea`
+    font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     text-align: center;
     font-size: 1em;
@@ -17,3 +17,5 @@ export const Textarea = styled.textarea`
         background-color: #e2e2e2;
     }
 `;
+
+export default Textarea;

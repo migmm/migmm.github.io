@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button } from "../../Styles/Form/Button/Button";
-import { Label } from "../../Styles/Form/Label/Label";
-import { LabelError } from "../../Styles/Form/LabelError/LabelError";
-import { Input } from "../../Styles/Form/Input/Input";
-import { Textarea } from "../../Styles/Form/Textarea/Textarea";
-import { H1 } from "../../Styles/H1/H1";
-import { InputFile } from "../../Styles/Form/InputFile/InputFile";
+import Button from "../../Styles/Form/Button/Button";
+import Label from "../../Styles/Form/Label/Label";
+import LabelError from "../../Styles/Form/LabelError/LabelError";
+import Input from "../../Styles/Form/Input/Input";
+import Textarea from "../../Styles/Form/Textarea/Textarea";
+import H1 from "../../Styles/H1/H1";
+import InputFile from "../../Styles/Form/InputFile/InputFile";
 
 const AddCertificate = () => {
   const [imagePreview, setImagePreview] = useState("");

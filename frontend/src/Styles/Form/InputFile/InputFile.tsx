@@ -2,7 +2,8 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-export const InputFile = ({ setImagePreview, imagePreview }: any) => {
+
+const InputFile = ({ setImagePreview, imagePreview }: any) => {
     const inputFileRef = useRef<HTMLInputElement>(null);
 
     const handleFileChange = (event: any) => {
@@ -34,10 +35,9 @@ export const InputFile = ({ setImagePreview, imagePreview }: any) => {
 
     return (
         <InputFileStyled>
-            <input
+            <InputImage
                 type='file'
                 id='image'
-                className='image'
                 name='Image'
                 accept='image/png, image/jpeg, image/bmp'
                 ref={inputFileRef}
@@ -63,16 +63,15 @@ export const InputFile = ({ setImagePreview, imagePreview }: any) => {
     );
 };
 
+export default InputFile;
+
+
 const InputFileStyled = styled.div`
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
     width: 100%;
-
-    .image {
-        display: none;
-    }
 
     .custom-file-upload {
         border-radius: 20px;
@@ -110,7 +109,7 @@ const InputFileStyled = styled.div`
         border: 1px solid #EBEBEB;
         margin-bottom: 1em;
         border-radius: 20px;
-        background-color: #fff;
+        background-color: #ffffff;
         cursor:pointer;
 
         :hover {
@@ -164,9 +163,15 @@ const InputFileStyled = styled.div`
     }
     .remove-image-button::before {
         font-family: 'Font Awesome 5 Free';
-        content: '\f00d'; /* Código de icono para la 'X' */
+        content: '\f00d';
         display: block;
         height: 100%;
         width: 100%;
     }
+`;
+
+const InputImage = styled.input`
+    .image {
+        display: none;
+    }   
 `;

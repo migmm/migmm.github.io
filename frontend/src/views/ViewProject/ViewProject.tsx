@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import FormattedView from "./FormattedView";
 
-import { H1 } from "../../Styles/H1/H1";
-import { Paragraph } from "../../Styles/Paragraph/Paragraph";
+import H1 from "../../Styles/H1/H1";
+import Paragraph from "../../Styles/Paragraph/Paragraph";
 
 const ViewProject = () => {
     const content = "<h1>Titulo del Proyecto</h1><p>Contenido del proyecto...</p>";

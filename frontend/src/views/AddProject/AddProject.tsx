@@ -4,14 +4,14 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 
-import { Button } from "../../Styles/Form/Button/Button";
-import { Label } from "../../Styles/Form/Label/Label";
-import { Input } from "../../Styles/Form/Input/Input";
-import { Select } from "../../Styles/Form/Select/Select";
-import { InputFile } from "../../Styles/Form/InputFile/InputFile";
-import { LabelError } from "../../Styles/Form/LabelError/LabelError";
-import { Textarea } from "../../Styles/Form/Textarea/Textarea";
-import { H1 } from "../../Styles/H1/H1";
+import Button from "../../Styles/Form/Button/Button";
+import Label from "../../Styles/Form/Label/Label";
+import Input from "../../Styles/Form/Input/Input";
+import Select from "../../Styles/Form/Select/Select";
+import InputFile from "../../Styles/Form/InputFile/InputFile";
+import LabelError from "../../Styles/Form/LabelError/LabelError";
+import Textarea from "../../Styles/Form/Textarea/Textarea";
+import H1 from "../../Styles/H1/H1";
 import Checkbox from "../../Styles/Form/CheckBox/CheckBox";
 import { MAX_IMAGE_COUNT } from "../../config/quill";
 

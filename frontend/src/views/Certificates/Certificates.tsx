@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { H1 } from "../../Styles/H1/H1";
+import H1 from "../../Styles/H1/H1";
 
 const Certificates = () => {
     return (

@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const InputGroup = styled.div`
+
+const InputGroup = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,4 +11,6 @@ export const InputGroup = styled.div`
         flex-direction: row;
         gap: 1em;
     }
-`
+`;
+
+export default InputGroup;

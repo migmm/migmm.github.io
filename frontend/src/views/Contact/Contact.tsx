@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../../Styles/Form/Button/Button";
-import { Input } from "../../Styles/Form/Input/Input";
-import { Label } from "../../Styles/Form/Label/Label";
-import { LabelError } from "../../Styles/Form/LabelError/LabelError";
-import { Textarea } from "../../Styles/Form/Textarea/Textarea";
-import { H1 } from "../../Styles/H1/H1";
-import{ Paragraph } from "../../Styles/Paragraph/Paragraph"
+import Button from "../../Styles/Form/Button/Button";
+import Input from "../../Styles/Form/Input/Input";
+import Label from "../../Styles/Form/Label/Label";
+import LabelError from "../../Styles/Form/LabelError/LabelError";
+import Textarea from "../../Styles/Form/Textarea/Textarea";
+import H1 from "../../Styles/H1/H1";
+import Paragraph from "../../Styles/Paragraph/Paragraph"
 
 function Contact() {
     return (

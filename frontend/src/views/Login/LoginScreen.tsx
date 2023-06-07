@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button } from "../../Styles/Form/Button/Button";
-import { Label } from "../../Styles/Form/Label/Label";
-import { LabelError } from "../../Styles/Form/LabelError/LabelError";
-import { Input } from "../../Styles/Form/Input/Input";
-import { H1 } from "../../Styles/H1/H1";
+import Button from "../../Styles/Form/Button/Button";
+import Label from "../../Styles/Form/Label/Label";
+import LabelError from "../../Styles/Form/LabelError/LabelError";
+import Input from "../../Styles/Form/Input/Input";
+import H1 from "../../Styles/H1/H1";
 
 
 const LoginScreen: React.FC = () => {
@@ -85,7 +85,7 @@ const LoginScreen: React.FC = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="input-group">
                             <Label htmlFor="user">User</Label>
-                            <Input type="text" id="user" name="user" onChange={(e) => handleChange(e.target.name, e.target.value)} />
+                            <Input type="text" id="user" name="user" onChange={(e : any) => handleChange(e.target.name, e.target.value)} />
                             <InvisibleLabelError visible={!!validationErrors.username}>{validationErrors.username}</InvisibleLabelError>
                         </div>
                         <div className="input-group">

@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Select= styled.select`
 
-    font-family: "Work Sans", sans-serif;
+const Select= styled.select`
+    font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     text-align: center;
     font-size: 1em;
@@ -15,3 +15,5 @@ export const Select= styled.select`
         background-color: #e2e2e2;
     }
 `;
+
+export default Select;

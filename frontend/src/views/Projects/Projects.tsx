@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { H1 } from "../../Styles/H1/H1"
-import{ Paragraph } from "../../Styles/Paragraph/Paragraph"
+import H1 from "../../Styles/H1/H1"
+import Paragraph from "../../Styles/Paragraph/Paragraph"
 
 const Projects = () => {
     return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 
 interface Props {
@@ -12,7 +12,7 @@ const Checkbox = (props: Props) => {
   return (
     <div>
       <input
-        type="checkbox"
+        type='checkbox'
         id={props.id}
         checked={props.isChecked}
         onChange={props.handleChange}
