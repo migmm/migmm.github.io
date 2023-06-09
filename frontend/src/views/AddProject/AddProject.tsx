@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 
+import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
 import Button from '../../Styles/Form/Button/Button';
 import Label from '../../Styles/Form/Label/Label';
 import Input from '../../Styles/Form/Input/Input';
@@ -11,14 +11,23 @@ import LabelError from '../../Styles/Form/LabelError/LabelError';
 import Textarea from '../../Styles/Form/Textarea/Textarea';
 import H1 from '../../Styles/H1/H1';
 import Checkbox from '../../Styles/Form/CheckBox/CheckBox';
+import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 import QuillEditor from '../../components/Quill/Quill';
-
+import { validations, initialFields } from './validations';
+import { useValidation } from '../../hooks/useValidations';
+import useFormUtils from '../../hooks/useFormUtils';
 
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState('');
     const [editorHtml, setEditorHtml] = useState('');
 
-    const [formData, setFormData] = useState({
+    const [error, setError] = useState('');
+    const [buttonMessage, setButtonMessage] = useState(false);
+
+    const { errors, validateForm } = useValidation(validations);
+    const { fields, handleChange, handleReset } = useFormUtils(initialFields);
+
+/*     const [formData, setFormData] = useState({
         title: '',
         errorTitle: '',
         category: '',
@@ -30,82 +39,101 @@ const AddProject = () => {
         error: '',
         imageCount: 0,
         isCheckedImage: false,
-    });
+    }); */
 
-    const handleCheckboxChange = (event : any) => {
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, checked } = event.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: checked,
-        }));
-    };
-
-    const handleChange = (event: any) => {
-        const { name, value } = event.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
-        }));
-    };
-
-    const {
-        title,
-        category,
-        projectName,
-        projectStatus,
-        projectUrl,
-        shortDescription,
-    } = formData;
+        handleChange(name, checked);
+      };
 
     const handleEditorChange = (html: string) => {
         setEditorHtml(html);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setError('');
+        setButtonMessage(true);
 
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('category', category);
-        console.log(formData)
-        axios
-            .post('/api/projects', formData)
-            .then((response) => {
-                
-                console.log(response.data);
-            })
-            .catch((error) => {
-                
-                console.error(error);
-            });
+        if (validateForm(fields)) {
+
+            const data = Object.keys(fields).reduce((formData : Record<string, any>, fieldName : string) => {
+                formData[fieldName] = fields[fieldName];
+                return formData;
+            }, {});
+
+            try {
+                const response = await axios.post(
+                    'http://localhost:8080/api/users',
+                        data,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+
+                if (response.status === 201) {
+                   /*  navigate('/'); */
+                }
+
+            } catch (error : any) {
+                if (error.response) {
+                  /*   const { status, data } = error.response;
+                    if (status === 401) {
+                        if (data.message === 'Existing username') {
+                            setError(validations.username.existingMessage);
+                        } else if (data.message === 'Existing email') {
+                            setError(validations.email.existingMessage);
+                        }
+                    }  */
+                }else {
+                    setError(validations.commonError.errorMessage);
+                    console.error(error);
+                }
+            }
+        }
+
+        setButtonMessage(false);
     };
 
     return (
-        <AddProjectStyles>
+        <CommonStyles>
             <div className='project-container'>
                 <H1>New Project</H1>
                 <div className='add-form-container'>
                     <form onSubmit={handleSubmit}>
-                        <div className='input-group'>
+                        <InputGroup>
                             <Label htmlFor='project-name'>Project title</Label>
-                            <Input type='text' id='projectName' name='projectName' value={projectName} onChange={handleChange} />
-                            <LabelError>Error</LabelError>
+                            <Input 
+                                type='text' 
+                                id='projectName' 
+                                name='projectName' 
+                                value={fields.projectName} 
+                                onChange={(e) => handleChange(e.target.name, e.target.value)} 
+                            />
+                            <LabelError>{errors.projectName}</LabelError>
 
                             <Label htmlFor='project-status'>Status</Label>
-                            <Select name='projectStatus' id='project-status' value={projectStatus} onChange={handleChange}>
+                            <Select 
+                                name='projectStatus' 
+                                id='project-status' 
+                                value={fields.projectStatus} 
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            >
                                 <option value=''>Select status</option>
                                 <option value='inProgress'>In Progress</option>
                                 <option value='finished'>Finished</option>
                                 <option value='cancelled'>Cancelled</option>
                             </Select>
-                            <LabelError>Error</LabelError>
+                            <LabelError>{errors.projectStatus}</LabelError>
 
-                            <Checkbox 
-                                name='Include Image' 
-                                checked={formData.isCheckedImage} 
+                            <Checkbox
+                                name='showInLandPage'
+                                checked={fields.showInLandPage}
                                 onChange={handleCheckboxChange}
-                                label="Show in landing page" 
-                                />
+                                label='Show in landing page'
+                            />
 
                             <div
                                 style={{
@@ -115,19 +143,43 @@ const AddProject = () => {
                                 }}
                             >
                             </div>
-                            <LabelError>Error</LabelError>
+                            <LabelError>{errors.showInLandPage}</LabelError>
 
-                            <Label htmlFor='project-url'>URL</Label>
-                            <Input type='text' id='project-url' name='projectUrl' value={projectUrl} onChange={handleChange} />
-                            <LabelError>Error</LabelError>
+                            <Label htmlFor='git-url'>GIT URL</Label>
+                            <Input 
+                                type='text' 
+                                id='git-url' 
+                                name='gitURL' 
+                                value={fields.gitURL} 
+                                onChange={(e) => handleChange(e.target.name, e.target.value)} 
+                            />
+                            <LabelError>{errors.gitUrl}</LabelError>
+
+                            <Label htmlFor='deploy-url'>Deploy URL</Label>
+                            <Input 
+                                type='text' 
+                                id='deploy-url' 
+                                name='deployURL' 
+                                value={fields.deployURL} 
+                                onChange={(e) => handleChange(e.target.name, e.target.value)} 
+                            />
+                            <LabelError>{errors.deployUrl}</LabelError>
 
                             <Label htmlFor='short-description'>Short description</Label>
-                            <Textarea id='short-description' name='shortDescription' value={shortDescription} onChange={handleChange} />
-                            <LabelError>Error</LabelError>
+                            <Textarea 
+                                id='short-description' 
+                                name='shortDescription' 
+                                value={fields.shortDescription} 
+                                onChange={(e) => handleChange(e.target.name, e.target.value)} 
+                            />
+                            <LabelError>{errors.shortDescription}</LabelError>
 
                             <Label htmlFor='certification-image'>Cover Image</Label>
-                            <InputFile setImagePreview={setImagePreview} imagePreview={imagePreview} />
-                            <LabelError>Error</LabelError>
+                            <InputFile 
+                                setImagePreview={setImagePreview} 
+                                imagePreview={imagePreview} 
+                            />
+                            <LabelError>{errors.password}</LabelError>
 
                             <Label htmlFor='project-description'>Project description</Label>
                             <div
@@ -143,41 +195,29 @@ const AddProject = () => {
                                     value={editorHtml} 
                                 />
                             </div>
-                            <LabelError>Error</LabelError>
-                            
-                        </div>
-                        <div className='input-group'>
-                            <Button type='submit'>Add</Button>
-                            {/*  <Button onClick={handleReset}>Reset</Button> */}
-                        </div>
+                            <LabelError>{errors.projectDescription}</LabelError>
+                        </InputGroup>
+                        <LabelError>{error}</LabelError>
+
+                        <InputGroup>
+                            <Button 
+                                type='submit' 
+                                disabled={buttonMessage}
+                            >
+                                {buttonMessage ? 'Wait..' : 'Add'}
+                            </Button>
+                            <Button 
+                                type='reset' 
+                                onClick={handleReset}
+                            >
+                                Reset
+                            </Button>
+                        </InputGroup>
                     </form>
                 </div>
             </div>
-        </AddProjectStyles>
+        </CommonStyles>
     );
 };
 
 export default AddProject;
-
-const AddProjectStyles = styled.main`
-    max-width: 1900px;
-    margin: 0 auto;
-
-    .project-container {
-        margin: 1em;
-
-        form {
-            .input-group {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .input-group:last-child {
-                display: flex;
-                flex-direction: row;
-                gap: 1em;
-            }
-        }
-    }
-`;
