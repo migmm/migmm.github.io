@@ -7,12 +7,12 @@ const useFormUtils = (initialFields: any) => {
         setFields(initialFields);
     };
 
-    const handleChange = (fieldName: any, value: any) => {
+    const handleChange = (fieldName: string, value: any) => {
         setFields((prevFields: any) => ({
-            ...prevFields,
-            [fieldName]: value,
+          ...prevFields,
+          [fieldName]: value,
         }));
-    };
+      };
 
     return { fields, handleChange, handleReset };
 };

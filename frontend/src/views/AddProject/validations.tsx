@@ -16,24 +16,12 @@ export const validations = {
         required: true,
         errorMessage: 'Project status is required.',
         validate: (value: any) => {
-           /*  if (value.length < 8) {
-                return 'Password must be between 8 and 16 characters long.';
-            }
-            if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?':{}|<>]).{8,16}$/.test(value)) {
-                return 'Password must contain at least one digit, one uppercase letter, one lowercase letter, and two special characters.';
-            } */
             return true;
         },
     },
     showInLandPage: {
         required: false,
         errorMessage: 'Check this to view this project in landpage.',
-        validate: (value: any, formData: any) => {
-     /*        if (value !== formData.password) {
-                return 'Password confirmation does not match.';
-            } */
-            return true;
-        },
     },
     gitURL: {
         required: true,
@@ -69,19 +57,19 @@ export const validations = {
         required: true,
         errorMessage: 'Cover Image is required.',
         validate: (value: any) => {
-            /* if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{3,})?$/.test(value)) {
-                return 'Invalid email format.';
-            } */
+            if (!value) {
+                return 'Cover Image is required.';
+            }
             return true;
         },
     },
-    longDescription: {
+    editorHtml: {
         required: true,
         errorMessage: 'Long Description is required.',
         validate: (value: any) => {
-           /*  if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{3,})?$/.test(value)) {
-                return 'Invalid email format.';
-            } */
+            if (!value) {
+                return 'Cover Image is required.';
+            }
             return true;
         },
     },
@@ -92,6 +80,8 @@ export const validations = {
 };
 
 export const initialFields = Object.keys(validations).reduce((fields: any, fieldName: any) => {
-    fields[fieldName] = '';
+    if (fieldName !== 'commonError') {
+        fields[fieldName] = '';
+    }
     return fields;
 }, {});

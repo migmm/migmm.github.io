@@ -1,9 +1,21 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
-const Checkbox = ({ label }: any) => {
+const Checkbox = ({ label, onChange }: any) => {
+    const [checked, setChecked] = useState(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const isChecked = e.target.checked;
+        setChecked(isChecked);
+
+        if (onChange) {
+            onChange(isChecked);
+        }
+    };
+
     return (
         <Button className='checkbox-wrapper'>
-            <input type='checkbox' id='input-check' />
+            <input type='checkbox' id='input-check' checked={checked} onChange={handleChange} />
             <label htmlFor='input-check'>{label}</label>
         </Button>
     );
@@ -11,12 +23,11 @@ const Checkbox = ({ label }: any) => {
 
 export default Checkbox;
 
-
 const Button = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
+
     input {
         padding: 0;
         height: initial;
@@ -37,7 +48,7 @@ const Button = styled.div`
     label:before {
         content: '';
         background-color: transparent;
-        border: 2px solid #EBEBEB;
+        border: 2px solid #ebebeb;
         border-radius: 10px;
         background-color: #ffffff;
         padding: 10px;

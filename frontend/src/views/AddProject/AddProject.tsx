@@ -27,59 +27,39 @@ const AddProject = () => {
     const { errors, validateForm } = useValidation(validations);
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
 
-/*     const [formData, setFormData] = useState({
-        title: '',
-        errorTitle: '',
-        category: '',
-        errorCategory: '',
-        projectName: '',
-        projectStatus: '',
-        projectUrl: '',
-        shortDescription: '',
-        error: '',
-        imageCount: 0,
-        isCheckedImage: false,
-    }); */
-
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, checked } = event.target;
-        handleChange(name, checked);
-      };
+    const [showInLandPage, setShowInLandPage] = useState(false);
 
     const handleEditorChange = (html: string) => {
         setEditorHtml(html);
+        handleChange('editorHtml', html);
     };
 
-    const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError('');
         setButtonMessage(true);
 
+        const data = {
+            ...fields,
+            showInLandPage: showInLandPage,
+        };
+
+        console.log(data);
+
         if (validateForm(fields)) {
-
-            const data = Object.keys(fields).reduce((formData : Record<string, any>, fieldName : string) => {
-                formData[fieldName] = fields[fieldName];
-                return formData;
-            }, {});
-
             try {
-                const response = await axios.post(
-                    'http://localhost:8080/api/users',
-                        data,
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    }
-                );
+                const response = await axios.post('http://localhost:8080/api/users', data, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
                 if (response.status === 201) {
-                   /*  navigate('/'); */
+                    /*  navigate('/'); */
                 }
-
-            } catch (error : any) {
+            } catch (error: any) {
                 if (error.response) {
-                  /*   const { status, data } = error.response;
+                    /*   const { status, data } = error.response;
                     if (status === 401) {
                         if (data.message === 'Existing username') {
                             setError(validations.username.existingMessage);
@@ -87,7 +67,7 @@ const AddProject = () => {
                             setError(validations.email.existingMessage);
                         }
                     }  */
-                }else {
+                } else {
                     setError(validations.commonError.errorMessage);
                     console.error(error);
                 }
@@ -105,20 +85,20 @@ const AddProject = () => {
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
                             <Label htmlFor='project-name'>Project title</Label>
-                            <Input 
-                                type='text' 
-                                id='projectName' 
-                                name='projectName' 
-                                value={fields.projectName} 
-                                onChange={(e) => handleChange(e.target.name, e.target.value)} 
+                            <Input
+                                type='text'
+                                id='projectName'
+                                name='projectName'
+                                value={fields.projectName}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError>{errors.projectName}</LabelError>
 
                             <Label htmlFor='project-status'>Status</Label>
-                            <Select 
-                                name='projectStatus' 
-                                id='project-status' 
-                                value={fields.projectStatus} 
+                            <Select
+                                name='projectStatus'
+                                id='project-status'
+                                value={fields.projectStatus}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             >
                                 <option value=''>Select status</option>
@@ -130,8 +110,8 @@ const AddProject = () => {
 
                             <Checkbox
                                 name='showInLandPage'
-                                checked={fields.showInLandPage}
-                                onChange={handleCheckboxChange}
+                                checked={showInLandPage}
+                                onChange={(isChecked: boolean) => setShowInLandPage(isChecked)}
                                 label='Show in landing page'
                             />
 
@@ -141,45 +121,41 @@ const AddProject = () => {
                                     margin: '0 auto',
                                     padding: '0 0 1em 0',
                                 }}
-                            >
-                            </div>
+                            ></div>
                             <LabelError>{errors.showInLandPage}</LabelError>
 
                             <Label htmlFor='git-url'>GIT URL</Label>
-                            <Input 
-                                type='text' 
-                                id='git-url' 
-                                name='gitURL' 
-                                value={fields.gitURL} 
-                                onChange={(e) => handleChange(e.target.name, e.target.value)} 
+                            <Input
+                                type='text'
+                                id='git-url'
+                                name='gitURL'
+                                value={fields.gitURL}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError>{errors.gitUrl}</LabelError>
+                            <LabelError>{errors.gitURL}</LabelError>
 
                             <Label htmlFor='deploy-url'>Deploy URL</Label>
-                            <Input 
-                                type='text' 
-                                id='deploy-url' 
-                                name='deployURL' 
-                                value={fields.deployURL} 
-                                onChange={(e) => handleChange(e.target.name, e.target.value)} 
+                            <Input
+                                type='text'
+                                id='deploy-url'
+                                name='deployURL'
+                                value={fields.deployURL}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError>{errors.deployUrl}</LabelError>
+                            <LabelError>{errors.deployURL}</LabelError>
 
                             <Label htmlFor='short-description'>Short description</Label>
-                            <Textarea 
-                                id='short-description' 
-                                name='shortDescription' 
-                                value={fields.shortDescription} 
-                                onChange={(e) => handleChange(e.target.name, e.target.value)} 
+                            <Textarea
+                                id='short-description'
+                                name='shortDescription'
+                                value={fields.shortDescription}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError>{errors.shortDescription}</LabelError>
 
                             <Label htmlFor='certification-image'>Cover Image</Label>
-                            <InputFile 
-                                setImagePreview={setImagePreview} 
-                                imagePreview={imagePreview} 
-                            />
-                            <LabelError>{errors.password}</LabelError>
+                            <InputFile setImagePreview={setImagePreview} imagePreview={imagePreview} />
+                            <LabelError>{errors.coverImage}</LabelError>
 
                             <Label htmlFor='project-description'>Project description</Label>
                             <div
@@ -189,27 +165,17 @@ const AddProject = () => {
                                 }}
                                 /*   onDrop={handleDrop} */
                             >
-                                <QuillEditor 
-                                    placeholder='Enter text...' 
-                                    onChange={handleEditorChange}
-                                    value={editorHtml} 
-                                />
+                                <QuillEditor placeholder='Enter text...' onChange={handleEditorChange} value={editorHtml} />
                             </div>
-                            <LabelError>{errors.projectDescription}</LabelError>
+                            <LabelError>{errors.editorHtml}</LabelError>
                         </InputGroup>
                         <LabelError>{error}</LabelError>
 
                         <InputGroup>
-                            <Button 
-                                type='submit' 
-                                disabled={buttonMessage}
-                            >
+                            <Button type='submit' disabled={buttonMessage}>
                                 {buttonMessage ? 'Wait..' : 'Add'}
                             </Button>
-                            <Button 
-                                type='reset' 
-                                onClick={handleReset}
-                            >
+                            <Button type='reset' onClick={handleReset}>
                                 Reset
                             </Button>
                         </InputGroup>
