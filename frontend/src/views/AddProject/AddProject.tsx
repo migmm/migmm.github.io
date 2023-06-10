@@ -29,6 +29,22 @@ const AddProject = () => {
 
     const [showInLandPage, setShowInLandPage] = useState(false);
 
+    interface Errors {
+        coverImage?: string;
+      }
+
+    const handleFileChange = (imageData:any) => {
+        if (imageData) {
+          // Se ha cargado un archivo
+          console.log('Archivo cargado:', imageData);
+        } else {
+          // No se ha cargado ningún archivo
+          console.log('No se ha cargado ningún archivo.');
+        }
+        setImagePreview(imageData);
+        handleChange('coverImage', imageData); 
+      };
+
     const handleEditorChange = (html: string) => {
         setEditorHtml(html);
         handleChange('editorHtml', html);
@@ -47,6 +63,11 @@ const AddProject = () => {
         console.log(data);
 
         if (validateForm(fields)) {
+            const newError: Errors = {};
+            if (!imagePreview) {
+                newError.coverImage = 'Cover Image is required.';
+              }
+
             try {
                 const response = await axios.post('http://localhost:8080/api/users', data, {
                     headers: {
@@ -154,7 +175,7 @@ const AddProject = () => {
                             <LabelError>{errors.shortDescription}</LabelError>
 
                             <Label htmlFor='certification-image'>Cover Image</Label>
-                            <InputFile setImagePreview={setImagePreview} imagePreview={imagePreview} />
+                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} />
                             <LabelError>{errors.coverImage}</LabelError>
 
                             <Label htmlFor='project-description'>Project description</Label>
