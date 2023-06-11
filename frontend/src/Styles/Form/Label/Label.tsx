@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+
 function Label(props : any) {
     return <LabelStyles>{props.innerText}</LabelStyles>;
 }
+
 
 const LabelStyles = styled.label`
     font-family: "Work Sans", sans-serif;

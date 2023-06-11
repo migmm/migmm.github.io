@@ -1,7 +1,11 @@
 import styled from 'styled-components';
+import React from 'react';
 
+function LabelError(props : any) {
+    return <LabelErrorStyles>{props.innerText}</LabelErrorStyles>;
+}
 
-const LabelError = styled.label`
+const LabelErrorStyles = styled.label`
     display: block;
     font-family: 'Work Sans', sans-serif;
     color: #ff0000;

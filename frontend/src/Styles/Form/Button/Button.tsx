@@ -1,9 +1,12 @@
 import React from "react";
 import styled from 'styled-components';
 
+
 function Button(props : any) {
     return <ButtonStyles>{props.innerText}</ButtonStyles>;
 }
+
+
 const ButtonStyles = styled.button`
     border-radius: 20px;
     padding: 1em;
