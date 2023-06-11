@@ -147,7 +147,11 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                 <div className='add-form-container'>
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
-                            <Label htmlFor='project-name'>Project title</Label>
+                            <Label 
+                                htmlFor='project-name'
+                                innerText='Project title'
+                            />
+
                             <Input
                                 type='text'
                                 id='projectName'
@@ -157,7 +161,10 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                             />
                             <LabelError>{errors.projectName}</LabelError>
 
-                            <Label htmlFor='project-status'>Status</Label>
+                            <Label 
+                                htmlFor='project-status'
+                                innerText='Status'
+                            />
                             <Select
                                 name='projectStatus'
                                 id='project-status'
@@ -184,10 +191,15 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                                     margin: '0 auto',
                                     padding: '0 0 1em 0',
                                 }}
-                            ></div>
+                            />
+
                             <LabelError>{errors.showInLandPage}</LabelError>
 
-                            <Label htmlFor='git-url'>GIT URL</Label>
+                            <Label 
+                                htmlFor='git-url' 
+                                innerText='GIT URL'
+                            />
+
                             <Input
                                 type='text'
                                 id='git-url'
@@ -197,7 +209,11 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                             />
                             <LabelError>{errors.gitURL}</LabelError>
 
-                            <Label htmlFor='deploy-url'>Deploy URL</Label>
+                            <Label 
+                                htmlFor='deploy-url' 
+                                innerText='Deploy URL'
+                            />
+
                             <Input
                                 type='text'
                                 id='deploy-url'
@@ -207,7 +223,11 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                             />
                             <LabelError>{errors.deployURL}</LabelError>
 
-                            <Label htmlFor='short-description'>Short description</Label>
+                            <Label 
+                                htmlFor='short-description' 
+                                innerText='Short description'
+                            />
+
                             <Textarea
                                 id='short-description'
                                 name='shortDescription'
@@ -216,11 +236,22 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                             />
                             <LabelError>{errors.shortDescription}</LabelError>
 
-                            <Label htmlFor='cover-image'>Cover Image</Label>
-                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id='cover-image' name='coverImage' />
+                            <Label 
+                                htmlFor='cover-image' 
+                                innerText='Cover Image'
+                            />
+                            <InputFile 
+                                setImagePreview={handleFileChange} 
+                                imagePreview={imagePreview} 
+                                id='cover-image' 
+                                name='coverImage' 
+                            />
                             <LabelError>{errors.coverImage}</LabelError>
 
-                            <Label htmlFor='project-description'>Project description</Label>
+                            <Label 
+                                htmlFor='project-description' 
+                                innerText='Project description'
+                            />
                             <div
                                 style={{
                                     width: '100%',
@@ -235,10 +266,15 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                         <LabelError>{error}</LabelError>
 
                         <InputGroup>
-                            <Button type='submit' disabled={buttonMessage}>
+                            <Button 
+                                type='submit' 
+                                disabled={buttonMessage}>
                                 {buttonMessage ? 'Wait..' : 'Add'}
                             </Button>
-                            <Button type='reset' onClick={handleReset}>
+                            <Button 
+                                type='reset' 
+                                onClick={handleReset}
+                            >
                                 Reset
                             </Button>
                         </InputGroup>
