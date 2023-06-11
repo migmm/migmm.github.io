@@ -72,11 +72,14 @@ const RegisterScreen = () => {
     return (
         <CommonStyles>
             <div>
-                <H1>Registration</H1>
+                <H1 innerText='Registration'/>
                 <div>
                     <form onSubmit={handleSubmit} noValidate>
                         <InputGroup>
-                            <Label htmlFor='username'>Username</Label>
+                            <Label
+                                htmlFor='username'
+                                innerText='Username'
+                            />
                             <Input
                                 type='text'
                                 id='username'
@@ -85,10 +88,16 @@ const RegisterScreen = () => {
                                 value={fields.username}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError>{errors.username}</LabelError>
+                            <LabelError
+                                innerText={errors.username}
+                            />
                         </InputGroup>
+
                         <InputGroup>
-                            <Label htmlFor='password'>Password</Label>
+                            <Label
+                                htmlFor='password'
+                                innerText='Password'
+                            />
                             <Input
                                 type='password'
                                 id='password'
@@ -96,10 +105,16 @@ const RegisterScreen = () => {
                                 value={fields.password}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError>{errors.password}</LabelError>
+                            <LabelError
+                                innerText={errors.password}
+                            />
                         </InputGroup>
+
                         <InputGroup>
-                            <Label htmlFor='repassword'>Confirm Password</Label>
+                            <Label
+                                htmlFor='repassword'
+                                innerText='Confirm Password'
+                            />
                             <Input
                                 type='password'
                                 id='repassword'
@@ -107,10 +122,16 @@ const RegisterScreen = () => {
                                 value={fields.repassword}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError>{errors.repassword}</LabelError>
+                            <LabelError
+                                innerText={errors.repassword}
+                            />
                         </InputGroup>
+
                         <InputGroup>
-                            <Label htmlFor='email'>Email</Label>
+                            <Label
+                                htmlFor='email'
+                                innerText='Email'
+                            />
                             <Input
                                 type='email'
                                 id='email'
@@ -119,22 +140,25 @@ const RegisterScreen = () => {
                                 value={fields.email}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError>{errors.email}</LabelError>
+                            <LabelError
+                                innerText={errors.email}
+                            />
                         </InputGroup>
-                        <LabelError>{error}</LabelError>
+
+                        <LabelError innerText={error}/>
+
                         <InputGroup>
                             <Button 
                                 type='submit' 
                                 disabled={buttonMessage}
-                            >
-                                {buttonMessage ? 'Wait..' : 'Register'}
-                            </Button>
+                                innerText={buttonMessage ? 'Wait..' : 'Register'}
+                            />
+
                             <Button 
                                 type='reset' 
                                 onClick={handleReset}
-                            >
-                                Reset
-                            </Button>
+                                innerText='Reset'
+                            />
                         </InputGroup>
                     </form>
                 </div>

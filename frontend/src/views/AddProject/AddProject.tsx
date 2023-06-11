@@ -149,7 +149,9 @@ const AddProject = () => {
                                 value={fields.projectName}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError innerText={errors.projectName} />
+                            <LabelError
+                                innerText={errors.projectName}
+                            />
 
                             <Label
                                 htmlFor="project-status"
