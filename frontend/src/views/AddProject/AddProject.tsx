@@ -143,7 +143,10 @@ formData.append('coverImage', blob, 'coverImage.jpg');
     return (
         <CommonStyles>
             <div className='project-container'>
-                <H1>New Project</H1>
+                <H1 
+                    innerText='New Project'
+                />
+                
                 <div className='add-form-container'>
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
