@@ -29,21 +29,17 @@ const AddProject = () => {
 
     const [showInLandPage, setShowInLandPage] = useState(false);
 
-    interface Errors {
-        coverImage?: string;
-      }
-
-    const handleFileChange = (imageData:any) => {
+    const handleFileChange = (imageData: any) => {
         if (imageData) {
-          // Se ha cargado un archivo
-          console.log('Archivo cargado:', imageData);
+            // Se ha cargado un archivo
+            console.log('Archivo cargado:', imageData);
         } else {
-          // No se ha cargado ningún archivo
-          console.log('No se ha cargado ningún archivo.');
+            // No se ha cargado ningún archivo
+            console.log('No se ha cargado ningún archivo.');
         }
         setImagePreview(imageData);
-        handleChange('coverImage', imageData); 
-      };
+        handleChange('coverImage', imageData);
+    };
 
     const handleEditorChange = (html: string) => {
         setEditorHtml(html);
@@ -55,18 +51,64 @@ const AddProject = () => {
         setError('');
         setButtonMessage(true);
 
+        const formData = new FormData();
+  
+        console.log('fields:', fields);
+
+// Obtén la representación Base64 de la imagen del objeto fields
+const base64Image = fields.coverImage;
+const imageData = base64Image.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
+
+// Decodificar la imagen
+const decodedImage = atob(imageData);
+
+// Convertir la cadena decodificada en un ArrayBuffer
+const arrayBuffer = new ArrayBuffer(decodedImage.length);
+const uint8Array = new Uint8Array(arrayBuffer);
+for (let i = 0; i < decodedImage.length; i++) {
+  uint8Array[i] = decodedImage.charCodeAt(i);
+}
+
+// Crear un Blob a partir del ArrayBuffer
+const blob = new Blob([arrayBuffer], { type: 'image/jpeg' });
+
+// Ahora tienes el archivo Blob de la imagen que puedes usar como desees
+// Por ejemplo, puedes crear un objeto FormData y agregar el archivo a él
+
+formData.append('coverImage', blob, 'coverImage.jpg');
+
+
+
+
+
+
+
+
+
+
+        // Agregar los otros campos al formData
+        Object.entries(fields).forEach(([key, value] : any) => {
+            if (key === 'coverImage') {
+                // Agregar la imagen al formData
+                //formData.append(key, value[0]); // Suponiendo que value es un array que contiene la imagen seleccionada
+              } else {
+                formData.append(key, value);
+              }
+           
+        });
+
+        console.log("form data" );
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
+          }
         const data = {
             ...fields,
             showInLandPage: showInLandPage,
         };
 
-        console.log(data);
+        console.log("data", data);
 
         if (validateForm(fields)) {
-            const newError: Errors = {};
-            if (!imagePreview) {
-                newError.coverImage = 'Cover Image is required.';
-              }
 
             try {
                 const response = await axios.post('http://localhost:8080/api/users', data, {
@@ -174,8 +216,8 @@ const AddProject = () => {
                             />
                             <LabelError>{errors.shortDescription}</LabelError>
 
-                            <Label htmlFor='certification-image'>Cover Image</Label>
-                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} />
+                            <Label htmlFor='cover-image'>Cover Image</Label>
+                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id='cover-image' name='coverImage' />
                             <LabelError>{errors.coverImage}</LabelError>
 
                             <Label htmlFor='project-description'>Project description</Label>
