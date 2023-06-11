@@ -16,6 +16,7 @@ import QuillEditor from "../../components/Quill/Quill";
 import { validations, initialFields } from "./validations";
 import { useValidation } from "../../hooks/useValidations";
 import useFormUtils from "../../hooks/useFormUtils";
+import convertBase64ToBlob from '../../utils/base64toImage';
 
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState("");
@@ -31,10 +32,10 @@ const AddProject = () => {
 
     const handleFileChange = (imageData: any) => {
         if (imageData) {
-            // Se ha cargado un archivo
+
             console.log("Archivo cargado:", imageData);
         } else {
-            // No se ha cargado ningún archivo
+
             console.log("No se ha cargado ningún archivo.");
         }
         setImagePreview(imageData);
@@ -54,38 +55,11 @@ const AddProject = () => {
         const formData = new FormData();
 
         console.log("fields:", fields);
-
-        // Obtén la representación Base64 de la imagen del objeto fields
         const base64Image = fields.coverImage;
-        const imageData = base64Image.replace(/^data:image\/(png|jpeg|jpg);base64,/, "");
 
-        // Decodificar la imagen
-        const decodedImage = atob(imageData);
-
-        // Convertir la cadena decodificada en un ArrayBuffer
-        const arrayBuffer = new ArrayBuffer(decodedImage.length);
-        const uint8Array = new Uint8Array(arrayBuffer);
-        for (let i = 0; i < decodedImage.length; i++) {
-            uint8Array[i] = decodedImage.charCodeAt(i);
-        }
-
-        // Crear un Blob a partir del ArrayBuffer
-        const blob = new Blob([arrayBuffer], { type: "image/jpeg" });
-
-        // Ahora tienes el archivo Blob de la imagen que puedes usar como desees
-        // Por ejemplo, puedes crear un objeto FormData y agregar el archivo a él
+        const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
         formData.append("coverImage", blob, "coverImage.jpg");
-
-        // Agregar los otros campos al formData
-        Object.entries(fields).forEach(([key, value]: any) => {
-            if (key === "coverImage") {
-                // Agregar la imagen al formData
-                //formData.append(key, value[0]); // Suponiendo que value es un array que contiene la imagen seleccionada
-            } else {
-                formData.append(key, value);
-            }
-        });
 
         console.log("form data");
         for (const [key, value] of formData.entries()) {
