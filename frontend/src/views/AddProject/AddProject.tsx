@@ -146,7 +146,7 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                 <H1 
                     innerText='New Project'
                 />
-                
+
                 <div className='add-form-container'>
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
@@ -262,7 +262,11 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                                 }}
                                 /*   onDrop={handleDrop} */
                             >
-                                <QuillEditor placeholder='Enter text...' onChange={handleEditorChange} value={editorHtml} />
+                                <QuillEditor 
+                                    placeholder='Enter text...' 
+                                    onChange={handleEditorChange} 
+                                    value={editorHtml} 
+                                />
                             </div>
                             <LabelError>{errors.editorHtml}</LabelError>
                         </InputGroup>
@@ -271,15 +275,15 @@ formData.append('coverImage', blob, 'coverImage.jpg');
                         <InputGroup>
                             <Button 
                                 type='submit' 
-                                disabled={buttonMessage}>
-                                {buttonMessage ? 'Wait..' : 'Add'}
-                            </Button>
+                                disabled={buttonMessage}
+                                innerText={buttonMessage ? 'Wait..' : 'Add'}
+                                />
+
                             <Button 
                                 type='reset' 
                                 onClick={handleReset}
-                            >
-                                Reset
-                            </Button>
+                                innerText='Reset'
+                            />
                         </InputGroup>
                     </form>
                 </div>

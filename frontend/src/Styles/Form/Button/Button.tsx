@@ -1,7 +1,10 @@
+import React from "react";
 import styled from 'styled-components';
 
-
-const Button = styled.button`
+function Button(props : any) {
+    return <ButtonStyles>{props.innerText}</ButtonStyles>;
+}
+const ButtonStyles = styled.button`
     border-radius: 20px;
     padding: 1em;
     border: 1px solid #ebebeb;

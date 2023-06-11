@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 function Label(props : any) {
-    return <LabelStyle>{props.innerText}</LabelStyle>;
+    return <LabelStyles>{props.innerText}</LabelStyles>;
 }
 
-const LabelStyle = styled.label`
+const LabelStyles = styled.label`
     font-family: "Work Sans", sans-serif;
     font-weight: 600;
     text-align: center;
