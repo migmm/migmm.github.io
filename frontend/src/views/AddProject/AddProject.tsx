@@ -21,7 +21,7 @@ import convertBase64ToBlob from '../../utils/base64toImage';
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState('');
     const [editorHtml, setEditorHtml] = useState('');
-
+    const formData = new FormData();
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
 
@@ -31,13 +31,6 @@ const AddProject = () => {
     const [showInLandPage, setShowInLandPage] = useState(false);
 
     const handleFileChange = (imageData: any) => {
-        if (imageData) {
-
-            console.log('Archivo cargado:', imageData);
-        } else {
-
-            console.log('No se ha cargado ningún archivo.');
-        }
         setImagePreview(imageData);
         handleChange('coverImage', imageData);
     };
@@ -52,29 +45,31 @@ const AddProject = () => {
         setError('');
         setButtonMessage(true);
 
-        const formData = new FormData();
+        
 
-        console.log('fields:', fields);
         const base64Image = fields.coverImage;
 
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
         formData.append('coverImage', blob, 'coverImage.jpg');
+        formData.append('showInLandPage', showInLandPage ? 'true' : 'false');
 
-        console.log('form data');
+        for (const key in fields) {
+            if (fields.hasOwnProperty(key)) {
+                if (fields.hasOwnProperty(key) && key !== 'showInLandPage') {
+                    formData.append(key, fields[key]);
+                }
+            }
+        }
+
+        console.log('-- Form data --');
         for (const [key, value] of formData.entries()) {
             console.log(`${key}:`, value);
         }
-        const data = {
-            ...fields,
-            showInLandPage: showInLandPage,
-        };
-
-        console.log('data', data);
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post('http://localhost:8080/api/users', data, {
+                const response = await axios.post('http://localhost:8080/api/users', formData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
