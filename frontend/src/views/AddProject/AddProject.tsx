@@ -45,10 +45,7 @@ const AddProject = () => {
         setError('');
         setButtonMessage(true);
 
-        
-
         const base64Image = fields.coverImage;
-
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
         formData.append('coverImage', blob, 'coverImage.jpg');
@@ -56,16 +53,17 @@ const AddProject = () => {
 
         for (const key in fields) {
             if (fields.hasOwnProperty(key)) {
-                if (fields.hasOwnProperty(key) && key !== 'showInLandPage') {
+                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
                     formData.append(key, fields[key]);
                 }
             }
         }
 
-        console.log('-- Form data --');
+        console.log('-- Start Form data --');
         for (const [key, value] of formData.entries()) {
             console.log(`${key}:`, value);
         }
+        console.log('-- End Form data --');
 
         if (validateForm(fields)) {
             try {
@@ -146,18 +144,6 @@ const AddProject = () => {
                                 checked={showInLandPage}
                                 onChange={(isChecked: boolean) => setShowInLandPage(isChecked)}
                                 label='Show in landing page'
-                            />
-
-                            <div
-                                style={{
-                                    fontFamily: 'Work Sans',
-                                    margin: '0 auto',
-                                    padding: '0 0 1em 0',
-                                }}
-                            />
-
-                            <LabelError
-                                innerText={errors.showInLandPage}
                             />
 
                             <Label
