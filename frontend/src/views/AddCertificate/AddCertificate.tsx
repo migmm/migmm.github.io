@@ -1,114 +1,189 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Button from "../../Styles/Form/Button/Button";
-import Label from "../../Styles/Form/Label/Label";
-import LabelError from "../../Styles/Form/LabelError/LabelError";
-import Input from "../../Styles/Form/Input/Input";
-import Textarea from "../../Styles/Form/Textarea/Textarea";
-import H1 from "../../Styles/H1/H1";
-import InputFile from "../../Styles/Form/InputFile/InputFile";
+import React, { useState } from 'react';
+import axios from 'axios';
+
+import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
+import Button from '../../Styles/Form/Button/Button';
+import Label from '../../Styles/Form/Label/Label';
+import LabelError from '../../Styles/Form/LabelError/LabelError';
+import Input from '../../Styles/Form/Input/Input';
+import Textarea from '../../Styles/Form/Textarea/Textarea';
+import H1 from '../../Styles/H1/H1';
+import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
+import InputFile from '../../Styles/Form/InputFile/InputFile';
+import { validations, initialFields } from './validations';
+import { useValidation } from '../../hooks/useValidations';
+import useFormUtils from '../../hooks/useFormUtils';
+import convertBase64ToBlob from '../../utils/base64toImage';
 
 const AddCertificate = () => {
-  const [imagePreview, setImagePreview] = useState("");
+    const [imagePreview, setImagePreview] = useState('');
+    const formData = new FormData();
+    const [error, setError] = useState('');
+    const [buttonMessage, setButtonMessage] = useState(false);
 
-  const handleReset = () => {
-    setImagePreview("");
+    const { errors, validateForm } = useValidation(validations);
+    const { fields, handleChange, handleReset } = useFormUtils(initialFields);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setError('');
+      setButtonMessage(true);
+
+      const base64Image = fields.certificationImage;
+      const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
+
+      formData.append('certificationImage', blob, 'coverImage.jpg');
+      //formData.append('showInLandPage', showInLandPage ? 'true' : 'false');
+
+      for (const key in fields) {
+          if (fields.hasOwnProperty(key)) {
+              if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
+                  formData.append(key, fields[key]);
+              }
+          }
+      }
+
+      console.log('-- Start Form data --');
+      for (const [key, value] of formData.entries()) {
+          console.log(`${key}:`, value);
+      }
+      console.log('-- End Form data --');
+
+      if (validateForm(fields)) {
+          try {
+              const response = await axios.post('http://localhost:8080/api/users', formData, {
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+              });
+
+              if (response.status === 201) {
+                  /*  navigate('/'); */
+              }
+          } catch (error: any) {
+              if (error.response) {
+                  /*   const { status, data } = error.response;
+                  if (status === 401) {
+                      if (data.message === 'Existing username') {
+                          setError(validations.username.existingMessage);
+                      } else if (data.message === 'Existing email') {
+                          setError(validations.email.existingMessage);
+                      }
+                  }  */
+              } else {
+                  setError(validations.commonError.errorMessage);
+                  console.error(error);
+              }
+          }
+      }
+
+      setButtonMessage(false);
   };
 
-  return (
-    <AddScreenStyles>
-      <div className="certification-container">
-        <H1>New Certification</H1>
-        <div className="add-form-container">
-          <form action="#">
-            <div className="input-group">
-              <Label htmlFor="certification-name">Certification title</Label>
-              <Input type="text" id="certificationName" name="certificationName" />
-              <LabelError>Error</LabelError>
-              <Label htmlFor="certification-vendor">Vendor</Label>
-              <Input type="text" name="certificationVendor" id="certification-vendor"></Input>
-              <LabelError>Error</LabelError>
-              <Label htmlFor="certification-url">URL</Label>
-              <Input type="text" id="certification-url" name="certificationUrl" />
-              <LabelError>Error</LabelError>
-              <Label htmlFor="certification-description">Description</Label>
-              <Textarea name="certificationDescription" id="certification-description"></Textarea>
-              <LabelError>Error</LabelError>
-              <Label htmlFor="certification-image">Image</Label>
-              <InputFile setImagePreview={setImagePreview} imagePreview={imagePreview} />
-              <LabelError>Error</LabelError>
+    return (
+        <CommonStyles>
+            <div>
+                <H1 innerText='New Certification' />
+
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <InputGroup>
+                            <Label
+                                innerText='Certification title'
+                                htmlFor='certification-name'
+                            />
+                            <Input
+                                type='text'
+                                id='certificationName'
+                                name='certificationName'
+                                value={fields.certificationName}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                                />
+                            <LabelError
+                                innerText={errors.certificationName}
+                            />
+
+                            <Label
+                                innerText='Vendor'
+                                htmlFor='certification-vendor'
+                            />
+                            <Input
+                                type='text'
+                                id='certification-vendor'
+                                name='certificationVendor'
+                                value={fields.certificationVendor}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError
+                                innerText={errors.certificationVendor}
+                            />
+
+                            <Label
+                                innerText='URL'
+                                htmlFor='certification-url'
+                            />
+                            <Input
+                                type='text'
+                                id='certification-url'
+                                name='certificationURL'
+                                value={fields.certificationURL}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError
+                                innerText={errors.certificationURL}
+                            />
+
+                            <Label
+                                innerText='Description'
+                                htmlFor='certification-description'
+                            />
+                            <Textarea
+                                id='certification-description'
+                                name='certificationDescription'
+                                value={fields.certificationDescription}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError
+                                innerText={errors.certificationDescription}
+                            />
+
+                            <Label
+                                innerText='Image'
+                                htmlFor='certification-image'
+                            />
+                            <InputFile
+                                setImagePreview={setImagePreview}
+                                imagePreview={imagePreview}
+                                id='certification-image'
+                                name='certificationImage'
+                            />
+                            <LabelError
+                                innerText={errors.certificationImage}
+                            />
+                        </InputGroup>
+
+                        <LabelError
+                            innerText={error}
+                        />
+
+                        <InputGroup>
+                            <Button
+                                type='submit'
+                                disabled={buttonMessage}
+                                innerText={buttonMessage ? 'Wait..' : 'Add'}
+                            />
+
+                            <Button
+                                type='reset'
+                                onClick={handleReset}
+                                innerText='Reset'
+                            />
+                        </InputGroup>
+                    </form>
+                </div>
             </div>
-            <div className="input-group">
-              <Button type="submit">Add</Button>
-              <Button type="reset" onClick={handleReset}>
-                Reset
-              </Button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </AddScreenStyles>
-  );
+        </CommonStyles>
+    );
 };
-
-const AddScreenStyles = styled.main`
-    max-width: 1900px;
-    margin: 0 auto;
-    .certification-container {
-        margin: 1em;
-
-        .add-form-container {
-            form {
-                .input-group {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                }
-
-                .input-group:last-child {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 1em;
-                }
-            }
-        }
-    }
-
-    .image-preview-placeholder {
-        width: 200px;
-        height: 200px;
-        border: 1px dashed gray;
-    }
-
-    .image-preview-container {
-        position: relative;
-        display: inline-block;
-    }
-
-    .image-preview-wrapper {
-        position: relative;
-        display: inline-block;
-    }
-
-    .image-preview {
-        max-width: 100%;
-        max-height: 200px;
-        object-fit: contain;
-    }
-
-    .remove-image-button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: transparent;
-        border: none;
-        color: red;
-        font-weight: bold;
-        font-size: 18px;
-        cursor: pointer;
-        transform: translate(50%, -50%);
-        z-index: 1;
-    }
-`;
 
 export default AddCertificate;
