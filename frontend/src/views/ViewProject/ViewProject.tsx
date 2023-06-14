@@ -6,18 +6,32 @@ import H1 from "../../Styles/H1/H1";
 import Paragraph from "../../Styles/Paragraph/Paragraph";
 
 const ViewProject = () => {
-    const content = "<h1>Titulo del Proyecto</h1><p>Contenido del proyecto...</p>";
-    const title = "Project Title";
-    const url = "Project URL";
-    const status = "Project Status";
+    const sampleobject = {
+        coverImage: "coverImage.jpg",
+        showInLandPage: false,
+        projectName: "Project 1",
+        projectStatus: "finished",
+        gitURL: "http://www.github.com/project1",
+        deployURL: "http://www.project1.com",
+        shortDescription: "Test project of how document shows",
+        editorHtml:
+            '<h1 class="ql-align-center"><span class="ql-font-Work-Sans">Test project</span></h1><p><br></p><p>Test project of how document shows with images.</p><p><br></p>',
+    };
 
     return (
         <ViewProjectStyles>
             <div className="project-container">
-                <H1>{title}</H1>
-                <Paragraph>URL: <a href={url}>Link to project deploy</a></Paragraph>
-                <Paragraph>Status: {status}</Paragraph>
-                <FormattedView content={content} />
+                <H1>Project Name: {sampleobject.projectName}</H1>
+
+                <Paragraph>Project Status: {sampleobject.projectStatus}</Paragraph>
+                <Paragraph>
+                    Git URL: <a href={sampleobject.gitURL}>{sampleobject.gitURL}</a>
+                </Paragraph>
+                <Paragraph>
+                    Deploy URL: <a href={sampleobject.deployURL}>{sampleobject.deployURL}</a>
+                </Paragraph>
+                <Paragraph>Short Description: {sampleobject.shortDescription}</Paragraph>
+                <FormattedView content={sampleobject.editorHtml} />
             </div>
         </ViewProjectStyles>
     );

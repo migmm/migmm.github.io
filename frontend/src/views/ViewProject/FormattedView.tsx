@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import "./fonts.css";
 
 const FormattedView = ({ content }:any) => {
 
@@ -105,6 +105,9 @@ border: none; // Removes the border
     .ql-align-justify {
         text-align: justify;
     }
+    .ql-font-Work-Sans {
+    font-family: 'Work Sans';
+}
 }
 
 // Styles to hide the toolbar
