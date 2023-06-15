@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "dummy/sampleObject.js"  ]
+, "src/dummy/sampleObject.js"  ]
 }
