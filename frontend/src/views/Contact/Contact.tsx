@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import CommonStyles from "../../Styles/CommonStyles/CommonStyles";
 import Button from "../../Styles/Form/Button/Button";
 import Input from "../../Styles/Form/Input/Input";
 import Label from "../../Styles/Form/Label/Label";
@@ -7,73 +7,78 @@ import LabelError from "../../Styles/Form/LabelError/LabelError";
 import Textarea from "../../Styles/Form/Textarea/Textarea";
 import H1 from "../../Styles/H1/H1";
 import Paragraph from "../../Styles/Paragraph/Paragraph"
+import InputGroup from "../../Styles/Form/InputGroup/InputGroup";
 
 function Contact() {
     return (
-        <Contactstyles>
-            <div className="contact-container">
-                <H1>Contact</H1>
-                <div className="column-container">
+        <CommonStyles>
+            <div>
+                <H1 innerText='Contact' />
+                <div>
                     <Paragraph>You can contact me by sending an email to hi@miguedev.com or filling in the following form</Paragraph>
-                    <div className="form-container">
+                    <div>
                         <form action="#">
-                            <div className="input-group">
-                                <Label htmlFor="full-name">Full Name</Label>
-                                <Input type="text" id="full-name" />
+                            <InputGroup>
+                                <Label
+                                    innerText='Full Name'
+                                    htmlFor="full-name"
+                                />
+                                <Input
+                                    type="text"
+                                    name="full-name"
+                                    id="full-name"
+                                />
                                 <LabelError> Error </LabelError>
-                            </div>
-                            <div className="input-group">
-                                <Label htmlFor="telephone">Telephone</Label>
-                                <Input type="text" id="telephonee" />
+                            </InputGroup>
+
+                            <InputGroup>
+                                <Label
+                                    innerText='Telephone'
+                                    id="telephone"
+                                />
+                                <Input
+                                    type="text"
+                                    name="telephonee"
+                                    id="telephonee"
+                                />
                                 <LabelError> Error </LabelError>
-                            </div>
-                            <div className="input-group">
-                                <Label htmlFor="mail">E-mail</Label>
-                                <Input type="text" id="mail" />
+                            </InputGroup>
+
+                            <InputGroup>
+                                <Label
+                                    innerText='E-mail'
+                                    htmlFor="mail"
+                                />
+                                <Input
+                                    type="text"
+                                    name="mail"
+                                    id="mail"
+                                />
                                 <LabelError> Error </LabelError>
-                            </div>
-                            <div className="input-group">
-                                <Label htmlFor="message">Message</Label>
-                                <Textarea name="message" id="message"></Textarea>
+                            </InputGroup>
+
+                            <InputGroup>
+                                <Label
+                                innerText='Message'
+                                htmlFor="message"
+                                />
+                                <Textarea
+                                    name="message"
+                                    id="message"
+                                />
                                 <LabelError> Error </LabelError>
-                            </div>
-                            <div className="input-group">
+                            </InputGroup>
+
+                            <InputGroup>
                                 <Button type="submit">Send</Button>
                                 <Button type="reset">Reset</Button>
-                            </div>
+                            </InputGroup>
                         </form>
                     </div>
                 </div>
             </div>
-        </Contactstyles>
+        </CommonStyles>
     );
 }
 
 export default Contact;
-
-const Contactstyles = styled.main`
-    max-width: 1900px;
-    margin: 0 auto;
-
-    .contact-container {
-        margin: 1em;
-
-        .column-container {
-
-            .form-container {
-
-                .input-group {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                }
-
-                .input-group:last-child {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 1em;
-                }
-            }
-        }
-    }
-`;
