@@ -106,7 +106,7 @@ const AddProject = () => {
                         <InputGroup>
                             <Label
                                 htmlFor='project-name'
-                                innerText='Project title'
+                                innerText='Project title *'
                             />
 
                             <Input
@@ -122,7 +122,7 @@ const AddProject = () => {
 
                             <Label
                                 htmlFor='project-status'
-                                innerText='Status'
+                                innerText='Status *'
                             />
                             <Select
                                 name='projectStatus'
@@ -148,7 +148,7 @@ const AddProject = () => {
 
                             <Label
                                 htmlFor='git-url'
-                                innerText='GIT URL'
+                                innerText='GIT URL *'
                             />
 
                             <Input
@@ -180,7 +180,7 @@ const AddProject = () => {
 
                             <Label
                                 htmlFor='short-description'
-                                innerText='Short description'
+                                innerText='Short description *'
                             />
 
                             <Textarea
@@ -195,7 +195,7 @@ const AddProject = () => {
 
                             <Label
                                 htmlFor='cover-image'
-                                innerText='Cover Image'
+                                innerText='Cover Image *'
                             />
                             <InputFile
                                 setImagePreview={handleFileChange}
@@ -209,7 +209,7 @@ const AddProject = () => {
 
                             <Label 
                                 htmlFor='project-description'
-                                innerText='Project description'
+                                innerText='Project description *'
                             />
                             <div
                                 style={{

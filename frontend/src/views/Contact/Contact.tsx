@@ -83,7 +83,7 @@ function Contact() {
                         <form onSubmit={handleSubmit}>
                             <InputGroup>
                                 <Label
-                                    innerText='Full Name'
+                                    innerText='Full Name *'
                                     htmlFor='full-name'
                                 />
                                 <Input
@@ -117,7 +117,7 @@ function Contact() {
 
                             <InputGroup>
                                 <Label
-                                    innerText='E-mail'
+                                    innerText='E-mail *'
                                     htmlFor='email'
                                 />
                                 <Input
@@ -134,7 +134,7 @@ function Contact() {
 
                             <InputGroup>
                                 <Label
-                                innerText='Message'
+                                innerText='Message *'
                                 htmlFor='message'
                                 />
                                 <Textarea

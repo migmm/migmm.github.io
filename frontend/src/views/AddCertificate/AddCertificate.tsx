@@ -25,60 +25,62 @@ const AddCertificate = () => {
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      setError('');
-      setButtonMessage(true);
+        e.preventDefault();
+        setError('');
+        setButtonMessage(true);
 
-      const base64Image = fields.certificationImage;
-      const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
+        const base64Image = fields.certificationImage;
+        const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
-      formData.append('certificationImage', blob, 'coverImage.jpg');
-      //formData.append('showInLandPage', showInLandPage ? 'true' : 'false');
+        formData.append('certificationImage', blob, 'coverImage.jpg');
+        //formData.append('showInLandPage', showInLandPage ? 'true' : 'false');
 
-      for (const key in fields) {
-          if (fields.hasOwnProperty(key)) {
-              if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
-                  formData.append(key, fields[key]);
-              }
-          }
-      }
+        for (const key in fields) {
+            if (fields.hasOwnProperty(key)) {
+                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
+                    formData.append(key, fields[key]);
+                }
+            }
+        }
 
-      console.log('-- Start Form data --');
-      for (const [key, value] of formData.entries()) {
-          console.log(`${key}:`, value);
-      }
-      console.log('-- End Form data --');
+        console.log('-- Start Form data --');
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
+        }
+        console.log('-- End Form data --');
 
-      if (validateForm(fields)) {
-          try {
-              const response = await axios.post('http://localhost:8080/api/users', formData, {
-                  headers: {
-                      'Content-Type': 'application/json',
-                  },
-              });
+        if (validateForm(fields)) {
+            try {
+                const response = await axios.post('http://localhost:8080/api/users', formData, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-              if (response.status === 201) {
-                  /*  navigate('/'); */
-              }
-          } catch (error: any) {
-              if (error.response) {
-                  /*   const { status, data } = error.response;
-                  if (status === 401) {
-                      if (data.message === 'Existing username') {
-                          setError(validations.username.existingMessage);
-                      } else if (data.message === 'Existing email') {
-                          setError(validations.email.existingMessage);
-                      }
-                  }  */
-              } else {
-                  setError(validations.commonError.errorMessage);
-                  console.error(error);
-              }
-          }
-      }
+                if (response.status === 201) {
+                    /*  navigate('/'); */
+                }
+            } catch (error: any) {
+                if (error.response) {
+                    /*   
+                    const { status, data } = error.response;
+                        if (status === 401) {
+                            if (data.message === 'Existing username') {
+                            setError(validations.username.existingMessage);
+                        } else if (data.message === 'Existing email') {
+                            setError(validations.email.existingMessage);
+                        }
+                    }  
+                  */
+                } else {
+                    setError(validations.commonError.errorMessage);
+                    console.error(error);
+                }
+            }
+        }
 
-      setButtonMessage(false);
-  };
+        setButtonMessage(false);
+    };
 
     return (
         <CommonStyles>
@@ -89,7 +91,7 @@ const AddCertificate = () => {
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
                             <Label
-                                innerText='Certification title'
+                                innerText='Certification title *'
                                 htmlFor='certification-name'
                             />
                             <Input
@@ -98,13 +100,11 @@ const AddCertificate = () => {
                                 name='certificationName'
                                 value={fields.certificationName}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
-                                />
-                            <LabelError
-                                innerText={errors.certificationName}
                             />
+                            <LabelError innerText={errors.certificationName} />
 
                             <Label
-                                innerText='Vendor'
+                                innerText='Vendor *'
                                 htmlFor='certification-vendor'
                             />
                             <Input
@@ -114,12 +114,10 @@ const AddCertificate = () => {
                                 value={fields.certificationVendor}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.certificationVendor}
-                            />
+                            <LabelError innerText={errors.certificationVendor} />
 
                             <Label
-                                innerText='URL'
+                                innerText='URL *'
                                 htmlFor='certification-url'
                             />
                             <Input
@@ -129,12 +127,10 @@ const AddCertificate = () => {
                                 value={fields.certificationURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.certificationURL}
-                            />
+                            <LabelError innerText={errors.certificationURL} />
 
                             <Label
-                                innerText='Description'
+                                innerText='Description *'
                                 htmlFor='certification-description'
                             />
                             <Textarea
@@ -143,12 +139,10 @@ const AddCertificate = () => {
                                 value={fields.certificationDescription}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.certificationDescription}
-                            />
+                            <LabelError innerText={errors.certificationDescription} />
 
                             <Label
-                                innerText='Image'
+                                innerText='Image *'
                                 htmlFor='certification-image'
                             />
                             <InputFile
@@ -157,14 +151,10 @@ const AddCertificate = () => {
                                 id='certification-image'
                                 name='certificationImage'
                             />
-                            <LabelError
-                                innerText={errors.certificationImage}
-                            />
+                            <LabelError innerText={errors.certificationImage} />
                         </InputGroup>
 
-                        <LabelError
-                            innerText={error}
-                        />
+                        <LabelError innerText={error} />
 
                         <InputGroup>
                             <Button

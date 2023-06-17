@@ -34,7 +34,7 @@ export const validations = {
         },
     },
     deployURL: {
-        required: true,
+        required: false,
         errorMessage: 'Deploy URL is required.',
         validate: (value: any) => {
             if (!/^(?:http|https):\/\/(?:[\w-]+\.)+[\w]+(?:\/[\w-]+)*\/?$/.test(value)) {

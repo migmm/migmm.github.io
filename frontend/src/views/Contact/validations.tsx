@@ -14,13 +14,13 @@ export const validations = {
     },
     telephone: {
         required: false,
-        errorMessage: 'Telephone is required.',
+        errorMessage: 'Phone number is required.',
         validate: (value: any) => {
             if (value.length < 8) {
-                return 'Telephone must be at least 8 characters long.';
+                return 'Phone number must be at least 8 characters long.';
             }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
-                return 'Telephone should only contain letters and numbers.';
+            if (!/^\+(?:[0-9] ?){6,14}[0-9]$/g.test(value)) {
+                return 'Phone number should be a valid phone number.';
             }
             return true;
         },
@@ -44,8 +44,8 @@ export const validations = {
         required: true,
         errorMessage: 'Message is required.',
         validate: (value: any) => {
-            if (value.length < 4) {
-                return 'Message must be at least 4 characters long.';
+            if (value.length < 10) {
+                return 'Message must be at least 10 characters long.';
             }
             if (!/^[a-zA-Z0-9]+$/.test(value)) {
                 return 'Message should only contain letters and numbers.';

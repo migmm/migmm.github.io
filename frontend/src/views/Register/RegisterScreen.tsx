@@ -11,6 +11,7 @@ import H1 from '../../Styles/H1/H1';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
+import Paragraph from '../../Styles/Paragraph/Paragraph';
 
 
 const RegisterScreen = () => {
@@ -78,7 +79,7 @@ const RegisterScreen = () => {
                         <InputGroup>
                             <Label
                                 htmlFor='username'
-                                innerText='Username'
+                                innerText='Username *'
                             />
                             <Input
                                 type='text'
@@ -96,7 +97,7 @@ const RegisterScreen = () => {
                         <InputGroup>
                             <Label
                                 htmlFor='password'
-                                innerText='Password'
+                                innerText='Password *'
                             />
                             <Input
                                 type='password'
@@ -113,7 +114,7 @@ const RegisterScreen = () => {
                         <InputGroup>
                             <Label
                                 htmlFor='repassword'
-                                innerText='Confirm Password'
+                                innerText='Confirm Password *'
                             />
                             <Input
                                 type='password'
@@ -130,7 +131,7 @@ const RegisterScreen = () => {
                         <InputGroup>
                             <Label
                                 htmlFor='email'
-                                innerText='Email'
+                                innerText='Email *'
                             />
                             <Input
                                 type='email'
