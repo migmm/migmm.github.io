@@ -11,7 +11,6 @@ import H1 from '../../Styles/H1/H1';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
-import Paragraph from '../../Styles/Paragraph/Paragraph';
 
 
 const RegisterScreen = () => {
