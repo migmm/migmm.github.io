@@ -78,7 +78,7 @@ function Contact() {
             <div>
                 <H1 innerText='Contact' />
                 <div>
-                    <Paragraph>You can contact me by sending an email to hi@miguedev.com or filling in the following form</Paragraph>
+                    <Paragraph>You can contact me by sending an email to hi@miguedev.com or filling in the following form.</Paragraph>
                     <div>
                         <form onSubmit={handleSubmit}>
                             <InputGroup>

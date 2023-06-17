@@ -14,30 +14,31 @@ export const useValidation = (validations: Validations) => {
 
     const validateForm = (fields: Record<string, string>) => {
         const newErrors: Record<string, string> = {};
-
+    
         Object.entries(validations).forEach(([fieldName, fieldValidation]) => {
             const fieldValue = fields[fieldName];
-
+    
             if (fieldValidation.required && !fieldValue) {
                 newErrors[fieldName] = fieldValidation.errorMessage || 'Field is required.';
-            } else if (fieldValidation.validate) {
-                const validationResult = fieldValidation.validate(fieldValue, fields); // Pasamos los campos del formulario
-
+            } else if (fieldValue && fieldValidation.validate) {
+                const validationResult = fieldValidation.validate(fieldValue, fields);
+    
                 if (typeof validationResult === 'string') {
                     newErrors[fieldName] = validationResult;
                 }
             }
         });
-
-        // Validación de la coincidencia entre password y repassword
+    
         if (fields.password && fields.repassword && fields.password !== fields.repassword) {
             newErrors.repassword = 'Password confirmation does not match.';
         }
-
+    
         setErrors(newErrors);
-
+    
         return Object.keys(newErrors).length === 0;
     };
+    
+    
 
     return { errors, validateForm };
 };
