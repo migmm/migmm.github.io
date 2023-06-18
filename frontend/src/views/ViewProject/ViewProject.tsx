@@ -9,21 +9,45 @@ import Paragraph from '../../Styles/Paragraph/Paragraph';
 
 const ViewProject = () => {
 
+    const shortDescription = 'Short Description: ' + sampleObject.shortDescription;
+    const projectStatus = 'Project Status: ' + sampleObject.projectStatus;
+    const gitURL = (
+        <span>
+            Git URL: <a href={sampleObject.deployURL}>{sampleObject.deployURL}</a>
+        </span>
+    );
+    const deployURL = (
+        <span>
+            Deploy URL: <a href={sampleObject.deployURL}>{sampleObject.deployURL}</a>
+        </span>
+    );
+    
+
     return (
         <CommonStyles>
             <div>
-                <H1 innerText={sampleObject.projectName} />
-                <Paragraph>Short Description: {sampleObject.shortDescription}</Paragraph>
-                <Paragraph>Project Status: {sampleObject.projectStatus}</Paragraph>
-                <Paragraph>
-                    Git URL: <a href={sampleObject.gitURL}>{sampleObject.gitURL}</a>
-                </Paragraph>
-                <Paragraph>
-                    Deploy URL: <a href={sampleObject.deployURL}>{sampleObject.deployURL}</a>
-                </Paragraph>
-                
+                <H1
+                    innerText={sampleObject.projectName}
+                />
+                <Paragraph
+                    innerText={shortDescription}
+                />
+
+                <Paragraph
+                    innerText={projectStatus}
+                />
+
+                <Paragraph
+                    innerText={gitURL}
+                />
+
+                <Paragraph
+                    innerText={deployURL}
+                />
+
                 <FormattedView 
-                    content={sampleObject.editorHtml} />
+                    content={sampleObject.editorHtml}
+                />
             </div>
         </CommonStyles>
     );
