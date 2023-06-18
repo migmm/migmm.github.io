@@ -23,6 +23,7 @@ const StyledContent = styled.div`
     overflow: auto;
     box-shadow: none; // Removes the shadow
     border: none; // Removes the border
+    margin: 3em 0 4em 0;
 
     // Styles for the editor content
     .ql-editor {
