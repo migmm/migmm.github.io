@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
 
-import Paragraph from "../../Styles/Paragraph/Paragraph";
+import Paragraph from '../../Styles/Paragraph/Paragraph';
+import userDB from '../../dummy/userDB';
+
 
 const Home = () => {
     useEffect(() => {
@@ -10,17 +12,17 @@ const Home = () => {
 
         const lockScroll = (option: string) => {
             console.log(url);
-            if (option === "enabled") {
-                document.body.style.overflow = "hidden";
-                document.body.style.userSelect = "none";
+            if (option === 'enabled') {
+                document.body.style.overflow = 'hidden';
+                document.body.style.userSelect = 'none';
             } else {
-                document.body.style.overflow = "auto";
-                document.body.style.userSelect = "auto";
+                document.body.style.overflow = 'auto';
+                document.body.style.userSelect = 'auto';
             }
         };
 
-        const zoomElement = document.querySelector(".text-home") as HTMLElement;
-        const contactIcons = document.querySelector(".contact-icons") as HTMLElement;
+        const zoomElement = document.querySelector('.text-home') as HTMLElement;
+        const contactIcons = document.querySelector('.contact-icons') as HTMLElement;
         const OPACITY_STEP = 0.1;
         const ZOOM_SPEED = 0.2;
         let opacity = 1;
@@ -28,94 +30,94 @@ const Home = () => {
 
         function handleScroll(e: any) {
             if (window.pageYOffset <= 0) {
-                lockScroll("enabled");
+                lockScroll('enabled');
                 zoomElement.style.display = `block`;
             }
 
             if (e.deltaY >= 0) {
                 zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
                 zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
-                contactIcons.style.opacity = "0";
+                contactIcons.style.opacity = '0';
             } else {
                 if (zoom + ZOOM_SPEED > 1.2) {
                     zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
                     zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
-                    contactIcons.style.opacity = "1";
+                    contactIcons.style.opacity = '1';
                 }
             }
 
             if (opacity <= 0) {
-                lockScroll("disabled");
+                lockScroll('disabled');
                 zoomElement.style.display = `none`;
             }
         }
 
-        window.addEventListener("wheel", handleScroll);
-        lockScroll("enabled");
+        window.addEventListener('wheel', handleScroll);
+        lockScroll('enabled');
 
         return () => {
-            window.removeEventListener("wheel", handleScroll);
-            lockScroll("disabled");
+            window.removeEventListener('wheel', handleScroll);
+            lockScroll('disabled');
         };
     }, []);
 
     return (
         <HomeContainer>
-            <div className="hero-container">
-                <div className="text-container">
-                    <p className="text-home">
+            <div className='hero-container'>
+                <div className='text-container'>
+                    <p className='text-home'>
                         Hi everyone!
-                        <br /> My name is Miguel.
-                        <br /> I'm a <span className="charge-text">FullStack Engineer</span>,
-                        <br /> from Argentina.
+                        <br /> My name is {userDB.name}.
+                        <br /> I'm a <span className='charge-text'>{userDB.charge}</span>,
+                        <br /> from {userDB.location}.
                     </p>
                 </div>
-                <div className="contact-icons">
-                    <a href="https://github.com/migmm" target="_blank" rel="noreferrer">
-                        <i className="fab fa-github fa-3x"></i>
+                <div className='contact-icons'>
+                    <a href={userDB.github} target='_blank' rel='noreferrer'>
+                        <i className='fab fa-github fa-3x'></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/miguelmiche/" target="_blank" rel="noreferrer">
-                        <i className="fab fa-linkedin fa-3x"></i>
+                    <a href={userDB.linkedin} target='_blank' rel='noreferrer'>
+                        <i className='fab fa-linkedin fa-3x'></i>
                     </a>
-                    <a href="mailto:hi@miguedev.com" target="_blank" rel="noreferrer">
-                        <i className="fas fa-envelope fa-3x"></i>
+                    <a href={userDB.email} target='_blank' rel='noreferrer'>
+                        <i className='fas fa-envelope fa-3x'></i>
                     </a>
-                    <a href="https://api.whatsapp.com/send?phone=5492914144624" target="_blank" rel="noreferrer">
-                        <i className="fab fa-whatsapp fa-3x"></i>
+                    <a href={userDB.whatsapp} target='_blank' rel='noreferrer'>
+                        <i className='fab fa-whatsapp fa-3x'></i>
                     </a>
-                    <a href="https://t.me/micmig" target="_blank" rel="noreferrer">
-                        <i className="fab fa-telegram fa-3x"></i>
+                    <a href={userDB.telegram} target='_blank' rel='noreferrer'>
+                        <i className='fab fa-telegram fa-3x'></i>
                     </a>
-                    <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
-                        <i className="fab fa-youtube fa-3x"></i>
+                    <a href={userDB.youtube} target='_blank' rel='noreferrer'>
+                        <i className='fab fa-youtube fa-3x'></i>
                     </a>
                 </div>
             </div>
 
-            <div className="projects-container">
+            <div className='projects-container'>
                 <h1> Latest Project</h1>
 
                 {/*                 <p>Featured projects that I've developed</p> */}
 
-                <div className="cards-container">
-                    <div className="big-card-container">
-                        <div className="big-card">
-                            <div className="card-left-part">
-                                <div className="card-image-container">
-                                    <img src="img/cosmica-screens.png" alt="" />
+                <div className='cards-container'>
+                    <div className='big-card-container'>
+                        <div className='big-card'>
+                            <div className='card-left-part'>
+                                <div className='card-image-container'>
+                                    <img src='img/cosmica-screens.png' alt='' />
                                 </div>
                             </div>
-                            <div className="card-right-part">
-                                <div className="card-title-container">
-                                    <h2 className="card-title">Juguetería Cósmica</h2>
+                            <div className='card-right-part'>
+                                <div className='card-title-container'>
+                                    <h2 className='card-title'>Juguetería Cósmica</h2>
                                 </div>
-                                <div className="info-container">
+                                <div className='info-container'>
                                     <Paragraph>
                                         e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
                                         Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
                                     </Paragraph>
                                 </div>
-                                <div className="card-languages-container">
+                                <div className='card-languages-container'>
                                     <span>React</span>
                                     <span>NodeJS</span>
                                     <span>MongoDB</span>
@@ -125,8 +127,8 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="view-more-container">
-                    <a href="#" className="view-more-link">
+                <div className='view-more-container'>
+                    <a href='#' className='view-more-link'>
                         View more projects
                     </a>
                 </div>
@@ -165,7 +167,7 @@ const HomeContainer = styled.nav`
             .text-home {
                 text-align: center;
                 font-size: 6vw;
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 font-weight: 800;
                 //word-spacing: -10px;
                 opacity: 1;
@@ -214,7 +216,7 @@ const HomeContainer = styled.nav`
     .projects-container {
         background-color: #000000;
         h1 {
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             font-weight: 800;
             text-align: center;
             margin: 2em 1em 0.5em 1em;
@@ -252,7 +254,7 @@ const HomeContainer = styled.nav`
 
                     .card-title-container {
                         h2 {
-                            font-family: "Work Sans", sans-serif;
+                            font-family: 'Work Sans', sans-serif;
                             font-weight: 700;
                             color: white;
                             //margin-top: 0.5em;
@@ -261,7 +263,7 @@ const HomeContainer = styled.nav`
 
                     .info-container {
                         p {
-                            font-family: "Work Sans", sans-serif;
+                            font-family: 'Work Sans', sans-serif;
                             font-weight: 500;
                             margin: 0.5em 0 0.5em 0;
                             color: white;
@@ -273,7 +275,7 @@ const HomeContainer = styled.nav`
                         flex-wrap: wrap;
 
                         span {
-                            font-family: "Work Sans", sans-serif;
+                            font-family: 'Work Sans', sans-serif;
                             font-weight: 600;
                             padding-right: 0.3em;
                             border-radius: 22px;
@@ -307,7 +309,7 @@ const HomeContainer = styled.nav`
                 float: right;
                 text-align: right;
                 width: 100%;
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 font-weight: 500;
                 margin: 0.5em 0 0.5em 0;
                 text-decoration: none;
