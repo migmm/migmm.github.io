@@ -74,22 +74,22 @@ const Home = () => {
                 </div>
                 <div className='contact-icons'>
                     <a href={userDB.github} target='_blank' rel='noreferrer'>
-                        <i className='fab fa-github fa-3x'></i>
+                        <i className='fa-brands fa-github fa-3x'></i>
                     </a>
                     <a href={userDB.linkedin} target='_blank' rel='noreferrer'>
-                        <i className='fab fa-linkedin fa-3x'></i>
+                        <i className='fa-brands fa-linkedin fa-3x'></i>
                     </a>
                     <a href={userDB.email} target='_blank' rel='noreferrer'>
-                        <i className='fas fa-envelope fa-3x'></i>
+                        <i className='fa fa-envelope fa-3x'></i>
                     </a>
                     <a href={userDB.whatsapp} target='_blank' rel='noreferrer'>
-                        <i className='fab fa-whatsapp fa-3x'></i>
+                        <i className='fa-brands fa-whatsapp fa-3x'></i>
                     </a>
                     <a href={userDB.telegram} target='_blank' rel='noreferrer'>
-                        <i className='fab fa-telegram fa-3x'></i>
+                        <i className='fa-brands fa-telegram fa-3x'></i>
                     </a>
                     <a href={userDB.youtube} target='_blank' rel='noreferrer'>
-                        <i className='fab fa-youtube fa-3x'></i>
+                        <i className='fa-brands fa-youtube fa-3x'></i>
                     </a>
                 </div>
             </div>
