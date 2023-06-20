@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { isMobile } from 'react-device-detect';
 
 import Paragraph from "../../Styles/Paragraph/Paragraph";
 import userDB from "../../dummy/userDB";
 
 const Home = () => {
+    
     useEffect(() => {
+
+        if (!isMobile) {
+            console.log("you are in mob")
         let url = window.location.pathname;
         url = url.slice(1, 1);
 
@@ -58,7 +63,7 @@ const Home = () => {
             window.removeEventListener("wheel", handleScroll);
             lockScroll("disabled");
         };
-    }, []);
+}}, []);
 
     return (
         <HomeContainer>
