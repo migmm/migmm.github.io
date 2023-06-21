@@ -11,6 +11,7 @@ import H1 from '../../Styles/H1/H1';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
+import ContainerStyles from '../../Styles/Container/Container';
 
 
 const RegisterScreen = () => {
@@ -71,7 +72,7 @@ const RegisterScreen = () => {
 
     return (
         <CommonStyles>
-            <div>
+            <ContainerStyles>
                 <H1 innerText='Registration'/>
                 <div>
                     <form onSubmit={handleSubmit} noValidate>
@@ -162,7 +163,7 @@ const RegisterScreen = () => {
                         </InputGroup>
                     </form>
                 </div>
-            </div>
+            </ContainerStyles>
         </CommonStyles>
     );
 };

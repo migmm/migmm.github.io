@@ -13,6 +13,7 @@ import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
 import axios from 'axios';
+import ContainerStyles from '../../Styles/Container/Container';
 
 
 function Contact() {
@@ -75,7 +76,7 @@ function Contact() {
 
     return (
         <CommonStyles>
-            <div>
+            <ContainerStyles>
                 <H1 innerText='Contact' />
                 <div>
                     <Paragraph
@@ -170,7 +171,7 @@ function Contact() {
                         </form>
                     </div>
                 </div>
-            </div>
+            </ContainerStyles>
         </CommonStyles>
     );
 }

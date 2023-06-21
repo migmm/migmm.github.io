@@ -12,6 +12,7 @@ import { initialFields, validations } from './validations';
 import convertBase64ToBlob from '../../utils/base64toImage';
 import InputFile from '../../Styles/Form/InputFile/InputFile';
 import Button from '../../Styles/Form/Button/Button';
+import ContainerStyles from '../../Styles/Container/Container';
 
 
 const UserForm = () => {
@@ -90,7 +91,7 @@ const UserForm = () => {
     
     return (
         <CommonStyles>
-            <div>
+            <ContainerStyles>
                 <H1 innerText='Registration'/>
                 <div>
                     <form onSubmit={handleSubmit} noValidate>
@@ -248,7 +249,7 @@ const UserForm = () => {
                         </InputGroup>
                     </form>
                 </div>
-            </div>
+            </ContainerStyles>
         </CommonStyles>
     );
 };

@@ -17,6 +17,7 @@ import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
+import ContainerStyles from '../../Styles/Container/Container';
 
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState('');
@@ -98,7 +99,7 @@ const AddProject = () => {
 
     return (
         <CommonStyles>
-            <div className='project-container'>
+            <ContainerStyles>
                 <H1 innerText='New Project' />
 
                 <div className='add-form-container'>
@@ -248,7 +249,7 @@ const AddProject = () => {
                         </InputGroup>
                     </form>
                 </div>
-            </div>
+            </ContainerStyles>
         </CommonStyles>
     );
 };

@@ -7,6 +7,7 @@ import Label from "../../Styles/Form/Label/Label";
 import LabelError from "../../Styles/Form/LabelError/LabelError";
 import Input from "../../Styles/Form/Input/Input";
 import H1 from "../../Styles/H1/H1";
+import ContainerStyles from "../../Styles/Container/Container";
 
 
 const LoginScreen: React.FC = () => {
@@ -79,7 +80,7 @@ const LoginScreen: React.FC = () => {
 
     return (
         <LoginScreenStyles>
-            <div className="contact-container">
+            <ContainerStyles>
                 <H1>Login</H1>
                 <div className="login-form-container">
                     <form onSubmit={handleSubmit}>
@@ -100,7 +101,7 @@ const LoginScreen: React.FC = () => {
                         </div>
                     </form>
                 </div>
-            </div>
+            </ContainerStyles>
         </LoginScreenStyles>
     );
 };
