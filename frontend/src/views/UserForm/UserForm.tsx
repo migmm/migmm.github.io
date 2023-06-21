@@ -8,7 +8,10 @@ import LabelError from '../../Styles/Form/LabelError/LabelError';
 import axios from 'axios';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
-import { initialFields, validations } from '../Contact/validations';
+import { initialFields, validations } from './validations';
+import convertBase64ToBlob from '../../utils/base64toImage';
+import InputFile from '../../Styles/Form/InputFile/InputFile';
+import Button from '../../Styles/Form/Button/Button';
 
 
 const UserForm = () => {
@@ -25,28 +28,24 @@ const UserForm = () => {
 
     const handleFileChange = (imageData: any) => {
         setImagePreview(imageData);
-        handleChange('coverImage', imageData);
+        handleChange('logo', imageData);
     };
 
-    const handleEditorChange = (html: string) => {
-        setEditorHtml(html);
-        handleChange('editorHtml', html);
-    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError('');
         setButtonMessage(true);
 
-        const base64Image = fields.coverImage;
+        const base64Image = fields.logo;
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
-        formData.append('coverImage', blob, 'coverImage.jpg');
-        formData.append('showInLandPage', showInLandPage ? 'true' : 'false');
+        formData.append('logo', blob, 'logo.jpg');
+
 
         for (const key in fields) {
             if (fields.hasOwnProperty(key)) {
-                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
+                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'logo') {
                     formData.append(key, fields[key]);
                 }
             }
