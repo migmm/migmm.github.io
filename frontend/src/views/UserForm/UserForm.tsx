@@ -142,21 +142,21 @@ const UserForm = () => {
 
                             <Label
                                 htmlFor='linkedin-url'
-                                innerText='LINKEDIN URL *'
+                                innerText='LinkedIn URL'
                             />
                             <Input
                                 type='text'
                                 id='linkedin-url'
-                                name='linkedinURL'
-                                value={fields.linkedinURL}
+                                name='linkedin'
+                                value={fields.linkedin}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError
-                                innerText={errors.linkedinURL}
+                                innerText={errors.linkedin}
                             />
                             <Label
                                 htmlFor='email'
-                                innerText='Email *'
+                                innerText='Email'
                             />
                             <Input
                                 type='text'
@@ -206,12 +206,12 @@ const UserForm = () => {
                             <Input
                                 type='text'
                                 id='youtube-channel'
-                                name='youtubeChannel'
-                                value={fields.youtubeChannel}
+                                name='youtube'
+                                value={fields.youtube}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError
-                                innerText={errors.youtubeChannel}
+                                innerText={errors.youtube}
                             />
 
                             <Label

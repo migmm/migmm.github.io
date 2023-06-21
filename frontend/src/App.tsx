@@ -18,6 +18,7 @@ import AddProject from "./views/AddProject/AddProject";
 import ViewProject from "./views/ViewProject/ViewProject";
 
 import "./index.css";
+import UserForm from "./views/UserForm/UserForm";
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -48,6 +49,7 @@ const App = () => {
                     <Route path="/addcertificate" element={<AddCertificate />} />
                     <Route path="/addproject" element={<AddProject />} />
                     <Route path="/viewproject" element={<ViewProject />} />
+                    <Route path="/newuser" element={<UserForm />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 <Footer />
