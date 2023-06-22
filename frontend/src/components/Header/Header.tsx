@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import HamburgerButton from './HamburgerButton/HamburgerButton';
 import NavBar from './Navbar/NavBar';
 import styled from 'styled-components';
+import userDB from '../../dummy/userDB';
+
 
 const Header = ({ user }: any)=> {
     // NavBar
@@ -44,7 +46,7 @@ const Header = ({ user }: any)=> {
             <div className='header-container'>
                 <header>
                     <div className='logo-container'>
-                        <img src='img/logo.png' alt='Logo' />
+                        <img src={userDB.logo} alt='Logo' />
                     </div>
                     <div className={`navbar-container ${isMenuOpen ? 'menu-open' : ''}`}>
                         <NavBar user={user} closeMenu={closeMenu} />

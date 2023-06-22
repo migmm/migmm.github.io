@@ -26,7 +26,6 @@ const UserForm = () => {
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
 
 
-
     const handleFileChange = (imageData: any) => {
         setImagePreview(imageData);
         handleChange('logo', imageData);
