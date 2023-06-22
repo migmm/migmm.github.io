@@ -111,18 +111,18 @@ const UserForm = () => {
                             />
 
                             <Label
-                                htmlFor='charge'
-                                innerText='Your charge *'
+                                htmlFor='job-title'
+                                innerText='Your job title *'
                             />
                             <Input
                                 type='text'
-                                id='charge'
-                                name='charge'
-                                value={fields.charge}
+                                id='job-title'
+                                name='jobTitle'
+                                value={fields.jobTitle}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError
-                                innerText={errors.charge}
+                                innerText={errors.jobTitle}
                             />
 
                             <Label
@@ -147,13 +147,14 @@ const UserForm = () => {
                             <Input
                                 type='text'
                                 id='linkedin-url'
-                                name='linkedin'
-                                value={fields.linkedin}
+                                name='linkedinURL'
+                                value={fields.linkedinURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError
-                                innerText={errors.linkedin}
+                                innerText={errors.linkedinURL}
                             />
+
                             <Label
                                 htmlFor='email'
                                 innerText='Email'
@@ -170,33 +171,33 @@ const UserForm = () => {
                             />
 
                             <Label
-                                htmlFor='whatsapp'
-                                innerText='Whatsapp'
+                                htmlFor='whatsapp-number'
+                                innerText='whatsappNumber'
                             />
                             <Input
                                 type='text'
-                                id='whatsapp'
-                                name='whatsapp'
-                                value={fields.whatsapp}
+                                id='whatsapp-number'
+                                name='whatsappNumber'
+                                value={fields.whatsappNumber}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError
-                                innerText={errors.whatsapp}
+                                innerText={errors.whatsappNumber}
                             />
 
                             <Label
-                                htmlFor='telegram'
+                                htmlFor='telegram-id'
                                 innerText='Telegram'
                             />
                             <Input
                                 type='text'
-                                id='telegram'
-                                name='telegram'
-                                value={fields.telegram}
+                                id='telegram-id'
+                                name='telegramId'
+                                value={fields.telegramId}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError
-                                innerText={errors.telegram}
+                                innerText={errors.telegramId}
                             />
 
                             <Label
@@ -206,12 +207,12 @@ const UserForm = () => {
                             <Input
                                 type='text'
                                 id='youtube-channel'
-                                name='youtube'
-                                value={fields.youtube}
+                                name='youtubeChannel'
+                                value={fields.youtubeChannel}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError
-                                innerText={errors.youtube}
+                                innerText={errors.youtubeChannel}
                             />
 
                             <Label

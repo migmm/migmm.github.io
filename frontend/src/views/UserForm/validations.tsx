@@ -1,27 +1,27 @@
 export const validations = {
-    projectName: {
+    name: {
         required: true,
-        errorMessage: 'Project title is required.',
+        errorMessage: 'Your name is required.',
         validate: (value: any) => {
             if (value.length < 4) {
-                return 'Project title must be at least 6 characters long.';
+                return 'Your name must be at least 4 characters long.';
             }
             if (!/^[a-zA-Z0-9]+$/.test(value)) {
-                return 'Project title should only contain letters and numbers.';
+                return 'Your name should only contain letters and numbers.';
             }
             return true;
         },
     },
 
-    charge: {
+    jobTitle: {
         required: true,
-        errorMessage: 'Charge is required.',
+        errorMessage: 'Job title is required.',
         validate: (value: any) => {
-            if (value.length < 4) {
-                return 'Charge must be at least 6 characters long.';
+            if (value.length < 6) {
+                return 'Job title must be at least 6 characters long.';
             }
             if (!/^[a-zA-Z0-9]+$/.test(value)) {
-                return 'Charge should only contain letters and numbers.';
+                return 'Job title should only contain letters and numbers.';
             }
             return true;
         },
@@ -41,7 +41,6 @@ export const validations = {
         },
     },
 
-    
     gitURL: {
         required: true,
         errorMessage: 'Git URL is required.',
@@ -52,8 +51,9 @@ export const validations = {
             return true;
         },
     },
-    linkedin: {
-        required: false,
+
+    linkedinURL: {
+        required: true,
         errorMessage: 'Linkedin URL is required.',
         validate: (value: any) => {
             if (!/^(?:http|https):\/\/(?:[\w-]+\.)+[\w]+(?:\/[\w-]+)*\/?$/.test(value)) {
@@ -77,37 +77,37 @@ export const validations = {
         },
     },
 
-    whatsapp: {
-        required: true,
-        errorMessage: 'Whatsapp number is required.',
-        validate: (value: any) => {
-            if (value.length < 4) {
-                return 'Whatsapp number must be at least 6 characters long.';
-            }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
-                return 'Whatsapp number should only contain letters and numbers.';
-            }
-            return true;
-        },
-    },
-
-    telegram: {
-        required: true,
-        errorMessage: 'Telegram is required.',
-        validate: (value: any) => {
-            if (value.length < 4) {
-                return 'Telegram must be at least 6 characters long.';
-            }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
-                return 'Telegram should only contain letters and numbers.';
-            }
-            return true;
-        },
-    },
-
-    youtube: {
+    whatsappNumber: {
         required: false,
-        errorMessage: 'Youtube URL is required.',
+        errorMessage: 'Whatsapp number number is required.',
+        validate: (value: any) => {
+            if (value.length < 4) {
+                return 'Whatsapp number number must be at least 6 characters long.';
+            }
+            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+                return 'Whatsapp number number should only contain letters and numbers.';
+            }
+            return true;
+        },
+    },
+
+    telegramId: {
+        required: false,
+        errorMessage: 'Telegram ID is required.',
+        validate: (value: any) => {
+            if (value.length < 4) {
+                return 'Telegram ID must be at least 6 characters long.';
+            }
+            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+                return 'Telegram ID should only contain letters and numbers.';
+            }
+            return true;
+        },
+    },
+
+    youtubeChannel: {
+        required: false,
+        errorMessage: 'Youtube channel URL is required.',
         validate: (value: any) => {
             if (!/^(?:http|https):\/\/(?:[\w-]+\.)+[\w]+(?:\/[\w-]+)*\/?$/.test(value)) {
                 return 'Invalid URL format.';
