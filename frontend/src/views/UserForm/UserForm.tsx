@@ -31,7 +31,6 @@ const UserForm = () => {
         handleChange('logo', imageData);
     };
 
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError('');
@@ -172,7 +171,7 @@ const UserForm = () => {
 
                             <Label
                                 htmlFor='whatsapp-number'
-                                innerText='whatsappNumber'
+                                innerText='Whatsapp Number'
                             />
                             <Input
                                 type='text'
