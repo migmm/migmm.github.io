@@ -9,7 +9,6 @@ import axios from 'axios';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
 import { initialFields, validations } from './validations';
-import convertBase64ToBlob from '../../utils/base64toImage';
 import InputFile from '../../Styles/Form/InputFile/InputFile';
 import Button from '../../Styles/Form/Button/Button';
 import ContainerStyles from '../../Styles/Container/Container';
@@ -25,7 +24,6 @@ const UserForm = () => {
     const { errors, validateForm } = useValidation(validations);
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
 
-
     const handleFileChange = (imageData: any) => {
         setImagePreview(imageData);
         handleChange('logo', imageData);
@@ -36,15 +34,9 @@ const UserForm = () => {
         setError('');
         setButtonMessage(true);
 
-        const base64Image = fields.logo;
-        const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
-
-        formData.append('logo', blob, 'logo.jpg');
-
-
         for (const key in fields) {
             if (fields.hasOwnProperty(key)) {
-                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'logo') {
+                if (fields.hasOwnProperty(key) && key !== 'showInLandPage') {
                     formData.append(key, fields[key]);
                 }
             }
