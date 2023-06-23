@@ -4,7 +4,7 @@ export const validations = {
         errorMessage: 'Project title is required.',
         validate: (value: any) => {
             if (value.length < 4) {
-                return 'Project title must be at least 6 characters long.';
+                return 'Project title must be at least 4 characters long.';
             }
             if (!/^[a-zA-Z0-9]+$/.test(value)) {
                 return 'Project title should only contain letters and numbers.';
