@@ -41,7 +41,7 @@ export const validations = {
         },
     },
 
-    gitURL: {
+    githubURL: {
         required: true,
         errorMessage: 'Git URL is required.',
         validate: (value: any) => {

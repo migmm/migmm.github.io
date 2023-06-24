@@ -147,6 +147,21 @@ const UserForm = () => {
                             />
 
                             <Label
+                                htmlFor='github-url'
+                                innerText='Github URL'
+                            />
+                            <Input
+                                type='text'
+                                id='github-url'
+                                name='githubURL'
+                                value={fields.githubURL}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError
+                                innerText={errors.githubURL}
+                            />
+
+                            <Label
                                 htmlFor='email'
                                 innerText='Email'
                             />
