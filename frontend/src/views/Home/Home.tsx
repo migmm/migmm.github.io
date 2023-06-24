@@ -72,27 +72,27 @@ const Home = () => {
                     <p className="text-home">
                         Hi everyone!
                         <br /> My name is {userDB.name}.
-                        <br /> I'm a <span className="charge-text">{userDB.charge}</span>,
+                        <br /> I'm a <span className="charge-text">{userDB.jobTitle}</span>,
                         <br /> from {userDB.location}.
                     </p>
                 </div>
                 <div className="contact-icons">
-                    <a href={userDB.github} target="_blank" rel="noreferrer">
+                    <a href={userDB.githubURL} target="_blank" rel="noreferrer">
                         <i className="fa-brands fa-github fa-3x"></i>
                     </a>
-                    <a href={userDB.linkedin} target="_blank" rel="noreferrer">
+                    <a href={userDB.linkedinURL} target="_blank" rel="noreferrer">
                         <i className="fa-brands fa-linkedin fa-3x"></i>
                     </a>
                     <a href={userDB.email} target="_blank" rel="noreferrer">
                         <i className="fa fa-envelope fa-3x"></i>
                     </a>
-                    <a href={userDB.whatsapp} target="_blank" rel="noreferrer">
+                    <a href={userDB.whatsappNumber} target="_blank" rel="noreferrer">
                         <i className="fa-brands fa-whatsapp fa-3x"></i>
                     </a>
-                    <a href={userDB.telegram} target="_blank" rel="noreferrer">
+                    <a href={userDB.telegramId} target="_blank" rel="noreferrer">
                         <i className="fa-brands fa-telegram fa-3x"></i>
                     </a>
-                    <a href={userDB.youtube} target="_blank" rel="noreferrer">
+                    <a href={userDB.youtubeChannel} target="_blank" rel="noreferrer">
                         <i className="fa-brands fa-youtube fa-3x"></i>
                     </a>
                 </div>
