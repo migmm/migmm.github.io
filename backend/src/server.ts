@@ -12,6 +12,7 @@ import routerforgotPassword from './router/forgotPassword';
 import routerResetPassword from './router/resetPassword';
 import routerFavourite from './router/favorites';
 import routerImages from './router/aws';
+import routerWebConfig from './router/webConfig';
 
 const app = express();
 
@@ -35,6 +36,8 @@ app.use('/api/addfavourite', routerFavourite);
 app.use('/api/removefavourite', routerFavourite);
 
 app.use('/api/images', routerImages);
+
+app.use('/api/webconfig', routerWebConfig);
 
 
 // in case of using another route

@@ -13,7 +13,6 @@ const configSchema = new mongoose.Schema(
         telegramId: String,
         youtubeChannel: String,
         logo: String,
-
     },
     {
         versionKey: false,
@@ -26,7 +25,7 @@ const ConfigsModel = mongoose.model('configs', configSchema);
 
 class ConfigModelMongoDB {
     // CRUD - C: CREATE
-    async createConfig(config: any) {
+    async createWebConfig(config: any) {
         await DBMongoDB.getInstance();
         try {
             const newConfig = new ConfigsModel(config);
@@ -39,7 +38,7 @@ class ConfigModelMongoDB {
     }
 
     // CRUD - R: READ
-    async readConfigs() {
+    async readWebConfigs() {
         await DBMongoDB.getInstance();
         try {
             const configs = await ConfigsModel.find({}).lean();
@@ -50,7 +49,7 @@ class ConfigModelMongoDB {
         }
     }
 
-    async readConfig(id: any) {
+    async readWebConfig(id: any) {
         await DBMongoDB.getInstance();
         try {
             const product = (await ConfigsModel.findById(id).lean()) || {};
@@ -61,8 +60,20 @@ class ConfigModelMongoDB {
         }
     }
 
+     // Route to find by any value in database
+    async findByAny(field: any, value: any) {
+        await DBMongoDB.getInstance();
+        try {
+            const user = await ConfigsModel.findOne({ [field]: value }).exec();
+            return user ? DBMongoDB.getObjectWithId(user) : '';
+        } catch (error: any) {
+            console.error(`Error getting user: ${error.message}`);
+            return {};
+        }
+    }
+
     // CRUD - U: UPDATE
-    async updateConfig(id: number, config: any) {
+    async updateWebConfig(id: number, config: any) {
         await DBMongoDB.getInstance();
         try {
             const updatedConfig = await ConfigsModel.findByIdAndUpdate(
@@ -80,7 +91,7 @@ class ConfigModelMongoDB {
     }
 
     // CRUD - D: DELETE
-    async deleteConfig(id: number) {
+    async deleteWebConfig(id: number) {
         await DBMongoDB.getInstance();
         try {
             const deletedConfig = await ConfigsModel.findByIdAndDelete(id).lean();
