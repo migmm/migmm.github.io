@@ -16,14 +16,14 @@ const Navbar = (props: any, { user }: any) => {
                     <li>
                         <Link to='/certificates' onClick={props.closeMenu}>Certificates</Link>
                     </li>
+                    {user && user.roles.includes('admin') && (
                     <li>
                         <Link to='/curriculum' onClick={props.closeMenu}>Curriculum</Link>
                     </li>
-                    {user && user.roles.includes('admin') && (
+                    )}
                     <li>
                         <Link to='/contact' onClick={props.closeMenu}>Contact</Link>
                     </li>
-                    )}
                 </ul>
             </nav>
         </NavContainer>
