@@ -12,6 +12,7 @@ import { initialFields, validations } from './validations';
 import InputFile from '../../Styles/Form/InputFile/InputFile';
 import Button from '../../Styles/Form/Button/Button';
 import ContainerStyles from '../../Styles/Container/Container';
+import { apiURL } from '../../config/urls';
 
 
 const UserForm = () => {
@@ -50,7 +51,7 @@ const UserForm = () => {
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post('http://localhost:8080/api/users', formData, {
+                const response = await axios.post(`${apiURL}users`, formData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },

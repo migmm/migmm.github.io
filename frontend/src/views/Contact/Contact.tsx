@@ -14,6 +14,7 @@ import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
 import axios from 'axios';
 import ContainerStyles from '../../Styles/Container/Container';
+import { apiURL } from '../../config/urls';
 
 
 function Contact() {
@@ -45,7 +46,7 @@ function Contact() {
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post('http://localhost:8080/api/users', formData, {
+                const response = await axios.post(`${apiURL}contact`, formData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },

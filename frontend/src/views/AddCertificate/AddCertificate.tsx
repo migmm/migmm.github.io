@@ -14,6 +14,8 @@ import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
+import { apiURL } from '../../config/urls';
+
 
 const AddCertificate = () => {
     const [imagePreview, setImagePreview] = useState('');
@@ -51,7 +53,7 @@ const AddCertificate = () => {
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post('http://localhost:8080/api/users', formData, {
+                const response = await axios.post(`${apiURL}addcertificate`, formData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },

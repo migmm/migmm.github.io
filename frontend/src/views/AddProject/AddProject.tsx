@@ -18,6 +18,8 @@ import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
 import ContainerStyles from '../../Styles/Container/Container';
+import { apiURL } from '../../config/urls';
+
 
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState('');
@@ -68,7 +70,7 @@ const AddProject = () => {
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post('http://localhost:8080/api/users', formData, {
+                const response = await axios.post(`${apiURL}addproject`, formData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
