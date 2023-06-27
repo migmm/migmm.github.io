@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../Styles/Form/Button/Button';
@@ -9,141 +8,130 @@ import Input from '../../Styles/Form/Input/Input';
 import H1 from '../../Styles/H1/H1';
 import ContainerStyles from '../../Styles/Container/Container';
 import { apiURL } from '../../config/urls';
+import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
+import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
+
+import { validations, initialFields } from './validations';
+import { useValidation } from '../../hooks/useValidations';
+import useFormUtils from '../../hooks/useFormUtils';
 
 
 const LoginScreen: React.FC = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+
+    const [buttonMessage, setButtonMessage] = useState(false);
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [validationErrors, setValidationErrors] = useState<Record<string, string>>({
-        username: '',
-        password: '',
-    });
+    const formData = new FormData();
+    const { fields, handleChange, handleReset } = useFormUtils(initialFields);
+    const { errors, validateForm } = useValidation(validations);
+
     const navigate = useNavigate();
-
-    const handleChange = (name: string, value: string) => {
-        if (name === 'user') {
-            setUsername(value);
-        } else {
-            setPassword(value);
-        }
-    };
-
-    const validateForm = () => {
-        const errors: Record<string, string> = {};
-
-        if (!username) {
-            errors.username = 'Username is required.';
-        }
-
-        if (!password) {
-            errors.password = 'Password is required.';
-        }
-        setValidationErrors(errors);
-
-        return Object.keys(errors).length === 0;
-    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError('');
-        setIsLoading(true);
+        setButtonMessage(true);
 
-        if (validateForm()) {
-            try {
-                const response = await axios.post(
-                    `${apiURL}auth`,
-                    { username, password },
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    }
-                );
-
-                if (response.status === 201) {
-                    navigate('/');
-                }
-                console.log(response);
-
-            } catch (err:any) {
-                if (err.response && err.response.status === 400) {
-                    setError('Invalid username or password.');
-                } else {
-                    setError('An error occurred. Please try again later.');
-                    console.error(error)
+        for (const key in fields) {
+            if (fields.hasOwnProperty(key)) {
+                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
+                    formData.append(key, fields[key]);
                 }
             }
         }
-        setIsLoading(false);
+
+        console.log('-- Start Form data --');
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
+        }
+        console.log('-- End Form data --');
+
+        if (validateForm(fields)) {
+            try {
+                const response = await axios.post(`${apiURL}contact`, formData, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.status === 201) {
+                    navigate('/'); 
+                }
+            } catch (error: any) {
+                if (error.response) {
+                        const { status } = error.response;
+                    if (status === 401) {
+                            setError(validations.commonError.userOrPassIncorrect);
+                    } 
+                } else {
+                    setError(validations.commonError.errorMessage);
+                    console.error(error);
+                }
+            }
+        }
+
+        setButtonMessage(false);
     };
 
     return (
-        <LoginScreenStyles>
+        <CommonStyles>
             <ContainerStyles>
-                <H1>Login</H1>
-                <div className='login-form-container'>
+                <H1 innerText='Login'/>
+                <div>
                     <form onSubmit={handleSubmit}>
-                        <div className='input-group'>
-                            <Label htmlFor='user'>User</Label>
-                            <Input type='text' id='user' name='user' onChange={(e : any) => handleChange(e.target.name, e.target.value)} />
-                            <InvisibleLabelError visible={!!validationErrors.username}>{validationErrors.username}</InvisibleLabelError>
-                        </div>
-                        <div className='input-group'>
-                            <Label htmlFor='password'>Password</Label>
-                            <Input type='password' id='password' name='password' onChange={(e) => handleChange(e.target.name, e.target.value)} />
-                            <InvisibleLabelError visible={!!validationErrors.password}>{validationErrors.password}</InvisibleLabelError>
-                        </div>
-                        <InvisibleLabelError visible={!!error}>{error}</InvisibleLabelError>
-                        <div className='input-group'>
-                            <Button type='submit' disabled={isLoading}>{isLoading ? 'Please wait...' : 'Login'}</Button>
-                            <Button type='reset'>Reset</Button>
-                        </div>
+                        <InputGroup>
+                            <Label
+                                innerText='User'
+                                htmlFor='user'
+                            />
+                            <Input
+                                type='text'
+                                id='user'
+                                name='user'
+                                onChange={(e : any) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError
+                                innerText={errors.user}
+                            />
+                        </InputGroup>
+
+                        <InputGroup>
+                            <Label
+                                innerText='Password'
+                                htmlFor='password'
+                            />
+                            <Input
+                                type='password'
+                                id='password'
+                                name='password'
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError
+                                innerText={errors.password}
+                            />
+                        </InputGroup>
+
+                        <LabelError
+                            innerText={error}
+                        />
+
+                        <InputGroup>
+                            <Button
+                                type='submit'
+                                disabled={buttonMessage}
+                                innerText={buttonMessage ? 'Wait..' : 'Add'}
+                            />
+
+                            <Button
+                                type='reset'
+                                onClick={handleReset}
+                                innerText='Reset'
+                            />
+                            </InputGroup>
                     </form>
                 </div>
             </ContainerStyles>
-        </LoginScreenStyles>
+        </CommonStyles>
     );
 };
 
 export default LoginScreen;
-
-const LoginScreenStyles = styled.main`
-    max-width: 1900px;
-    margin: 0 auto;
-    margin: 1em;
-
-    .login-form-container {
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .register-container {
-            margin: 1em 1em 1em 1em;
-            span {
-                font-family: 'Work Sans', sans-serif;
-                font-weight: 600;
-                text-align: center;
-            }
-        }
-    }
-
-    .input-group:last-child {
-        display: flex;
-        flex-direction: row;
-        gap: 1em;
-    }
-`;
-
-const InvisibleLabelError = styled(LabelError)`
-    visibility: ${({ visible }: { visible: boolean }) => (visible ? 'visible' : 'hidden')};
-    ::after {
-        content: '.';
-        display: inline-block;
-        height: 0;
-        visibility: hidden;
-    }
-`;
