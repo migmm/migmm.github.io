@@ -96,10 +96,6 @@ export const validations = {
             return true;
         },
     },
-    useFromGit: {
-        required: false,
-        errorMessage: 'Check this to view README.md instead of adding a description.',
-    },
     commonError: {
         required: false,
         errorMessage: 'An error occurred. Please try again later.',
