@@ -15,8 +15,8 @@ const Checkbox = ({ label, onChange }: any) => {
 
     return (
         <Button className='checkbox-wrapper'>
-            <input type='checkbox' id='input-check' checked={checked} onChange={handleChange} />
-            <label htmlFor='input-check'>{label}</label>
+            <input type='checkbox' id={label} checked={checked} onChange={handleChange} />
+            <label htmlFor={label}>{label}</label>
         </Button>
     );
 };

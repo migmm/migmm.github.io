@@ -32,6 +32,7 @@ const AddProject = () => {
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
 
     const [showInLandPage, setShowInLandPage] = useState(false);
+    const [useFromGit, setUseFromGit] = useState(false);
 
     const handleFileChange = (imageData: any) => {
         setImagePreview(imageData);
@@ -148,6 +149,9 @@ const AddProject = () => {
                                 onChange={(isChecked: boolean) => setShowInLandPage(isChecked)}
                                 label='Show in landing page'
                             />
+                            <LabelError
+                                innerText={errors.useFromGit}
+                            />
 
                             <Label
                                 htmlFor='git-url'
@@ -214,6 +218,17 @@ const AddProject = () => {
                                 htmlFor='project-description'
                                 innerText='Project description *'
                             />
+                            
+                            <Checkbox
+                                name='useFromGit'
+                                checked={useFromGit}
+                                onChange={(isChecked: boolean) => setUseFromGit(isChecked)}
+                                label='Use README.md'
+                            />
+                            <LabelError
+                                innerText={errors.useFromGit}
+                            />
+
                             <div
                                 style={{
                                     width: '100%',
