@@ -12,6 +12,7 @@ class ProjectValidator {
             shortDescription: Joi.string().required(),
             coverImage: Joi.string().required(),
             editorHtml: Joi.string().required(),
+            useFromGit: Joi.boolean(),
             created_at:  Joi.date(),
             modified_at:  Joi.date(),
         });
