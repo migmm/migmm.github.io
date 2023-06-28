@@ -8,6 +8,7 @@ function Button(props : any) {
 
 
 const ButtonStyles = styled.button`
+    width:100%;
     border-radius: 20px;
     padding: 1em;
     border: 1px solid #ebebeb;

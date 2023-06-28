@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 
 const Input = styled.input`
+    width:100%;
     font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     text-align: center;

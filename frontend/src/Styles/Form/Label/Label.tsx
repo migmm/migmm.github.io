@@ -8,6 +8,7 @@ function Label(props : any) {
 
 
 const LabelStyles = styled.label`
+    width:100%;
     font-family: "Work Sans", sans-serif;
     font-weight: 600;
     text-align: center;

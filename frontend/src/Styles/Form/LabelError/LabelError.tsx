@@ -7,6 +7,7 @@ function LabelError(props : any) {
 
 const LabelErrorStyles = styled.label`
     display: block;
+    width:100%;
     font-family: 'Work Sans', sans-serif;
     color: #ff0000;
     font-weight: 500;

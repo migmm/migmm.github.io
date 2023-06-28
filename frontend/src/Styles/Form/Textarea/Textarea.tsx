@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 
 const Textarea = styled.textarea`
+    width:100%;
     font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     text-align: center;
