@@ -1,14 +1,18 @@
 import mongoose from 'mongoose';
 import DBMongoDB from '../../db/DBMongoDB';
 
+
 const projectSchema = new mongoose.Schema(
     {
-        name: String,
-        description: String,
-        languajes: Array,
-        urlDeploy: String,
+        projecName: String,
+        projectStatus: String,
+        showInLandPage: Boolean,
+        gitURL: String,
         urlGithubRepo: String,
-        photos: Array,
+        deployURL: String,
+        shortDescription: String,
+        coverImage: String,
+        editorHtml: String,
         created_at: { 
             type: Date, 
             default: Date.now 
