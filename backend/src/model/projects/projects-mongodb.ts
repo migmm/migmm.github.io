@@ -13,6 +13,7 @@ const projectSchema = new mongoose.Schema(
         shortDescription: String,
         coverImage: String,
         editorHtml: String,
+        useFromGit: Boolean,
         created_at: { 
             type: Date, 
             default: Date.now 
