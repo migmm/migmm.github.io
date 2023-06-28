@@ -14,6 +14,7 @@ import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 
 
 const LoginScreen: React.FC = () => {
@@ -114,7 +115,7 @@ const LoginScreen: React.FC = () => {
                             innerText={error}
                         />
 
-                        <InputGroup>
+                        <ButtonGroup>
                             <Button
                                 type='submit'
                                 disabled={buttonMessage}
@@ -126,7 +127,7 @@ const LoginScreen: React.FC = () => {
                                 onClick={handleReset}
                                 innerText='Reset'
                             />
-                            </InputGroup>
+                            </ButtonGroup>
                     </form>
                 </div>
             </ContainerStyles>

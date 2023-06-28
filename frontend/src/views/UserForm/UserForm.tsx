@@ -13,6 +13,7 @@ import InputFile from '../../Styles/Form/InputFile/InputFile';
 import Button from '../../Styles/Form/Button/Button';
 import ContainerStyles from '../../Styles/Container/Container';
 import { apiURL } from '../../config/urls';
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 
 
 const UserForm = () => {
@@ -241,7 +242,7 @@ const UserForm = () => {
                             innerText={error}
                         />
 
-                        <InputGroup>
+                        <ButtonGroup>
                             <Button
                                 type='submit'
                                 disabled={buttonMessage}
@@ -253,7 +254,7 @@ const UserForm = () => {
                                 onClick={handleReset}
                                 innerText='Reset'
                             />
-                        </InputGroup>
+                        </ButtonGroup>
                     </form>
                 </div>
             </ContainerStyles>

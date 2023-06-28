@@ -15,6 +15,8 @@ import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
 import { apiURL } from '../../config/urls';
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
+import ContainerStyles from '../../Styles/Container/Container';
 
 
 const AddCertificate = () => {
@@ -86,9 +88,8 @@ const AddCertificate = () => {
 
     return (
         <CommonStyles>
-            <div>
+            <ContainerStyles>
                 <H1 innerText='New Certification' />
-
                 <div>
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
@@ -158,7 +159,7 @@ const AddCertificate = () => {
 
                         <LabelError innerText={error} />
 
-                        <InputGroup>
+                        <ButtonGroup>
                             <Button
                                 type='submit'
                                 disabled={buttonMessage}
@@ -170,10 +171,10 @@ const AddCertificate = () => {
                                 onClick={handleReset}
                                 innerText='Reset'
                             />
-                        </InputGroup>
+                        </ButtonGroup>
                     </form>
                 </div>
-            </div>
+            </ContainerStyles>
         </CommonStyles>
     );
 };

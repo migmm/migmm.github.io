@@ -15,6 +15,7 @@ import useFormUtils from '../../hooks/useFormUtils';
 import axios from 'axios';
 import ContainerStyles from '../../Styles/Container/Container';
 import { apiURL } from '../../config/urls';
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 
 
 function Contact() {
@@ -156,7 +157,7 @@ function Contact() {
                                 innerText={error}
                             />
 
-                            <InputGroup>
+                            <ButtonGroup>
                             <Button
                                 type='submit'
                                 disabled={buttonMessage}
@@ -168,7 +169,7 @@ function Contact() {
                                 onClick={handleReset}
                                 innerText='Reset'
                             />
-                            </InputGroup>
+                            </ButtonGroup>
                         </form>
                     </div>
                 </div>

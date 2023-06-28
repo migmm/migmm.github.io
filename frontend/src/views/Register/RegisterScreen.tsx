@@ -12,6 +12,7 @@ import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import useFormUtils from '../../hooks/useFormUtils';
 import ContainerStyles from '../../Styles/Container/Container';
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 
 
 const RegisterScreen = () => {
@@ -148,7 +149,7 @@ const RegisterScreen = () => {
 
                         <LabelError innerText={error}/>
 
-                        <InputGroup>
+                        <ButtonGroup>
                             <Button 
                                 type='submit' 
                                 disabled={buttonMessage}
@@ -160,7 +161,7 @@ const RegisterScreen = () => {
                                 onClick={handleReset}
                                 innerText='Reset'
                             />
-                        </InputGroup>
+                        </ButtonGroup>
                     </form>
                 </div>
             </ContainerStyles>
