@@ -25,7 +25,7 @@ import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState('');
     const [editorHtml, setEditorHtml] = useState('');
-    const formData = new FormData();
+
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
 
@@ -52,29 +52,21 @@ const AddProject = () => {
         const base64Image = fields.coverImage;
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
-        formData.append('coverImage', blob, 'coverImage.jpg');
-        formData.append('showInLandPage', showInLandPage ? 'true' : 'false');
+        const data = {
+            coverImage: blob,
+            showInLandPage,
+            ...fields
+        };
 
-        for (const key in fields) {
-            if (fields.hasOwnProperty(key)) {
-                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
-                    formData.append(key, fields[key]);
-                }
-            }
-        }
-
-        console.log('-- Start Form data --');
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
-        console.log('-- End Form data --');
+        console.log('Data:', data);
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post(`${apiURL}addproject`, formData, {
+                console.log('send')
+                const response = await axios.post(`${apiURL}projects`, data, {
                     headers: {
-                        'Content-Type': 'application/json',
-                    },
+                        'Content-Type': 'application/json'
+                    }
                 });
 
                 if (response.status === 201) {
