@@ -54,8 +54,8 @@ const AddProject = () => {
 
         const data = {
             coverImage: blob,
-            showInLandPage,
-            ...fields
+            ...fields,
+            showInLandPage: showInLandPage ? true : false
         };
 
         console.log('Data:', data);
