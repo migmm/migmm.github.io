@@ -14,12 +14,12 @@ import Button from '../../Styles/Form/Button/Button';
 import ContainerStyles from '../../Styles/Container/Container';
 import { apiURL } from '../../config/urls';
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
+import convertBase64ToBlob from '../../utils/base64toImage';
 
 
 const UserForm = () => {
 
     const [imagePreview, setImagePreview] = useState('');
-    const formData = new FormData();
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
 
@@ -36,30 +36,27 @@ const UserForm = () => {
         setError('');
         setButtonMessage(true);
 
-        for (const key in fields) {
-            if (fields.hasOwnProperty(key)) {
-                if (fields.hasOwnProperty(key) && key !== 'showInLandPage') {
-                    formData.append(key, fields[key]);
-                }
-            }
-        }
+        const base64Image = fields.logo;
+        const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
-        console.log('-- Start Form data --');
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
-        console.log('-- End Form data --');
+        const data = {
+            logo: blob,
+            ...fields,
+        };
+
+        console.log('Data:', data);
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post(`${apiURL}users`, formData, {
+                console.log('send')
+                const response = await axios.post(`${apiURL}users`, data, {
                     headers: {
-                        'Content-Type': 'application/json',
-                    },
+                        'Content-Type': 'application/json'
+                    }
                 });
 
                 if (response.status === 201) {
-                    /*  navigate('/'); */
+                    handleReset();
                 }
             } catch (error: any) {
                 if (error.response) {
