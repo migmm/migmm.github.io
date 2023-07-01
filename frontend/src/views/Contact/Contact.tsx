@@ -22,7 +22,6 @@ function Contact() {
 
     const [buttonMessage, setButtonMessage] = useState(false);
     const [error, setError] = useState('');
-    const formData = new FormData();
     const { errors, validateForm } = useValidation(validations);
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
 
@@ -31,30 +30,23 @@ function Contact() {
         setError('');
         setButtonMessage(true);
 
-        for (const key in fields) {
-            if (fields.hasOwnProperty(key)) {
-                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
-                    formData.append(key, fields[key]);
-                }
-            }
-        }
+        const data = {
+            ...fields,
+        };
 
-        console.log('-- Start Form data --');
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
-        console.log('-- End Form data --');
+        console.log('Data:', data);
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post(`${apiURL}contact`, formData, {
+                console.log('send')
+                const response = await axios.post(`${apiURL}contact`, data, {
                     headers: {
-                        'Content-Type': 'application/json',
-                    },
+                        'Content-Type': 'application/json'
+                    }
                 });
 
                 if (response.status === 201) {
-                    /*  navigate('/'); */
+                    handleReset();
                 }
             } catch (error: any) {
                 if (error.response) {
