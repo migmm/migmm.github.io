@@ -113,6 +113,10 @@ const StyledContent = styled.div`
         p {
             font-family: 'Work Sans';
         }
+
+        img {
+            border-radius: 10px;
+        }
     }
 
     // Styles to hide the toolbar
