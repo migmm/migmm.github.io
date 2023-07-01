@@ -21,7 +21,6 @@ import ContainerStyles from '../../Styles/Container/Container';
 
 const AddCertificate = () => {
     const [imagePreview, setImagePreview] = useState('');
-    const formData = new FormData();
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
 
@@ -36,46 +35,35 @@ const AddCertificate = () => {
         const base64Image = fields.certificationImage;
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
-        formData.append('certificationImage', blob, 'coverImage.jpg');
-        //formData.append('showInLandPage', showInLandPage ? 'true' : 'false');
+        const data = {
+            certificationImage: blob,
+            ...fields,
+        };
 
-        for (const key in fields) {
-            if (fields.hasOwnProperty(key)) {
-                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
-                    formData.append(key, fields[key]);
-                }
-            }
-        }
-
-        console.log('-- Start Form data --');
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
-        console.log('-- End Form data --');
+        console.log('Data:', data);
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post(`${apiURL}addcertificate`, formData, {
+                console.log('send')
+                const response = await axios.post(`${apiURL}addcertificate`, data, {
                     headers: {
-                        'Content-Type': 'application/json',
-                    },
+                        'Content-Type': 'application/json'
+                    }
                 });
 
                 if (response.status === 201) {
-                    /*  navigate('/'); */
+                    handleReset();
                 }
             } catch (error: any) {
                 if (error.response) {
-                    /*   
-                    const { status, data } = error.response;
-                        if (status === 401) {
-                            if (data.message === 'Existing username') {
+                    /*   const { status, data } = error.response;
+                    if (status === 401) {
+                        if (data.message === 'Existing username') {
                             setError(validations.username.existingMessage);
                         } else if (data.message === 'Existing email') {
                             setError(validations.email.existingMessage);
                         }
-                    }  
-                  */
+                    }  */
                 } else {
                     setError(validations.commonError.errorMessage);
                     console.error(error);
