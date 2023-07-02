@@ -1,71 +1,78 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import userDB from "../../dummy/userDB";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import userDB from '../../dummy/userDB';
 
 const Footer = () => {
     return (
         <FooterStyles>
-            <div className="footer-content">
-                <div className="first-column">
-                    <div className="img-container">
-                        <img src={userDB.logo} alt="Logo" />
+            <div className='footer-content'>
+                <div className='first-column'>
+                    <div className='img-container'>
+                        <Link to='/'>
+                            <img src={userDB.logo} alt='Logo' />
+                        </Link>
                     </div>
-                    <div className="p-container">
-                        <h2>miguedev</h2>
+                    <div className='p-container'>
+                        <Link to='/'>
+                            <h2>miguedev</h2>
+                        </Link>
                     </div>
                 </div>
-                <div className="second-column">
+                <div className='second-column'>
                     <h3>Sections</h3>
-                    <ul className="link-list">
+                    <ul className='link-list'>
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to='/'>Home</Link>
                         </li>
                         <li>
-                            <Link to="/projects">Projects</Link>
+                            <Link to='/projects'>Projects</Link>
                         </li>
                         <li>
-                            <Link to="/certificates">Certificates</Link>
+                            <Link to='/certificates'>Certificates</Link>
                         </li>
                         <li>
-                            <Link to="/contact">Contact</Link>
+                            <Link to='/contact'>Contact</Link>
                         </li>
                     </ul>
                 </div>
-                <div className="third-column">
+                <div className='third-column'>
                     <h3>Get in touch</h3>
-                    <p className="footer-text">
+                    <p className='footer-text'>
                         Feel free to reach out to me by sending a message, and I will make sure to reply as soon as possible.
                     </p>
-                    <button className="footer-button">Contact me!</button>
+                    <button className='footer-button'>Contact me!</button>
 
-                    <div className="footer-icons">
-                        <a href="http://www.github.com/project1" target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-github fa-2x"></i>
+                    <div className='footer-icons'>
+                        <a href='http://www.github.com/project1' target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-github fa-2x'></i>
                         </a>
-                        <a href="http://www.linkedin.com.com/profile" target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-linkedin fa-2x"></i>
+                        <a href='http://www.linkedin.com.com/profile' target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-linkedin fa-2x'></i>
                         </a>
-                        <a href="mail@mail.com" target="_blank" rel="noreferrer">
-                            <i className="fa fa-envelope fa-2x"></i>
+                        <a href='mail@mail.com' target='_blank' rel='noreferrer'>
+                            <i className='fa fa-envelope fa-2x'></i>
                         </a>
-                        <a href="4934934934" target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-whatsapp fa-2x"></i>
+                        <a href='4934934934' target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-whatsapp fa-2x'></i>
                         </a>
-                        <a href="fdfdf" target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-telegram fa-2x"></i>
+                        <a href='fdfdf' target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-telegram fa-2x'></i>
                         </a>
-                        <a href="http://www.youtube.com/project1" target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-youtube fa-2x"></i>
+                        <a href='http://www.youtube.com/project1' target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-youtube fa-2x'></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div className="footer-copyright">
-                <p className="copyright-text"> ©{new Date().getFullYear()} miguedev | All rights reserved.</p>
-                <div className="hidden-link-container">
-                    <Link to="/login">π</Link>
+            <div className='footer-copyright'>
+                <p className='copyright-text'>
+                    {' '}
+                    ©{new Date().getFullYear()} <Link to='/'>miguedev</Link> | All rights reserved.
+                </p>
+                <div className='hidden-link-container'>
+                    <Link to='/login'>π</Link>
                 </div>
             </div>
         </FooterStyles>
@@ -84,7 +91,7 @@ const FooterStyles = styled.footer`
 
     width: 100%;
     background-color: #020d14;
-    font-family: "Work Sans", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     color: #f3f3f1;
 
     .footer-content {
@@ -92,7 +99,7 @@ const FooterStyles = styled.footer`
             display: flex;
             flex-direction: row;
             align-items: center;
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             margin: 1em;
 
             @media (min-width: 768px) {
@@ -106,12 +113,23 @@ const FooterStyles = styled.footer`
                 }
             }
             .p-container {
-                color: #f3f3f1;
+                a {
+                    text-decoration: none;
+                    color: #f3f3f1;
+
+                    :hover {
+                        color: #696969;
+                    }
+
+                    :active {
+                        color: #9e9e9e;
+                    }
+                }
             }
         }
 
         .second-column {
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             color: #f3f3f1;
             margin: 1.7em;
 
@@ -138,13 +156,13 @@ const FooterStyles = styled.footer`
                     a {
                         text-decoration: none;
                         color: #f3f3f1;
-                        
+
                         :hover {
                             color: #696969;
                         }
 
                         :active {
-                            color: #808080;
+                            color: #9e9e9e;
                         }
                     }
                 }
@@ -165,7 +183,7 @@ const FooterStyles = styled.footer`
             .footer-button {
                 background-color: #ed1b23;
                 height: 65px;
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 color: #f3f3f1;
                 font-weight: 500;
                 line-height: 65px;
@@ -202,7 +220,7 @@ const FooterStyles = styled.footer`
                     }
 
                     :active {
-                        color: #808080;
+                        color: #9e9e9e;
                     }
                 }
             }
@@ -231,8 +249,21 @@ const FooterStyles = styled.footer`
         }
 
         .copyright-text {
-            font-size: .8em;
+            font-size: 0.8em;
             padding: 1.5em;
+
+            a {
+                color: #f3f3f1;
+                text-decoration: none;
+
+                :hover {
+                    color: #696969;
+                }
+
+                :active {
+                    color: #9e9e9e;
+                }
+            }
         }
     }
 `;
