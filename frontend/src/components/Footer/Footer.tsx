@@ -8,15 +8,17 @@ const Footer = () => {
         <FooterStyles>
             <div className='footer-content'>
                 <div className='first-column'>
-                    <div className='img-container'>
-                        <Link to='/'>
-                            <img src={userDB.logo} alt='Logo' />
-                        </Link>
-                    </div>
-                    <div className='p-container'>
-                        <Link to='/'>
-                            <h2>miguedev</h2>
-                        </Link>
+                    <div className='items-container'>
+                        <div className='img-container'>
+                            <Link to='/'>
+                                <img src={userDB.logo} alt='Logo' />
+                            </Link>
+                        </div>
+                        <div className='p-container'>
+                            <Link to='/'>
+                                <h2>miguedev</h2>
+                            </Link>
+                        </div>
                     </div>
                 </div>
                 <div className='second-column'>
@@ -86,16 +88,20 @@ const FooterStyles = styled.footer`
     margin-top: 5em;
     padding-top: 2em;
 
-    @media (min-width: 768px) {
-        flex-direction: row;
-    }
-
     width: 100%;
-    background-color: #020d14;
+    background-color: #1c1d1f;
     font-family: 'Work Sans', sans-serif;
     color: #f3f3f1;
 
     .footer-content {
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            margin: 0 4em 0 4em;
+        }
+
         .first-column {
             display: flex;
             flex-direction: row;
@@ -105,25 +111,33 @@ const FooterStyles = styled.footer`
 
             @media (min-width: 768px) {
                 width: 30%;
+                align-items: start;
             }
 
-            .img-container {
-                img {
-                    width: 65px;
-                    height: 65px;
-                }
-            }
-            .p-container {
-                a {
-                    text-decoration: none;
-                    color: #f3f3f1;
+            .items-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
 
-                    :hover {
-                        color: #696969;
+                .img-container {
+                    img {
+                        width: 65px;
+                        height: 65px;
                     }
+                }
 
-                    :active {
-                        color: #9e9e9e;
+                .p-container {
+                    a {
+                        text-decoration: none;
+                        color: #f3f3f1;
+
+                        :hover {
+                            color: #696969;
+                        }
+
+                        :active {
+                            color: #9e9e9e;
+                        }
                     }
                 }
             }
@@ -212,9 +226,17 @@ const FooterStyles = styled.footer`
                 flex-direction: row;
                 justify-content: center;
 
+                @media (min-width: 768px) {
+                    justify-content: start;
+                }
+
                 a {
                     color: #f3f3f1;
                     margin: 1em 1em 0 1em;
+
+                    @media (min-width: 768px) {
+                        margin: 1em 1em 0 0;
+                    }
 
                     :hover {
                         color: #696969;
