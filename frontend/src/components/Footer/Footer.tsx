@@ -84,6 +84,7 @@ const FooterStyles = styled.footer`
     display: flex;
     flex-direction: column;
     margin-top: 5em;
+    padding-top: 2em;
 
     @media (min-width: 768px) {
         flex-direction: row;

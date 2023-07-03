@@ -98,10 +98,13 @@ const Home = () => {
                 </div>
             </div>
             <div className="short-info">
+                <h2>About Me</h2>
                 <Paragraph
                     innerText="I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
-                    MongoDB and PostgreSQL and a working knowledge of React, combined with a creative and innovative mindset.
-                    With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
+                    MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset."
+                />
+                <Paragraph
+                    innerText="With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
                     solutions, adapting to diverse project environments and requirements."
                 />
             </div>
@@ -226,14 +229,27 @@ const HomeContainer = styled.nav`
 
     .short-info {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        background-color: #000000;
-        color: #ffffff;
+        align-items: center;
+        background-color: #ffffff;
+        color: #000000;
         padding: 5em 3em;
+
+        h2 {
+            font-family: "Work Sans", sans-serif;
+            font-weight: 800;
+            text-align: center;
+
+        }
 
         p {
             max-width: 900px;
             text-align:center;
+
+            @media (min-width: 768px) {
+            font-size: 1.5em;
+            }
         }
     }
 
