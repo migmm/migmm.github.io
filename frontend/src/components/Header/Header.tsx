@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import HamburgerButton from './HamburgerButton/HamburgerButton';
 import NavBar from './Navbar/NavBar';
 import styled from 'styled-components';
@@ -46,7 +46,7 @@ const Header = ({ user }: any)=> {
             <div className='header-container'>
                 <header>
                     <div className='logo-container'>
-                        <img src={userDB.logo} alt='Logo' />
+                    <Link to='/'><img src={userDB.logo} alt='Logo' /></Link>
                     </div>
                     <div className={`navbar-container ${isMenuOpen ? 'menu-open' : ''}`}>
                         <NavBar user={user} closeMenu={closeMenu} />
