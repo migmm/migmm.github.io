@@ -56,16 +56,7 @@ const AddProject = () => {
     useEffect(() => {
         if (projectId) {
             setH1Text('Edit');
-            setProjectData({
-                id: sampleObject.id,
-                projectName: sampleObject.projectName,
-                projectStatus: sampleObject.projectStatus,
-                showInLandPage: sampleObject.showInLandPage,
-                gitURL: sampleObject.gitURL,
-                deployURL: sampleObject.deployURL,
-                shortDescription: sampleObject.shortDescription,
-                editorHtml: sampleObject.editorHtml,
-            });
+            setProjectData(sampleObject);
         } else {
             setH1Text('New Project');
             setProjectData(null);

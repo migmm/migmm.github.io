@@ -13,7 +13,7 @@ import Footer from "./components/Footer/Footer";
 import LoginScreen from "./views/Login/LoginScreen";
 import RegisterScreen from "./views/Register/RegisterScreen";
 
-import AddCertificate from "./views/AddCertificate/AddCertificate";
+import AddCertificate from "./views/FormCertificate/FormCertificate";
 import FormProject from "./views/FormProject/FormProject";
 import ViewProject from "./views/ViewProject/ViewProject";
 
