@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import FormattedView from './FormattedView';
 import sampleObject from '../../dummy/sampleObject';
 
@@ -6,9 +7,7 @@ import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
 
-
 const ViewProject = () => {
-
     const shortDescription = 'Short Description: ' + sampleObject.shortDescription;
     const projectStatus = 'Project Status: ' + sampleObject.projectStatus;
     const gitURL = (
@@ -21,33 +20,20 @@ const ViewProject = () => {
             Deploy URL: <a href={sampleObject.deployURL}>{sampleObject.deployURL}</a>
         </span>
     );
-    
 
     return (
         <CommonStyles>
             <div>
-                <H1
-                    innerText={sampleObject.projectName}
-                />
-                <Paragraph
-                    innerText={shortDescription}
-                />
+                <H1 innerText={sampleObject.projectName} />
+                <Paragraph innerText={shortDescription} />
+                <Paragraph innerText={projectStatus} />
+                <Paragraph innerText={gitURL} />
+                <Paragraph innerText={deployURL} />
+                <FormattedView content={sampleObject.editorHtml} />
 
-                <Paragraph
-                    innerText={projectStatus}
-                />
-
-                <Paragraph
-                    innerText={gitURL}
-                />
-
-                <Paragraph
-                    innerText={deployURL}
-                />
-
-                <FormattedView 
-                    content={sampleObject.editorHtml}
-                />
+                <Link to={`/editproject/${sampleObject.id}`}>
+                    <button>Edit</button>
+                </Link>
             </div>
         </CommonStyles>
     );

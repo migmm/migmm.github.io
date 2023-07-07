@@ -14,7 +14,7 @@ import LoginScreen from "./views/Login/LoginScreen";
 import RegisterScreen from "./views/Register/RegisterScreen";
 
 import AddCertificate from "./views/AddCertificate/AddCertificate";
-import AddProject from "./views/AddProject/AddProject";
+import FormProject from "./views/FormProject/FormProject";
 import ViewProject from "./views/ViewProject/ViewProject";
 
 import "./index.css";
@@ -47,7 +47,8 @@ const App = () => {
                     <Route path="/login" element={<LoginScreen />} />
                     <Route path="/register" element={<RegisterScreen />} />
                     <Route path="/addcertificate" element={<AddCertificate />} />
-                    <Route path="/addproject" element={<AddProject />} />
+                    <Route path="/addproject" element={<FormProject />} />
+                    <Route path="/editproject/:projectId" element={<FormProject />} />
                     <Route path="/viewproject" element={<ViewProject />} />
                     <Route path="/newuser" element={<UserForm />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
