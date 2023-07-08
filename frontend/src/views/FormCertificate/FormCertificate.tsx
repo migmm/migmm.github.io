@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
@@ -17,15 +17,42 @@ import convertBase64ToBlob from '../../utils/base64toImage';
 import { apiURL } from '../../config/urls';
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 import ContainerStyles from '../../Styles/Container/Container';
+import sampleObject from '../../dummy/certificate';
+import { useParams } from 'react-router-dom';
 
 
 const AddCertificate = () => {
+
+    interface CertificateData {
+        id: number | null;
+        certificationName: string;
+        certificationVendor: string;
+        certificationURL:string;
+        certificationDescription: string
+    }
+
     const [imagePreview, setImagePreview] = useState('');
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
 
     const { errors, validateForm } = useValidation(validations);
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
+
+    const [h1Text, setH1Text] = useState('');
+
+    const [certificateData, setCertificateData] = useState<CertificateData | null>(null);
+
+    const { certificateId } = useParams();
+
+    useEffect(() => {
+        if (certificateId) {
+            setH1Text('Edit');
+            setCertificateData(sampleObject);
+        } else {
+            setH1Text('New Project');
+            setCertificateData(null);
+        }
+    }, [certificateId]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -62,7 +89,7 @@ const AddCertificate = () => {
                             setError(validations.username.existingMessage);
                         } else if (data.message === 'Existing email') {
                             setError(validations.email.existingMessage);
-                        }
+                        }'New Certification'
                     }  */
                 } else {
                     setError(validations.commonError.errorMessage);
@@ -77,7 +104,7 @@ const AddCertificate = () => {
     return (
         <CommonStyles>
             <ContainerStyles>
-                <H1 innerText='New Certification' />
+                <H1 innerText={h1Text} />
                 <div>
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
@@ -89,7 +116,7 @@ const AddCertificate = () => {
                                 type='text'
                                 id='certificationName'
                                 name='certificationName'
-                                value={fields.certificationName}
+                                value={certificateData?.certificationName|| fields.certificationName}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.certificationName} />
@@ -102,7 +129,7 @@ const AddCertificate = () => {
                                 type='text'
                                 id='certification-vendor'
                                 name='certificationVendor'
-                                value={fields.certificationVendor}
+                                value={certificateData?.certificationVendor|| fields.certificationVendor}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.certificationVendor} />
@@ -115,7 +142,7 @@ const AddCertificate = () => {
                                 type='text'
                                 id='certification-url'
                                 name='certificationURL'
-                                value={fields.certificationURL}
+                                value={certificateData?.certificationURL|| fields.certificationURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.certificationURL} />
@@ -127,7 +154,7 @@ const AddCertificate = () => {
                             <Textarea
                                 id='certification-description'
                                 name='certificationDescription'
-                                value={fields.certificationDescription}
+                                value={certificateData?.certificationDescription|| fields.certificationDescription}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.certificationDescription} />

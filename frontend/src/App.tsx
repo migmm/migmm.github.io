@@ -13,7 +13,7 @@ import Footer from "./components/Footer/Footer";
 import LoginScreen from "./views/Login/LoginScreen";
 import RegisterScreen from "./views/Register/RegisterScreen";
 
-import AddCertificate from "./views/FormCertificate/FormCertificate";
+import FormCertificate from "./views/FormCertificate/FormCertificate";
 import FormProject from "./views/FormProject/FormProject";
 import ViewProject from "./views/ViewProject/ViewProject";
 
@@ -46,7 +46,8 @@ const App = () => {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<LoginScreen />} />
                     <Route path="/register" element={<RegisterScreen />} />
-                    <Route path="/addcertificate" element={<AddCertificate />} />
+                    <Route path="/addcertificate" element={<FormCertificate />} />
+                    <Route path="/editcertificate/:certificateId" element={<FormCertificate />} />
                     <Route path="/addproject" element={<FormProject />} />
                     <Route path="/editproject/:projectId" element={<FormProject />} />
                     <Route path="/viewproject" element={<ViewProject />} />
