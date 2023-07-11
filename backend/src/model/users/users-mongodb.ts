@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema(
     }
 );
 
-mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', true);
 
 const UsersModel = mongoose.model('users', userSchema);
 
