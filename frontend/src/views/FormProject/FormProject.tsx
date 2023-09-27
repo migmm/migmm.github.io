@@ -33,8 +33,9 @@ const AddProject = () => {
         showInLandPage: boolean;
         gitURL: string;
         deployURL: string;
-        shortDescription: string;
         editorHtml: string;
+        tags: string;
+        lastUpdate: string;
     }
 
     const [imagePreview, setImagePreview] = useState<string>(sampleObject.coverImage || '');
@@ -184,15 +185,15 @@ const AddProject = () => {
                             />
                             <LabelError innerText={errors.deployURL} />
 
-                            <Label htmlFor='short-description' innerText='Short description *' />
+                            <Label htmlFor='tags' innerText='Tags *' />
 
                             <Textarea
-                                id='short-description'
-                                name='shortDescription'
-                                value={projectData?.shortDescription || fields.shortDescription}
+                                id='tags'
+                                name='tags'
+                                value={projectData?.tags || fields.tags}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError innerText={errors.shortDescription} />
+                            <LabelError innerText={errors.tags} />
 
                             <Label htmlFor='cover-image' innerText='Cover Image *' />
                             <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id='cover-image' name='coverImage' />
