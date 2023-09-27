@@ -136,6 +136,23 @@ const HeroStyles = styled.div`
     align-items: center;
     width: 100%;
     height: 600px;
+    position: relative; /* Importante para el posicionamiento del pseudo-elemento */
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(img/logocolor.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left center;
+        filter: grayscale(100%);
+        opacity: 0.1;
+        z-index: -1;
+    }
 `;
 
 const HeroLeft = styled.div`
