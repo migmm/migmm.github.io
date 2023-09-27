@@ -29,20 +29,24 @@ const StyledContent = styled.div`
     .ql-editor {
         // Text styles
         h1 {
-            font-size: 24px;
-            font-weight: bold;
+            font-family: "Work Sans", sans-serif;
+            font-weight: 800;
+            font-size: 2.5em;
             margin-bottom: 0.5em;
         }
 
         h2 {
-            font-size: 20px;
-            font-weight: bold;
+            font-family: "Work Sans", sans-serif;
+            font-weight: 800;
+            font-size: 1.8em;
             margin-bottom: 0.5em;
         }
 
         p {
-            margin-bottom: 1em;
-            text-align: left;
+            font-family: "Work Sans", sans-serif;
+            font-weight: 500;
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
         }
 
         ul,
