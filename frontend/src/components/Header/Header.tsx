@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import HamburgerButton from './HamburgerButton/HamburgerButton';
-import NavBar from './Navbar/NavBar';
-import styled from 'styled-components';
-import userDB from '../../dummy/userDB';
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import HamburgerButton from "./HamburgerButton/HamburgerButton";
+import NavBar from "./Navbar/NavBar";
+import styled from "styled-components";
+import userDB from "../../dummy/userDB";
 
-
-const Header = ({ user }: any)=> {
+const Header = ({ user }: any) => {
     // NavBar
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,37 +21,41 @@ const Header = ({ user }: any)=> {
     const location = useLocation();
 
     useEffect(() => {
-        const headerComponent = document.querySelector('.header-container') as HTMLElement;
+        const headerComponent = document.querySelector(".header-container") as HTMLElement;
 
-        function handleScroll(e:any) {
+        function handleScroll(e: any) {
             const scrollTop = e.deltaY;
-            console.log(scrollTop)
-            if (scrollTop > 0 && location.pathname === '/') {
-                headerComponent.style.opacity = '0';
+            console.log(scrollTop);
+            if (scrollTop > 0 && location.pathname === "/") {
+                headerComponent.style.opacity = "0";
             } else {
-                headerComponent.style.opacity = '1';
+                headerComponent.style.opacity = "1";
             }
         }
 
-        document.addEventListener('wheel', handleScroll);
+        document.addEventListener("wheel", handleScroll);
 
         return () => {
-            document.removeEventListener('wheel', handleScroll);
+            document.removeEventListener("wheel", handleScroll);
         };
     }, [location.pathname]);
 
     return (
         <HeaderStyles>
-            <div className='header-container'>
+            <div className="header-container">
                 <header>
-                    <div className='logo-container'>
-                    <Link to='/'><img src={userDB.logo} alt='Logo' /></Link>
+                    <div className="logo-container">
+                        <Link to="/">
+                            <img src={userDB.logo} alt="Logo" />
+                        </Link>
                     </div>
-                    <div className={`navbar-container ${isMenuOpen ? 'menu-open' : ''}`}>
+                    <div className={`navbar-container ${isMenuOpen ? "menu-open" : ""}`}>
                         <NavBar user={user} closeMenu={closeMenu} />
                     </div>
-                    <span className='contact-button'>Contact me!</span>
-                    <div className={`hamburger-button-container ${isMenuOpen ? 'open' : ''}`} onClick={handleHamburgerClick}>
+                    <Link to="/contact">
+                        <span className="contact-button">Contact me!</span>
+                    </Link>
+                    <div className={`hamburger-button-container ${isMenuOpen ? "open" : ""}`} onClick={handleHamburgerClick}>
                         <HamburgerButton />
                     </div>
                 </header>
@@ -166,7 +169,7 @@ const HeaderStyles = styled.header`
         .contact-button {
             background-color: #ed1b23;
             height: 65px;
-            font-family: 'Work Sans', sans-serif;
+            font-family: "Work Sans", sans-serif;
             color: white;
             font-weight: 500;
             line-height: 65px;
@@ -174,7 +177,9 @@ const HeaderStyles = styled.header`
             padding: 0 1em;
             border-radius: 20px;
             margin-right: 1em;
+            display: block;
             cursor: pointer;
+            text-decoration: none;
 
             @media (min-width: 768px) {
                 display: none;
@@ -189,6 +194,10 @@ const HeaderStyles = styled.header`
             :active {
                 background-color: #ff0000;
             }
+        }
+
+        a {
+            text-decoration: none;
         }
 
         .hamburger-button-container {
