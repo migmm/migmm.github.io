@@ -206,7 +206,7 @@ const Content = styled.div`
     }
 
     @media (min-width: 950px) {
-        flex-direction: roow;
+        flex-direction: row;
     }
 `;
 
