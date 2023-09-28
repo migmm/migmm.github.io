@@ -1,14 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
-import FormattedView from "./FormattedView";
-import sampleObject from "../../dummy/sampleObject";
+import FormattedView from './FormattedView';
+import sampleObject from '../../dummy/sampleObject';
 
-import H1 from "../../Styles/H1/H1";
-import Paragraph from "../../Styles/Paragraph/Paragraph";
-import styled from "styled-components";
+import H1 from '../../Styles/H1/H1';
+import Paragraph from '../../Styles/Paragraph/Paragraph';
+import styled from 'styled-components';
+
+interface HeroStylesProps {
+    bg: string;
+}
 
 const ViewProject = () => {
     const tags = sampleObject.tags;
@@ -41,18 +45,22 @@ const ViewProject = () => {
             <strong>Last update:</strong> {sampleObject.lastUpdate}
         </span>
     );
+
+    
+const projectImage = sampleObject.coverImage;
+
     const BalloonContainer = ({ tags }: any) => {
-        const words = tags.split(",");
+        const words = tags.split(',');
 
         const balloons = words.map((word: any, index: any) => (
-            <Balloon key={index} className="balloon">
-                <a href={`/link/${word}`} style={{ textDecoration: "none", color: "inherit" }}>
+            <Balloon key={index} className='balloon'>
+                <a href={`/link/${word}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     {word}
                 </a>
             </Balloon>
         ));
 
-        return <div style={{ display: "flex", flexWrap: "wrap" }}>{balloons}</div>;
+        return <div style={{ display: 'flex', flexWrap: 'wrap' }}>{balloons}</div>;
     };
 
     const MyComponent = ({ htmlContent }: any) => {
@@ -69,23 +77,23 @@ const ViewProject = () => {
         <ProjectViewContainer>
             <div>
                 <ActualRoute>
-                    <Link to="/">
-                        {" "}
+                    <Link to='/'>
+                        {' '}
                         <FontAwesomeIcon icon={faHome} />
-                    </Link>{" "}
-                    / <Link to="/projects">Projects</Link> / {sampleObject.projectName}
+                    </Link>{' '}
+                    / <Link to='/projects'>Projects</Link> / {sampleObject.projectName}
                 </ActualRoute>
-                <HeroStyles>
+                <HeroStyles bg={projectImage}>
                     <HeroLeft>
-                        {" "}
-                        <MyComponent htmlContent={sampleObject.headerTitle} />{" "}
+                        {' '}
+                        <MyComponent htmlContent={sampleObject.headerTitle} />{' '}
                     </HeroLeft>
                     <HeroRight>
-                        <img src="img/logocolor.png" alt="Logo" />
+                        <img src={projectImage} alt='Logo' />
                     </HeroRight>
                 </HeroStyles>
                 <Content>
-                    <div className="information">
+                    <div className='information'>
                         <H1 innerText={sampleObject.projectName} />
                         <Paragraph innerText={Category} />
                         <Paragraph innerText={projectStatus} />
@@ -118,7 +126,7 @@ const ProjectViewContainer = styled.main`
 const ActualRoute = styled.div`
     margin-top: 30px;
     width: 100%;
-    font-family: "Work Sans", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 1em;
     font-weight: 500;
 
@@ -130,7 +138,7 @@ const ActualRoute = styled.div`
     }
 `;
 
-const HeroStyles = styled.div`
+const HeroStyles = styled.div<HeroStylesProps>`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -139,13 +147,13 @@ const HeroStyles = styled.div`
     position: relative; /* Importante para el posicionamiento del pseudo-elemento */
 
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url(img/logocolor.png);
+        background-image: url(${(props) => props.bg});
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left center;
@@ -157,7 +165,7 @@ const HeroStyles = styled.div`
 
 const HeroLeft = styled.div`
     width: 60%;
-    font-family: "Work Sans", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 2.5em;
     font-weight: 700;
     margin: 0.5em 0 0.5em 0;
@@ -182,7 +190,7 @@ const Content = styled.div`
 `;
 
 const Balloon = styled.div`
-    font-family: "Work Sans", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     background-color: #3498db;
     color: #fff;
     border-radius: 20px;
