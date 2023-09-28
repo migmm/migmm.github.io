@@ -46,7 +46,6 @@ const ViewProject = () => {
         </span>
     );
 
-    
 const projectImage = sampleObject.coverImage;
 
     const BalloonContainer = ({ tags }: any) => {
@@ -117,6 +116,7 @@ export default ViewProject;
 const ProjectViewContainer = styled.main`
     max-width: 1900px;
     margin: 0 auto;
+    padding: 1em;
 
     @media (min-width: 768px) {
         max-width: 1500px;
@@ -140,11 +140,16 @@ const ActualRoute = styled.div`
 
 const HeroStyles = styled.div<HeroStylesProps>`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 600px;
-    position: relative; /* Importante para el posicionamiento del pseudo-elemento */
+    height: unset;
+    position: relative;
+
+    @media (min-width: 950px) {
+        flex-direction: row;
+        height: 600px;
+    }
 
     &::before {
         content: '';
@@ -164,28 +169,44 @@ const HeroStyles = styled.div<HeroStylesProps>`
 `;
 
 const HeroLeft = styled.div`
-    width: 60%;
+    width: 90%;
     font-family: 'Work Sans', sans-serif;
-    font-size: 2.5em;
+    font-size: 2em;
     font-weight: 700;
-    margin: 0.5em 0 0.5em 0;
+    margin: 2em 0 2em 0;
+    text-align: center;
+
+    @media (min-width: 950px) {
+        width: 60%;
+        text-align: left;
+        font-size: 2.5em;
+    }
+
 `;
 
 const HeroRight = styled.div`
-    width: 40%;
+    width: 90%;
     img {
         width: 100%;
+    }
+
+    @media (min-width: 950px) {
+        width: 40%;
     }
 `;
 
 const Content = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 2em;
 
     .information {
         align-self: flex-start;
+    }
+
+    @media (min-width: 950px) {
+        flex-direction: roow;
     }
 `;
 
