@@ -50,7 +50,7 @@ const App = () => {
                     <Route path="/editcertificate/:certificateId" element={<FormCertificate />} />
                     <Route path="/addproject" element={<FormProject />} />
                     <Route path="/editproject/:projectId" element={<FormProject />} />
-                    <Route path="/viewproject" element={<ViewProject />} />
+                    <Route path="/viewproject/:projectId" element={<ViewProject />} />
                     <Route path="/newuser" element={<UserForm />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

@@ -1,52 +1,51 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
-
+import { apiURL } from '../../config/urls';
 import FormattedView from './FormattedView';
-import sampleObject from '../../dummy/sampleObject';
 
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
 import styled from 'styled-components';
+import axios from 'axios';
+
+interface ProjectData {
+    projectName: string;
+    category: string;
+    projectStatus: string;
+    deployURL: string;
+    lastUpdate: string;
+    tags: string;
+    coverImage: string;
+    headerTitle: string;
+    editorHtml: string;
+    id: string;
+}
 
 interface HeroStylesProps {
     bg: string;
 }
 
 const ViewProject = () => {
-    const tags = sampleObject.tags;
-    const Category = (
-        <span>
-            <strong>Category:</strong> {sampleObject.category}
-        </span>
-    );
+    const { projectId } = useParams<{ projectId: string }>();
+    const [projectData, setProjectData] = useState<ProjectData | null>(null);
 
-    const projectStatus = (
-        <span>
-            <strong>Project Status:</strong> {sampleObject.projectStatus}
-        </span>
-    );
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${apiURL}projects/${projectId}`);
+                const data = response.data;
+                setProjectData(data);
+            } catch (error) {
+                console.error('Error fetching project data:', error);
+            }
+        };
 
-    const gitURL = (
-        <span>
-            <strong>Git URL:</strong> <a href={sampleObject.deployURL}>{sampleObject.deployURL}</a>
-        </span>
-    );
-
-    const deployURL = (
-        <span>
-            <strong>Deploy URL:</strong> <a href={sampleObject.deployURL}>{sampleObject.deployURL}</a>
-        </span>
-    );
-
-    const lastUpdate = (
-        <span>
-            <strong>Last update:</strong> {sampleObject.lastUpdate}
-        </span>
-    );
-
-const projectImage = sampleObject.coverImage;
+        if (projectId) {
+            fetchData();
+        }
+    }, [projectId]);
 
     const BalloonContainer = ({ tags }: any) => {
         const words = tags.split(',');
@@ -75,37 +74,47 @@ const projectImage = sampleObject.coverImage;
     return (
         <ProjectViewContainer>
             <div>
-                <ActualRoute>
-                    <Link to='/'>
-                        {' '}
-                        <FontAwesomeIcon icon={faHome} />
-                    </Link>{' '}
-                    / <Link to='/projects'>Projects</Link> / {sampleObject.projectName}
-                </ActualRoute>
-                <HeroStyles bg={projectImage}>
-                    <HeroLeft>
-                        {' '}
-                        <MyComponent htmlContent={sampleObject.headerTitle} />{' '}
-                    </HeroLeft>
-                    <HeroRight>
-                        <img src={projectImage} alt='Logo' />
-                    </HeroRight>
-                </HeroStyles>
-                <Content>
-                    <div className='information'>
-                        <H1 innerText={sampleObject.projectName} />
-                        <Paragraph innerText={Category} />
-                        <Paragraph innerText={projectStatus} />
-                        <Paragraph innerText={gitURL} />
-                        <Paragraph innerText={deployURL} />
-                        <Paragraph innerText={lastUpdate} />
-                        <BalloonContainer tags={tags} />
-                    </div>
-                    <FormattedView content={sampleObject.editorHtml} />
-                </Content>
-                <Link to={`/editproject/${sampleObject.id}`}>
-                    <button>Edit</button>
-                </Link>
+                {projectData ? (
+                    <>
+                        <ActualRoute>
+                            <Link to='/'>
+                                {' '}
+                                <FontAwesomeIcon icon={faHome} />
+                            </Link>{' '}
+                            / <Link to='/projects'>Projects</Link> / {projectData.projectName}
+                        </ActualRoute>
+                        <HeroStyles bg={projectData.coverImage}>
+                            <HeroLeft>
+                                {' '}
+                                <MyComponent htmlContent={projectData.headerTitle} />{' '}
+                            </HeroLeft>
+                            <HeroRight>
+                                <img src={projectData.coverImage} alt='Logo' />
+                            </HeroRight>
+                        </HeroStyles>
+                        <Content>
+                            <div className='information'>
+                                <H1 innerText={projectData.projectName} />
+                                <Paragraph innerText={`Category: ${projectData.category}`} />
+                                <Paragraph innerText={`Project Status: ${projectData.projectStatus}`} />
+                                <Paragraph>
+                                    <strong>Git URL:</strong> <a href={projectData.deployURL}>{projectData.deployURL}</a>
+                                </Paragraph>
+                                <Paragraph>
+                                    <strong>Deploy URL:</strong> <a href={projectData.deployURL}>{projectData.deployURL}</a>
+                                </Paragraph>
+                                <Paragraph innerText={`Last update: ${projectData.lastUpdate}`} />
+                                <BalloonContainer tags={projectData.tags} />
+                            </div>
+                            <FormattedView content={projectData.editorHtml} />
+                        </Content>
+                        <Link to={`/editproject/${projectData.id}`}>
+                            <button>Edit</button>
+                        </Link>
+                    </>
+                ) : (
+                    <div>Loading...</div>
+                )}
             </div>
         </ProjectViewContainer>
     );
@@ -181,7 +190,6 @@ const HeroLeft = styled.div`
         text-align: left;
         font-size: 2.5em;
     }
-
 `;
 
 const HeroRight = styled.div`
