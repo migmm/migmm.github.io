@@ -1,202 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import H1 from "../../Styles/H1/H1";
+import CertificateCard from "./CertificateCard";
+import { apiURL } from '../../config/urls';
+import axios from "axios";
+
+interface DataItem {
+    certificateName: any;
+    id: number;
+    projectName: string;
+    coverImage: string;
+}
 
 const Certificates = () => {
+
+    const [data, setData] = useState<DataItem[]>([]);
+
+    useEffect(() => {
+        // Hacer la solicitud HTTP a la URL deseada
+        axios
+            .get(`${apiURL}certificate/`)
+            .then((response) => {
+                setData(response.data);
+                console.log('Data fetched successfully:', response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
     return (
         <CertificatesStyles>
             <div className="certifications-container">
                 <H1>Certifications</H1>
-                <div className="selectors-container">
-                    <span>Browse by</span>
-                    {/* <label htmlFor="select-company">Company</label> */}
-                    <select name="select" className="select-company" id="select-company">
-                        <option value="value3" selected>
-                            Company
-                        </option>
-                        <option value="linkedin">linkedin</option>
-                        <option value="udemy">udemy</option>
-                    </select>
-                    <span>or</span>
-                    {/* <label htmlFor="select-category">Category</label> */}
-                    <select name="select" className="select-category" id="select-category">
-                        <option value="value3" selected>
-                            Category
-                        </option>
-                        <option value="linkedin">nodejs</option>
-                        <option value="udemy">scrum</option>
-                    </select>
-                </div>
                 <div className="cards-container">
-                    {/* CARD */}
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                    <div className="card">
-                        <div className="images-container">
-                            <img src="img/example-certification.png" alt="" />
-                            <img src="img/example-favicon.png" alt="" />
-                        </div>
-                        <div className="favicon-container">
-                            
-                        </div>
-                        {/*  <div className="img-miniature-container">
-                            <img src="" alt="" />
-                        </div> */}
-                        <h2>Course</h2>
-                    </div>
-
-                </div>
-                <div className="pagination-container">
-                    <span className="pages">
-                        Pages <span className="pages">1</span>
-                        <span className="pages">2</span>
-                        <span className="pages">3</span>
-                    </span>
-                    <select name="select" className="select-page" id="select-page">
-                        <option value="value3" selected>
-                            Qty per page
-                        </option>
-                        <option value="linkedin">10</option>
-                        <option value="udemy">20</option>
-                    </select>
+                {data.map((item) => (
+                        <CertificateCard projectName={item.certificateName} imageUrl={item.coverImage} />
+                    ))}
                 </div>
             </div>
         </CertificatesStyles>
