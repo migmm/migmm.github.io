@@ -19,7 +19,7 @@ const Certificates = () => {
     useEffect(() => {
         // Hacer la solicitud HTTP a la URL deseada
         axios
-            .get(`${apiURL}certificate/`)
+            .get(`${apiURL}certifications/`)
             .then((response) => {
                 setData(response.data);
                 console.log('Data fetched successfully:', response.data);
