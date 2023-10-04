@@ -17,7 +17,6 @@ const Certificates = () => {
     const [data, setData] = useState<DataItem[]>([]);
 
     useEffect(() => {
-        // Hacer la solicitud HTTP a la URL deseada
         axios
             .get(`${apiURL}certifications/`)
             .then((response) => {
