@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
 
-import Certificates from './views/Certificates/Certificates';
+import Certificates from './views/ViewCertificates/ViewCertificates';
 import Contact from './views/Contact/Contact';
 import Curriculum from './views/Curriculum/Curriculum';
 import Header from './components/Header/Header';
