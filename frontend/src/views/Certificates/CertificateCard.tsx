@@ -1,15 +1,16 @@
 import React from "react";
 
-const CertificateCard =  ({ certificateName, coverImage }: any) => {
+const CertificateCard = ({ courseTitle, courseImage, urlCheck }: any) => {
     return (
-        <div className="card">
-            <div className="images-container">
-                <img src={coverImage} alt="" />
-                <img src="img/example-favicon.png" alt="" />
+        <a href={urlCheck}>
+            <div className="card">
+                <div className="images-container">
+                    <img src={courseImage} alt="" />
+                </div>
+                <div className="favicon-container"></div>
+                <h2>{courseTitle}</h2>
             </div>
-            <div className="favicon-container"></div>
-            <h2>{certificateName}</h2>
-        </div>
+        </a>
     );
 };
 

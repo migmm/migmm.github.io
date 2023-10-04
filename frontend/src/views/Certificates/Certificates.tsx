@@ -6,10 +6,10 @@ import { apiURL } from '../../config/urls';
 import axios from "axios";
 
 interface DataItem {
-    certificateName: any;
+    courseTitle: any;
     id: number;
-    projectName: string;
-    coverImage: string;
+    courseImage: string;
+    urlCheck: string;
 }
 
 const Certificates = () => {
@@ -35,8 +35,8 @@ const Certificates = () => {
                 <H1>Certifications</H1>
                 <div className="cards-container">
                 {data.map((item) => (
-                        <CertificateCard projectName={item.certificateName} imageUrl={item.coverImage} />
-                    ))}
+                    <CertificateCard key={item.id} courseTitle={item.courseTitle} courseImage={item.courseImage} urlCheck={item.urlCheck}/>
+))}
                 </div>
             </div>
         </CertificatesStyles>
