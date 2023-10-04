@@ -17,7 +17,6 @@ import convertBase64ToBlob from '../../utils/base64toImage';
 import { apiURL } from '../../config/urls';
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 import ContainerStyles from '../../Styles/Container/Container';
-import sampleObject from '../../dummy/certificate';
 import { useParams } from 'react-router-dom';
 
 
@@ -48,7 +47,6 @@ const AddCertificate = () => {
     useEffect(() => {
         if (certificateId) {
             setH1Text('Edit');
-            //setCertificateData(sampleObject);
         } else {
             setH1Text('New Certification');
             setCertificateData(null);
@@ -64,8 +62,6 @@ const AddCertificate = () => {
         e.preventDefault();
         setError('');
         setButtonMessage(true);
-
-        
 
         const base64Image = fields.courseImage;
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
