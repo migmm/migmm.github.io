@@ -25,10 +25,10 @@ const AddCertificate = () => {
 
     interface CertificateData {
         id: number | null;
-        certificationName: string;
-        certificationVendor: string;
-        certificationURL:string;
-        certificationDescription: string
+        courseTitle: string;
+        vendor: string;
+        urlCheck:string;
+        description: string
     }
 
     const [imagePreview, setImagePreview] = useState('');
@@ -48,7 +48,7 @@ const AddCertificate = () => {
     useEffect(() => {
         if (certificateId) {
             setH1Text('Edit');
-            setCertificateData(sampleObject);
+            //setCertificateData(sampleObject);
         } else {
             setH1Text('New Certification');
             setCertificateData(null);
@@ -57,7 +57,7 @@ const AddCertificate = () => {
 
     const handleFileChange = (imageData: string) => {
         setImagePreview(imageData);
-        handleChange('certificationImage', imageData);
+        handleChange('courseImage', imageData);
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -67,11 +67,11 @@ const AddCertificate = () => {
 
         
 
-        const base64Image = fields.certificationImage;
+        const base64Image = fields.courseImage;
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
         const data = {
-            certificationImage: blob,
+            courseImage: blob,
             ...fields,
         };
 
@@ -118,67 +118,67 @@ const AddCertificate = () => {
                         <InputGroup>
                             <Label
                                 innerText='Certification title *'
-                                htmlFor='certification-name'
+                                htmlFor='courseTitle'
                             />
                             <Input
                                 type='text'
-                                id='certificationName'
-                                name='certificationName'
-                                value={certificateData?.certificationName|| fields.certificationName}
+                                id='courseTitle'
+                                name='courseTitle'
+                                value={certificateData?.courseTitle|| fields.courseTitle}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError innerText={errors.certificationName} />
+                            <LabelError innerText={errors.courseTitle} />
 
                             <Label
                                 innerText='Vendor *'
-                                htmlFor='certification-vendor'
+                                htmlFor='vendor'
                             />
                             <Input
                                 type='text'
-                                id='certification-vendor'
-                                name='certificationVendor'
-                                value={certificateData?.certificationVendor|| fields.certificationVendor}
+                                id='vendor'
+                                name='vendor'
+                                value={certificateData?.vendor|| fields.vendor}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError innerText={errors.certificationVendor} />
+                            <LabelError innerText={errors.vendor} />
 
                             <Label
                                 innerText='URL *'
-                                htmlFor='certification-url'
+                                htmlFor='urlCheck'
                             />
                             <Input
                                 type='text'
-                                id='certification-url'
-                                name='certificationURL'
-                                value={certificateData?.certificationURL|| fields.certificationURL}
+                                id='urlCheck'
+                                name='urlCheck'
+                                value={certificateData?.urlCheck|| fields.urlCheck}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError innerText={errors.certificationURL} />
+                            <LabelError innerText={errors.urlCheck} />
 
                             <Label
                                 innerText='Description *'
-                                htmlFor='certification-description'
+                                htmlFor='description'
                             />
                             <Textarea
-                                id='certification-description'
-                                name='certificationDescription'
-                                value={certificateData?.certificationDescription|| fields.certificationDescription}
+                                id='description'
+                                name='description'
+                                value={certificateData?.description|| fields.description}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError innerText={errors.certificationDescription} />
+                            <LabelError innerText={errors.description} />
 
                             <Label
                                 innerText='Image *'
-                                htmlFor='certification-image'
+                                htmlFor='courseImage'
                             />
 
                             <InputFile
                                 setImagePreview={handleFileChange }
                                 imagePreview={imagePreview}
-                                id='certification-image'
-                                name='certificationImage'
+                                id='courseImage'
+                                name='courseImage'
                             />
-                            <LabelError innerText={errors.certificationImage} />
+                            <LabelError innerText={errors.courseImage} />
                         </InputGroup>
 
                         <LabelError innerText={error} />

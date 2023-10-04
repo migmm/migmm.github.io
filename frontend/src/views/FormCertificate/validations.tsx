@@ -1,5 +1,5 @@
 export const validations = {
-    certificationName: {
+    courseTitle: {
         required: true,
         errorMessage: 'Certification Name is required.',
         validate: (value: any) => {
@@ -12,7 +12,7 @@ export const validations = {
             return true;
         },
     },
-    certificationVendor: {
+    vendor: {
         required: true,
         errorMessage: 'Certification Vendor is required.',
         validate: (value: any) => {
@@ -25,7 +25,7 @@ export const validations = {
             return true;
         },
     },
-    certificationURL: {
+    urlCheck: {
         required: true,
         errorMessage: 'Certification URL is required.',
         validate: (value: any) => {
@@ -35,7 +35,7 @@ export const validations = {
             return true;
         },
     },
-    certificationDescription: {
+    description: {
         required: true,
         errorMessage: 'Certification Description is required.',
         validate: (value: any) => {
@@ -48,7 +48,7 @@ export const validations = {
             return true;
         },
     },
-    certificationImage: {
+    courseImage: {
         required: true,
         errorMessage: 'Certification Image is required.',
         validate: (value: any, formData?: Record<string, string>) => {

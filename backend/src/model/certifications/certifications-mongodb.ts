@@ -5,10 +5,11 @@ const certificationSchema = new mongoose.Schema(
     {
         courseTitle: String,
         description: String,
+        vendor: String, 
         dateFrom: String,
         dateTo: String,
         urlCheck: String,
-        photos: Array,
+        courseImage: Array,
         created_at: { 
             type: Date, 
             default: Date.now 

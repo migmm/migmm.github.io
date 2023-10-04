@@ -5,10 +5,11 @@ class CertificationValidator {
         const certificationSchema = Joi.object({
             courseTitle: Joi.string().required(),
             description: Joi.string().required(),
-            dateFrom: Joi.date().required(),
-            dateTo: Joi.date().required(),
+            dateFrom: Joi.date(),
+            vendor: Joi.string().required(),
+            dateTo: Joi.date(),
             urlCheck: Joi.string().required(),
-            photos: Joi.array().required(),
+            courseImage: Joi.string().required(),
         });
         const { error } = certificationSchema.validate(certification);
         return error;
