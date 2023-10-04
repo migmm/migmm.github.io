@@ -32,6 +32,7 @@ const AddCertificate = () => {
     }
 
     const [imagePreview, setImagePreview] = useState('');
+
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
 
@@ -49,15 +50,22 @@ const AddCertificate = () => {
             setH1Text('Edit');
             setCertificateData(sampleObject);
         } else {
-            setH1Text('New Project');
+            setH1Text('New Certification');
             setCertificateData(null);
         }
     }, [certificateId]);
+
+    const handleFileChange = (imageData: string) => {
+        setImagePreview(imageData);
+        handleChange('certificationImage', imageData);
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError('');
         setButtonMessage(true);
+
+        
 
         const base64Image = fields.certificationImage;
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
@@ -68,11 +76,11 @@ const AddCertificate = () => {
         };
 
         console.log('Data:', data);
-
+        console.log(validateForm(fields))
         if (validateForm(fields)) {
             try {
                 console.log('send')
-                const response = await axios.post(`${apiURL}addcertificate`, data, {
+                const response = await axios.post(`${apiURL}certifications`, data, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -163,8 +171,9 @@ const AddCertificate = () => {
                                 innerText='Image *'
                                 htmlFor='certification-image'
                             />
+
                             <InputFile
-                                setImagePreview={setImagePreview}
+                                setImagePreview={handleFileChange }
                                 imagePreview={imagePreview}
                                 id='certification-image'
                                 name='certificationImage'
