@@ -14,6 +14,7 @@ import routerResetPassword from './router/resetPassword';
 import routerFavourite from './router/favorites';
 import routerImages from './router/aws';
 import routerWebConfig from './router/webConfig';
+import routerContact from './router/contact';
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use('/api/images', routerImages);
 
 app.use('/api/webconfig', routerWebConfig);
 
+app.use('/api/contact', routerContact);
 
 // in case of using another route
 app.all('*', (req, res) => {
