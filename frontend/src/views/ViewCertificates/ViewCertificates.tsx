@@ -4,12 +4,19 @@ import H1 from "../../Styles/H1/H1";
 import CertificateCard from "./CertificateCard";
 import { apiURL } from '../../config/urls';
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 interface DataItem {
     courseTitle: any;
     id: number;
     courseImage: string;
     urlCheck: string;
+}
+
+interface HeroStylesProps {
+    bg: string;
 }
 
 const Certificates = () => {
@@ -29,7 +36,21 @@ const Certificates = () => {
     }, []);
 
     return (
-        <CertificatesStyles>
+        <CertificatesViewContainer>
+            <ActualRoute>
+                <Link to='/'>
+                    {' '}
+                    <FontAwesomeIcon icon={faHome} />
+                </Link>{' '}
+                / <Link to='/certificates'>Certificates</Link>
+                {''}
+            </ActualRoute>
+            <HeroStyles bg={'img/certificates-title.png'}>
+                <HeroLeft>{'My best certifications.'}</HeroLeft>
+                <HeroRight>
+                    {' '}
+                </HeroRight>
+            </HeroStyles>
             <div className="certifications-container">
                 <H1>Certifications</H1>
                 <div className="cards-container">
@@ -38,15 +59,20 @@ const Certificates = () => {
 ))}
                 </div>
             </div>
-        </CertificatesStyles>
+        </CertificatesViewContainer>
     );
 };
 
 export default Certificates;
 
-const CertificatesStyles = styled.main`
+const CertificatesViewContainer = styled.main`
     max-width: 1900px;
     margin: 0 auto;
+    padding: 1em;
+
+    @media (min-width: 768px) {
+        max-width: 1500px;
+    }
 
     .certifications-container {
         margin: 1em;
@@ -149,3 +175,76 @@ const CertificatesStyles = styled.main`
         }
     }
 `;
+
+const HeroStyles = styled.div<HeroStylesProps>`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: unset;
+    position: relative;
+    box-shadow: -1px 12px 6px -9px rgba(0,0,0,0.75);
+
+    @media (min-width: 950px) {
+        flex-direction: row;
+        height: 600px;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(${(props) => props.bg});
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left center;
+        filter: grayscale(100%);
+        opacity: 0.1;
+        z-index: -1;
+    }
+`;
+
+const HeroLeft = styled.div`
+    width: 90%;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    margin: 2em 0 2em 0;
+    text-align: center;
+
+    @media (min-width: 950px) {
+        width: 60%;
+        text-align: left;
+        font-size: 2.5em;
+    }
+`;
+
+const HeroRight = styled.div`
+    width: 90%;
+    img {
+        width: 100%;
+    }
+
+    @media (min-width: 950px) {
+        width: 40%;
+    }
+`;
+
+const ActualRoute = styled.div`
+    margin-top: 30px;
+    width: 100%;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+
+    a {
+        text-decoration: none;
+    }
+    a:visited {
+        color: black;
+    }
+`;
+
