@@ -25,6 +25,17 @@ export const validations = {
             return true;
         },
     },
+    issueDate: {
+        required: true,
+        errorMessage: 'Certification Issue Date is required.',
+        validate: (value: any) => {
+            const dateObject = new Date(value);
+            if (isNaN(dateObject.getTime()) || dateObject.getFullYear() < 1900) {
+                return 'Certification Issue Date is not a valid date.';
+            }
+            return true;
+        },
+    },
     urlCheck: {
         required: true,
         errorMessage: 'Certification URL is required.',

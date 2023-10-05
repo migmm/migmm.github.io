@@ -27,7 +27,8 @@ const AddCertificate = () => {
         courseTitle: string;
         vendor: string;
         urlCheck:string;
-        description: string
+        description: string;
+        issueDate: Date;
     }
 
     const [imagePreview, setImagePreview] = useState('');
@@ -138,6 +139,18 @@ const AddCertificate = () => {
                             />
                             <LabelError innerText={errors.vendor} />
 
+                            <Label
+                                innerText='Issue Date *'
+                                htmlFor='issueDate'
+                            />
+                            <Input
+                                type='date'
+                                id='issueDate'
+                                name='issueDate'
+                                value={certificateData?.issueDate|| fields.issueDate}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError innerText={errors.issueDate} />
                             <Label
                                 innerText='URL *'
                                 htmlFor='urlCheck'

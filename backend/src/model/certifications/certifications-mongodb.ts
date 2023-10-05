@@ -6,8 +6,7 @@ const certificationSchema = new mongoose.Schema(
         courseTitle: String,
         description: String,
         vendor: String, 
-        dateFrom: String,
-        dateTo: String,
+        issueDate: Date,
         urlCheck: String,
         courseImage: String,
         created_at: { 

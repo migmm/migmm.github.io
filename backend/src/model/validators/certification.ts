@@ -5,9 +5,8 @@ class CertificationValidator {
         const certificationSchema = Joi.object({
             courseTitle: Joi.string().required(),
             description: Joi.string().required(),
-            dateFrom: Joi.date(),
+            issueDate: Joi.date(),
             vendor: Joi.string().required(),
-            dateTo: Joi.date(),
             urlCheck: Joi.string().required(),
             courseImage: Joi.string().required(),
         });
