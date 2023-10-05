@@ -20,14 +20,19 @@ interface HeroStylesProps {
 }
 
 const Certificates = () => {
-
     const [data, setData] = useState<DataItem[]>([]);
 
     useEffect(() => {
         axios
             .get(`${apiURL}certifications/`)
             .then((response) => {
-                setData(response.data);
+                const sortedData = response.data.sort((a:any, b:any) => {
+                    const dateA:any = new Date(a.issueDate);
+                    const dateB:any = new Date(b.issueDate);
+                    return dateA - dateB;
+                });
+
+                setData(sortedData);
                 console.log('Data fetched successfully:', response.data);
             })
             .catch((error) => {

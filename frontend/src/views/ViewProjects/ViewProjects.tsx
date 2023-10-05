@@ -13,14 +13,15 @@ interface DataItem {
     projectName: string;
     coverImage: string;
 }
+
 interface HeroStylesProps {
     bg: string;
 }
+
 const ViewProject = () => {
     const [data, setData] = useState<DataItem[]>([]);
 
     useEffect(() => {
-        // Hacer la solicitud HTTP a la URL deseada
         axios
             .get(`${apiURL}projects/`)
             .then((response) => {
