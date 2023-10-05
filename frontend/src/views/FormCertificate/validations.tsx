@@ -6,7 +6,7 @@ export const validations = {
             if (value.length < 6) {
                 return 'Certification Name must be at least 6 characters long.';
             }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+            if (!/^[a-zA-Z0-9 ]+$/.test(value)) {
                 return 'Certification Name should only contain letters and numbers.';
             }
             return true;
@@ -53,7 +53,7 @@ export const validations = {
             if (value.length < 4) {
                 return 'Certification Description must be at least 6 characters long.';
             }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+            if (!/^[a-zA-Z0-9 ]+$/.test(value)) {
                 return 'Certification Description should only contain letters and numbers.';
             }
             return true;
