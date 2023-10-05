@@ -153,7 +153,7 @@ function Contact() {
                             <Button
                                 type='submit'
                                 disabled={buttonMessage}
-                                innerText={buttonMessage ? 'Wait..' : 'Add'}
+                                innerText={buttonMessage ? 'Wait..' : 'Send'}
                             />
 
                             <Button

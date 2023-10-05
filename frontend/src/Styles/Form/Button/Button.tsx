@@ -1,11 +1,13 @@
 import React from "react";
 import styled from 'styled-components';
 
-
-function Button(props : any) {
-    return <ButtonStyles>{props.innerText}</ButtonStyles>;
+function Button(props:any) {
+    return (
+        <ButtonStyles type={props.type} disabled={props.disabled}>
+            {props.innerText}
+        </ButtonStyles>
+    );
 }
-
 
 const ButtonStyles = styled.button`
     width:100%;
