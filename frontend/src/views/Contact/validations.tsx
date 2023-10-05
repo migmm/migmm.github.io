@@ -6,7 +6,7 @@ export const validations = {
             if (value.length < 4) {
                 return 'Full name must be at least 4 characters long.';
             }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+            if (!/^[\s\S]+$/.test(value)) {
                 return 'Full name should only contain letters and numbers.';
             }
             return true;
@@ -19,7 +19,7 @@ export const validations = {
             if (value.length < 8) {
                 return 'Phone number must be at least 8 characters long.';
             }
-            if (!/^\+(?:[0-9] ?){6,14}[0-9]$/g.test(value)) {
+            if (!/^\+?\d{1,4}(?:\s?\d{1,4}){1,4}$/.test(value)) {
                 return 'Phone number should be a valid phone number.';
             }
             return true;
@@ -33,7 +33,7 @@ export const validations = {
             if (value.length < 4) {
                 return 'E-mail must be at least 4 characters long.';
             }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+            if (!/^[a-zA-Z0-9@.]+$/.test(value)) {
                 return 'E-mail should only contain letters and numbers.';
             }
             return true;
@@ -47,7 +47,7 @@ export const validations = {
             if (value.length < 10) {
                 return 'Message must be at least 10 characters long.';
             }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+            if (!/^[\s\S]+$/.test(value)) {
                 return 'Message should only contain letters and numbers.';
             }
             return true;
