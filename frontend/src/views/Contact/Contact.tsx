@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
 import Button from '../../Styles/Form/Button/Button';
 import Input from '../../Styles/Form/Input/Input';
@@ -8,14 +10,13 @@ import Textarea from '../../Styles/Form/Textarea/Textarea';
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph'
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
+import ContainerStyles from '../../Styles/Container/Container';
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
+import useFormUtils from '../../hooks/useFormUtils';
 
+import { apiURL } from '../../config/urls';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
-import useFormUtils from '../../hooks/useFormUtils';
-import axios from 'axios';
-import ContainerStyles from '../../Styles/Container/Container';
-import { apiURL } from '../../config/urls';
-import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 
 
 function Contact() {
@@ -32,32 +33,30 @@ function Contact() {
 
         const data = {
             ...fields,
-        };
-
-        console.log('Data:', data);
+        }
 
         if (validateForm(fields)) {
             try {
-                console.log('send')
-                const response = await axios.post(`${apiURL}contact`, data, {
-                    headers: {
-                        'Content-Type': 'application/json'
+                const response = await axios.post(
+                    `${apiURL}contact`, 
+                    data, 
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
                     }
-                });
+                );
 
                 if (response.status === 201) {
                     handleReset();
+                    setError("Message Sent.");
                 }
             } catch (error: any) {
                 if (error.response) {
-                    /*   const { status, data } = error.response;
-                    if (status === 401) {
-                        if (data.message === 'Existing username') {
-                            setError(validations.username.existingMessage);
-                        } else if (data.message === 'Existing email') {
-                            setError(validations.email.existingMessage);
-                        }
-                    }  */
+                    const { status } = error.response;
+                    if (status === 429) {
+                        setError(validations.serverError.errorMessage);
+                    }
                 } else {
                     setError(validations.commonError.errorMessage);
                     console.error(error);
@@ -66,7 +65,7 @@ function Contact() {
         }
 
         setButtonMessage(false);
-    };
+    }
 
     return (
         <CommonStyles>

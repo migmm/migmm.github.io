@@ -58,6 +58,10 @@ export const validations = {
         required: false,
         errorMessage: 'An error occurred. Please try again later.',
     },
+    serverError: {
+        required: false,
+        errorMessage: 'Too many request, wait 60 min and try again.',
+    },
 };
 
 export const initialFields = Object.keys(validations).reduce((fields: any, fieldName: any) => {
