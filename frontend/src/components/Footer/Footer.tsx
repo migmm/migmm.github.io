@@ -43,8 +43,10 @@ const Footer = () => {
                     <p className='footer-text'>
                         Feel free to reach out to me by sending a message, and I will make sure to reply as soon as possible.
                     </p>
-                    <button className='footer-button'>Contact me!</button>
-
+                    <Link to='/contact'>
+                        <button className='footer-button'>Contact me!</button>
+                    </Link>
+                    
                     <div className='footer-icons'>
                         <a href='http://www.github.com/project1' target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-github fa-2x'></i>
