@@ -19,7 +19,7 @@ export const validations = {
             if (value.length < 4) {
                 return 'Certification Vendor must be at least 6 characters long.';
             }
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+            if (!/^[a-zA-Z0-9 ]+$/.test(value)) {
                 return 'Certification Vendor should only contain letters and numbers.';
             }
             return true;
