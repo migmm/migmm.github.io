@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 import Button from '../../Styles/Form/Button/Button';
 import Label from '../../Styles/Form/Label/Label';
 import LabelError from '../../Styles/Form/LabelError/LabelError';
 import Input from '../../Styles/Form/Input/Input';
 import H1 from '../../Styles/H1/H1';
 import ContainerStyles from '../../Styles/Container/Container';
-import { apiURL } from '../../config/urls';
+
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
+import useFormUtils from '../../hooks/useFormUtils';
 
+import { apiURL } from '../../config/urls';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
-import useFormUtils from '../../hooks/useFormUtils';
-import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 
 
 const LoginScreen: React.FC = () => {
@@ -48,11 +50,15 @@ const LoginScreen: React.FC = () => {
 
         if (validateForm(fields)) {
             try {
-                const response = await axios.post(`${apiURL}contact`, formData, {
-                    headers: {
+                const response = await axios.post(
+                    `${apiURL}contact`, 
+                    formData, 
+                    {
+                        headers: {
                         'Content-Type': 'application/json',
-                    },
-                });
+                        },
+                    }
+                );
 
                 if (response.status === 201) {
                     navigate('/'); 
