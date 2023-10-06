@@ -1,82 +1,113 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { isMobile } from 'react-device-detect';
-import { setupScrollHandler } from './scrollHandler';
-import Paragraph from '../../Styles/Paragraph/Paragraph';
-import userDB from '../../dummy/userDB';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { isMobile } from "react-device-detect";
+
+import Paragraph from "../../Styles/Paragraph/Paragraph";
+
+import { apiURL } from "../../config/urls";
+import { setupScrollHandler } from "./scrollHandler";
+
+interface DataItem {
+    name: string;
+    jobTitle: string;
+    location: string;
+    githubURL: string;
+    linkedinURL: string;
+    email: string;
+    whatsappNumber: string;
+    telegramId: string;
+    youtubeChannel: string;
+    logo: string;
+}
 
 const Home = () => {
     useEffect(() => {
         if (!isMobile) {
-            console.log('you are in mobile');
+            console.log("you are in mobile");
             setupScrollHandler();
         }
     }, []);
 
+    const [data, setData] = useState<DataItem[]>([]);
+
+    useEffect(() => {
+        axios
+            .get(`${apiURL}webconfig/`)
+            .then((response) => {
+
+                setData(data);
+                console.log("Data fetched successfully:", response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }, []);
+
     return (
         <HomeContainer>
-            <div className='hero-container'>
-                <div className='text-container'>
-                    <p className='text-home'>
+            <div className="hero-container">
+                <div className="text-container">
+                    <p className="text-home">
                         Hi everyone!
-                        <br /> My name is {userDB.name}.
-                        <br /> I'm a <span className='charge-text'>{userDB.jobTitle}</span>,
-                        <br /> from {userDB.location}.
+                        <br /> My name is {data[0].name}.
+                        <br /> I'm a <span className="charge-text">{data[0].jobTitle}</span>,
+                        <br /> from {data[0].location}.
                     </p>
                 </div>
-                <div className='contact-icons'>
-                    <a href={userDB.githubURL} target='_blank' rel='noreferrer'>
-                        <i className='fa-brands fa-github fa-3x'></i>
+                <div className="contact-icons">
+                    <a href={data[0].githubURL} target="_blank" rel="noreferrer">
+                        <i className="fa-brands fa-github fa-3x"></i>
                     </a>
-                    <a href={userDB.linkedinURL} target='_blank' rel='noreferrer'>
-                        <i className='fa-brands fa-linkedin fa-3x'></i>
+                    <a href={data[0].linkedinURL} target="_blank" rel="noreferrer">
+                        <i className="fa-brands fa-linkedin fa-3x"></i>
                     </a>
-                    <a href={userDB.email} target='_blank' rel='noreferrer'>
-                        <i className='fa fa-envelope fa-3x'></i>
+                    <a href={data[0].email} target="_blank" rel="noreferrer">
+                        <i className="fa fa-envelope fa-3x"></i>
                     </a>
-                    <a href={userDB.whatsappNumber} target='_blank' rel='noreferrer'>
-                        <i className='fa-brands fa-whatsapp fa-3x'></i>
+                    <a href={data[0].whatsappNumber} target="_blank" rel="noreferrer">
+                        <i className="fa-brands fa-whatsapp fa-3x"></i>
                     </a>
-                    <a href={userDB.telegramId} target='_blank' rel='noreferrer'>
-                        <i className='fa-brands fa-telegram fa-3x'></i>
+                    <a href={data[0].telegramId} target="_blank" rel="noreferrer">
+                        <i className="fa-brands fa-telegram fa-3x"></i>
                     </a>
                 </div>
             </div>
-            <div className='short-info'>
+            <div className="short-info">
                 <h2>About Me</h2>
                 <Paragraph
-                    innerText='I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
-                    MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset.'
+                    innerText="I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
+                    MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset."
                 />
                 <Paragraph
-                    innerText='With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
-                    solutions, adapting to diverse project environments and requirements.'
+                    innerText="With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
+                    solutions, adapting to diverse project environments and requirements."
                 />
             </div>
-            <div className='projects-container'>
+            <div className="projects-container">
                 <h1> Latest Project</h1>
 
                 {/*                 <p>Featured projects that I've developed</p> */}
 
-                <div className='cards-container'>
-                    <div className='big-card-container'>
-                        <div className='big-card'>
-                            <div className='card-left-part'>
-                                <div className='card-image-container'>
-                                    <img src='img/cosmica-screens.png' alt='' />
+                <div className="cards-container">
+                    <div className="big-card-container">
+                        <div className="big-card">
+                            <div className="card-left-part">
+                                <div className="card-image-container">
+                                    <img src="img/cosmica-screens.png" alt="" />
                                 </div>
                             </div>
-                            <div className='card-right-part'>
-                                <div className='card-title-container'>
-                                    <h2 className='card-title'>Juguetería Cósmica</h2>
+                            <div className="card-right-part">
+                                <div className="card-title-container">
+                                    <h2 className="card-title">Juguetería Cósmica</h2>
                                 </div>
-                                <div className='info-container'>
+                                <div className="info-container">
                                     <Paragraph>
                                         e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
                                         Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
                                     </Paragraph>
                                 </div>
-                                <div className='card-languages-container'>
+                                <div className="card-languages-container">
                                     <span>React</span>
                                     <span>NodeJS</span>
                                     <span>MongoDB</span>
@@ -86,8 +117,8 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className='view-more-container'>
-                    <a href='#' className='view-more-link'>
+                <div className="view-more-container">
+                    <a href="#" className="view-more-link">
                         View more projects
                     </a>
                 </div>
@@ -126,7 +157,7 @@ const HomeContainer = styled.nav`
             .text-home {
                 text-align: center;
                 font-size: 6vw;
-                font-family: 'Work Sans', sans-serif;
+                font-family: "Work Sans", sans-serif;
                 font-weight: 800;
                 //word-spacing: -10px;
                 opacity: 1;
@@ -182,7 +213,7 @@ const HomeContainer = styled.nav`
         padding: 5em 3em;
 
         h2 {
-            font-family: 'Work Sans', sans-serif;
+            font-family: "Work Sans", sans-serif;
             font-weight: 800;
             text-align: center;
         }
@@ -200,7 +231,7 @@ const HomeContainer = styled.nav`
     .projects-container {
         //background-color: #000000;
         h1 {
-            font-family: 'Work Sans', sans-serif;
+            font-family: "Work Sans", sans-serif;
             font-weight: 800;
             text-align: center;
             margin: 2em 1em 0.5em 1em;
@@ -238,7 +269,7 @@ const HomeContainer = styled.nav`
 
                     .card-title-container {
                         h2 {
-                            font-family: 'Work Sans', sans-serif;
+                            font-family: "Work Sans", sans-serif;
                             font-weight: 700;
                             color: white;
                             //margin-top: 0.5em;
@@ -247,7 +278,7 @@ const HomeContainer = styled.nav`
 
                     .info-container {
                         p {
-                            font-family: 'Work Sans', sans-serif;
+                            font-family: "Work Sans", sans-serif;
                             font-weight: 500;
                             margin: 0.5em 0 0.5em 0;
                             color: white;
@@ -259,7 +290,7 @@ const HomeContainer = styled.nav`
                         flex-wrap: wrap;
 
                         span {
-                            font-family: 'Work Sans', sans-serif;
+                            font-family: "Work Sans", sans-serif;
                             font-weight: 600;
                             padding-right: 0.3em;
                             border-radius: 22px;
@@ -293,7 +324,7 @@ const HomeContainer = styled.nav`
                 float: right;
                 text-align: right;
                 width: 100%;
-                font-family: 'Work Sans', sans-serif;
+                font-family: "Work Sans", sans-serif;
                 font-weight: 500;
                 margin: 0.5em 0 0.5em 0;
                 text-decoration: none;
