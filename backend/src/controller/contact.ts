@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const EMAIL_TO_SEND_MSG = process.env.EMAIL_SEND_MESSAGE || '';
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              POST Controllers                             //
@@ -27,7 +29,7 @@ const postMessage = async (req: Request, res: Response) => {
         );
 
         await sendMail(email, 'Confirmation Message', content);
-        await sendMail('miguelm@hotmail.com.ar', 'Mail from Web', contentMessage);
+        await sendMail(EMAIL_TO_SEND_MSG, 'Mail from Web', contentMessage);
 
         return res.status(201).json('Mail sended');
     } catch (error) {
