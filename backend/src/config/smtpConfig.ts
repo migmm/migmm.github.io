@@ -13,6 +13,6 @@ const smtpConfig = {
     secure: true,
 };
 
-const fromEmail = 'contact@miguedev.com';
+const fromEmail = process.env.SMTP_SENDER_FROM;
 
 export { smtpConfig, fromEmail };
