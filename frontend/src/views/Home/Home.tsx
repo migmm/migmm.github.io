@@ -1,134 +1,82 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { isMobile } from 'react-device-detect';
-
-import Paragraph from "../../Styles/Paragraph/Paragraph";
-import userDB from "../../dummy/userDB";
+import { setupScrollHandler } from './scrollHandler';
+import Paragraph from '../../Styles/Paragraph/Paragraph';
+import userDB from '../../dummy/userDB';
 
 const Home = () => {
-    
     useEffect(() => {
-
         if (!isMobile) {
-            console.log("you are in mob")
-        let url = window.location.pathname;
-        url = url.slice(1, 1);
-
-        const lockScroll = (option: string) => {
-            console.log(url);
-            if (option === "enabled") {
-                document.body.style.overflow = "hidden";
-                document.body.style.userSelect = "none";
-            } else {
-                document.body.style.overflow = "auto";
-                document.body.style.userSelect = "auto";
-            }
-        };
-
-        const zoomElement = document.querySelector(".text-home") as HTMLElement;
-        const contactIcons = document.querySelector(".contact-icons") as HTMLElement;
-        const OPACITY_STEP = 0.1;
-        const ZOOM_SPEED = 0.2;
-        let opacity = 1;
-        let zoom = 1;
-
-        function handleScroll(e: any) {
-            if (window.pageYOffset <= 0) {
-                lockScroll("enabled");
-                zoomElement.style.display = `block`;
-            }
-
-            if (e.deltaY >= 0) {
-                zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
-                zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
-                contactIcons.style.opacity = "0";
-            } else {
-                if (zoom + ZOOM_SPEED > 1.2) {
-                    zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
-                    zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
-                    contactIcons.style.opacity = "1";
-                }
-            }
-
-            if (opacity <= 0) {
-                lockScroll("disabled");
-                zoomElement.style.display = `none`;
-            }
+            console.log('you are in mobile');
+            setupScrollHandler();
         }
-
-        window.addEventListener("wheel", handleScroll);
-        lockScroll("enabled");
-
-        return () => {
-            window.removeEventListener("wheel", handleScroll);
-            lockScroll("disabled");
-        };
-}}, []);
+    }, []);
 
     return (
         <HomeContainer>
-            <div className="hero-container">
-                <div className="text-container">
-                    <p className="text-home">
+            <div className='hero-container'>
+                <div className='text-container'>
+                    <p className='text-home'>
                         Hi everyone!
                         <br /> My name is {userDB.name}.
-                        <br /> I'm a <span className="charge-text">{userDB.jobTitle}</span>,
+                        <br /> I'm a <span className='charge-text'>{userDB.jobTitle}</span>,
                         <br /> from {userDB.location}.
                     </p>
                 </div>
-                <div className="contact-icons">
-                    <a href={userDB.githubURL} target="_blank" rel="noreferrer">
-                        <i className="fa-brands fa-github fa-3x"></i>
+                <div className='contact-icons'>
+                    <a href={userDB.githubURL} target='_blank' rel='noreferrer'>
+                        <i className='fa-brands fa-github fa-3x'></i>
                     </a>
-                    <a href={userDB.linkedinURL} target="_blank" rel="noreferrer">
-                        <i className="fa-brands fa-linkedin fa-3x"></i>
+                    <a href={userDB.linkedinURL} target='_blank' rel='noreferrer'>
+                        <i className='fa-brands fa-linkedin fa-3x'></i>
                     </a>
-                    <a href={userDB.email} target="_blank" rel="noreferrer">
-                        <i className="fa fa-envelope fa-3x"></i>
+                    <a href={userDB.email} target='_blank' rel='noreferrer'>
+                        <i className='fa fa-envelope fa-3x'></i>
                     </a>
-                    <a href={userDB.whatsappNumber} target="_blank" rel="noreferrer">
-                        <i className="fa-brands fa-whatsapp fa-3x"></i>
+                    <a href={userDB.whatsappNumber} target='_blank' rel='noreferrer'>
+                        <i className='fa-brands fa-whatsapp fa-3x'></i>
                     </a>
-                    <a href={userDB.telegramId} target="_blank" rel="noreferrer">
-                        <i className="fa-brands fa-telegram fa-3x"></i>
+                    <a href={userDB.telegramId} target='_blank' rel='noreferrer'>
+                        <i className='fa-brands fa-telegram fa-3x'></i>
                     </a>
                 </div>
             </div>
-            <div className="short-info">
+            <div className='short-info'>
                 <h2>About Me</h2>
                 <Paragraph
-                    innerText="I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
-                    MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset."
+                    innerText='I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
+                    MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset.'
                 />
                 <Paragraph
-                    innerText="With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
-                    solutions, adapting to diverse project environments and requirements."
+                    innerText='With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
+                    solutions, adapting to diverse project environments and requirements.'
                 />
             </div>
-            <div className="projects-container">
+            <div className='projects-container'>
                 <h1> Latest Project</h1>
 
                 {/*                 <p>Featured projects that I've developed</p> */}
 
-                <div className="cards-container">
-                    <div className="big-card-container">
-                        <div className="big-card">
-                            <div className="card-left-part">
-                                <div className="card-image-container">
-                                    <img src="img/cosmica-screens.png" alt="" />
+                <div className='cards-container'>
+                    <div className='big-card-container'>
+                        <div className='big-card'>
+                            <div className='card-left-part'>
+                                <div className='card-image-container'>
+                                    <img src='img/cosmica-screens.png' alt='' />
                                 </div>
                             </div>
-                            <div className="card-right-part">
-                                <div className="card-title-container">
-                                    <h2 className="card-title">Juguetería Cósmica</h2>
+                            <div className='card-right-part'>
+                                <div className='card-title-container'>
+                                    <h2 className='card-title'>Juguetería Cósmica</h2>
                                 </div>
-                                <div className="info-container">
+                                <div className='info-container'>
                                     <Paragraph>
                                         e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
                                         Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
                                     </Paragraph>
                                 </div>
-                                <div className="card-languages-container">
+                                <div className='card-languages-container'>
                                     <span>React</span>
                                     <span>NodeJS</span>
                                     <span>MongoDB</span>
@@ -138,8 +86,8 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="view-more-container">
-                    <a href="#" className="view-more-link">
+                <div className='view-more-container'>
+                    <a href='#' className='view-more-link'>
                         View more projects
                     </a>
                 </div>
@@ -178,7 +126,7 @@ const HomeContainer = styled.nav`
             .text-home {
                 text-align: center;
                 font-size: 6vw;
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 font-weight: 800;
                 //word-spacing: -10px;
                 opacity: 1;
@@ -234,18 +182,17 @@ const HomeContainer = styled.nav`
         padding: 5em 3em;
 
         h2 {
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             font-weight: 800;
             text-align: center;
-
         }
 
         p {
             max-width: 900px;
-            text-align:center;
+            text-align: center;
 
             @media (min-width: 768px) {
-            font-size: 1.5em;
+                font-size: 1.5em;
             }
         }
     }
@@ -253,7 +200,7 @@ const HomeContainer = styled.nav`
     .projects-container {
         //background-color: #000000;
         h1 {
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             font-weight: 800;
             text-align: center;
             margin: 2em 1em 0.5em 1em;
@@ -291,7 +238,7 @@ const HomeContainer = styled.nav`
 
                     .card-title-container {
                         h2 {
-                            font-family: "Work Sans", sans-serif;
+                            font-family: 'Work Sans', sans-serif;
                             font-weight: 700;
                             color: white;
                             //margin-top: 0.5em;
@@ -300,7 +247,7 @@ const HomeContainer = styled.nav`
 
                     .info-container {
                         p {
-                            font-family: "Work Sans", sans-serif;
+                            font-family: 'Work Sans', sans-serif;
                             font-weight: 500;
                             margin: 0.5em 0 0.5em 0;
                             color: white;
@@ -312,7 +259,7 @@ const HomeContainer = styled.nav`
                         flex-wrap: wrap;
 
                         span {
-                            font-family: "Work Sans", sans-serif;
+                            font-family: 'Work Sans', sans-serif;
                             font-weight: 600;
                             padding-right: 0.3em;
                             border-radius: 22px;
@@ -346,7 +293,7 @@ const HomeContainer = styled.nav`
                 float: right;
                 text-align: right;
                 width: 100%;
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 font-weight: 500;
                 margin: 0.5em 0 0.5em 0;
                 text-decoration: none;
