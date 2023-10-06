@@ -92,9 +92,6 @@ const Home = () => {
                     <a href={userDB.telegramId} target="_blank" rel="noreferrer">
                         <i className="fa-brands fa-telegram fa-3x"></i>
                     </a>
-                    <a href={userDB.youtubeChannel} target="_blank" rel="noreferrer">
-                        <i className="fa-brands fa-youtube fa-3x"></i>
-                    </a>
                 </div>
             </div>
             <div className="short-info">
