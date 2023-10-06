@@ -1,5 +1,5 @@
 import database from '../config/database';
-import WebConfigModel from '../model/config/config';
+import WebConfigModel from '../model/webConfig/config';
 import WebConfigValidator from '../model/validators/webConfig';
 
 const modelWebConfigs = WebConfigModel.get(database.PERSISTENCE_TYPE);
