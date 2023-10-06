@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 import Button from '../../Styles/Form/Button/Button';
@@ -8,11 +9,14 @@ import Label from '../../Styles/Form/Label/Label';
 import LabelError from '../../Styles/Form/LabelError/LabelError';
 import Input from '../../Styles/Form/Input/Input';
 import H1 from '../../Styles/H1/H1';
-import { validations, initialFields } from './validations';
-import { useValidation } from '../../hooks/useValidations';
+
 import useFormUtils from '../../hooks/useFormUtils';
 import ContainerStyles from '../../Styles/Container/Container';
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
+
+import { apiURL } from '../../config/urls';
+import { validations, initialFields } from './validations';
+import { useValidation } from '../../hooks/useValidations';
 
 
 const RegisterScreen = () => {
@@ -30,7 +34,6 @@ const RegisterScreen = () => {
         setButtonMessage(true);
 
         if (validateForm(fields)) {
-
             const data = Object.keys(fields).reduce((formData : Record<string, any>, fieldName : string) => {
                 formData[fieldName] = fields[fieldName];
                 return formData;
@@ -38,7 +41,7 @@ const RegisterScreen = () => {
 
             try {
                 const response = await axios.post(
-                    'http://localhost:8080/api/users',
+                    `${apiURL}users`,
                         data,
                     {
                         headers: {

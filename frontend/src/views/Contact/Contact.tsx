@@ -49,7 +49,7 @@ function Contact() {
 
                 if (response.status === 201) {
                     handleReset();
-                    setError("Message Sent.");
+                    setError('Message Sent.');
                 }
             } catch (error: any) {
                 if (error.response) {
