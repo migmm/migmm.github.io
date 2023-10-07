@@ -43,7 +43,11 @@ const Home = () => {
     useEffect(() => {
         if (!isLoading) {
             console.log("you are not on mobile");
-            setupScrollHandler(contactIcons.current, zoomElement.current || zoomElement);
+            const cleanupScrollHandler = setupScrollHandler(contactIcons.current, zoomElement.current || zoomElement);
+            
+            return () => {
+                cleanupScrollHandler();
+            };
         }
     }, [isLoading]);
 
