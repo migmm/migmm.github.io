@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import userDB from '../../dummy/userDB';
+
 
 const Footer = ({homeData} : any) => {
 
     const data = homeData[0];
-
-    console.log(data)
     
     return (
         <FooterStyles>
@@ -16,7 +14,7 @@ const Footer = ({homeData} : any) => {
                     <div className='items-container'>
                         <div className='img-container'>
                             <Link to='/'>
-                                <img src={userDB.logo} alt='Logo' />
+                                <img src={data.logo} alt='Logo' />
                             </Link>
                         </div>
                         <div className='p-container'>
