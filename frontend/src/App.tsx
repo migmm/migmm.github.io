@@ -67,7 +67,7 @@ const App = () => {
     return (
         <React.StrictMode>
             <BrowserRouter>
-                <Header user={user} />
+            {isLoading ? '<div>Loading...</div>' : <Header user={user} homeData={homeData} />}
                 <Routes>
                     <Route path="/" element={isLoading ? '<div>Loading...</div>' : <Home homeData={homeData} />} />
                     <Route path="/projects" element={<Projects />} />

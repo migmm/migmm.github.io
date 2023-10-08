@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import styled from "styled-components";
+
 import HamburgerButton from "./HamburgerButton/HamburgerButton";
 import NavBar from "./Navbar/NavBar";
-import styled from "styled-components";
-import userDB from "../../dummy/userDB";
 
-const Header = ({ user }: any) => {
+
+const Header = ({ user , homeData }: any) => {
+    
     // NavBar
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const data = homeData[0];
 
     const handleHamburgerClick = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -46,7 +50,7 @@ const Header = ({ user }: any) => {
                 <header>
                     <div className="logo-container">
                         <Link to="/">
-                            <img src={userDB.logo} alt="Logo" />
+                            <img src={data.logo} alt="Logo" />
                         </Link>
                     </div>
                     <div className={`navbar-container ${isMenuOpen ? "menu-open" : ""}`}>
