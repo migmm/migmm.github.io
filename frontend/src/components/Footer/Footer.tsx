@@ -1,80 +1,80 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Footer = ({ homeData }: any) => {
     const data = homeData[0];
 
     return (
         <FooterStyles>
-            <div className="footer-content">
-                <div className="first-column">
-                    <div className="items-container">
-                        <div className="img-container">
-                            <Link to="/">
-                                <img src={data.logo} alt="Logo" />
+            <div className='footer-content'>
+                <div className='first-column'>
+                    <div className='items-container'>
+                        <div className='img-container'>
+                            <Link to='/'>
+                                <img src={data.logo} alt='Logo' />
                             </Link>
                         </div>
-                        <div className="p-container">
-                            <Link to="/">
+                        <div className='p-container'>
+                            <Link to='/'>
                                 <h2>miguedev</h2>
                             </Link>
                         </div>
                     </div>
                 </div>
-                <div className="second-column">
+                <div className='second-column'>
                     <h3>Sections</h3>
-                    <ul className="link-list">
+                    <ul className='link-list'>
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to='/'>Home</Link>
                         </li>
                         <li>
-                            <Link to="/projects">Projects</Link>
+                            <Link to='/projects'>Projects</Link>
                         </li>
                         <li>
-                            <Link to="/certificates">Certificates</Link>
+                            <Link to='/certificates'>Certificates</Link>
                         </li>
                         <li>
-                            <Link to="/contact">Contact</Link>
+                            <Link to='/contact'>Contact</Link>
                         </li>
                     </ul>
                 </div>
-                <div className="third-column">
+                <div className='third-column'>
                     <h3>Get in touch</h3>
-                    <p className="footer-text">
+                    <p className='footer-text'>
                         Feel free to reach out to me by sending a message, and I will make sure to reply as soon as possible.
                     </p>
-                    <Link to="/contact">
-                        <button className="footer-button">Contact me!</button>
+                    <Link to='/contact'>
+                        <button className='footer-button'>Contact me!</button>
                     </Link>
 
-                    <div className="footer-icons">
-                        <a href={data.githubURL} target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-github fa-2x"></i>
+                    <div className='footer-icons'>
+                        <a href={data.githubURL} target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-github fa-2x'></i>
                         </a>
-                        <a href={data.linkedinURL} target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-linkedin fa-2x"></i>
+                        <a href={data.linkedinURL} target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-linkedin fa-2x'></i>
                         </a>
-                        <a href={data.email} target="_blank" rel="noreferrer">
-                            <i className="fa fa-envelope fa-2x"></i>
+                        <a href={data.email} target='_blank' rel='noreferrer'>
+                            <i className='fa fa-envelope fa-2x'></i>
                         </a>
-                        <a href={data.whatsappNumber} target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-whatsapp fa-2x"></i>
+                        <a href={data.whatsappNumber} target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-whatsapp fa-2x'></i>
                         </a>
-                        <a href={data.telegramId} target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-telegram fa-2x"></i>
+                        <a href={data.telegramId} target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-telegram fa-2x'></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div className="footer-copyright">
-                <p className="copyright-text">
-                    {" "}
-                    ©{new Date().getFullYear()} <Link to="/">miguedev</Link> | All rights reserved.
+            <div className='footer-copyright'>
+                <p className='copyright-text'>
+                    {' '}
+                    ©{new Date().getFullYear()} <Link to='/'>miguedev</Link> | All rights reserved.
                 </p>
-                <div className="hidden-link-container">
-                    <Link to="/login">π</Link>
+                <div className='hidden-link-container'>
+                    <Link to='/login'>π</Link>
                 </div>
             </div>
         </FooterStyles>
@@ -92,7 +92,7 @@ const FooterStyles = styled.footer`
 
     width: 100%;
     background-color: #1c1d1f;
-    font-family: "Work Sans", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     color: #f3f3f1;
 
     .footer-content {
@@ -112,7 +112,7 @@ const FooterStyles = styled.footer`
             display: flex;
             flex-direction: row;
             align-items: center;
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             margin: 1em;
 
             @media (min-width: 768px) {
@@ -150,7 +150,7 @@ const FooterStyles = styled.footer`
         }
 
         .second-column {
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             color: #f3f3f1;
             margin: 1.7em;
 
@@ -214,7 +214,7 @@ const FooterStyles = styled.footer`
             .footer-button {
                 background-color: #ed1b23;
                 height: 65px;
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 color: #f3f3f1;
                 font-weight: 500;
                 line-height: 65px;
