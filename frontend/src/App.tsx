@@ -84,7 +84,7 @@ const App = () => {
                     <Route path="/newuser" element={<UserForm />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
-                <Footer homeData={homeData} />
+                element={isLoading ? '<div>Loading...</div>' : <Footer homeData={homeData} />}
             </BrowserRouter>
         </React.StrictMode>
     );

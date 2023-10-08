@@ -6,6 +6,8 @@ import userDB from '../../dummy/userDB';
 const Footer = ({homeData} : any) => {
 
     const data = homeData[0];
+
+    console.log(data)
     
     return (
         <FooterStyles>
@@ -51,19 +53,19 @@ const Footer = ({homeData} : any) => {
                     </Link>
     
                     <div className='footer-icons'>
-                        <a href='http://www.github.com/project1' target='_blank' rel='noreferrer'>
+                        <a href={data.githubURL} target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-github fa-2x'></i>
                         </a>
-                        <a href='http://www.linkedin.com.com/profile' target='_blank' rel='noreferrer'>
+                        <a href={data.linkedinURL} target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-linkedin fa-2x'></i>
                         </a>
-                        <a href='mail@mail.com' target='_blank' rel='noreferrer'>
+                        <a href={data.email} target='_blank' rel='noreferrer'>
                             <i className='fa fa-envelope fa-2x'></i>
                         </a>
-                        <a href='4934934934' target='_blank' rel='noreferrer'>
+                        <a href={data.whatsappNumber} target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-whatsapp fa-2x'></i>
                         </a>
-                        <a href='fdfdf' target='_blank' rel='noreferrer'>
+                        <a href={data.telegramId} target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-telegram fa-2x'></i>
                         </a>
                     </div>
