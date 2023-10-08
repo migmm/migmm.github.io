@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import userDB from '../../dummy/userDB';
 
-const Footer = () => {
+const Footer = ({homeData} : any) => {
+
+    const data = homeData[0];
+    
     return (
         <FooterStyles>
             <div className='footer-content'>
@@ -46,7 +49,7 @@ const Footer = () => {
                     <Link to='/contact'>
                         <button className='footer-button'>Contact me!</button>
                     </Link>
-                    
+    
                     <div className='footer-icons'>
                         <a href='http://www.github.com/project1' target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-github fa-2x'></i>
@@ -62,9 +65,6 @@ const Footer = () => {
                         </a>
                         <a href='fdfdf' target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-telegram fa-2x'></i>
-                        </a>
-                        <a href='http://www.youtube.com/project1' target='_blank' rel='noreferrer'>
-                            <i className='fa-brands fa-youtube fa-2x'></i>
                         </a>
                     </div>
                 </div>

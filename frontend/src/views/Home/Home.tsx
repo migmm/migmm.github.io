@@ -1,139 +1,106 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import { isMobile } from "react-device-detect";
 
 import Paragraph from "../../Styles/Paragraph/Paragraph";
-
-import { apiURL } from "../../config/urls";
 import { setupScrollHandler } from "./scrollHandler";
 
-interface DataItem {
-    name: string;
-    jobTitle: string;
-    location: string;
-    githubURL: string;
-    linkedinURL: string;
-    email: string;
-    whatsappNumber: string;
-    telegramId: string;
-    youtubeChannel: string;
-    logo: string;
-}
-
-const Home = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [data, setData] = useState<DataItem[]>([]);
-
+const Home = ({ homeData }: any) => {
     const contactIcons = useRef(null);
     const zoomElement = useRef(null);
 
-    useEffect(() => {
-        axios
-            .get(`${apiURL}webconfig/`)
-            .then((response) => {
-                setData(response.data);
-                setIsLoading(false);
-                console.log("Data fetched successfully:", response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
-    }, []);
+    const data = homeData[0];
 
     useEffect(() => {
-        if (!isLoading) {
+        if (!isMobile) {
             console.log("you are not on mobile");
-            const cleanupScrollHandler = setupScrollHandler(contactIcons.current, zoomElement.current || zoomElement);
-            
+            const cleanupScrollHandler = setupScrollHandler(
+                contactIcons.current, 
+                zoomElement.current || zoomElement
+            );
             return () => {
                 cleanupScrollHandler();
             };
         }
-    }, [isLoading]);
+    }, []);
 
     return (
         <HomeContainer>
-            {isLoading ? (
-                <></>
-            ) : (
-                <>
-                    <HeroContainer>
-                        <TextContainer>
-                            <TextHome ref={zoomElement}>
-                                Hi everyone!
-                                <br /> My name is {data.length > 0 ? data[0].name : ""}.
-                                <br /> I'm a <span className="charge-text">{data.length > 0 ? data[0].jobTitle : ""}</span>,
-                                <br /> from {data.length > 0 ? data[0].location : ""}.
-                            </TextHome>
-                        </TextContainer>
-                        <ContactIcons ref={contactIcons}>
-                            <a href={"data[0].githubURL"} target="_blank" rel="noreferrer">
-                                <i className="fa-brands fa-github fa-3x"></i>
-                            </a>
-                            <a href={"data[0].linkedinURL"} target="_blank" rel="noreferrer">
-                                <i className="fa-brands fa-linkedin fa-3x"></i>
-                            </a>
-                            <a href={"data[0].email"} target="_blank" rel="noreferrer">
-                                <i className="fa fa-envelope fa-3x"></i>
-                            </a>
-                            <a href={"data[0].whatsappNumber"} target="_blank" rel="noreferrer">
-                                <i className="fa-brands fa-whatsapp fa-3x"></i>
-                            </a>
-                            <a href={"data[0].telegramId"} target="_blank" rel="noreferrer">
-                                <i className="fa-brands fa-telegram fa-3x"></i>
-                            </a>
-                        </ContactIcons>
-                    </HeroContainer>
-                    <ShortInfo>
-                        <H2>About Me</H2>
-                        <Paragraph
-                            innerText="I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
+            <HeroContainer>
+                <TextContainer>
+                    <TextHome ref={zoomElement}>
+                        Hi everyone!
+                        <br /> My name is {data.name}.
+                        <br /> I'm a <span className="charge-text">{data.jobTitle}</span>,
+                        <br /> from {data.location}.
+                    </TextHome>
+                </TextContainer>
+                <ContactIcons ref={contactIcons}>
+                    <a href={data.githubURL} target="_blank" rel="noreferrer">
+                        <i className="fa-brands fa-github fa-3x"></i>
+                    </a>
+                    <a href={data.linkedinURL} target="_blank" rel="noreferrer">
+                        <i className="fa-brands fa-linkedin fa-3x"></i>
+                    </a>
+                    <a href={data.email} target="_blank" rel="noreferrer">
+                        <i className="fa fa-envelope fa-3x"></i>
+                    </a>
+                    <a href={data.whatsappNumber} target="_blank" rel="noreferrer">
+                        <i className="fa-brands fa-whatsapp fa-3x"></i>
+                    </a>
+                    <a href={data.telegramId} target="_blank" rel="noreferrer">
+                        <i className="fa-brands fa-telegram fa-3x"></i>
+                    </a>
+                </ContactIcons>
+            </HeroContainer>
+            <ShortInfo>
+                <H2>About Me</H2>
+                <Paragraph
+                    innerText="I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
                     MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset."
-                        />
-                        <Paragraph
-                            innerText="With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
+                />
+                <Paragraph
+                    innerText="With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
                     solutions, adapting to diverse project environments and requirements."
-                        />
-                    </ShortInfo>
-                    <ProjectContaiener>
-                        <H1> Latest Project</H1>
+                />
+            </ShortInfo>
+            <ProjectContaiener>
+                <H1> Latest Project</H1>
 
-                        {/*                 <p>Featured projects that I've developed</p> */}
+                {/*                 <p>Featured projects that I've developed</p> */}
 
-                        <CardsContainer>
-                            <BigCardContainer>
-                                <BigCard>
-                                    <CardLeftPart>
-                                        <CardImageContainer>
-                                            <IMG src="img/cosmica-screens.png" alt="" />
-                                        </CardImageContainer>
-                                    </CardLeftPart>
-                                    <CardRightPart>
-                                        <CardTitleContainer>
-                                            <H2>Juguetería Cósmica</H2>
-                                        </CardTitleContainer>
-                                        <CardInfoContainer>
-                                            <Paragraph>
-                                                e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
-                                                Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
-                                            </Paragraph>
-                                        </CardInfoContainer>
-                                        <CardLanguagesContainer>
-                                            <Bubble>React</Bubble>
-                                            <Bubble>NodeJS</Bubble>
-                                            <Bubble>MongoDB</Bubble>
-                                        </CardLanguagesContainer>
-                                    </CardRightPart>
-                                </BigCard>
-                            </BigCardContainer>
-                        </CardsContainer>
+                <CardsContainer>
+                    <BigCardContainer>
+                        <BigCard>
+                            <CardLeftPart>
+                                <CardImageContainer>
+                                    <IMG src="img/cosmica-screens.png" alt="" />
+                                </CardImageContainer>
+                            </CardLeftPart>
+                            <CardRightPart>
+                                <CardTitleContainer>
+                                    <H2>Juguetería Cósmica</H2>
+                                </CardTitleContainer>
+                                <CardInfoContainer>
+                                    <Paragraph>
+                                        e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
+                                        Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                    </Paragraph>
+                                </CardInfoContainer>
+                                <CardLanguagesContainer>
+                                    <Bubble>React</Bubble>
+                                    <Bubble>NodeJS</Bubble>
+                                    <Bubble>MongoDB</Bubble>
+                                </CardLanguagesContainer>
+                            </CardRightPart>
+                        </BigCard>
+                    </BigCardContainer>
+                </CardsContainer>
 
-                        <ViewMoreContainer>
-                            <ViewMoreLink>View more projects</ViewMoreLink>
-                        </ViewMoreContainer>
-                    </ProjectContaiener>{" "}
-                </>
-            )}
+                <ViewMoreContainer>
+                    <ViewMoreLink>View more projects</ViewMoreLink>
+                </ViewMoreContainer>
+            </ProjectContaiener>{" "}
         </HomeContainer>
     );
 };
@@ -320,13 +287,13 @@ const IMG = styled.img`
 const CardLeftPart = styled.div`
 `;
 
-const BigCard= styled.div`
+const BigCard = styled.div`
 `;
 
-const CardTitleContainer= styled.div`
+const CardTitleContainer = styled.div`
 `;
 
-const CardImageContainer= styled.div`
+const CardImageContainer = styled.div`
 `;
 
 const CardRightPart = styled.div`
