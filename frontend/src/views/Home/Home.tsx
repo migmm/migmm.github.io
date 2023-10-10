@@ -5,6 +5,21 @@ import { isMobile } from 'react-device-detect';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
 import { setupScrollHandler } from './scrollHandler';
 
+import htmlLogo from '../../assets/icons/html5.svg'
+import cssLogo from '../../assets/icons/css3.svg'
+import javascriptLogo from '../../assets/icons/javascript.svg'
+import typescriptLogo from '../../assets/icons/typescript.svg'
+import reactLogo from '../../assets/icons/react.svg'
+import nodeLogo from '../../assets/icons/nodejs.svg'
+import expressLogo from '../../assets/icons/express.svg'
+import javaLogo from '../../assets/icons/java.svg'
+import springLogo from '../../assets/icons/springboot.svg'
+import mongoLogo from '../../assets/icons/mongodb.svg'
+import mysqlLogo from '../../assets/icons/mysql.svg'
+import postgresLogo from '../../assets/icons/postgresql.svg'
+import nestLogo from '../../assets/icons/nestjs.svg'
+import { Link } from 'react-router-dom';
+
 const Home = ({ homeData }: any) => {
     const contactIcons = useRef(null);
     const zoomElement = useRef(null);
@@ -64,8 +79,27 @@ const Home = ({ homeData }: any) => {
                     solutions, adapting to diverse project environments and requirements.'
                 />
             </ShortInfo>
+            <Skills>
+                <H2>My weapon of choice</H2>
+                <IMGContainer>
+                    <img src={htmlLogo} alt="HTML logo" />
+                    <img src={cssLogo} alt="CSS logo" />
+                    <img src={javascriptLogo} alt="Javascript logo" />
+                    <img src={typescriptLogo} alt="Typescript logo" />
+                    <img src={reactLogo} alt="ReactJS logo" />
+                    <img src={nodeLogo} alt="NodeJS logo" />
+                    <img src={expressLogo} alt="Express logo" />
+                    <img src={nestLogo} alt="NestJS logo" />
+                    <img src={javaLogo} alt="JAVA logo" />
+                    <img src={springLogo} alt="SpringBoot logo" />
+                    <img src={mongoLogo} alt="MongoDB logo" />
+                    <img src={mysqlLogo} alt="MySQL logo" />
+                    <img src={postgresLogo} alt="PostgreSQL logo" />
+                </IMGContainer>
+            </Skills>
+
             <ProjectContaiener>
-                <H1> Latest Project</H1>
+                <H2> Featured project</H2>
 
                 {/*                 <p>Featured projects that I've developed</p> */}
 
@@ -98,7 +132,7 @@ const Home = ({ homeData }: any) => {
                 </CardsContainer>
 
                 <ViewMoreContainer>
-                    <ViewMoreLink>View more projects</ViewMoreLink>
+                    <Link to='/certificates' >View more projects</Link>
                 </ViewMoreContainer>
             </ProjectContaiener>{' '}
         </HomeContainer>
@@ -195,6 +229,7 @@ const ShortInfo = styled.div`
     h2 {
         font-family: 'Work Sans', sans-serif;
         font-weight: 800;
+        font-size: 2em;
         text-align: center;
     }
 
@@ -208,6 +243,46 @@ const ShortInfo = styled.div`
     }
 `;
 
+const Skills = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #000000;
+    padding: 5em 3em;
+
+    h2 {
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 800;
+        font-size: 2em;
+        text-align: center;
+    }
+
+    p {
+        max-width: 900px;
+        text-align: center;
+
+        @media (min-width: 768px) {
+            font-size: 1.5em;
+        }
+    }
+`;
+
+const IMGContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 2em;
+    max-width: 1200px;
+
+    img {
+        width:200px;
+    }
+`;
+
 const H1 = styled.h1`
     font-family: 'Work Sans', sans-serif;
     font-weight: 800;
@@ -218,7 +293,8 @@ const H1 = styled.h1`
 const H2 = styled.h2`
     font-family: 'Work Sans', sans-serif;
     font-weight: 700;
-    color: white;
+    color: black;
+    margin-bottom: 1em;
     //margin-top: 0.5em;
 `;
 
@@ -313,4 +389,5 @@ const SmallCard = styled.div`
 `;
 
 const ProjectContaiener = styled.div`
+background-color: white;
 `;
