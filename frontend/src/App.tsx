@@ -67,9 +67,9 @@ const App = () => {
     return (
         <React.StrictMode>
             <BrowserRouter>
-                {isLoading ? '<div>Loading...</div>' : <Header user={user} homeData={homeData} />}
+                {isLoading ? '' : <Header user={user} homeData={homeData} />}
                 <Routes>
-                    <Route path='/' element={isLoading ? '<div>Loading...</div>' : <Home homeData={homeData} />} />
+                    <Route path='/' element={isLoading ? '' : <Home homeData={homeData} />} />
                     <Route path='/projects' element={<Projects />} />
                     <Route path='/certificates' element={<Certificates />} />
                     <Route path='/curriculum' element={<Curriculum />} />
@@ -84,7 +84,7 @@ const App = () => {
                     <Route path='/newuser' element={<UserForm />} />
                     <Route path='*' element={<Navigate to='/' replace />} />
                 </Routes>
-                {isLoading ? '<div>Loading...</div>' : <Footer homeData={homeData} />}
+                {isLoading ? '' : <Footer homeData={homeData} />}
             </BrowserRouter>
         </React.StrictMode>
     );
