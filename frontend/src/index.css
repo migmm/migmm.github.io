@@ -17,4 +17,5 @@ html {
 
 body {
     scrollbar-gutter: always;
+    overflow: scroll !important;
 }

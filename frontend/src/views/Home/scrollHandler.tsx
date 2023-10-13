@@ -1,10 +1,5 @@
 export function setupScrollHandler(contactIcons:any, zoomElement:any) {
-    let url = window.location.pathname;
-    url = url.slice(1, 1);
-
     const lockScroll = (option = 'disabled') => {
-        console.log(zoomElement, contactIcons);
-        console.log(url);
         if (option === 'enabled') {
             document.body.style.overflow = 'hidden';
             document.body.style.userSelect = 'none';
@@ -14,42 +9,53 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any) {
         }
     };
 
-    const OPACITY_STEP = 0.1;
-    const ZOOM_SPEED = 0.2;
+    const OPACITY_STEP = 0.01;
+    const ZOOM_SPEED = 0.02;
     let opacity = 1;
     let zoom = 1;
 
+    let lastScrollY = 0;
+
     function handleScroll(e:any) {
-       
-            if (window.pageYOffset <= 0) {
-                lockScroll('enabled');
-                zoomElement.style.display = 'block';
-            }
+        const scrollY = window.scrollY;
+        const deltaY = scrollY - lastScrollY;
 
-            if (e.deltaY >= 0) {
-                zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
-                zoomElement.style.opacity = `${(opacity = opacity - OPACITY_STEP)}`;
-                contactIcons.style.opacity = '0';
-            } else {
-                if (zoom + ZOOM_SPEED > 1.2) {
-                    zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
-                    zoomElement.style.opacity = `${(opacity = opacity + OPACITY_STEP)}`;
-                    contactIcons.style.opacity = '1';
-                }
+        if (deltaY > 0) {
+            zoom += ZOOM_SPEED;
+            opacity -= OPACITY_STEP;
+            if (zoom > 1.2) {
+                zoom = 1.2;
+                opacity = 0;
             }
+            contactIcons.style.opacity = 0;
+        } else if (deltaY < 0) {
+            zoom -= ZOOM_SPEED;
+            opacity += OPACITY_STEP;
+            if (zoom < 1) {
+                zoom = 1;
+                opacity = 1;
+            }
+            contactIcons.style.opacity = 1;
+        }
 
-            if (opacity <= 0) {
-                lockScroll('disabled');
-                zoomElement.style.display = 'none';
-            }
-        
+        zoomElement.style.transform = `scale(${zoom})`;
+        zoomElement.style.opacity = opacity;
+
+        lastScrollY = scrollY;
+
+        if (scrollY <= 0) {
+            lockScroll('enabled');
+            zoomElement.style.display = 'block';
+        } else {
+            lockScroll('disabled');
+        }
     }
 
-    window.addEventListener('wheel', handleScroll);
+    window.addEventListener('scroll', handleScroll);
     lockScroll('enabled');
 
     return () => {
-        window.removeEventListener('wheel', handleScroll);
+        window.removeEventListener('scroll', handleScroll);
         lockScroll('disabled');
     };
 }
