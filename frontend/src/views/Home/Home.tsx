@@ -140,12 +140,13 @@ const Home = ({ homeData }: any) => {
 
 export default Home;
 
-const HomeContainer = styled.nav`
+const HomeContainer = styled.div`
     margin: 2em 0 2em 0;
 `;
 
-const HeroHeightReserver = styled.nav`
+const HeroHeightReserver = styled.div`
     height: 1000px;
+
 `;
 
 const HeroContainer = styled.div`
@@ -154,6 +155,7 @@ const HeroContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin-top: 150px;
 
     @media (min-width: 768px) {
@@ -170,6 +172,7 @@ const TextContainer = styled.div`
     justify-content: center;
     padding-top: 1em;
     padding-bottom: 3em;
+    margin: 0 auto;
 `;
 
 const TextHome = styled.p`
