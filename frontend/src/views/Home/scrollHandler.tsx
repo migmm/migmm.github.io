@@ -35,12 +35,12 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContai
 
         if (scrollY <= POSITION_TO_FIX_TEXT) {
             heroContaierFixed.style.position = 'fixed';
-            heroContaierFixed.style.top = '250px'; // You missed 'px' here
+            heroContaierFixed.style.top = '250px';
             heroContaierFixed.style.display = 'block';
         } else {
-            heroContaierFixed.style.position = 'relative'; // Change to relative to allow normal flow
+            heroContaierFixed.style.position = 'relative';
             heroContaierFixed.style.top = '0';
-            heroContaierFixed.style.display = 'none'; // Hide the fixed container
+            heroContaierFixed.style.display = 'none';
         }
 
         zoomElement.style.transform = `scale(${zoom})`;
@@ -49,10 +49,8 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContai
         lastScrollY = scrollY;
 
         if (scrollY <= POSITION_TO_APPEAR_TEXT) {
-            // Show the text when scrollY is 100 or less
             heroContaierFixed.style.display = 'block';
         } else {
-            // Hide the text when scrollY is more than 100
             heroContaierFixed.style.display = 'none';
         }
     }
