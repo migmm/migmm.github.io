@@ -1,38 +1,36 @@
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import { isMobile } from 'react-device-detect';
+import React, { useEffect, useRef } from "react";
+import styled from "styled-components";
+import { isMobile } from "react-device-detect";
 
-import Paragraph from '../../Styles/Paragraph/Paragraph';
-import { setupScrollHandler } from './scrollHandler';
+import Paragraph from "../../Styles/Paragraph/Paragraph";
+import { setupScrollHandler } from "./scrollHandler";
 
-import htmlLogo from '../../assets/icons/html5.svg'
-import cssLogo from '../../assets/icons/css3.svg'
-import javascriptLogo from '../../assets/icons/javascript.svg'
-import typescriptLogo from '../../assets/icons/typescript.svg'
-import reactLogo from '../../assets/icons/react.svg'
-import nodeLogo from '../../assets/icons/nodejs.svg'
-import expressLogo from '../../assets/icons/express.svg'
-import javaLogo from '../../assets/icons/java.svg'
-import springLogo from '../../assets/icons/springboot.svg'
-import mongoLogo from '../../assets/icons/mongodb.svg'
-import mysqlLogo from '../../assets/icons/mysql.svg'
-import postgresLogo from '../../assets/icons/postgresql.svg'
-import nestLogo from '../../assets/icons/nestjs.svg'
-import { Link } from 'react-router-dom';
+import htmlLogo from "../../assets/icons/html5.svg";
+import cssLogo from "../../assets/icons/css3.svg";
+import javascriptLogo from "../../assets/icons/javascript.svg";
+import typescriptLogo from "../../assets/icons/typescript.svg";
+import reactLogo from "../../assets/icons/react.svg";
+import nodeLogo from "../../assets/icons/nodejs.svg";
+import expressLogo from "../../assets/icons/express.svg";
+import javaLogo from "../../assets/icons/java.svg";
+import springLogo from "../../assets/icons/springboot.svg";
+import mongoLogo from "../../assets/icons/mongodb.svg";
+import mysqlLogo from "../../assets/icons/mysql.svg";
+import postgresLogo from "../../assets/icons/postgresql.svg";
+import nestLogo from "../../assets/icons/nestjs.svg";
+import { Link } from "react-router-dom";
 
 const Home = ({ homeData }: any) => {
     const contactIcons = useRef(null);
     const zoomElement = useRef(null);
+    const heroContainerFixed = useRef(null);
 
     const data = homeData[0];
 
     useEffect(() => {
         if (!isMobile) {
-            console.log('you are not on mobile');
-            const cleanupScrollHandler = setupScrollHandler(
-                contactIcons.current, 
-                zoomElement.current || zoomElement
-            );
+            console.log("you are not on mobile");
+            const cleanupScrollHandler = setupScrollHandler(contactIcons.current, zoomElement.current || zoomElement, heroContainerFixed.current);
             return () => {
                 cleanupScrollHandler();
             };
@@ -41,42 +39,44 @@ const Home = ({ homeData }: any) => {
 
     return (
         <HomeContainer>
-            <HeroContainer>
-                <TextContainer>
-                    <TextHome ref={zoomElement}>
-                        Hi everyone!
-                        <br /> My name is {data.name}.
-                        <br /> I'm a <span className='charge-text'>{data.jobTitle}</span>,
-                        <br /> from {data.location}.
-                    </TextHome>
-                </TextContainer>
-                <ContactIcons ref={contactIcons}>
-                    <a href={data.githubURL} target='_blank' rel='noreferrer'>
-                        <i className='fa-brands fa-github fa-3x'></i>
-                    </a>
-                    <a href={data.linkedinURL} target='_blank' rel='noreferrer'>
-                        <i className='fa-brands fa-linkedin fa-3x'></i>
-                    </a>
-                    <a href={data.email} target='_blank' rel='noreferrer'>
-                        <i className='fa fa-envelope fa-3x'></i>
-                    </a>
-                    <a href={data.whatsappNumber} target='_blank' rel='noreferrer'>
-                        <i className='fa-brands fa-whatsapp fa-3x'></i>
-                    </a>
-                    <a href={data.telegramId} target='_blank' rel='noreferrer'>
-                        <i className='fa-brands fa-telegram fa-3x'></i>
-                    </a>
-                </ContactIcons>
-            </HeroContainer>
+            <HeroHeightReserver>
+                <HeroContainer ref={heroContainerFixed}>
+                    <TextContainer>
+                        <TextHome ref={zoomElement}>
+                            Hi everyone!
+                            <br /> My name is {data.name}.
+                            <br /> I'm a <span className="charge-text">{data.jobTitle}</span>,
+                            <br /> from {data.location}.
+                        </TextHome>
+                    </TextContainer>
+                    <ContactIcons ref={contactIcons}>
+                        <a href={data.githubURL} target="_blank" rel="noreferrer">
+                            <i className="fa-brands fa-github fa-3x"></i>
+                        </a>
+                        <a href={data.linkedinURL} target="_blank" rel="noreferrer">
+                            <i className="fa-brands fa-linkedin fa-3x"></i>
+                        </a>
+                        <a href={data.email} target="_blank" rel="noreferrer">
+                            <i className="fa fa-envelope fa-3x"></i>
+                        </a>
+                        <a href={data.whatsappNumber} target="_blank" rel="noreferrer">
+                            <i className="fa-brands fa-whatsapp fa-3x"></i>
+                        </a>
+                        <a href={data.telegramId} target="_blank" rel="noreferrer">
+                            <i className="fa-brands fa-telegram fa-3x"></i>
+                        </a>
+                    </ContactIcons>
+                </HeroContainer>
+            </HeroHeightReserver>
             <ShortInfo>
                 <H2>About Me</H2>
                 <Paragraph
-                    innerText='I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
-                    MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset.'
+                    innerText="I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
+                    MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset."
                 />
                 <Paragraph
-                    innerText='With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
-                    solutions, adapting to diverse project environments and requirements.'
+                    innerText="With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
+                    solutions, adapting to diverse project environments and requirements."
                 />
             </ShortInfo>
             <Skills>
@@ -97,7 +97,6 @@ const Home = ({ homeData }: any) => {
                     <img src={postgresLogo} alt="PostgreSQL logo" />
                 </IMGContainer>
             </Skills>
-
             <ProjectContaiener>
                 <H2> Featured project</H2>
 
@@ -108,7 +107,7 @@ const Home = ({ homeData }: any) => {
                         <BigCard>
                             <CardLeftPart>
                                 <CardImageContainer>
-                                    <IMG src='img/cosmica-screens.png' alt='' />
+                                    <IMG src="img/cosmica-screens.png" alt="" />
                                 </CardImageContainer>
                             </CardLeftPart>
                             <CardRightPart>
@@ -132,9 +131,9 @@ const Home = ({ homeData }: any) => {
                 </CardsContainer>
 
                 <ViewMoreContainer>
-                    <Link to='/certificates' >View more projects</Link>
+                    <Link to="/certificates">View more projects</Link>
                 </ViewMoreContainer>
-            </ProjectContaiener>{' '}
+            </ProjectContaiener>{" "}
         </HomeContainer>
     );
 };
@@ -143,6 +142,10 @@ export default Home;
 
 const HomeContainer = styled.nav`
     margin: 2em 0 2em 0;
+`;
+
+const HeroHeightReserver = styled.nav`
+    height: 1000px;
 `;
 
 const HeroContainer = styled.div`
@@ -172,7 +175,7 @@ const TextContainer = styled.div`
 const TextHome = styled.p`
     text-align: center;
     font-size: 6vw;
-    font-family: 'Work Sans', sans-serif;
+    font-family: "Work Sans", sans-serif;
     display: block;
     font-weight: 800;
     //word-spacing: -10px;
@@ -227,7 +230,7 @@ const ShortInfo = styled.div`
     padding: 5em 3em;
 
     h2 {
-        font-family: 'Work Sans', sans-serif;
+        font-family: "Work Sans", sans-serif;
         font-weight: 800;
         font-size: 2em;
         text-align: center;
@@ -253,7 +256,7 @@ const Skills = styled.div`
     padding: 5em 3em;
 
     h2 {
-        font-family: 'Work Sans', sans-serif;
+        font-family: "Work Sans", sans-serif;
         font-weight: 800;
         font-size: 2em;
         text-align: center;
@@ -279,19 +282,19 @@ const IMGContainer = styled.div`
     max-width: 1200px;
 
     img {
-        width:200px;
+        width: 200px;
     }
 `;
 
 const H1 = styled.h1`
-    font-family: 'Work Sans', sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-weight: 800;
     text-align: center;
     margin: 2em 1em 0.5em 1em;
 `;
 
 const H2 = styled.h2`
-    font-family: 'Work Sans', sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-weight: 700;
     color: black;
     margin-bottom: 1em;
@@ -299,14 +302,14 @@ const H2 = styled.h2`
 `;
 
 const P = styled.p`
-    font-family: 'Work Sans', sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-weight: 500;
     margin: 0.5em 0 0.5em 0;
     color: white;
 `;
 
 const Bubble = styled.span`
-    font-family: 'Work Sans', sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-weight: 600;
     padding-right: 0.3em;
     border-radius: 22px;
@@ -342,14 +345,13 @@ const ViewMoreLink = styled.a`
     float: right;
     text-align: right;
     width: 100%;
-    font-family: 'Work Sans', sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-weight: 500;
     margin: 0.5em 0 0.5em 0;
     text-decoration: none;
 `;
 
-const CardInfoContainer = styled.div`
-`;
+const CardInfoContainer = styled.div``;
 
 const ImageContainer = styled.div`
     width: 100%;
@@ -360,20 +362,15 @@ const IMG = styled.img`
     width: 100%;
 `;
 
-const CardLeftPart = styled.div`
-`;
+const CardLeftPart = styled.div``;
 
-const BigCard = styled.div`
-`;
+const BigCard = styled.div``;
 
-const CardTitleContainer = styled.div`
-`;
+const CardTitleContainer = styled.div``;
 
-const CardImageContainer = styled.div`
-`;
+const CardImageContainer = styled.div``;
 
-const CardRightPart = styled.div`
-`;
+const CardRightPart = styled.div``;
 
 const SmallCardsContainer = styled.div`
     width: 25%;
@@ -389,5 +386,5 @@ const SmallCard = styled.div`
 `;
 
 const ProjectContaiener = styled.div`
-background-color: white;
+    background-color: white;
 `;

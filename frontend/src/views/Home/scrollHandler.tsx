@@ -1,4 +1,4 @@
-export function setupScrollHandler(contactIcons:any, zoomElement:any) {
+export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContaierFixed:any) {
     const lockScroll = (option = 'disabled') => {
         if (option === 'enabled') {
             document.body.style.overflow = 'hidden';
@@ -15,10 +15,13 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any) {
     let zoom = 1;
 
     let lastScrollY = 0;
+    const POSITION_TO_FIX_TEXT = 400;
 
     function handleScroll(e:any) {
         const scrollY = window.scrollY;
         const deltaY = scrollY - lastScrollY;
+
+        console.log(scrollY)
 
         if (deltaY > 0) {
             zoom += ZOOM_SPEED;
@@ -28,6 +31,7 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any) {
                 opacity = 0;
             }
             contactIcons.style.opacity = 0;
+
         } else if (deltaY < 0) {
             zoom -= ZOOM_SPEED;
             opacity += OPACITY_STEP;
@@ -36,6 +40,17 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any) {
                 opacity = 1;
             }
             contactIcons.style.opacity = 1;
+        }
+
+        if (scrollY <= POSITION_TO_FIX_TEXT) {
+            lockScroll('enabled');
+            heroContaierFixed.style.position = 'fixed';
+            heroContaierFixed.style.top = '250';
+            heroContaierFixed.style.display = 'block';
+        } else {
+            lockScroll('enabled');
+            heroContaierFixed.style.position = 'fixed';
+            heroContaierFixed.style.top = '250';
         }
 
         zoomElement.style.transform = `scale(${zoom})`;
