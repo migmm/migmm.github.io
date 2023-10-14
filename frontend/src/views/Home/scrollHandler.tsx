@@ -12,6 +12,9 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContai
         const scrollY = window.scrollY;
         const deltaY = scrollY - lastScrollY;
 
+        console.log("scrollY", scrollY)
+        console.log("deltaY", deltaY)
+
         if (deltaY > 0) {
             zoom += ZOOM_SPEED;
             opacity -= OPACITY_STEP;
@@ -35,6 +38,7 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContai
 
         if (scrollY <= POSITION_TO_FIX_TEXT) {
             heroContaierFixed.style.position = 'relative';
+            heroContaierFixed.style.marginTop = `${130 + scrollY}px`;
             heroContaierFixed.style.display = 'block';
         } else {
             heroContaierFixed.style.position = 'relative';
