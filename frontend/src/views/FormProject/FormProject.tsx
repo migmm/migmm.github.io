@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -14,29 +15,21 @@ import Textarea from '../../Styles/Form/Textarea/Textarea';
 import H1 from '../../Styles/H1/H1';
 import Checkbox from '../../Styles/Form/CheckBox/CheckBox';
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
-import { validations, initialFields } from './validations';
-import { useValidation } from '../../hooks/useValidations';
+
 import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
 import ContainerStyles from '../../Styles/Container/Container';
-import { apiURL } from '../../config/urls';
+
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
-import { useParams } from 'react-router-dom';
 import sampleObject from '../../dummy/sampleObject';
+
+import { validations, initialFields } from './validations';
+import { useValidation } from '../../hooks/useValidations';
+import { apiURL } from '../../config/urls';
+import { ProjectData } from './Interfaces';
 
 
 const AddProject = () => {
-    interface ProjectData {
-        id: number | null;
-        projectName: string;
-        projectStatus: string;
-        showInLandPage: boolean;
-        gitURL: string;
-        deployURL: string;
-        editorHtml: string;
-        tags: string;
-        lastUpdate: string;
-    }
 
     const [imagePreview, setImagePreview] = useState<string>(sampleObject.coverImage || '');
     const [editorHtml, setEditorHtml] = useState<string>(sampleObject.editorHtml || '');
