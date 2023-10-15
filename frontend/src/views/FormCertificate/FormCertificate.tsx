@@ -18,18 +18,10 @@ import { apiURL } from '../../config/urls';
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 import ContainerStyles from '../../Styles/Container/Container';
 import { useParams } from 'react-router-dom';
+import { CertificateData } from './Interfaces';
 
 
 const AddCertificate = () => {
-
-    interface CertificateData {
-        id: number | null;
-        courseTitle: string;
-        vendor: string;
-        urlCheck:string;
-        description: string;
-        issueDate: Date;
-    }
 
     const [imagePreview, setImagePreview] = useState('');
 
