@@ -309,6 +309,7 @@ const Bubble = styled.span`
     background-color: #ebebeb;
     padding: 0.5em;
     border: 1px solid #b6b4b4;
+    cursor: pointer;
 `;
 
 const CardsContainer = styled.div`
