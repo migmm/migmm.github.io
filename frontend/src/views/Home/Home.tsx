@@ -140,8 +140,8 @@ const Home = ({ homeData }: any) => {
 
 export default Home;
 
-const HomeContainer = styled.div`
-    margin: 2em 0 2em 0;
+const HomeContainer = styled.main`
+    margin: 2em 0 0 0;
 `;
 
 const HeroHeightReserver = styled.div`

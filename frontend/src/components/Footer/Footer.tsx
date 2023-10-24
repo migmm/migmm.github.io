@@ -87,7 +87,6 @@ const FooterStyles = styled.footer`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 5em;
     padding-top: 2em;
 
     width: 100%;
