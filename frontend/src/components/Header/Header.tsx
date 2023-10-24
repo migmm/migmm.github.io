@@ -37,10 +37,10 @@ const Header = ({ user , homeData }: any) => {
             }
         }
 
-        document.addEventListener("wheel", handleScroll);
+        document.addEventListener("scroll", handleScroll);
 
         return () => {
-            document.removeEventListener("wheel", handleScroll);
+            document.removeEventListener("scroll", handleScroll);
         };
     }, [location.pathname]);
 
