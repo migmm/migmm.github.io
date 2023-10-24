@@ -232,13 +232,6 @@ const ShortInfo = styled.div`
     color: #000000;
     padding: 5em 3em;
 
-    h2 {
-        font-family: "Work Sans", sans-serif;
-        font-weight: 800;
-        font-size: 2em;
-        text-align: center;
-    }
-
     p {
         max-width: 900px;
         text-align: center;
@@ -257,13 +250,6 @@ const Skills = styled.div`
 
     color: #000000;
     padding: 5em 3em;
-
-    h2 {
-        font-family: "Work Sans", sans-serif;
-        font-weight: 800;
-        font-size: 2em;
-        text-align: center;
-    }
 
     p {
         max-width: 900px;
@@ -298,9 +284,12 @@ const H1 = styled.h1`
 
 const H2 = styled.h2`
     font-family: "Work Sans", sans-serif;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 2em;
     color: black;
     margin-bottom: 1em;
+    width:100%;
+    text-align: center;
     //margin-top: 0.5em;
 `;
 
@@ -389,5 +378,7 @@ const SmallCard = styled.div`
 `;
 
 const ProjectContaiener = styled.div`
+    padding: 5em 3em;
+    align-items: center;
     background-color: white;
 `;
