@@ -60,6 +60,6 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContai
     window.addEventListener('scroll', handleScroll);
 
     return () => {
-        window.removeEventListener('scroll', handleScroll);
+        //window.removeEventListener('scroll', handleScroll);
     };
 }
