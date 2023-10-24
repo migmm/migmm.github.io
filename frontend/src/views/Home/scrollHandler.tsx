@@ -42,7 +42,7 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContai
             heroContaierFixed.style.display = 'block';
         } else {
             heroContaierFixed.style.position = 'relative';
-            heroContaierFixed.style.display = 'none';
+            heroContaierFixed.style.display = 'hidden';
         }
 
         zoomElement.style.transform = `scale(${zoom})`;
@@ -53,7 +53,7 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContai
         if (scrollY <= POSITION_TO_APPEAR_TEXT) {
             heroContaierFixed.style.display = 'block';
         } else {
-            heroContaierFixed.style.display = 'none';
+            heroContaierFixed.style.display = 'hidden';
         }
     }
 
