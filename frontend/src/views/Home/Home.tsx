@@ -306,9 +306,9 @@ const Bubble = styled.span`
     padding-right: 0.3em;
     border-radius: 22px;
     margin: 0.5em 0.2em 0 0;
-    background-color: #ffffff;
+    background-color: #ebebeb;
     padding: 0.5em;
-    border: 1px solid #ebebeb;
+    border: 1px solid #b6b4b4;
 `;
 
 const CardsContainer = styled.div`
