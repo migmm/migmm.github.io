@@ -330,17 +330,23 @@ const CardLanguagesContainer = styled.div`
 
 const ViewMoreContainer = styled.div`
     width: 100%;
-    //border: 1px solid black;
-`;
-
-const ViewMoreLink = styled.a`
     float: right;
     text-align: right;
     width: 100%;
     font-family: "Work Sans", sans-serif;
     font-weight: 500;
     margin: 0.5em 0 0.5em 0;
-    text-decoration: none;
+
+    a {    
+        color: black;
+        text-decoration: none;
+        
+        :hover {
+            color: #b6b4b4;
+        }
+    }
+    
+
 `;
 
 const CardInfoContainer = styled.div``;
@@ -380,5 +386,5 @@ const SmallCard = styled.div`
 const ProjectContaiener = styled.div`
     padding: 5em 3em;
     align-items: center;
-    background-color: white;
+    background-color: #ffffff;
 `;
