@@ -275,13 +275,6 @@ const IMGContainer = styled.div`
     }
 `;
 
-const H1 = styled.h1`
-    font-family: "Work Sans", sans-serif;
-    font-weight: 800;
-    text-align: center;
-    margin: 2em 1em 0.5em 1em;
-`;
-
 const H2 = styled.h2`
     font-family: "Work Sans", sans-serif;
     font-weight: 800;
@@ -291,13 +284,6 @@ const H2 = styled.h2`
     width:100%;
     text-align: center;
     //margin-top: 0.5em;
-`;
-
-const P = styled.p`
-    font-family: "Work Sans", sans-serif;
-    font-weight: 500;
-    margin: 0.5em 0 0.5em 0;
-    color: white;
 `;
 
 const Bubble = styled.span`
@@ -350,38 +336,26 @@ const ViewMoreContainer = styled.div`
 
 `;
 
-const CardInfoContainer = styled.div``;
-
-const ImageContainer = styled.div`
-    width: 100%;
-    border-radius: 30px;
+const CardInfoContainer = styled.div`
 `;
 
 const IMG = styled.img`
     width: 100%;
 `;
 
-const CardLeftPart = styled.div``;
-
-const BigCard = styled.div``;
-
-const CardTitleContainer = styled.div``;
-
-const CardImageContainer = styled.div``;
-
-const CardRightPart = styled.div``;
-
-const SmallCardsContainer = styled.div`
-    width: 25%;
-    height: 400px;
-    background-color: red;
+const CardLeftPart = styled.div`
 `;
 
-const SmallCard = styled.div`
-    margin: 1em;
-    width: calc(100% - 2em);
-    height: calc(50% - 1.5em);
-    background-color: blue;
+const BigCard = styled.div`
+`;
+
+const CardTitleContainer = styled.div`
+`;
+
+const CardImageContainer = styled.div`
+`;
+
+const CardRightPart = styled.div`
 `;
 
 const ProjectContaiener = styled.div`
