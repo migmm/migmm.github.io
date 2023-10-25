@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import HamburgerButton from "./HamburgerButton/HamburgerButton";
@@ -20,29 +20,6 @@ const Header = ({ user , homeData }: any) => {
     const closeMenu = () => {
         setIsMenuOpen(false);
     };
-
-    // Zoom
-    const location = useLocation();
-
-    useEffect(() => {
-        const headerComponent = document.querySelector(".header-container") as HTMLElement;
-
-        function handleScroll(e: any) {
-            const scrollTop = e.deltaY;
-            console.log(scrollTop);
-            if (scrollTop > 0 && location.pathname === "/") {
-                headerComponent.style.opacity = "0";
-            } else {
-                headerComponent.style.opacity = "1";
-            }
-        }
-
-        document.addEventListener("scroll", handleScroll);
-
-        return () => {
-            document.removeEventListener("scroll", handleScroll);
-        };
-    }, [location.pathname]);
 
     return (
         <HeaderStyles>
