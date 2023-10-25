@@ -48,16 +48,17 @@ const NavContainer = styled.nav`
 
         a {
             text-decoration: none;
+            font-size: 1.3em;
             color: #000000;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: "Work Sans", sans-serif;
             
             @media (hover: hover) {
                 :hover {
-                    color: #ffffff;
+                    color: #acacac;
                 }
             }
             :active {
-                color: #a3a3a3;
+                color: #3f3f3f;
             }
 
             @media (min-width: 768px) {
