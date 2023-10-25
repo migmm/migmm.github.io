@@ -190,7 +190,7 @@ const FooterStyles = styled.footer`
         }
 
         .third-column {
-            margin: 2.5em 1.7em;
+            margin: 1.7em 1.7em;
             display: flex;
             flex-direction: column;
             align-items: center;
