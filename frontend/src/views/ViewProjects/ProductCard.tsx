@@ -18,10 +18,11 @@ export default ProductCard;
 const CardLink = styled(Link)`
     text-decoration: none;
     color: black;
+    width:40%;
 `;
 
 const CardContainer = styled.div`
-    width: 300px;
+    width: 100%;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -35,8 +36,8 @@ const CardContainer = styled.div`
 `;
 
 const CardImage = styled.img`
-    max-width: 100%;
-    height: auto;
-    margin: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     padding: 1em;
 `;
