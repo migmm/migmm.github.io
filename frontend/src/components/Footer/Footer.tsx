@@ -88,6 +88,7 @@ const FooterStyles = styled.footer`
     align-items: center;
     justify-content: center;
     padding-top: 2em;
+    margin-top: 10em;
 
     width: 100%;
     background-color: #1c1d1f;
