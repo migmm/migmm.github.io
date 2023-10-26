@@ -145,7 +145,7 @@ const HomeContainer = styled.main`
 `;
 
 const HeroHeightReserver = styled.div`
-    height: 1000px;
+    height: 85vh;
 
 `;
 
