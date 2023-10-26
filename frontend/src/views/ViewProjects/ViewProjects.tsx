@@ -64,11 +64,15 @@ export default ViewProject;
 
 const CardContainer = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 1em;
+
+    @media (min-width: 950px) {
+        flex-direction: row;
+    }
 `;
 
 const ProjectsViewContainer = styled.main`

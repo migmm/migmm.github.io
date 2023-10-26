@@ -18,7 +18,12 @@ export default ProductCard;
 const CardLink = styled(Link)`
     text-decoration: none;
     color: black;
-    width:40%;
+    width:100%;
+
+    @media (min-width: 950px) {
+        width:40%;
+    }
+
 `;
 
 const CardContainer = styled.div`
