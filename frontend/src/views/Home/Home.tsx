@@ -141,22 +141,20 @@ const Home = ({ homeData }: any) => {
 export default Home;
 
 const HomeContainer = styled.main`
-    margin: 2em 0 0 0;
+    margin: 0 0 0 0;
 `;
 
 const HeroHeightReserver = styled.div`
     height: 90vh;
-
 `;
 
 const HeroContainer = styled.div`
     width: 100%;
-    height: calc(100vh - 130px);
+    height: 850px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 150px;
 
     @media (min-width: 768px) {
         justify-content: center;

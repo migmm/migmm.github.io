@@ -38,7 +38,7 @@ export function setupScrollHandler(contactIcons:any, zoomElement:any, heroContai
 
         if (scrollY <= POSITION_TO_FIX_TEXT) {
             heroContaierFixed.style.position = 'relative';
-            heroContaierFixed.style.marginTop = `${130 + scrollY}px`;
+            heroContaierFixed.style.marginTop = `${scrollY}px`;
             heroContaierFixed.style.display = 'block';
         } else {
             heroContaierFixed.style.position = 'relative';
