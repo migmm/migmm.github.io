@@ -15,6 +15,7 @@ import routerFavourite from './router/favorites';
 import routerImages from './router/aws';
 import routerWebConfig from './router/webConfig';
 import routerContact from './router/contact';
+/* import path from 'path'; */
 
 const app = express();
 
@@ -28,6 +29,19 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
+
+//Uncomment when go to production
+/* 
+
+const buildPath = path.join(__dirname, '..', 'build');
+
+app.use(express.static(buildPath));
+
+app.get('/*', function (_req, res) {
+    res.sendFile(path.join(buildPath, 'index.html'));
+}); 
+
+*/
 
 app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
