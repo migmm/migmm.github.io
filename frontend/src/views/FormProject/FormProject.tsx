@@ -31,8 +31,8 @@ import { ProjectData } from './Interfaces';
 
 const AddProject = () => {
 
-    const [imagePreview, setImagePreview] = useState<string>(sampleObject.coverImage || '');
-    const [editorHtml, setEditorHtml] = useState<string>(sampleObject.editorHtml || '');
+    const [imagePreview, setImagePreview] = useState<string>('');
+    const [editorHtml, setEditorHtml] = useState<string>('');
 
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
