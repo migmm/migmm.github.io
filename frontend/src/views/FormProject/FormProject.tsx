@@ -116,6 +116,7 @@ const AddProject = () => {
             coverImage: blob,
             ...fields,
             showInLandPage: showInLandPage ? true : false,
+            showReadme: showReadme ? true : false,
         };
 
         console.log("Data:", data);
