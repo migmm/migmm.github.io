@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "react-device-detect": "^2.2.3"
+    "react-device-detect": "^2.2.3",
+    "showdown": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/showdown": "^2.0.3"
   }
 }
