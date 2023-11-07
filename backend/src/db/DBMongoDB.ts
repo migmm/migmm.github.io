@@ -25,7 +25,6 @@ class DBMongoDB {
             obj.id = obj[DBMongoDB.primaryKey];
             delete obj[DBMongoDB.primaryKey];
         }
-        console.log('dfddffd', obj)
         return obj;
     }
 

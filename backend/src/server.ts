@@ -15,6 +15,8 @@ import routerFavourite from './router/favorites';
 import routerImages from './router/aws';
 import routerWebConfig from './router/webConfig';
 import routerContact from './router/contact';
+import checkWebsOnline from './utils/cron';
+
 /* import path from 'path'; */
 
 const app = express();
@@ -29,6 +31,8 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
+
+checkWebsOnline();
 
 //Uncomment when go to production
 /* 
