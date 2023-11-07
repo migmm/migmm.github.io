@@ -202,19 +202,24 @@ const AddProject = () => {
                                 onChange={(e) => {
                                     const gitURL = e.target.value;
                                     handleChange(e.target.name, gitURL);
-                                    if (gitURL) {
+                                    /* if (gitURL) {
                                         fetchReadmeContent(gitURL);
-                                    }
+                                    } */
                                 }}
                             />
 
                             {fields.gitURL && (
                                 <Checkbox
-                                    name="showReadme"
-                                    checked={showReadme}
-                                    onChange={(isChecked: any) => setShowReadme(isChecked)}
-                                    label="Use README"
-                                />
+                                name="showReadme"
+                                checked={showReadme}
+                                onChange={(isChecked: any) => {
+                                    setShowReadme(isChecked);
+                                    if (isChecked && fields.gitURL) {
+                                        fetchReadmeContent(fields.gitURL);
+                                    } 
+                                }}
+                                label="Use README"
+                            />
                             )}
 
                             <LabelError innerText={errors.gitURL} />
