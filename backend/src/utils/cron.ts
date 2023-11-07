@@ -60,9 +60,31 @@ const checkWebsOnline = () => {
 
         if (urlsArrayWithError.length > 0) {
             console.log('Number of URLs with errors:', urlsArrayWithError.length);
+            const htmlContent = generateErrorHtml(urlsArrayWithError);
+            console.log(htmlContent)
             urlsArrayWithError = [];
         }
     });
 };
+
+const generateErrorHtml = (errorUrls:any) => {
+    const title = "Web errors";
+    const errorList = errorUrls.map((url:any) => `<li>${url}</li>`).join("\n");
+
+    return `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>${title}</title>
+        </head>
+        <body>
+            <h1>${title}</h1>
+            <ul>
+                ${errorList}
+            </ul>
+        </body>
+        </html>
+    `;
+}
 
 export default checkWebsOnline;
