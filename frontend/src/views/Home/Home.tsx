@@ -17,7 +17,7 @@ import springLogo from "../../assets/icons/springboot.svg";
 import mongoLogo from "../../assets/icons/mongodb.svg";
 import mysqlLogo from "../../assets/icons/mysql.svg";
 import postgresLogo from "../../assets/icons/postgresql.svg";
-import nestLogo from "../../assets/icons/nestjs.svg";
+import phpLogo from "../../assets/icons/php.svg";
 import { Link } from "react-router-dom";
 
 const Home = ({ homeData }: any) => {
@@ -89,9 +89,9 @@ const Home = ({ homeData }: any) => {
                     <img src={reactLogo} alt="ReactJS logo" />
                     <img src={nodeLogo} alt="NodeJS logo" />
                     <img src={expressLogo} alt="Express logo" />
-                    <img src={nestLogo} alt="NestJS logo" />
                     <img src={javaLogo} alt="JAVA logo" />
                     <img src={springLogo} alt="SpringBoot logo" />
+                    <img src={phpLogo} alt="PHP logo" />
                     <img src={mongoLogo} alt="MongoDB logo" />
                     <img src={mysqlLogo} alt="MySQL logo" />
                     <img src={postgresLogo} alt="PostgreSQL logo" />
