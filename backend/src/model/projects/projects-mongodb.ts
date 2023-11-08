@@ -10,7 +10,7 @@ const projectSchema = new mongoose.Schema(
         gitURL: String,
         urlGithubRepo: String,
         deployURL: String,
-        shortDescription: String,
+        tags: String,
         coverImage: String,
         editorHtml: String,
         useFromGit: Boolean,
