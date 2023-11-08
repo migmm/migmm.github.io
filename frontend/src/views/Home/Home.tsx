@@ -56,13 +56,13 @@ const Home = ({ homeData }: any) => {
                         <a href={data.linkedinURL} target="_blank" rel="noreferrer">
                             <i className="fa-brands fa-linkedin fa-3x"></i>
                         </a>
-                        <a href={data.email} target="_blank" rel="noreferrer">
+                        <a href={`mailto:${data.email}`} target="_blank" rel="noreferrer">
                             <i className="fa fa-envelope fa-3x"></i>
                         </a>
-                        <a href={data.whatsappNumber} target="_blank" rel="noreferrer">
+                        <a href={`https://api.whatsapp.com/send?phone=${data.whatsappNumber}`} target="_blank" rel="noreferrer">
                             <i className="fa-brands fa-whatsapp fa-3x"></i>
                         </a>
-                        <a href={data.telegramId} target="_blank" rel="noreferrer">
+                        <a href={`https://t.me/${data.telegramId}`} target="_blank" rel="noreferrer">
                             <i className="fa-brands fa-telegram fa-3x"></i>
                         </a>
                     </ContactIcons>
@@ -71,7 +71,7 @@ const Home = ({ homeData }: any) => {
             <ShortInfo>
                 <H2>About Me</H2>
                 <Paragraph
-                    innerText="I have practical experience in languajes and technologies like Javascript/Typescript and Node.JS with 
+                    innerText="I have practical experience in languajes and technologies like PHP, JAVA, Javascript/Typescript and Node.JS with 
                     MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset."
                 />
                 <Paragraph

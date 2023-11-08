@@ -55,13 +55,13 @@ const Footer = ({ homeData }: any) => {
                         <a href={data.linkedinURL} target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-linkedin fa-2x'></i>
                         </a>
-                        <a href={data.email} target='_blank' rel='noreferrer'>
+                        <a href={`mailto:${data.email}`} target='_blank' rel='noreferrer'>
                             <i className='fa fa-envelope fa-2x'></i>
                         </a>
-                        <a href={data.whatsappNumber} target='_blank' rel='noreferrer'>
+                        <a href={`https://api.whatsapp.com/send?phone=${data.whatsappNumber}`} target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-whatsapp fa-2x'></i>
                         </a>
-                        <a href={data.telegramId} target='_blank' rel='noreferrer'>
+                        <a href={`https://t.me/${data.telegramId}`} target='_blank' rel='noreferrer'>
                             <i className='fa-brands fa-telegram fa-2x'></i>
                         </a>
                     </div>
