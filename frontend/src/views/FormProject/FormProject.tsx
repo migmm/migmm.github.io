@@ -1,39 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
-import CommonStyles from "../../Styles/CommonStyles/CommonStyles";
-import Button from "../../Styles/Form/Button/Button";
-import Label from "../../Styles/Form/Label/Label";
-import Input from "../../Styles/Form/Input/Input";
-import Select from "../../Styles/Form/Select/Select";
-import InputFile from "../../Styles/Form/InputFile/InputFile";
-import LabelError from "../../Styles/Form/LabelError/LabelError";
-import Textarea from "../../Styles/Form/Textarea/Textarea";
-import H1 from "../../Styles/H1/H1";
-import Checkbox from "../../Styles/Form/CheckBox/CheckBox";
-import InputGroup from "../../Styles/Form/InputGroup/InputGroup";
+import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
+import Button from '../../Styles/Form/Button/Button';
+import Label from '../../Styles/Form/Label/Label';
+import Input from '../../Styles/Form/Input/Input';
+import Select from '../../Styles/Form/Select/Select';
+import InputFile from '../../Styles/Form/InputFile/InputFile';
+import LabelError from '../../Styles/Form/LabelError/LabelError';
+import H1 from '../../Styles/H1/H1';
+import Checkbox from '../../Styles/Form/CheckBox/CheckBox';
+import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 
-import useFormUtils from "../../hooks/useFormUtils";
-import convertBase64ToBlob from "../../utils/base64toImage";
-import ContainerStyles from "../../Styles/Container/Container";
+import useFormUtils from '../../hooks/useFormUtils';
+import convertBase64ToBlob from '../../utils/base64toImage';
+import ContainerStyles from '../../Styles/Container/Container';
 
-import ButtonGroup from "../../Styles/Form/ButtonGroup/ButtonGroup";
-import sampleObject from "../../dummy/sampleObject";
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
+import sampleObject from '../../dummy/sampleObject';
 
-import { validations, initialFields } from "./validations";
-import { useValidation } from "../../hooks/useValidations";
-import { apiURL } from "../../config/urls";
-import { ProjectData } from "./Interfaces";
-import showdown from "showdown";
+import { validations, initialFields } from './validations';
+import { useValidation } from '../../hooks/useValidations';
+import { apiURL } from '../../config/urls';
+import { ProjectData } from './Interfaces';
+import showdown from 'showdown';
 
 const AddProject = () => {
-    const [imagePreview, setImagePreview] = useState<string>("");
-    const [editorHtml, setEditorHtml] = useState<string>("");
+    const [imagePreview, setImagePreview] = useState<string>('');
+    const [editorHtml, setEditorHtml] = useState<string>('');
 
-    const [error, setError] = useState("");
+    const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
 
     const { errors, validateForm } = useValidation(validations);
@@ -41,28 +40,28 @@ const AddProject = () => {
 
     const [showInLandPage, setShowInLandPage] = useState(false);
 
-    const [h1Text, setH1Text] = useState("");
+    const [h1Text, setH1Text] = useState('');
 
     const [projectData, setProjectData] = useState<ProjectData | null>(null);
 
     const { projectId } = useParams();
 
     const [showReadme, setShowReadme] = useState(false);
-    const [readmeContent, setReadmeContent] = useState("");
+    const [readmeContent, setReadmeContent] = useState('');
 
     const fetchReadmeContent = async (githubURL: string) => {
         try {
-            const urlParts = githubURL.split("/");
+            const urlParts = githubURL.split('/');
             const user = urlParts[3];
             const repository = urlParts[4];
 
             const response = await axios.get(`https://api.github.com/repos/${user}/${repository}/contents/README.md`, {
                 headers: {
-                    Accept: "application/vnd.github.v3.raw",
+                    Accept: 'application/vnd.github.v3.raw',
                 },
             });
 
-            console.log("README.md found");
+            console.log('README.md found');
             const readmeContent = response.data;
 
             console.log(readmeContent);
@@ -75,42 +74,42 @@ const AddProject = () => {
             
         } catch (error: any) {
             if (error.response && error.response.status === 404) {
-                console.log("README.md not found");
-                setReadmeContent("README not found");
+                console.log('README.md not found');
+                setReadmeContent('README not found');
             } else {
                 console.error(error);
-                setReadmeContent("Error fetching README");
+                setReadmeContent('Error fetching README');
             }
         }
     };
 
     useEffect(() => {
         if (projectId) {
-            setH1Text("Edit");
+            setH1Text('Edit');
             setProjectData(sampleObject);
         } else {
-            setH1Text("New Project");
+            setH1Text('New Project');
             setProjectData(null);
         }
     }, [projectId]);
 
     const handleFileChange = (imageData: string) => {
         setImagePreview(imageData);
-        handleChange("coverImage", imageData);
+        handleChange('coverImage', imageData);
     };
 
     const handleEditorChange = (value: string) => {
         setEditorHtml(value);
-        handleChange("editorHtml", value);
+        handleChange('editorHtml', value);
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setError("");
+        setError('');
         setButtonMessage(true);
 
         const base64Image = fields.coverImage;
-        const blob = convertBase64ToBlob(base64Image, "image/jpeg");
+        const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
 
         const data = {
             coverImage: blob,
@@ -119,14 +118,14 @@ const AddProject = () => {
             showReadme: showReadme ? true : false,
         };
 
-        console.log("Data:", data);
+        console.log('Data:', data);
 
         if (validateForm(fields)) {
             try {
-                console.log("send");
+                console.log('send');
                 const response = await axios.post(`${apiURL}projects`, data, {
                     headers: {
-                        "Content-Type": "application/json",
+                        'Content-Type': 'application/json',
                     },
                 });
 
@@ -158,46 +157,46 @@ const AddProject = () => {
             <ContainerStyles>
                 <H1 innerText={h1Text} />
 
-                <div className="add-form-container">
+                <div className='add-form-container'>
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
-                            <Label htmlFor="project-name" innerText="Project title *" />
+                            <Label htmlFor='project-name' innerText='Project title *' />
 
                             <Input
-                                type="text"
-                                id="projectName"
-                                name="projectName"
+                                type='text'
+                                id='projectName'
+                                name='projectName'
                                 value={projectData?.projectName || fields.projectName}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.projectName} />
 
-                            <Label htmlFor="project-status" innerText="Status *" />
+                            <Label htmlFor='project-status' innerText='Status *' />
                             <Select
-                                name="projectStatus"
-                                id="project-status"
+                                name='projectStatus'
+                                id='project-status'
                                 value={projectData?.projectStatus || fields.projectStatus}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             >
-                                <option value="">Select status</option>
-                                <option value="inProgress">In Progress</option>
-                                <option value="finished">Finished</option>
-                                <option value="cancelled">Cancelled</option>
+                                <option value=''>Select status</option>
+                                <option value='inProgress'>In Progress</option>
+                                <option value='finished'>Finished</option>
+                                <option value='cancelled'>Cancelled</option>
                             </Select>
                             <LabelError innerText={errors.projectStatus} />
 
                             <Checkbox
-                                name="showInLandPage"
+                                name='showInLandPage'
                                 checked={projectData?.showInLandPage || showInLandPage}
                                 onChange={(isChecked: boolean) => setShowInLandPage(isChecked)}
-                                label="Show in landing page"
+                                label='Show in landing page'
                             />
 
-                            <Label htmlFor="git-url" innerText="GIT URL *" />
+                            <Label htmlFor='git-url' innerText='GIT URL *' />
                             <Input
-                                type="text"
-                                id="git-url"
-                                name="gitURL"
+                                type='text'
+                                id='git-url'
+                                name='gitURL'
                                 value={projectData?.gitURL || fields.gitURL}
                                 onChange={(e) => {
                                     const gitURL = e.target.value;
@@ -210,7 +209,7 @@ const AddProject = () => {
 
                             {fields.gitURL && (
                                 <Checkbox
-                                name="showReadme"
+                                name='showReadme'
                                 checked={showReadme}
                                 onChange={(isChecked: any) => {
                                     setShowReadme(isChecked);
@@ -218,49 +217,49 @@ const AddProject = () => {
                                         fetchReadmeContent(fields.gitURL);
                                     } 
                                 }}
-                                label="Use README"
+                                label='Use README'
                             />
                             )}
 
                             <LabelError innerText={errors.gitURL} />
 
-                            <Label htmlFor="deploy-url" innerText="Deploy URL" />
+                            <Label htmlFor='deploy-url' innerText='Deploy URL' />
 
                             <Input
-                                type="text"
-                                id="deploy-url"
-                                name="deployURL"
+                                type='text'
+                                id='deploy-url'
+                                name='deployURL'
                                 value={projectData?.deployURL || fields.deployURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.deployURL} />
 
-                            <Label htmlFor="tags" innerText="Tags *" />
+                            <Label htmlFor='tags' innerText='Tags *' />
 
                             <Input
-                                type="text"
-                                id="tags"
-                                name="tags"
+                                type='text'
+                                id='tags'
+                                name='tags'
                                 value={projectData?.tags || fields.tags}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.tags} />
 
-                            <Label htmlFor="cover-image" innerText="Cover Image *" />
-                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id="cover-image" name="coverImage" />
+                            <Label htmlFor='cover-image' innerText='Cover Image *' />
+                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id='cover-image' name='coverImage' />
                             <LabelError innerText={errors.coverImage} />
 
-                            <Label htmlFor="project-description" innerText="Project description *" />
-                            <ReactQuill value={projectData?.editorHtml || editorHtml} onChange={handleEditorChange} placeholder="Enter text..." />
+                            <Label htmlFor='project-description' innerText='Project description *' />
+                            <ReactQuill value={projectData?.editorHtml || editorHtml} onChange={handleEditorChange} placeholder='Enter text...' />
                             <LabelError innerText={errors.editorHtml} />
                         </InputGroup>
 
                         <LabelError innerText={error} />
 
                         <ButtonGroup>
-                            <Button type="submit" disabled={buttonMessage} innerText={buttonMessage ? "Wait.." : "Add"} />
+                            <Button type='submit' disabled={buttonMessage} innerText={buttonMessage ? 'Wait..' : 'Add'} />
 
-                            <Button type="reset" onClick={handleReset} innerText="Reset" />
+                            <Button type='reset' onClick={handleReset} innerText='Reset' />
                         </ButtonGroup>
                     </form>
                 </div>
