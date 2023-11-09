@@ -120,8 +120,7 @@ const Home = ({ homeData }: any) => {
                                 </CardTitleContainer>
                                 <CardInfoContainer>
                                     <Paragraph innerText='E-commerce project using several technologies and design patterns. In the frontend I used HTML, CSS and
-                                        Javascript and in the backend I used Node.js, Express and MongoDB.'>
-                                    </Paragraph>
+                                        Javascript and in the backend I used Node.js, Express and MongoDB.'/>
                                 </CardInfoContainer>
                                 <CardLanguagesContainer>
                                     <Link to="/search/">
