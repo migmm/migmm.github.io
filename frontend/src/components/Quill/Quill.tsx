@@ -130,7 +130,6 @@ const QuillEditorContainer = styled.div`
         height: 100%;
         overflow-y: auto;
     }
-    
 `;
 
 const editorStyle: React.CSSProperties = {
@@ -139,7 +138,7 @@ const editorStyle: React.CSSProperties = {
     resize: 'vertical' as Resize,
     overflow: 'auto',
     borderRadius: '20px',
-    border: '1px solid #CCCCCC',
+    border: '1px solid #EBEBEB',
     backgroundColor: '#fff',
     overflowX: 'auto',
     overflowY: 'hidden',
