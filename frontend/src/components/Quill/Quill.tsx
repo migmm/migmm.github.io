@@ -116,9 +116,14 @@ const QuillEditorContainer = styled.div`
         font-family: 'Work Sans';
     }
 
+    .ql-toolbar {
+        border:none;
+    }
+
     .ql-container {
         position: relative;
         height: 400px;
+        border:none;
     }
 
     .ql-container .ql-editor {
@@ -134,7 +139,7 @@ const editorStyle: React.CSSProperties = {
     resize: 'vertical' as Resize,
     overflow: 'auto',
     borderRadius: '20px',
-    border: '1px solid #EBEBEB',
+    border: '1px solid #CCCCCC',
     backgroundColor: '#fff',
     overflowX: 'auto',
     overflowY: 'hidden',

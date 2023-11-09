@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import ReactQuill from 'react-quill';
+
+import ReactQuill from '../../components/Quill/Quill'
 import 'react-quill/dist/quill.snow.css';
 
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
