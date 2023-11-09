@@ -53,7 +53,7 @@ const ViewProject = () => {
 
         const balloons = words.map((word: any, index: any) => (
             <Balloon key={index} className='balloon'>
-                <a href={`/link/${word}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <a href={`/search/${word}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     {word}
                 </a>
             </Balloon>

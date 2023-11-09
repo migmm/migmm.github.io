@@ -107,7 +107,9 @@ const Home = ({ homeData }: any) => {
                         <BigCard>
                             <CardLeftPart>
                                 <CardImageContainer>
-                                    <IMG src="img/cosmica-screens.png" alt="" />
+                                <Link to="/viewproject/6516025d1b4919237b91f9af">
+                                    <IMG src="img/cosmica-screens.png" alt="Project preview" />
+                                </Link>
                                 </CardImageContainer>
                             </CardLeftPart>
                             <CardRightPart>
@@ -115,15 +117,26 @@ const Home = ({ homeData }: any) => {
                                     <H2>Juguetería Cósmica</H2>
                                 </CardTitleContainer>
                                 <CardInfoContainer>
-                                    <Paragraph>
-                                        e-commerce project using several technologies and design patterns. I the frontend I used HTML, CSS and
-                                        Javascript with Handlebars. In the backend I used Node.js, Express and MongoDB.
+                                    <Paragraph innerText='E-commerce project using several technologies and design patterns. In the frontend I used HTML, CSS and
+                                        Javascript and in the backend I used Node.js, Express and MongoDB.'>
                                     </Paragraph>
                                 </CardInfoContainer>
                                 <CardLanguagesContainer>
-                                    <Bubble>React</Bubble>
-                                    <Bubble>NodeJS</Bubble>
-                                    <Bubble>MongoDB</Bubble>
+                                    <Link to="/search/">
+                                        <Balloon>HTML</Balloon>
+                                    </Link>
+                                    <Link to="/search/">
+                                        <Balloon>CSS</Balloon>
+                                    </Link>
+                                    <Link to="/search/">
+                                        <Balloon>Javascript</Balloon>
+                                    </Link>
+                                    <Link to="/search/">
+                                        <Balloon>NodeJS</Balloon>
+                                    </Link>
+                                    <Link to="/search/">
+                                        <Balloon>MongoDB</Balloon>
+                                    </Link>
                                 </CardLanguagesContainer>
                             </CardRightPart>
                         </BigCard>
@@ -131,7 +144,7 @@ const Home = ({ homeData }: any) => {
                 </CardsContainer>
 
                 <ViewMoreContainer>
-                    <Link to="/certificates">View more projects</Link>
+                    <Link to="/projects">View more projects</Link>
                 </ViewMoreContainer>
             </ProjectContaiener>{" "}
         </HomeContainer>
@@ -284,16 +297,14 @@ const H2 = styled.h2`
     //margin-top: 0.5em;
 `;
 
-const Bubble = styled.span`
-    font-family: "Work Sans", sans-serif;
-    font-weight: 600;
-    padding-right: 0.3em;
-    border-radius: 22px;
-    margin: 0.5em 0.2em 0 0;
-    background-color: #ebebeb;
-    padding: 0.5em;
-    border: 1px solid #b6b4b4;
-    cursor: pointer;
+const Balloon = styled.div`
+    font-family: 'Work Sans', sans-serif;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 20px;
+    margin: 5px;
+    padding: 10px;
+    display: inline-block;
 `;
 
 const CardsContainer = styled.div`
