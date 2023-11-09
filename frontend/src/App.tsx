@@ -70,7 +70,8 @@ const App = () => {
                 {isLoading ? '' : <Header user={user} homeData={homeData} />}
                 <Routes>
                     <Route path='/' element={isLoading ? '' : <Home homeData={homeData} />} />
-                    <Route path='/projects' element={<Projects />} />
+                    <Route path="/projects" element={<Projects  />} />
+                    <Route path="/search/:tag" element={<Projects  />} />
                     <Route path='/certificates' element={<Certificates />} />
                     <Route path='/curriculum' element={<Curriculum />} />
                     <Route path='/contact' element={<Contact />} />

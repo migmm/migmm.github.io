@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 interface DataItem {
@@ -19,11 +19,20 @@ interface HeroStylesProps {
 }
 
 const ViewProject = () => {
+    const { tag } :any= useParams<{ projectId: string }>();
     const [data, setData] = useState<DataItem[]>([]);
-
+    
+    console.log(tag)
     useEffect(() => {
+
+        let apiUrl = `${apiURL}projects/`;
+
+        if (tag) {
+            apiUrl = `${apiURL}projects/search?tags=${tag}`;
+        }
+
         axios
-            .get(`${apiURL}projects/`)
+            .get(apiUrl)
             .then((response) => {
                 setData(response.data);
                 console.log('Data fetched successfully:', response.data);
@@ -31,7 +40,8 @@ const ViewProject = () => {
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [tag]);
+
 
     return (
         <ProjectsViewContainer>
