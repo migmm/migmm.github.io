@@ -237,7 +237,8 @@ const AddProject = () => {
 
                             <Label htmlFor="tags" innerText="Tags *" />
 
-                            <Textarea
+                            <Input
+                                type="text"
                                 id="tags"
                                 name="tags"
                                 value={projectData?.tags || fields.tags}
