@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import styled from 'styled-components';
 import 'react-quill/dist/quill.snow.css';
-import {Resize, modules, formats} from './config'
-
+import { Resize, modules, formats } from './config';
 
 const MAX_IMAGE_IN_QUILL_EDITOR = 10;
 
@@ -32,7 +31,7 @@ const QuillEditor = ({ placeholder, onChange }: any) => {
                 value={editorHtml}
                 modules={modules}
                 formats={formats}
-                bounds='.app'
+                bounds=".app"
                 placeholder={placeholder}
                 style={editorStyle}
             />
@@ -77,13 +76,13 @@ const QuillEditorContainer = styled.div`
     }
 
     .ql-toolbar {
-        border:none;
+        border: none;
     }
 
     .ql-container {
         position: relative;
         height: 400px;
-        border:none;
+        border: none;
     }
 
     .ql-container .ql-editor {

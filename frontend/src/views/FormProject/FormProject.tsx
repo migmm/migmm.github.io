@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import ReactQuill from '../../components/Quill/Quill'
+import ReactQuill from '../../components/Quill/Quill';
 import 'react-quill/dist/quill.snow.css';
 
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
@@ -72,7 +72,6 @@ const AddProject = () => {
             console.log(html);
 
             setEditorHtml(html);
-            
         } catch (error: any) {
             if (error.response && error.response.status === 404) {
                 console.log('README.md not found');
@@ -158,46 +157,46 @@ const AddProject = () => {
             <ContainerStyles>
                 <H1 innerText={h1Text} />
 
-                <div className='add-form-container'>
+                <div className="add-form-container">
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
-                            <Label htmlFor='project-name' innerText='Project title *' />
+                            <Label htmlFor="project-name" innerText="Project title *" />
 
                             <Input
-                                type='text'
-                                id='projectName'
-                                name='projectName'
+                                type="text"
+                                id="projectName"
+                                name="projectName"
                                 value={projectData?.projectName || fields.projectName}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.projectName} />
 
-                            <Label htmlFor='project-status' innerText='Status *' />
+                            <Label htmlFor="project-status" innerText="Status *" />
                             <Select
-                                name='projectStatus'
-                                id='project-status'
+                                name="projectStatus"
+                                id="project-status"
                                 value={projectData?.projectStatus || fields.projectStatus}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             >
-                                <option value=''>Select status</option>
-                                <option value='inProgress'>In Progress</option>
-                                <option value='finished'>Finished</option>
-                                <option value='cancelled'>Cancelled</option>
+                                <option value="">Select status</option>
+                                <option value="inProgress">In Progress</option>
+                                <option value="finished">Finished</option>
+                                <option value="cancelled">Cancelled</option>
                             </Select>
                             <LabelError innerText={errors.projectStatus} />
 
                             <Checkbox
-                                name='showInLandPage'
+                                name="showInLandPage"
                                 checked={projectData?.showInLandPage || showInLandPage}
                                 onChange={(isChecked: boolean) => setShowInLandPage(isChecked)}
-                                label='Show in landing page'
+                                label="Show in landing page"
                             />
 
-                            <Label htmlFor='git-url' innerText='GIT URL *' />
+                            <Label htmlFor="git-url" innerText="GIT URL *" />
                             <Input
-                                type='text'
-                                id='git-url'
-                                name='gitURL'
+                                type="text"
+                                id="git-url"
+                                name="gitURL"
                                 value={projectData?.gitURL || fields.gitURL}
                                 onChange={(e) => {
                                     const gitURL = e.target.value;
@@ -210,57 +209,57 @@ const AddProject = () => {
 
                             {fields.gitURL && (
                                 <Checkbox
-                                name='showReadme'
-                                checked={showReadme}
-                                onChange={(isChecked: any) => {
-                                    setShowReadme(isChecked);
-                                    if (isChecked && fields.gitURL) {
-                                        fetchReadmeContent(fields.gitURL);
-                                    } 
-                                }}
-                                label='Use README'
-                            />
+                                    name="showReadme"
+                                    checked={showReadme}
+                                    onChange={(isChecked: any) => {
+                                        setShowReadme(isChecked);
+                                        if (isChecked && fields.gitURL) {
+                                            fetchReadmeContent(fields.gitURL);
+                                        }
+                                    }}
+                                    label="Use README"
+                                />
                             )}
 
                             <LabelError innerText={errors.gitURL} />
 
-                            <Label htmlFor='deploy-url' innerText='Deploy URL' />
+                            <Label htmlFor="deploy-url" innerText="Deploy URL" />
 
                             <Input
-                                type='text'
-                                id='deploy-url'
-                                name='deployURL'
+                                type="text"
+                                id="deploy-url"
+                                name="deployURL"
                                 value={projectData?.deployURL || fields.deployURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.deployURL} />
 
-                            <Label htmlFor='tags' innerText='Tags *' />
+                            <Label htmlFor="tags" innerText="Tags *" />
 
                             <Input
-                                type='text'
-                                id='tags'
-                                name='tags'
+                                type="text"
+                                id="tags"
+                                name="tags"
                                 value={projectData?.tags || fields.tags}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.tags} />
 
-                            <Label htmlFor='cover-image' innerText='Cover Image *' />
-                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id='cover-image' name='coverImage' />
+                            <Label htmlFor="cover-image" innerText="Cover Image *" />
+                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id="cover-image" name="coverImage" />
                             <LabelError innerText={errors.coverImage} />
 
-                            <Label htmlFor='project-description' innerText='Project description *' />
-                            <ReactQuill value={projectData?.editorHtml || editorHtml} onChange={handleEditorChange} placeholder='Enter text...' />
+                            <Label htmlFor="project-description" innerText="Project description *" />
+                            <ReactQuill value={projectData?.editorHtml || editorHtml} onChange={handleEditorChange} placeholder="Enter text..." />
                             <LabelError innerText={errors.editorHtml} />
                         </InputGroup>
 
                         <LabelError innerText={error} />
 
                         <ButtonGroup>
-                            <Button type='submit' disabled={buttonMessage} innerText={buttonMessage ? 'Wait..' : 'Add'} />
+                            <Button type="submit" disabled={buttonMessage} innerText={buttonMessage ? 'Wait..' : 'Add'} />
 
-                            <Button type='reset' onClick={handleReset} innerText='Reset' />
+                            <Button type="reset" onClick={handleReset} innerText="Reset" />
                         </ButtonGroup>
                     </form>
                 </div>
