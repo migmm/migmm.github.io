@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import { Link } from "react-router-dom";
 
 import Paragraph from "../../Styles/Paragraph/Paragraph";
 import { setupScrollHandler } from "./scrollHandler";
+import Balloon from "../../components/Balloon/Balloon";
 
 import htmlLogo from "../../assets/icons/html5.svg";
 import cssLogo from "../../assets/icons/css3.svg";
@@ -18,7 +20,7 @@ import mongoLogo from "../../assets/icons/mongodb.svg";
 import mysqlLogo from "../../assets/icons/mysql.svg";
 import postgresLogo from "../../assets/icons/postgresql.svg";
 import phpLogo from "../../assets/icons/php.svg";
-import { Link } from "react-router-dom";
+
 
 const Home = ({ homeData }: any) => {
     const contactIcons = useRef(null);
@@ -123,19 +125,19 @@ const Home = ({ homeData }: any) => {
                                 </CardInfoContainer>
                                 <CardLanguagesContainer>
                                     <Link to="/search/">
-                                        <Balloon>HTML</Balloon>
+                                        <Balloon innerText='HTML'/>
                                     </Link>
                                     <Link to="/search/">
-                                        <Balloon>CSS</Balloon>
+                                        <Balloon innerText='CSS'/>
                                     </Link>
                                     <Link to="/search/">
-                                        <Balloon>Javascript</Balloon>
+                                        <Balloon innerText='Javascrip'/>
                                     </Link>
                                     <Link to="/search/">
-                                        <Balloon>NodeJS</Balloon>
+                                        <Balloon innerText='NodeJS'/>
                                     </Link>
                                     <Link to="/search/">
-                                        <Balloon>MongoDB</Balloon>
+                                        <Balloon innerText='MongoDB'/>
                                     </Link>
                                 </CardLanguagesContainer>
                             </CardRightPart>
@@ -297,7 +299,7 @@ const H2 = styled.h2`
     //margin-top: 0.5em;
 `;
 
-const Balloon = styled.div`
+/* const Balloon = styled.div`
     font-family: 'Work Sans', sans-serif;
     background-color: #3498db;
     color: #fff;
@@ -305,7 +307,7 @@ const Balloon = styled.div`
     margin: 5px;
     padding: 10px;
     display: inline-block;
-`;
+`; */
 
 const CardsContainer = styled.div`
     padding: 1em;
