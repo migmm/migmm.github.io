@@ -9,12 +9,20 @@ function Balloon(props : any) {
 
 const BalloonStyles = styled.div`
     font-family: 'Work Sans', sans-serif;
-    background-color: #3498db;
+    background-color: #0069C5;
     color: #fff;
     border-radius: 20px;
     margin: 5px;
     padding: 10px;
     display: inline-block;
+
+    :hover {
+        background-color: #004a8b;
+    }
+
+    :active {
+        background-color: #0088ff;
+    }
 `;
 
 export default Balloon;
