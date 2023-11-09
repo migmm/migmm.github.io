@@ -298,16 +298,6 @@ const H2 = styled.h2`
     //margin-top: 0.5em;
 `;
 
-/* const Balloon = styled.div`
-    font-family: 'Work Sans', sans-serif;
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 20px;
-    margin: 5px;
-    padding: 10px;
-    display: inline-block;
-`; */
-
 const CardsContainer = styled.div`
     padding: 1em;
     display: flex;

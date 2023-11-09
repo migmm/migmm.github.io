@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { apiURL } from '../../config/urls';
 import FormattedView from './FormattedView';
+import Balloon from '../../components/Balloon/Balloon';
 
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
@@ -52,11 +53,9 @@ const ViewProject = () => {
         const words = tags.split(',');
 
         const balloons = words.map((word: any, index: any) => (
-            <Balloon key={index} className='balloon'>
-                <a href={`/search/${word}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    {word}
-                </a>
-            </Balloon>
+            <Link to={`/search/${word}`}>
+                <Balloon key={index} className='balloon' innerText={word}/>
+            </Link>
         ));
 
         return <div style={{ display: 'flex', flexWrap: 'wrap' }}>{balloons}</div>;
@@ -217,14 +216,4 @@ const Content = styled.div`
     @media (min-width: 950px) {
         flex-direction: row;
     }
-`;
-
-const Balloon = styled.div`
-    font-family: 'Work Sans', sans-serif;
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 20px;
-    margin: 5px;
-    padding: 10px;
-    display: inline-block;
 `;
