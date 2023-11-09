@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
+import 'react-quill/dist/quill.snow.css';
+import {Resize, modules, formats} from './config'
 
-type Resize = 'none' | 'both' | 'horizontal' | 'vertical' | 'initial' | 'inherit';
 
 const MAX_IMAGE_IN_QUILL_EDITOR = 10;
-
-const Font = ReactQuill.Quill.import('formats/font');
-Font.whitelist = ['Work-Sans'];
-ReactQuill.Quill.register(Font, true);
 
 const QuillEditor = ({ placeholder, onChange }: any) => {
     const [editorHtml, setEditorHtml] = useState('');
@@ -28,42 +24,6 @@ const QuillEditor = ({ placeholder, onChange }: any) => {
         setEditorHtml(html);
         onChange(html);
     };
-
-    const modules = {
-        toolbar: [
-            [{ header: '1' }, { header: '2' }],
-            [{ font: Font.whitelist }],
-            [{ size: [] }],
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            [{ align: [] }],
-            [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-            ['link', 'image', 'video'],
-            ['clean'],
-            ['code'],
-        ],
-        clipboard: {
-            matchVisual: false,
-        },
-    };
-
-    const formats = [
-        'header',
-        'font',
-        'size',
-        'bold',
-        'italic',
-        'underline',
-        'strike',
-        'blockquote',
-        'align',
-        'list',
-        'bullet',
-        'indent',
-        'link',
-        'image',
-        'video',
-        'code',
-    ];
 
     return (
         <QuillEditorContainer>
