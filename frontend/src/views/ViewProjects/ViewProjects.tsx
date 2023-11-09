@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { apiURL } from '../../config/urls';
-import ProductCard from './ProductCard';
 import styled from 'styled-components';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
+import { apiURL } from '../../config/urls';
+import ProductCard from './ProductCard';
+import ProjectTitle from '../../assets/images/projects-title.png';
 
 
 interface DataItem {
@@ -22,7 +23,6 @@ const ViewProject = () => {
     const { tag } :any= useParams<{ projectId: string }>();
     const [data, setData] = useState<DataItem[]>([]);
     
-    console.log(tag)
     useEffect(() => {
 
         let apiUrl = `${apiURL}projects/`;
@@ -53,7 +53,7 @@ const ViewProject = () => {
                 / <Link to='/projects'>Projects</Link>
                 {''}
             </ActualRoute>
-            <HeroStyles bg={'img/projects-title.png'}>
+            <HeroStyles bg={ProjectTitle}>
                 <HeroLeft>{'Explore my projects and creative work.'}</HeroLeft>
                 <HeroRight>
                     {' '}

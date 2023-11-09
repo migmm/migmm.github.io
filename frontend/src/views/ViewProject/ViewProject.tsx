@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
@@ -7,8 +9,7 @@ import FormattedView from './FormattedView';
 
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
-import styled from 'styled-components';
-import axios from 'axios';
+
 
 interface ProjectData {
     projectName: string;

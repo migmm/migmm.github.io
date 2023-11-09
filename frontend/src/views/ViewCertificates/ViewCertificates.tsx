@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import H1 from "../../Styles/H1/H1";
-import CertificateCard from "./CertificateCard";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import H1 from '../../Styles/H1/H1';
+import CertificateCard from './CertificateCard';
 import { apiURL } from '../../config/urls';
-import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import CertificateTitle from '../../assets/images/certificates-title.png';
+
 
 interface DataItem {
     courseTitle: any;
@@ -50,15 +52,15 @@ const Certificates = () => {
                 / <Link to='/certificates'>Certificates</Link>
                 {''}
             </ActualRoute>
-            <HeroStyles bg={'img/certificates-title.png'}>
+            <HeroStyles bg={CertificateTitle}>
                 <HeroLeft>{'My best certifications.'}</HeroLeft>
                 <HeroRight>
                     {' '}
                 </HeroRight>
             </HeroStyles>
-            <div className="certifications-container">
+            <div className='certifications-container'>
                 <H1>Certifications</H1>
-                <div className="cards-container">
+                <div className='cards-container'>
                 {data.map((item) => (
                     <CertificateCard key={item.id} courseTitle={item.courseTitle} courseImage={item.courseImage} urlCheck={item.urlCheck}/>
 ))}
@@ -84,7 +86,7 @@ const CertificatesViewContainer = styled.main`
 
         .selectors-container {
             text-align: center;
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             font-weight: 600;
             margin-bottom: 1em;
             font-size: 1.3em;
@@ -94,7 +96,7 @@ const CertificatesViewContainer = styled.main`
 
             .select-company,
             .select-category {
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 font-weight: 600;
                 border: none;
                 font-size: 1em;
@@ -152,7 +154,7 @@ const CertificatesViewContainer = styled.main`
                 }
 
                 h2 {
-                    font-family: "Work Sans", sans-serif;
+                    font-family: 'Work Sans', sans-serif;
                     font-weight: 700;
                     margin-top: 0.5em;
                     margin-left: 1em;
@@ -162,7 +164,7 @@ const CertificatesViewContainer = styled.main`
 
         .pagination-container {
             text-align: center;
-            font-family: "Work Sans", sans-serif;
+            font-family: 'Work Sans', sans-serif;
             font-weight: 600;
             background-color: #ffffff;
             border-radius: 10px;
@@ -173,7 +175,7 @@ const CertificatesViewContainer = styled.main`
             select {
                 display: none;
                 border: none;
-                font-family: "Work Sans", sans-serif;
+                font-family: 'Work Sans', sans-serif;
                 font-weight: 600;
                 font-size: 1em;
             }
