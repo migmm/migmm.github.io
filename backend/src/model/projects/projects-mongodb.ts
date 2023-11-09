@@ -64,10 +64,25 @@ class ProjectModelMongoDB {
             const product = (await ProjectsModel.findById(id).lean()) || {};
             return DBMongoDB.getObjectWithId(product);
         } catch (error: any) {
-            console.error(`Error getting prject: ${error.message}`);
+            console.error(`Error getting project: ${error.message}`);
             return {};
         }
     }
+
+    // Route to find by any value in database
+    async getProjectsByTags (tags: string[]) {
+        try {
+            await DBMongoDB.getInstance();
+    
+            const projects = await ProjectsModel.find({ tags: { $in: tags } }).lean();
+    
+            return DBMongoDB.getObjectWithId(projects);
+        } catch (error: any) {
+            console.error(`Error getting projects by tag: ${error.message}`);
+            return [];
+        }
+    };
+    
 
     // CRUD - U: UPDATE
     async updateProject(id: number, project: any) {

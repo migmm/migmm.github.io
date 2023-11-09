@@ -26,6 +26,16 @@ const getProject = async (id:number) => {
 
 
 ///////////////////////////////////////////////////////////////////////////////
+//                               API Get by TAG                              //
+///////////////////////////////////////////////////////////////////////////////
+
+const getProjectsByTags = async (tags : any) => {
+    const projects = await modelProjects.getProjectsByTags(tags);
+    return projects;
+};
+
+
+///////////////////////////////////////////////////////////////////////////////
 //                                API Create                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -78,5 +88,6 @@ export default {
     getProject,
     createProject,
     updateProject,
-    deleteProject
+    deleteProject,
+    getProjectsByTags,
 };

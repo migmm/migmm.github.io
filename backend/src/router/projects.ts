@@ -6,9 +6,11 @@ import projectsController from '../controller/projects';
 const routerProjects = express.Router();
 
 routerProjects.get('/',/*  authRole(['admin', 'user']) as any, */projectsController.getProjects);
+routerProjects.get('/search', projectsController.getProjectsByTag);
 routerProjects.get('/:id', projectsController.getProject);
 routerProjects.post('/',  projectsController.postProject);
 routerProjects.put('/:id',  projectsController.putProject);
 routerProjects.delete('/:id', projectsController.deleteProject);
+
 
 export default routerProjects;

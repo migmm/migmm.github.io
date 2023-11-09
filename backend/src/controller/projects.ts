@@ -28,6 +28,26 @@ const getProject = async (req:Request, res:Response) => {
     }
 };
 
+const getProjectsByTag = async (req: Request, res: Response) => {
+    const tags = req.query.tags;
+    let projects;
+
+    try {
+        if (typeof tags === 'string') {
+            const tagsArray = tags.split(',').map(tag => tag.trim());
+            const tagRegex = tagsArray.map(tag => new RegExp(tag, 'i'));
+
+            projects = await api.getProjectsByTags(tagRegex);
+        } else {
+            projects = await api.getProjects();
+        }
+
+        res.status(200).json(projects);
+    } catch (error) {
+        res.status(500).send('Error getting projects');
+    }
+};
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              POST Controllers                             //
@@ -86,4 +106,5 @@ export default {
     postProject,
     putProject,
     deleteProject,
+    getProjectsByTag,
 };
