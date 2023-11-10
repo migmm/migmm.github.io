@@ -88,7 +88,7 @@ const FooterStyles = styled.footer`
     align-items: center;
     justify-content: center;
     padding-top: 2em;
-    margin-top: 10em;
+    //margin-top: 10em;
 
     width: 100%;
     background-color: #1c1d1f;
@@ -167,7 +167,7 @@ const FooterStyles = styled.footer`
             }
 
             .link-list {
-                list-style: none; /* Eliminar las viñetas */
+                list-style: none;
                 padding: 0;
                 margin-top: 1em;
 

@@ -360,6 +360,7 @@ const CardRightPart = styled.div`
 
 const ProjectContaiener = styled.div`
     padding: 5em 3em;
+    padding-bottom: 10em;
     align-items: center;
     background-color: #ffffff;
 `;
