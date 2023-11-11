@@ -24,12 +24,12 @@ const Header = ({ user , homeData }: any) => {
     return (
         <HeaderStyles>
             <div className="header-container">
-                <header>
-                    <div className="logo-container">
+                <div className="navbar">
+                    <LogoContainer>
                         <Link to="/">
                             <img src={data.logo} alt="Logo" />
                         </Link>
-                    </div>
+                    </LogoContainer>
                     <div className={`navbar-container ${isMenuOpen ? "menu-open" : ""}`}>
                         <NavBar user={user} closeMenu={closeMenu} />
                     </div>
@@ -39,7 +39,7 @@ const Header = ({ user , homeData }: any) => {
                     <div className={`hamburger-button-container ${isMenuOpen ? "open" : ""}`} onClick={handleHamburgerClick}>
                         <HamburgerButton />
                     </div>
-                </header>
+                </div>
             </div>
         </HeaderStyles>
     );
@@ -61,7 +61,7 @@ const HeaderStyles = styled.header`
         margin: 1em;
         transition: opacity 0.5s;
 
-        header {
+        .navbar {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -69,19 +69,7 @@ const HeaderStyles = styled.header`
             width: 1600px;
             padding: 0 2em;
         }
-
-        .logo-container {
-            width: 65px;
-            height: 65px;
-            flex-grow: 1;
-            cursor: pointer;
-
-            img {
-                height: 100%;
-                object-fit: contain;
-            }
-        }
-
+        
         .navbar-container {
             display: none;
 
@@ -186,5 +174,18 @@ const HeaderStyles = styled.header`
                 display: none;
             }
         }
+    }
+`;
+
+
+const LogoContainer = styled.div` 
+    width: 65px;
+    height: 65px;
+    flex-grow: 1;
+    cursor: pointer;
+
+    img {
+        height: 100%;
+        object-fit: contain;
     }
 `;
