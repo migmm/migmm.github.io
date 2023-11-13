@@ -10,8 +10,8 @@ const projectSchema = Joi.object({
     shortDescription: Joi.string().required(),
     coverImage: Joi.string().required(),
     editorHtml: Joi.string().required(),
-    created_at: Joi.date(),
-    modified_at: Joi.date(),
+    created_at: Joi.date().optional(),
+    modified_at: Joi.date().optional(),
     tags: Joi.string().required(),
 });
 
