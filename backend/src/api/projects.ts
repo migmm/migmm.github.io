@@ -1,6 +1,5 @@
 import database from '../config/database';
 import ProjectModel from '../model/projects/projects';
-import ProjectValidator from '../model/validators/project';
 
 const modelProjects = ProjectModel.get(database.PERSISTENCE_TYPE);
 
@@ -40,17 +39,8 @@ const getProjectsByTags = async (tags : any) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const createProject = async (project:any) => {
-
-       // const validationError = ProjectValidator.validate(project);
-/* 
-        if(!validationError) { */
-            const createdProject = await modelProjects.createProject(project);
-            return createdProject;  
- /*        } else {
-            console.log(validationError);
-            console.error(`Error validating createProject: ${validationError.details[0].message}`);
-            return {};
-        } */
+    const createdProject = await modelProjects.createProject(project);
+    return createdProject;  
 };
 
 
@@ -59,17 +49,8 @@ const createProject = async (project:any) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const updateProject = async (id:number, project:any) => {
-
-    const validationError = ProjectValidator.validate(project);
-
-    if(!validationError) {
-        const updatedProject = await modelProjects.updateProject(id, project);
-        return updatedProject;    
-    } else {
-        console.log(validationError);
-        console.error(`Error validating updateProject: ${validationError.details[0].message}`);
-        return {};
-    }
+    const updatedProject = await modelProjects.updateProject(id, project);
+    return updatedProject;    
 };
 
 
