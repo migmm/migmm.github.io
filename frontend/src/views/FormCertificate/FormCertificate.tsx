@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
@@ -40,6 +40,7 @@ const AddCertificate = () => {
 
     const { certificateId } = useParams();
 
+
     useEffect(() => {
         if (certificateId) {
             setH1Text('Edit');
@@ -48,6 +49,17 @@ const AddCertificate = () => {
             setCertificateData(null);
         }
     }, [certificateId]);
+
+    useEffect(() => {
+        if (type === 'badge') {
+            handleChange('courseTitle', 'Not used in badge');
+            handleChange('description', 'Not used in badge');
+            handleChange('issueDate', 'Not used in badge');
+            handleChange('type', 'Not used in badge');
+            handleChange('vendor', 'Not used in badge');
+            handleChange('courseImage', 'Not used in badge');
+        } 
+    }, [type]);
 
     const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setType(e.target.value);
