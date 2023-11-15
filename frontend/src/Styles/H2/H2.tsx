@@ -6,7 +6,6 @@ function H2(props : any) {
     return <H1Styles>{props.innerText}</H1Styles>;
 }
 
-
 const H1Styles = styled.h2`
     font-family: 'Work Sans', sans-serif;
     font-weight: 800;
@@ -15,5 +14,6 @@ const H1Styles = styled.h2`
     height: 56px;
     overflow: hidden;
 `;
+
 
 export default H2;

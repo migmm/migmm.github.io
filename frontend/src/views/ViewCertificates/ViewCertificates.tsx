@@ -8,27 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import CertificateTitle from '../../assets/images/certificates-title.png';
+import { DataItem, HeroStylesProps, CertificateData } from './interface';
 
-
-interface DataItem {
-    courseTitle: any;
-    id: number;
-    courseImage: string;
-    urlCheck: string;
-}
-
-interface HeroStylesProps {
-    bg: string;
-}
-
-interface CertificateData {
-    courseTitle: any;
-    id: number;
-    courseImage: string;
-    urlCheck: string;
-    issueDate: string; // Asegúrate de que la propiedad 'issueDate' esté presente en tus datos
-    type: 'certification' | 'badge'; // Asegúrate de que la propiedad 'type' tenga los valores 'certification' o 'badge'
-}
 
 const Certificates = () => {
 
@@ -83,7 +64,12 @@ const Certificates = () => {
                         <H1 innerText = 'Certifications' />
                         <div className='cards-container'>
                             {certifications.map((item) => (
-                                <CertificateCard key={item.id} courseTitle={item.courseTitle} courseImage={item.courseImage} urlCheck={item.urlCheck}/>
+                                <CertificateCard
+                                    key={item.id}
+                                    courseTitle={item.courseTitle}
+                                    courseImage={item.courseImage}
+                                    urlCheck={item.urlCheck}
+                                />
                             ))}
                         </div>
                     </>
@@ -95,7 +81,12 @@ const Certificates = () => {
                         <H1 innerText = 'Badges' />
                         <div className='cards-container'>
                             {badges.map((item) => (
-                                <CertificateCard key={item.id} courseTitle={item.courseTitle} courseImage={item.courseImage} urlCheck={item.urlCheck}/>
+                                <CertificateCard
+                                    key={item.id}
+                                    courseTitle={item.courseTitle}
+                                    courseImage={item.courseImage}
+                                    urlCheck={item.urlCheck}
+                                />
                             ))}
                         </div>
                     </>
@@ -105,7 +96,9 @@ const Certificates = () => {
     );
 };
 
+
 export default Certificates;
+
 
 const CertificatesViewContainer = styled.main`
     max-width: 1900px;
