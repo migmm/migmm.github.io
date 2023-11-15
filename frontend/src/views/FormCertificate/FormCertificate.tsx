@@ -57,6 +57,7 @@ const AddCertificate = () => {
         e.preventDefault();
         setError('');
         setButtonMessage(true);
+        setImagePreview('');
 
         const base64Image = fields.courseImage;
         const blob = convertBase64ToBlob(base64Image, 'image/jpeg');
