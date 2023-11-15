@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
@@ -24,8 +24,6 @@ import { CertificateData } from './Interfaces';
 
 const AddCertificate = () => {
 
-    const [type, setType] = useState('certificate'); 
-
     const [imagePreview, setImagePreview] = useState('');
 
     const [error, setError] = useState('');
@@ -49,22 +47,6 @@ const AddCertificate = () => {
             setCertificateData(null);
         }
     }, [certificateId]);
-
-    useEffect(() => {
-        if (type === 'badge') {
-            handleChange('courseTitle', 'Not used in badge');
-            handleChange('description', 'Not used in badge');
-            handleChange('issueDate', 'Not used in badge');
-            handleChange('type', 'Not used in badge');
-            handleChange('vendor', 'Not used in badge');
-            handleChange('courseImage', 'Not used in badge');
-        } 
-    }, [type]);
-
-    const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setType(e.target.value);
-        handleReset();
-    };
 
     const handleFileChange = (imageData: string) => {
         setImagePreview(imageData);
@@ -132,31 +114,14 @@ const AddCertificate = () => {
                             <Select
                                 id='type'
                                 name='type'
-                                value={type}
-                                onChange={handleTypeChange}
+                                value={certificateData?.type || fields.type}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
                             >
+                                <option value="">Select certification type</option>
                                 <option value='certificate'>Certificate</option>
                                 <option value='badge'>Badge</option>
                             </Select>
                             <LabelError innerText={errors.type} />
-                            {type === 'badge' && (
-                                <>
-                            <Label
-                                innerText='URL *'
-                                htmlFor='urlCheck'
-                            />
-                            <Input
-                                type='text'
-                                id='urlCheck'
-                                name='urlCheck'
-                                value={certificateData?.urlCheck|| fields.urlCheck}
-                                onChange={(e) => handleChange(e.target.name, e.target.value)}
-                            />
-                            <LabelError innerText={errors.urlCheck} />
-                                </>
-                            )}
-                            {type === 'certificate' && (
-                                <>
                             <Label
                                 innerText='Certification title *'
                                 htmlFor='courseTitle'
@@ -232,9 +197,6 @@ const AddCertificate = () => {
                                 name='courseImage'
                             />
                             <LabelError innerText={errors.courseImage} />
-                        
-                            </>
-                        )}
 
                         </InputGroup>
 

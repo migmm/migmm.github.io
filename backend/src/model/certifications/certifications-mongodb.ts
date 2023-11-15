@@ -17,6 +17,7 @@ const certificationSchema = new mongoose.Schema(
             type: Date, 
             default: Date.now 
         },
+        type: String,
     },
     {
         versionKey: false,

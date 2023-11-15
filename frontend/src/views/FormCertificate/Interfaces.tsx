@@ -5,4 +5,5 @@ export interface CertificateData {
     urlCheck: string;
     description: string;
     issueDate: Date;
+    type: string;
 }
