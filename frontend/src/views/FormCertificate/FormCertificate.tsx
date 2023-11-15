@@ -8,6 +8,7 @@ import LabelError from '../../Styles/Form/LabelError/LabelError';
 import Input from '../../Styles/Form/Input/Input';
 import Textarea from '../../Styles/Form/Textarea/Textarea';
 import H1 from '../../Styles/H1/H1';
+import Select from '../../Styles/Form/Select/Select';
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 import InputFile from '../../Styles/Form/InputFile/InputFile';
 import { validations, initialFields } from './validations';
@@ -22,6 +23,8 @@ import { CertificateData } from './Interfaces';
 
 
 const AddCertificate = () => {
+
+    const [type, setType] = useState('certificate'); 
 
     const [imagePreview, setImagePreview] = useState('');
 
@@ -45,6 +48,11 @@ const AddCertificate = () => {
             setCertificateData(null);
         }
     }, [certificateId]);
+
+    const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setType(e.target.value);
+        handleReset();
+    };
 
     const handleFileChange = (imageData: string) => {
         setImagePreview(imageData);
@@ -105,6 +113,39 @@ const AddCertificate = () => {
                 <div>
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
+                            <Label
+                                innerText='Type *'
+                                htmlFor='type'
+                            />
+                            <Select
+                                id='type'
+                                name='type'
+                                value={type}
+                                onChange={handleTypeChange}
+                            >
+                                <option value='certificate'>Certificate</option>
+                                <option value='badge'>Badge</option>
+                            </Select>
+                            <LabelError innerText={errors.type} />
+
+                            {type === 'badge' && (
+                                <>
+                            <Label
+                                innerText='URL *'
+                                htmlFor='urlCheck'
+                            />
+                            <Input
+                                type='text'
+                                id='urlCheck'
+                                name='urlCheck'
+                                value={certificateData?.urlCheck|| fields.urlCheck}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError innerText={errors.urlCheck} />
+                                </>
+                            )}
+                            {type === 'certificate' && (
+                                <>
                             <Label
                                 innerText='Certification title *'
                                 htmlFor='courseTitle'
@@ -180,10 +221,13 @@ const AddCertificate = () => {
                                 name='courseImage'
                             />
                             <LabelError innerText={errors.courseImage} />
+                        
+                            </>
+                        )}
+
                         </InputGroup>
 
                         <LabelError innerText={error} />
-
                         <ButtonGroup>
                             <Button
                                 type='submit'

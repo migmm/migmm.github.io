@@ -1,4 +1,8 @@
 export const validations = {
+    type: {
+        required: true,
+        errorMessage: 'Certification type is required.',
+    },
     courseTitle: {
         required: true,
         errorMessage: 'Certification Name is required.',
