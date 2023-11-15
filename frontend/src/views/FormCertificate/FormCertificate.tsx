@@ -139,7 +139,6 @@ const AddCertificate = () => {
                                 <option value='badge'>Badge</option>
                             </Select>
                             <LabelError innerText={errors.type} />
-
                             {type === 'badge' && (
                                 <>
                             <Label

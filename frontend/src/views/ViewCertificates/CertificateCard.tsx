@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import H2 from '../../Styles/H2/H2';
+
 
 const CertificateCard = ({ courseTitle, courseImage, urlCheck }: any) => {
     return (
@@ -10,7 +12,7 @@ const CertificateCard = ({ courseTitle, courseImage, urlCheck }: any) => {
                     <img src={courseImage} alt="" />
                 </div>
                 <div className="favicon-container"></div>
-                <h2>{courseTitle}</h2>
+                <H2 innerText={courseTitle} />
             </div>
         </a>
         </CertificateCardStyles>

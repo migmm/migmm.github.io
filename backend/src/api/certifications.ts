@@ -1,6 +1,5 @@
 import database from '../config/database';
 import CertificationModel from '../model/certifications/certifications';
-import CertificationValidator from '../model/validators/certification';
 
 const modelCertifications = CertificationModel.get(database.PERSISTENCE_TYPE);
 
@@ -30,17 +29,8 @@ const getCertification = async (id: number) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const createCertification = async (certification: any) => {
-    
-        const validationError = CertificationValidator.validate(certification);
-
-        if (!validationError) {
-            const createdCertification = await modelCertifications.createCertification(certification);
-            return createdCertification;
-        } else {
-            console.log(validationError);
-            console.error(`Error validating createCertificate: ${validationError.details[0].message}`);
-            return {};
-        }
+    const createdCertification = await modelCertifications.createCertification(certification);
+    return createdCertification;
 };
 
 
@@ -49,17 +39,8 @@ const createCertification = async (certification: any) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const updateCertification = async (id: number, certification: any) => {
-    
-        const validationError = CertificationValidator.validate(certification);
-
-        if (!validationError) {
-            const updatedCertification = await modelCertifications.updateCertification(id, certification);
-            return updatedCertification;
-        } else {
-            console.log(validationError);
-            console.error(`Error validating updateCertification: ${validationError.details[0].message}`);
-            return {};
-        }
+    const updatedCertification = await modelCertifications.updateCertification(id, certification);
+    return updatedCertification;
 };
 
 
@@ -71,6 +52,7 @@ const deleteCertification = async (id: number) => {
         const removedCertification = await modelCertifications.deleteCertification(id);
         return removedCertification;
 };
+
 
 export default {
     getCertifications,

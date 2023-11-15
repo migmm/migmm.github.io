@@ -21,8 +21,19 @@ interface HeroStylesProps {
     bg: string;
 }
 
+interface CertificateData {
+    courseTitle: any;
+    id: number;
+    courseImage: string;
+    urlCheck: string;
+    issueDate: string; // Asegúrate de que la propiedad 'issueDate' esté presente en tus datos
+    type: 'certification' | 'badge'; // Asegúrate de que la propiedad 'type' tenga los valores 'certification' o 'badge'
+}
+
 const Certificates = () => {
-    const [data, setData] = useState<DataItem[]>([]);
+
+    const [certifications, setCertifications] = useState<DataItem[]>([]);
+    const [badges, setBadges] = useState<DataItem[]>([]);
 
     useEffect(() => {
         axios
@@ -34,7 +45,14 @@ const Certificates = () => {
                     return dateA - dateB;
                 });
 
-                setData(sortedData);
+                const certificationsData = sortedData.filter((item: CertificateData) => item.type === 'certification');
+                const badgesData = sortedData.filter((item: CertificateData) => item.type === 'badge');
+
+
+                setCertifications(certificationsData);
+                setBadges(badgesData);
+
+                
                 console.log('Data fetched successfully:', response.data);
             })
             .catch((error) => {
@@ -59,12 +77,29 @@ const Certificates = () => {
                 </HeroRight>
             </HeroStyles>
             <div className='certifications-container'>
-                <H1>Certifications</H1>
-                <div className='cards-container'>
-                {data.map((item) => (
-                    <CertificateCard key={item.id} courseTitle={item.courseTitle} courseImage={item.courseImage} urlCheck={item.urlCheck}/>
-))}
-                </div>
+                {/* Certifications */}
+                {certifications.length > 0 && (
+                    <>
+                        <H1 innerText = 'Certifications' />
+                        <div className='cards-container'>
+                            {certifications.map((item) => (
+                                <CertificateCard key={item.id} courseTitle={item.courseTitle} courseImage={item.courseImage} urlCheck={item.urlCheck}/>
+                            ))}
+                        </div>
+                    </>
+                )}
+
+                {/* Badges */}
+                {badges.length > 0 && (
+                    <>
+                        <H1 innerText = 'Badges' />
+                        <div className='cards-container'>
+                            {badges.map((item) => (
+                                <CertificateCard key={item.id} courseTitle={item.courseTitle} courseImage={item.courseImage} urlCheck={item.urlCheck}/>
+                            ))}
+                        </div>
+                    </>
+                )}
             </div>
         </CertificatesViewContainer>
     );
