@@ -5,7 +5,7 @@ const PERSISTENCE_TYPES = {
     TYPE_MONGODB: 'MONGODB',
 };
 
-const database = {
+const databaseMongoDB = {
     PERSISTENCE_TYPE: PERSISTENCE_TYPES.TYPE_MONGODB,
     MONGODB_CONNECTION_STR: process.env.MONGODB_STRING,
     MONGODB_TIMEOUT: 30000
@@ -13,5 +13,5 @@ const database = {
 
 export {
     PERSISTENCE_TYPES,
-    database as default
+    databaseMongoDB as default
 };
