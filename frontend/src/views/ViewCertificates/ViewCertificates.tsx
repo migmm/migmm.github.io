@@ -67,7 +67,7 @@ const Certificates = () => {
                                 <CertificateCard
                                     key={item.id}
                                     courseTitle={item.courseTitle}
-                                    courseImage={item.courseImage}
+                                    courseImage={item.courseImage[0]}
                                     urlCheck={item.urlCheck}
                                 />
                             ))}
@@ -84,7 +84,7 @@ const Certificates = () => {
                                 <CertificateCard
                                     key={item.id}
                                     courseTitle={item.courseTitle}
-                                    courseImage={item.courseImage}
+                                    courseImage={item.courseImage[0]}
                                     urlCheck={item.urlCheck}
                                 />
                             ))}
