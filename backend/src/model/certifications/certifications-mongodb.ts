@@ -8,7 +8,7 @@ const certificationSchema = new mongoose.Schema(
         vendor: String, 
         issueDate: Date,
         urlCheck: String,
-        courseImage: String,
+        courseImage: Array,
         created_at: { 
             type: Date, 
             default: Date.now 
@@ -18,6 +18,7 @@ const certificationSchema = new mongoose.Schema(
             default: Date.now 
         },
         type: String,
+        storage: String,
     },
     {
         versionKey: false,
