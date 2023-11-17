@@ -31,7 +31,7 @@ const CertificationsModel = mongoose.model('certifications', certificationSchema
 
 class CertificationModelMongoDB {
     // CRUD - C: CREATE
-    async createCertification(certification: any) {
+    async createCertification(certification: object) {
         await DBMongoDB.getInstance();
         try {
             const newCertification = new CertificationsModel(certification);
@@ -55,7 +55,7 @@ class CertificationModelMongoDB {
         }
     }
 
-    async readCertification(id: any) {
+    async readCertification(id: string) {
         await DBMongoDB.getInstance();
         try {
             const product = (await CertificationsModel.findById(id).lean()) || {};
@@ -67,7 +67,7 @@ class CertificationModelMongoDB {
     }
 
     // CRUD - U: UPDATE
-    async updateCertification(id: number, certification: any) {
+    async updateCertification(id: string, certification: object) {
         await DBMongoDB.getInstance();
         try {
             const updatedCertification = await CertificationsModel.findByIdAndUpdate(
@@ -85,7 +85,7 @@ class CertificationModelMongoDB {
     }
 
     // CRUD - D: DELETE
-    async deleteCertification(id: number) {
+    async deleteCertification(id: string) {
         await DBMongoDB.getInstance();
         try {
             const deletedCertification = await CertificationsModel.findByIdAndDelete(id).lean();

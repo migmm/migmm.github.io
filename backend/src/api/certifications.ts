@@ -18,7 +18,7 @@ const getCertifications = async () => {
 //                                API Get ONE                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getCertification = async (id: number) => {
+const getCertification = async (id: string) => {
         const certification = await modelCertifications.readCertification(id);
         return certification;
 };
@@ -28,7 +28,7 @@ const getCertification = async (id: number) => {
 //                                API Create                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const createCertification = async (certification: any) => {
+const createCertification = async (certification: object) => {
     const createdCertification = await modelCertifications.createCertification(certification);
     return createdCertification;
 };
@@ -38,7 +38,7 @@ const createCertification = async (certification: any) => {
 //                                API Update                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const updateCertification = async (id: number, certification: any) => {
+const updateCertification = async (id: string, certification: object) => {
     const updatedCertification = await modelCertifications.updateCertification(id, certification);
     return updatedCertification;
 };
@@ -48,7 +48,7 @@ const updateCertification = async (id: number, certification: any) => {
 //                                API Delete                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const deleteCertification = async (id: number) => {
+const deleteCertification = async (id: string) => {
         const removedCertification = await modelCertifications.deleteCertification(id);
         return removedCertification;
 };
