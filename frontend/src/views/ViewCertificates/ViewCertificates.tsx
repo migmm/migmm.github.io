@@ -10,9 +10,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import CertificateTitle from '../../assets/images/certificates-title.png';
 import { DataItem, HeroStylesProps, CertificateData } from './interface';
 
-
 const Certificates = () => {
-
     const [certifications, setCertifications] = useState<DataItem[]>([]);
     const [badges, setBadges] = useState<DataItem[]>([]);
 
@@ -20,21 +18,17 @@ const Certificates = () => {
         axios
             .get(`${apiURL}certifications/`)
             .then((response) => {
-                const sortedData = response.data.sort((a:any, b:any) => {
-                    const dateA:any = new Date(a.issueDate);
-                    const dateB:any = new Date(b.issueDate);
+                const sortedData = response.data.sort((a: any, b: any) => {
+                    const dateA: any = new Date(a.issueDate);
+                    const dateB: any = new Date(b.issueDate);
                     return dateA - dateB;
                 });
 
                 const certificationsData = sortedData.filter((item: CertificateData) => item.type === 'certification');
                 const badgesData = sortedData.filter((item: CertificateData) => item.type === 'badge');
 
-
                 setCertifications(certificationsData);
                 setBadges(badgesData);
-
-                
-                console.log('Data fetched successfully:', response.data);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
@@ -44,25 +38,23 @@ const Certificates = () => {
     return (
         <CertificatesViewContainer>
             <ActualRoute>
-                <Link to='/'>
+                <Link to="/">
                     {' '}
                     <FontAwesomeIcon icon={faHome} />
                 </Link>{' '}
-                / <Link to='/certificates'>Certificates</Link>
+                / <Link to="/certificates">Certificates</Link>
                 {''}
             </ActualRoute>
             <HeroStyles bg={CertificateTitle}>
                 <HeroLeft>{'My best certifications.'}</HeroLeft>
-                <HeroRight>
-                    {' '}
-                </HeroRight>
+                <HeroRight> </HeroRight>
             </HeroStyles>
-            <div className='certifications-container'>
+            <CertificationsContainer>
                 {/* Certifications */}
                 {certifications.length > 0 && (
                     <>
-                        <H1 innerText = 'Certifications' />
-                        <div className='cards-container'>
+                        <H1 innerText="Certifications" />
+                        <CardsContainer>
                             {certifications.map((item) => (
                                 <CertificateCard
                                     key={item.id}
@@ -71,15 +63,15 @@ const Certificates = () => {
                                     urlCheck={item.urlCheck}
                                 />
                             ))}
-                        </div>
+                        </CardsContainer>
                     </>
                 )}
 
                 {/* Badges */}
                 {badges.length > 0 && (
                     <>
-                        <H1 innerText = 'Badges' />
-                        <div className='cards-container'>
+                        <H1 innerText="Badges" />
+                        <CardsContainer>
                             {badges.map((item) => (
                                 <CertificateCard
                                     key={item.id}
@@ -88,17 +80,15 @@ const Certificates = () => {
                                     urlCheck={item.urlCheck}
                                 />
                             ))}
-                        </div>
+                        </CardsContainer>
                     </>
                 )}
-            </div>
+            </CertificationsContainer>
         </CertificatesViewContainer>
     );
 };
 
-
 export default Certificates;
-
 
 const CertificatesViewContainer = styled.main`
     max-width: 1900px;
@@ -107,107 +97,6 @@ const CertificatesViewContainer = styled.main`
 
     @media (min-width: 768px) {
         max-width: 1500px;
-    }
-
-    .certifications-container {
-        margin: 1em;
-
-        .selectors-container {
-            text-align: center;
-            font-family: 'Work Sans', sans-serif;
-            font-weight: 600;
-            margin-bottom: 1em;
-            font-size: 1.3em;
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 0.5em;
-
-            .select-company,
-            .select-category {
-                font-family: 'Work Sans', sans-serif;
-                font-weight: 600;
-                border: none;
-                font-size: 1em;
-                cursor: pointer;
-            }
-
-            .select-company:hover,
-            .select-category:hover {
-                color: grey;
-            }
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1em;
-            
-
-            @media (min-width: 768px) {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 1em;
-                justify-content: center;
-            }
-
-            .card {
-                width: 100%;
-                height: 200px;
-                margin-bottom: 4em;
-
-                @media (min-width: 768px) {
-                    max-width: 300px;
-                }
-
-                .images-container {
-                    // background-color: #0069c5;
-                    height: 200px;
-                    //border-radius: 30px;
-                    position:relative;
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: contain;
-                        border-radius: 30px;
-
-                        :nth-child(2) {
-                            position: absolute;
-                            top: 50px;
-                            left: 50px;
-                            width: 40px;
-                        }
-                    }
-                }
-
-                h2 {
-                    font-family: 'Work Sans', sans-serif;
-                    font-weight: 700;
-                    margin-top: 0.5em;
-                    margin-left: 1em;
-                }
-            }
-        }
-
-        .pagination-container {
-            text-align: center;
-            font-family: 'Work Sans', sans-serif;
-            font-weight: 600;
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 0.5em;
-            margin-bottom: 1em;
-            font-size: 1.3em;
-
-            select {
-                display: none;
-                border: none;
-                font-family: 'Work Sans', sans-serif;
-                font-weight: 600;
-                font-size: 1em;
-            }
-        }
     }
 `;
 
@@ -218,7 +107,7 @@ const HeroStyles = styled.div<HeroStylesProps>`
     width: 100%;
     height: unset;
     position: relative;
-    box-shadow: -1px 12px 6px -9px rgba(0,0,0,0.75);
+    box-shadow: -1px 12px 6px -9px rgba(0, 0, 0, 0.75);
 
     @media (min-width: 950px) {
         flex-direction: row;
@@ -283,3 +172,102 @@ const ActualRoute = styled.div`
     }
 `;
 
+const CertificationsContainer = styled.div`
+    margin: 1em;
+
+    .selectors-container {
+        text-align: center;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 600;
+        margin-bottom: 1em;
+        font-size: 1.3em;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 0.5em;
+
+        .select-company,
+        .select-category {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .select-company:hover,
+        .select-category:hover {
+            color: grey;
+        }
+    }
+
+    .pagination-container {
+        text-align: center;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 600;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 0.5em;
+        margin-bottom: 1em;
+        font-size: 1.3em;
+
+        select {
+            display: none;
+            border: none;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1em;
+        }
+    }
+`;
+
+const CardsContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+
+    @media (min-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1em;
+        justify-content: center;
+    }
+
+    .card {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 4em;
+
+        @media (min-width: 768px) {
+            max-width: 300px;
+        }
+
+        .images-container {
+            // background-color: #0069c5;
+            height: 200px;
+            //border-radius: 30px;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                border-radius: 30px;
+
+                :nth-child(2) {
+                    position: absolute;
+                    top: 50px;
+                    left: 50px;
+                    width: 40px;
+                }
+            }
+        }
+
+        h2 {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 700;
+            margin-top: 0.5em;
+            margin-left: 1em;
+        }
+    }
+`;
