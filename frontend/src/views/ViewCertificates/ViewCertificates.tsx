@@ -174,50 +174,6 @@ const ActualRoute = styled.div`
 
 const CertificationsContainer = styled.div`
     margin: 1em;
-
-    .selectors-container {
-        text-align: center;
-        font-family: 'Work Sans', sans-serif;
-        font-weight: 600;
-        margin-bottom: 1em;
-        font-size: 1.3em;
-        background-color: #ffffff;
-        border-radius: 10px;
-        padding: 0.5em;
-
-        .select-company,
-        .select-category {
-            font-family: 'Work Sans', sans-serif;
-            font-weight: 600;
-            border: none;
-            font-size: 1em;
-            cursor: pointer;
-        }
-
-        .select-company:hover,
-        .select-category:hover {
-            color: grey;
-        }
-    }
-
-    .pagination-container {
-        text-align: center;
-        font-family: 'Work Sans', sans-serif;
-        font-weight: 600;
-        background-color: #ffffff;
-        border-radius: 10px;
-        padding: 0.5em;
-        margin-bottom: 1em;
-        font-size: 1.3em;
-
-        select {
-            display: none;
-            border: none;
-            font-family: 'Work Sans', sans-serif;
-            font-weight: 600;
-            font-size: 1em;
-        }
-    }
 `;
 
 const CardsContainer = styled.div`
@@ -233,41 +189,5 @@ const CardsContainer = styled.div`
         justify-content: center;
     }
 
-    .card {
-        width: 100%;
-        height: 200px;
-        margin-bottom: 4em;
-
-        @media (min-width: 768px) {
-            max-width: 300px;
-        }
-
-        .images-container {
-            // background-color: #0069c5;
-            height: 200px;
-            //border-radius: 30px;
-            position: relative;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                border-radius: 30px;
-
-                :nth-child(2) {
-                    position: absolute;
-                    top: 50px;
-                    left: 50px;
-                    width: 40px;
-                }
-            }
-        }
-
-        h2 {
-            font-family: 'Work Sans', sans-serif;
-            font-weight: 700;
-            margin-top: 0.5em;
-            margin-left: 1em;
-        }
-    }
+    
 `;
