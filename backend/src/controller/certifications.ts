@@ -39,7 +39,7 @@ const getCertifications = async (_req: any, res: Response) => {
     try {
         const certifications = await api.getCertifications();
         console.log('Certifications length:', certifications.length);
-
+        console.log(certifications)
         const certificationsWithSignedUrls = await Promise.all(certifications.map(async (certification: any) => {
             if (certification.storage === 's3') {
                 const signedUrls = await Promise.all(certification.courseImage.map(getSignedUrl));

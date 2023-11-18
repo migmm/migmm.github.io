@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import DBMongoDB from '../../db/DBMongoDB';
 
+
 const certificationSchema = new mongoose.Schema(
     {
         courseTitle: String,
@@ -28,6 +29,7 @@ const certificationSchema = new mongoose.Schema(
 mongoose.set('strictQuery', false);
 
 const CertificationsModel = mongoose.model('certifications', certificationSchema);
+
 
 class CertificationModelMongoDB {
     // CRUD - C: CREATE
@@ -61,7 +63,7 @@ class CertificationModelMongoDB {
             const product = (await CertificationsModel.findById(id).lean()) || {};
             return DBMongoDB.getObjectWithId(product);
         } catch (error: any) {
-            console.error(`Error getting prject: ${error.message}`);
+            console.error(`Error getting certification: ${error.message}`);
             return {};
         }
     }

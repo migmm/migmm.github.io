@@ -1,4 +1,4 @@
-import databaseMongoDB from '../config/database';
+import database from '../config/database';
 import mongoose from 'mongoose';
 
 
@@ -29,13 +29,13 @@ class DBMongoDB {
     }
 
     private constructor() {
-        mongoose.connect(databaseMongoDB.MONGODB_CONNECTION_STR as string);
+        mongoose.connect(database.MONGODB_CONNECTION_STR as string);
         console.log('Connected to MongoDB database.');
     }
 
     static async getInstance() {
         if (!DBMongoDB.instance) {
-            DBMongoDB.connectionPromise = mongoose.connect(databaseMongoDB.MONGODB_CONNECTION_STR as string);
+            DBMongoDB.connectionPromise = mongoose.connect(database.MONGODB_CONNECTION_STR as string);
             DBMongoDB.instance = new DBMongoDB();
         } else if (DBMongoDB.connectionPromise) {
             // If a connection is in progress, await it before returning the instance
