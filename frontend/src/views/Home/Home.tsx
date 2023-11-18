@@ -159,12 +159,12 @@ const HomeContainer = styled.main`
 `;
 
 const HeroHeightReserver = styled.div`
-    height: 90vh;
+    height: calc(100vh - 8.5em);
 `;
 
 const HeroContainer = styled.div`
     width: 100%;
-    height: 850px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
