@@ -112,5 +112,4 @@ class ProjectModelPostgres {
     }
 }
 
-
 export default ProjectModelPostgres;

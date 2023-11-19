@@ -110,5 +110,4 @@ class CertificationModelPostgres {
     }
 }
 
-
 export default CertificationModelPostgres;

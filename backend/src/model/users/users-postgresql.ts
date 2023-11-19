@@ -2,20 +2,6 @@ import { QueryResult } from 'pg';
 import DBPostgres from '../../db/DBPostgreSQL';
 import convertSnakeCaseToCamelCase from '../../utils/convertSnakeCaseToCamelCase';
 
-username: 
-
-password: 
-
-email: 
-
-role: 
-
-status: 
-
-projects: 
-
-certifications: 
-
 
 class UserModelPostgres {
     // CRUD - C: CREATE
@@ -121,6 +107,5 @@ class UserModelPostgres {
         }
     }
 }
-
 
 export default UserModelPostgres;
