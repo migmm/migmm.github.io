@@ -38,8 +38,7 @@ const getCertifications = async (_req: any, res: Response) => {
     
     try {
         const certifications = await api.getCertifications();
-        console.log('Certifications length:', certifications.length);
-        console.log(certifications)
+
         const certificationsWithSignedUrls = await Promise.all(certifications.map(async (certification: any) => {
             if (certification.storage === 's3') {
                 const signedUrls = await Promise.all(certification.courseImage.map(getSignedUrl));
@@ -69,8 +68,8 @@ const getCertification = async (req: Request, res: Response) => {
         certification.courseImage = signedUrls;
 
         res.status(200).json(certification);
-    } catch (e) {
-        console.error('Error getting certification:', e);
+    } catch (error) {
+        console.error('Error getting certification:', error);
         res.status(500).send('Error getting certification');
     }
 };
@@ -123,8 +122,8 @@ const postCertification = async (req: any, res: Response) => {
         certification.storage = STORAGE;
         const newCertification = await api.createCertification(certification);
         res.status(201).json(newCertification);
-    } catch (e) {
-        console.log(e);
+    } catch (error) {
+        console.log(error);
         res.status(500).send('Error creating certification.');
     }
 };
@@ -177,8 +176,8 @@ const putCertification = async (req: any, res: Response) => {
 
         const updatedCertification = (await api.updateCertification(id, certification)) || {};
         res.status(201).json(updatedCertification);
-    } catch (e) {
-        console.log(e);
+    } catch (error) {
+        console.log(error);
         res.status(500).send('Error updating certification.');
     }
 };
@@ -188,7 +187,7 @@ const putCertification = async (req: any, res: Response) => {
 //                             DELETE Controllers                            //
 ///////////////////////////////////////////////////////////////////////////////
 
-const deleteCertification = async (req: any, res: Response) => {
+const deleteCertification = async (req: Request, res: Response) => {
     const id = req.params.id;
 
     try {
@@ -197,7 +196,7 @@ const deleteCertification = async (req: any, res: Response) => {
         } else if (STORAGE === 's3') {
             await deleteS3Files(id);
         } else if (STORAGE === 'db') {
-            // No se requiere acción específica para eliminar archivos en la base de datos
+            // Do nothing, data saved in database
         }
 
         const removedCertification = await api.deleteCertification(id);
@@ -218,8 +217,9 @@ const deleteLocalFiles = async (certificationId: string) => {
         try {
             await fs.promises.unlink(filePath);
             console.log('File deleted successfully');
-        } catch (err) {
-            console.error('Error deleting file:', err);
+
+        } catch (error) {
+            console.error('Error deleting file:', error);
         }
     }));
 };
@@ -237,8 +237,8 @@ const deleteS3Files = async (certificationId: string) => {
         try {
             await s3Client.send(new DeleteObjectCommand(deleteParams));
             console.log(`File '${fileName}' deleted successfully from S3`);
-        } catch (err) {
-            console.error(`Error deleting file '${fileName}' from S3:`, err);
+        } catch (error) {
+            console.error(`Error deleting file '${fileName}' from S3:`, error);
         }
     }));
 };

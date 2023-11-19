@@ -1,8 +1,5 @@
-// certification-model-postgres.ts
-
 import { QueryResult } from 'pg';
 import DBPostgres from '../../db/DBPostgreSQL';
-
 
 class CertificationModelPostgres {
     // CRUD - C: CREATE
@@ -11,7 +8,7 @@ class CertificationModelPostgres {
 
         try {
             const { rows } = await client.query(
-                'INSERT INTO certifications(courseTitle, description, vendor, issueDate, urlCheck, courseImage, created_at, modified_at, type, storage) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
+                'INSERT INTO certifications(course_title, description, vendor, issue_date, url_check, course_image, created_at, modified_at, type, storage) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
                 [
                     certification.courseTitle,
                     certification.description,
@@ -26,7 +23,7 @@ class CertificationModelPostgres {
                 ]
             );
 
-            return rows[0];
+            return convertSnakeCaseToCamelCase(rows[0]);
         } catch (error: any) {
             console.error(`Error adding certification: ${error.message}`);
             return {};
@@ -41,7 +38,7 @@ class CertificationModelPostgres {
 
         try {
             const { rows }: QueryResult = await client.query('SELECT * FROM certifications');
-            return rows;
+            return rows.map(convertSnakeCaseToCamelCase);
         } catch (error: any) {
             console.error(`Error getting certifications: ${error.message}`);
             return [];
@@ -55,7 +52,7 @@ class CertificationModelPostgres {
 
         try {
             const { rows }: QueryResult = await client.query('SELECT * FROM certifications WHERE id = $1', [id]);
-            return rows[0];
+            return convertSnakeCaseToCamelCase(rows[0]);
         } catch (error: any) {
             console.error(`Error getting certification: ${error.message}`);
             return {};
@@ -70,7 +67,7 @@ class CertificationModelPostgres {
 
         try {
             const { rows }: QueryResult = await client.query(
-                'UPDATE certifications SET courseTitle=$2, description=$3, vendor=$4, issueDate=$5, urlCheck=$6, courseImage=$7, created_at=$8, modified_at=$9, type=$10, storage=$11 WHERE id=$1 RETURNING *',
+                'UPDATE certifications SET course_title=$2, description=$3, vendor=$4, issue_date=$5, url_check=$6, course_image=$7, created_at=$8, modified_at=$9, type=$10, storage=$11 WHERE id=$1 RETURNING *',
                 [
                     id,
                     certification.courseTitle,
@@ -86,7 +83,7 @@ class CertificationModelPostgres {
                 ]
             );
 
-            return rows[0];
+            return convertSnakeCaseToCamelCase(rows[0]);
         } catch (error: any) {
             console.error(`Error updating certification: ${error.message}`);
             return {};
@@ -101,14 +98,33 @@ class CertificationModelPostgres {
 
         try {
             const { rows }: QueryResult = await client.query('DELETE FROM certifications WHERE id = $1 RETURNING *', [id]);
-            return rows[0];
+            return convertSnakeCaseToCamelCase(rows[0]);
         } catch (error: any) {
-            console.error(`Error deleting certificationo: ${error.message}`);
+            console.error(`Error deleting certification: ${error.message}`);
             return {};
         } finally {
             client.release();
         }
     }
 }
+
+function convertSnakeCaseToCamelCase(obj: any): any {
+
+    const camelCaseObj: any = {};
+
+    if (!obj || typeof obj !== 'object') {
+        return obj;
+    }
+
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            const camelCaseKey = key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+            camelCaseObj[camelCaseKey] = obj[key];
+        }
+    }
+
+    return camelCaseObj;
+}
+
 
 export default CertificationModelPostgres;

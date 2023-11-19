@@ -1,9 +1,6 @@
 import { Pool, PoolClient } from 'pg';
 
 class DBPostgres {
-    static getObjectWithId() {
-        throw new Error('Method not implemented.');
-    }
     private static pool: Pool;
 
     private static async init() {
