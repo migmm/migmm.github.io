@@ -4,7 +4,7 @@ import ProjectModelPostgres from './projects-postgresql';
 
 
 class ProjectModel {
-    static get(type:any) {
+    static get(type: any) {
         console.log(`#### Projects Model Persistence -> ${database.PERSISTENCE_TYPE || 'by default'} ####`);
         switch (type) {
             case PERSISTENCE_TYPES.TYPE_MONGODB:
