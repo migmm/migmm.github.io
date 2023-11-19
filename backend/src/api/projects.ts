@@ -18,7 +18,7 @@ const getProjects = async () => {
 //                                API Get ONE                                //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getProject = async (id:number) => {
+const getProject = async (id:string) => {
     const project = await modelProjects.readProject(id);
     return project;
 };
@@ -28,11 +28,11 @@ const getProject = async (id:number) => {
 //                               API Get by TAG                              //
 ///////////////////////////////////////////////////////////////////////////////
 
-const getProjectsByTags = async (tags : any) => {
+/* const getProjectsByTags = async (tags : any) => {
     const projects = await modelProjects.getProjectsByTags(tags);
     return projects;
 };
-
+ */
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Create                                 //
@@ -48,7 +48,7 @@ const createProject = async (project:any) => {
 //                                API Update                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const updateProject = async (id:number, project:any) => {
+const updateProject = async (id: string, project:any) => {
     const updatedProject = await modelProjects.updateProject(id, project);
     return updatedProject;    
 };
@@ -58,7 +58,7 @@ const updateProject = async (id:number, project:any) => {
 //                                API Delete                                 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const deleteProject = async (id:number) => {
+const deleteProject = async (id: string) => {
     const removedProject = await modelProjects.deleteProject(id);
     return removedProject;
 };
@@ -70,5 +70,5 @@ export default {
     createProject,
     updateProject,
     deleteProject,
-    getProjectsByTags,
+    /* getProjectsByTags */
 };
