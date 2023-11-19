@@ -1,5 +1,6 @@
 import database, { PERSISTENCE_TYPES } from '../../config/database';
 import UserModelMongoDB from './users-mongodb';
+import UserModelPostgres from './users-postgresql';
 
 class UserModel {
     static get(type: any, caller: any = '') {
@@ -7,6 +8,8 @@ class UserModel {
         switch (type) {
             case PERSISTENCE_TYPES.TYPE_MONGODB:
                 return UserModelMongoDB;
+            case PERSISTENCE_TYPES.TYPE_POSTGRES:
+                return new UserModelPostgres();
             default:
                 return UserModelMongoDB;
         }
