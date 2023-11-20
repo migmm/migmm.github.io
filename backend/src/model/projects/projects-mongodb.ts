@@ -14,6 +14,9 @@ const projectSchema = new mongoose.Schema(
         coverImage: String,
         editorHtml: String,
         useFromGit: Boolean,
+        headerLine: String,
+        category: String,
+        lastUpdate: Date,
         created_at: { 
             type: Date, 
             default: Date.now 

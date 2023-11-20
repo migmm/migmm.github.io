@@ -10,7 +10,7 @@ class ProjectModelPostgres {
 
         try {
             const { rows } = await client.query(
-                'INSERT INTO projects(project_name, project_status, git_url, url_github_repo, deploy_url, tags, cover_image, editor_html, use_from_git, created_at, modified_at) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *',
+                'INSERT INTO projects(project_name, project_status, git_url, url_github_repo, deploy_url, tags, cover_image, editor_html, use_from_git, header_line, category, last_update, created_at, modified_at) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *',
                 [
                     project.projecName,
                     project.projectStatus,
@@ -21,6 +21,9 @@ class ProjectModelPostgres {
                     project.coverImage,
                     project.editorHtml,
                     project.useFromGit,
+                    project.headerLine,
+                    project.category,
+                    project.lastUpdate,
                     project.created_at,
                     project.modified_at,
                 ]
@@ -88,7 +91,7 @@ class ProjectModelPostgres {
 
         try {
             const { rows }: QueryResult = await client.query(
-                'UPDATE projects(project_name, project_status, git_url, url_github_repo, deploy_url, tags, cover_image, editor_html, use_from_git, created_at, modified_at) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *',
+                'UPDATE projects(project_name, project_status, git_url, url_github_repo, deploy_url, tags, cover_image, editor_html, use_from_git, header_line, category, last_update, created_at, modified_at) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *',
                 [
                     id,
                     project.projecName,
@@ -100,6 +103,9 @@ class ProjectModelPostgres {
                     project.coverImage,
                     project.editorHtml,
                     project.useFromGit,
+                    project.headerLine,
+                    project.category,
+                    project.lastUpdate,
                     project.created_at,
                     project.modified_at,
                 ]
