@@ -21,7 +21,7 @@ const CardLink = styled(Link)`
     width:100%;
 
     @media (min-width: 950px) {
-        width:40%;
+        width:100%;
     }
 
 `;
@@ -37,7 +37,7 @@ const CardContainer = styled.div`
     background-color: white;
     border-radius: 20px;
     overflow: hidden;
-    
+
     &:hover{
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
