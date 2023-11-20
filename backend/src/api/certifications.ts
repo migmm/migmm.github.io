@@ -9,8 +9,8 @@ const modelCertifications = CertificationModel.get(database.PERSISTENCE_TYPE, 'C
 ///////////////////////////////////////////////////////////////////////////////
 
 const getCertifications = async () => {
-        const certifications = await modelCertifications.readCertifications();
-        return certifications;
+    const certifications = await modelCertifications.readCertifications();
+    return certifications;
 };
 
 
@@ -19,8 +19,8 @@ const getCertifications = async () => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const getCertification = async (id: string) => {
-        const certification = await modelCertifications.readCertification(id);
-        return certification;
+    const certification = await modelCertifications.readCertification(id);
+    return certification;
 };
 
 
@@ -49,8 +49,8 @@ const updateCertification = async (id: string, certification: object) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const deleteCertification = async (id: string) => {
-        const removedCertification = await modelCertifications.deleteCertification(id);
-        return removedCertification;
+    const removedCertification = await modelCertifications.deleteCertification(id);
+    return removedCertification;
 };
 
 

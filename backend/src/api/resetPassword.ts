@@ -19,8 +19,8 @@ const getUser = async (id:number) => {
 ///////////////////////////////////////////////////////////////////////////////
 
 const updatePassword = async (id:number, user:Object) => {
-        const updatedUser = await modelUsers.updateUser(id, user);
-        return updatedUser;    
+    const updatedUser = await modelUsers.updateUser(id, user);
+    return updatedUser;    
 };
 
 

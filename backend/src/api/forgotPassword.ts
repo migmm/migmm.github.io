@@ -13,4 +13,5 @@ const getUser = async (field:string, email:string) => {
     return user;
 };
 
+
 export default getUser;
