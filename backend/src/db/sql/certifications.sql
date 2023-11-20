@@ -1,4 +1,4 @@
-CREATE TABLE certifications (
+CREATE TABLE IF NOT EXISTS certifications (
     id SERIAL PRIMARY KEY,
     course_title VARCHAR(255),
     description VARCHAR(255),

@@ -1,4 +1,4 @@
-CREATE TABLE configs (
+CREATE TABLE IF NOT EXISTS configs (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
     job_title VARCHAR(255),
@@ -9,5 +9,5 @@ CREATE TABLE configs (
     whatsapp_number VARCHAR(255),
     telegram_id VARCHAR(255),
     youtube_channel VARCHAR(255),
-    logo VARCHAR(255),
+    logo VARCHAR(255)
 );
