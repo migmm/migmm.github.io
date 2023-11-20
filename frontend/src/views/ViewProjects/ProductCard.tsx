@@ -33,11 +33,14 @@ const CardContainer = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid #EBEBEB;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
     overflow: hidden;
+    
+    &:hover{
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 `;
 
 const CardImage = styled.img`
