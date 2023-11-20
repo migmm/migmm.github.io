@@ -34,7 +34,8 @@ const ViewProject = () => {
     }, [projectId]);
 
     const BalloonContainer = ({ tags }: any) => {
-        const words = tags.split(',');
+
+        const words: string[] = tags.split(',').map((tag: string) => tag.trim());
 
         const balloons = words.map((word: any, index: any) => (
             <Link to={`/search/${word}`}>
