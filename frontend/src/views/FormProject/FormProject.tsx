@@ -48,7 +48,7 @@ const AddProject = () => {
     const { projectId } = useParams();
 
     const [showReadme, setShowReadme] = useState(false);
-    const [readmeContent, setReadmeContent] = useState('');
+    const [, setReadmeContent] = useState('');
 
     const fetchReadmeContent = async (githubURL: string) => {
         try {
