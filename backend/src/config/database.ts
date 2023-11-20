@@ -1,5 +1,5 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+import dotEnvExtended from 'dotenv-extended';
+dotEnvExtended.load(); 
 
 
 const PERSISTENCE_TYPES = {

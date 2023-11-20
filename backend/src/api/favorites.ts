@@ -1,6 +1,5 @@
 import database from '../config/database';
 import UserModel from '../model/users/users';
-//import UserValidator from '../model/validators/user';
 
 const modelUsers = UserModel.get(database.PERSISTENCE_TYPE, 'Favourites');
 

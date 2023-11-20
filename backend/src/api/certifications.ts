@@ -1,7 +1,7 @@
 import database from '../config/database';
 import CertificationModel from '../model/certifications/certifications';
 
-const modelCertifications = CertificationModel.get(database.PERSISTENCE_TYPE);
+const modelCertifications = CertificationModel.get(database.PERSISTENCE_TYPE, 'Certfications');
 
 
 ///////////////////////////////////////////////////////////////////////////////

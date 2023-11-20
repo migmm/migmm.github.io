@@ -4,8 +4,8 @@ import CertificationModelPostgres from './certifications-postgresql';
 
 
 class CertificationModel {
-    static get(type: any) {
-        console.log(`#### Certifications Model Persistence -> ${database.PERSISTENCE_TYPE || 'by default'} ####`);
+    static get(type: any, caller: any) {
+        console.log(`#### Certification Model Persistence -> ${database.PERSISTENCE_TYPE || 'by default'}${caller ?` called from ${caller}` : ''} ####`);   
         switch (type) {
             case PERSISTENCE_TYPES.TYPE_MONGODB:
                 return new CertificationModelMongoDB();

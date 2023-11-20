@@ -1,6 +1,7 @@
 import { S3 } from '@aws-sdk/client-s3';
-import * as dotenv from 'dotenv';
-dotenv.config();
+import dotEnvExtended from 'dotenv-extended';
+dotEnvExtended.load();
+
 
 // S3 configuration
 const s3Client = new S3({

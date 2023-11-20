@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Pool, PoolClient } from 'pg';
 
+
 class DBPostgres {
     private static pool: Pool;
 
@@ -54,6 +55,6 @@ class DBPostgres {
     }
 }
 
-DBPostgres.initializeDatabase();
+//DBPostgres.initializeDatabase();
 
 export default DBPostgres;

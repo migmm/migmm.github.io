@@ -60,7 +60,7 @@ const UsersModel = mongoose.model('users', userSchema);
 
 class UserModelMongoDB {
     // CRUD - C: CREATE
-    static async createUser(user: any) {
+    async createUser(user: any) {
         await DBMongoDB.getInstance();
         try {
             const newUser = new UsersModel(user);
@@ -73,7 +73,7 @@ class UserModelMongoDB {
     }
 
     // CRUD - R: READ
-    static async readUsers() {
+    async readUsers() {
         await DBMongoDB.getInstance();
         try {
             const users = await UsersModel.find({})
@@ -87,7 +87,7 @@ class UserModelMongoDB {
         }
     }
 
-    static async readUser(id: any) {
+    async readUser(id: any) {
         await DBMongoDB.getInstance();
         try {
             const user = await UsersModel.findById(id).lean();
@@ -99,7 +99,7 @@ class UserModelMongoDB {
     }
 
     // Route to find by any value in database
-    static async findByAny(field: any, value: any) {
+    async findByAny(field: any, value: any) {
         await DBMongoDB.getInstance();
         try {
             const user = await UsersModel.findOne({ [field]: value }).exec();
@@ -111,7 +111,7 @@ class UserModelMongoDB {
     }
 
     // CRUD - U: UPDATE
-    static async updateUser(id: number, user: any) {
+    async updateUser(id: number, user: any) {
         await DBMongoDB.getInstance();
         try {
             const updatedUser = await UsersModel.findByIdAndUpdate(id, { $set: user }, { returnDocument: 'after' }).lean();
@@ -123,7 +123,7 @@ class UserModelMongoDB {
     }
 
     // CRUD - D: DELETE
-    static async deleteUser(id: number) {
+    async deleteUser(id: number) {
         await DBMongoDB.getInstance();
         try {
             const deletedUser = await UsersModel.findByIdAndDelete(id).lean();

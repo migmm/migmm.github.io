@@ -50,7 +50,7 @@ class ProjectModelPostgres {
         }
     }
 
-    async readProject(id: string) {
+    async readProject(id: number) {
         const client = await DBPostgres.getClient();
 
         try {
@@ -64,8 +64,26 @@ class ProjectModelPostgres {
         }
     }
 
+    async getProjectsByTags(tags: string[]) {
+        const client = await DBPostgres.getClient();
+
+        try {
+            const { rows }: QueryResult = await client.query(
+                'SELECT * FROM projects WHERE tags @> $1',
+                [tags]
+            );
+
+            return rows.map(convertSnakeCaseToCamelCase);
+        } catch (error: any) {
+            console.error(`Error getting projects by tags: ${error.message}`);
+            return [];
+        } finally {
+            client.release();
+        }
+    }
+
     // CRUD - U: UPDATE
-    async updateProject(id: string, project: any) {
+    async updateProject(id: number, project: any) {
         const client = await DBPostgres.getClient();
 
         try {
@@ -97,7 +115,7 @@ class ProjectModelPostgres {
     }
 
     // CRUD - D: DELETE
-    async deleteProject(id: string) {
+    async deleteProject(id: number) {
         const client = await DBPostgres.getClient();
 
         try {

@@ -2,10 +2,9 @@ import { QueryResult } from 'pg';
 import DBPostgres from '../../db/DBPostgreSQL';
 import convertSnakeCaseToCamelCase from '../../utils/convertSnakeCaseToCamelCase';
 
-
 class ConfigModelPostgres {
     // CRUD - C: CREATE
-    async createConfig(config: any) {
+    async createWebConfig(config: any) {
         const client = await DBPostgres.getClient();
 
         try {
@@ -35,7 +34,7 @@ class ConfigModelPostgres {
     }
 
     // CRUD - R: READ
-    async readConfigs() {
+    async readWebConfigs() {
         const client = await DBPostgres.getClient();
 
         try {
@@ -49,7 +48,7 @@ class ConfigModelPostgres {
         }
     }
 
-    async readConfig(id: string) {
+    async readWebConfig(id: number) {
         const client = await DBPostgres.getClient();
 
         try {
@@ -63,8 +62,24 @@ class ConfigModelPostgres {
         }
     }
 
+    async findByAny(field: string, value: string) {
+        const client = await DBPostgres.getClient();
+
+        try {
+            const query = `SELECT * FROM configs WHERE ${field} = $1`;
+            const { rows }: QueryResult = await client.query(query, [value]);
+
+            return rows.map(convertSnakeCaseToCamelCase);
+        } catch (error: any) {
+            console.error(`Error finding by ${field}: ${error.message}`);
+            return [];
+        } finally {
+            client.release();
+        }
+    }
+
     // CRUD - U: UPDATE
-    async updateConfig(id: string, config: any) {
+    async updateWebConfig(id: number, config: any) {
         const client = await DBPostgres.getClient();
 
         try {
@@ -95,7 +110,7 @@ class ConfigModelPostgres {
     }
 
     // CRUD - D: DELETE
-    async deleteConfig(id: string) {
+    async deleteWebConfig(id: number) {
         const client = await DBPostgres.getClient();
 
         try {
