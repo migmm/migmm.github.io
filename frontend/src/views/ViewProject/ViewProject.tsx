@@ -10,24 +10,8 @@ import Balloon from '../../components/Balloon/Balloon';
 
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
+import {ProjectData, HeroStylesProps} from './interface';
 
-
-interface ProjectData {
-    projectName: string;
-    category: string;
-    projectStatus: string;
-    deployURL: string;
-    lastUpdate: string;
-    tags: string;
-    coverImage: string;
-    headerTitle: string;
-    editorHtml: string;
-    id: string;
-}
-
-interface HeroStylesProps {
-    bg: string;
-}
 
 const ViewProject = () => {
     const { projectId } = useParams<{ projectId: string }>();
