@@ -119,7 +119,7 @@ const AddCertificate = () => {
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             >
                                 <option value="">Select certification type</option>
-                                <option value='certificate'>Certificate</option>
+                                <option value='certification'>Certification</option>
                                 <option value='badge'>Badge</option>
                             </Select>
                             <LabelError innerText={errors.type} />
