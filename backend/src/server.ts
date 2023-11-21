@@ -2,7 +2,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import corsOptions from './utils/cors';
+import corsOptions from './config/cors';
 import config from './config/server';
 
 import routerProjects from './router/projects';
