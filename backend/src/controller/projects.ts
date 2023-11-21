@@ -35,7 +35,7 @@ const getProjectsByTag = async (req: Request, res: Response) => {
     try {
         if (typeof tags === 'string') {
             const tagsArray = tags.split(',').map(tag => tag.trim());
-            const tagRegex = tagsArray.map(tag => new RegExp(tag, 'i'));
+            const tagRegex = tagsArray.map(tag => new RegExp(tag));
 
             projects = await api.getProjectsByTags(tagRegex);
         } else {
