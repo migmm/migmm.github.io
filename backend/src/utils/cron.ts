@@ -3,9 +3,9 @@ import cheerio from 'cheerio';
 import cron from 'node-cron';
 import api from '../api/projects';
 import sendMail from '../utils/mailSender';
-import dotenv from 'dotenv';
+import dotEnvExtended from 'dotenv-extended';
 
-dotenv.config();
+dotEnvExtended.load();
 
 const EMAIL_TO_SEND_MSG = process.env.EMAIL_SEND_MESSAGE || '';
 const WEBCHECK_INTERVAL = process.env.WEBCHECK_INTERVAL || '12';
@@ -13,6 +13,7 @@ const WEBCHECK_INTERVAL = process.env.WEBCHECK_INTERVAL || '12';
 let urlsArray: string[] = [];
 let urlsArrayWithError: string[] = [];
 const maxWaitTime = 60000;
+
 
 const getProjects = async () => {
     try {

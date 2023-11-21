@@ -1,11 +1,10 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import upload from '../middlewares/multer';
 import { getImage, getImages, uploadImages, deleteImage, getImagesPresignedURL } from '../controller/aws';
 import authRole from '../middlewares/authRole';
+import dotEnvExtended from 'dotenv-extended';
 
-
-dotenv.config(); 
+dotEnvExtended.load(); 
 
 const STORAGE = process.env.STORAGE_LOCATION || '';
 const router = express.Router();

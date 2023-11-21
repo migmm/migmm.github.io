@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import sendMail from '../utils/mailSender';
 import  {generateMessageConfirmationMail, generateMessageContent } from '../utils/emailContentGenerator'
-import dotenv from 'dotenv';
+import dotEnvExtended from 'dotenv-extended';
 
-dotenv.config();
+dotEnvExtended.load();
 
 const EMAIL_TO_SEND_MSG = process.env.EMAIL_SEND_MESSAGE || '';
 

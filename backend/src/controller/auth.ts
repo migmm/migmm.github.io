@@ -2,9 +2,10 @@ import { Request, Response } from 'express';
 import api from '../api/auth';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import dotEnvExtended from 'dotenv-extended';
 
-dotenv.config(); 
+dotEnvExtended.load();
+
 
 interface User {
     id: string;

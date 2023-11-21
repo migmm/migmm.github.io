@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
-import * as dotenv from 'dotenv'
-dotenv.config()
+
+import dotEnvExtended from 'dotenv-extended';
+
+dotEnvExtended.load();
 
 
 // USAGE 

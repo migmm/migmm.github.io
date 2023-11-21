@@ -2,7 +2,12 @@ import { Request, Response } from 'express';
 import api from '../api/favorites';
 //import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-//import dotenv from 'dotenv';
+/* 
+import dotEnvExtended from 'dotenv-extended';
+
+dotEnvExtended.load();
+ */
+
 
 interface UserPayload {
     id: number;

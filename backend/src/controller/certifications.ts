@@ -6,9 +6,9 @@ import { getSignedUrl as getPresignedUrl } from '@aws-sdk/s3-request-presigner';
 import * as fs from 'fs';
 import s3Client, { AWS_BUCKET_NAME } from '../config/aws';
 import { handleFileUpload, convertFilesToBase64 } from '../utils/storage';
-import dotenv from 'dotenv';
+import dotEnvExtended from 'dotenv-extended';
 
-dotenv.config();
+dotEnvExtended.load();
 
 const STORAGE = process.env.STORAGE_LOCATION;
 
