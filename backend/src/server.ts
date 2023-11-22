@@ -17,11 +17,11 @@ import routerWebConfig from './router/webConfig';
 import routerContact from './router/contact';
 import checkWebsOnline from './utils/cron';
 
-/* import path from 'path'; */
+import path from 'path';
 
 const app = express();
 
-//app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
@@ -34,18 +34,15 @@ app.use(express.json());
 
 checkWebsOnline();
 
-//Uncomment when go to production
-/* 
-
-const buildPath = path.join(__dirname, '..', 'build');
+const buildPath = path.join(__dirname, 'public');
+/* const buildPath = path.join(__dirname, 'public'); */
 
 app.use(express.static(buildPath));
 
-app.get('/*', function (_req, res) {
+
+app.get('/', function (_req, res) {
     res.sendFile(path.join(buildPath, 'index.html'));
 }); 
-
-*/
 
 app.use('/api/projects', routerProjects);
 app.use('/api/certifications', routerCertifications);
@@ -65,18 +62,32 @@ app.use('/api/webconfig', routerWebConfig);
 
 app.use('/api/contact', routerContact);
 
+
+
+
 // in case of using another route
-app.all('*', (req, res) => {
-    res.status(404);
-    if (req.accepts('html')) {
-        res.json({ error: '404 Not Found' });
-    } else if (req.accepts('json')) {
-        res.json({ error: '404 Not Found' });
-    } else {
-        res.type('txt').send('404 Not Found');
-    }
+app.all('*', (_req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 const PORT = config.PORT;
 const server = app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));
 server.on('error', (error) => console.log('Error starting Express server: ' + error.message));
+
+
+
+
+import dotEnvExtended from 'dotenv-extended';
+dotEnvExtended.load();
+
+let allowedOrigins: string | any[];
+
+if (process.env.ALLOWED_ORIGIN && process.env.ALLOWED_ORIGIN !== '*') {
+    allowedOrigins = [process.env.ALLOWED_ORIGIN];
+    console.log("no")
+} else {
+    allowedOrigins = ['*'];
+    console.log("si")
+}
+
+export default allowedOrigins;

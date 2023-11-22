@@ -1,5 +1,5 @@
 import { QueryResult } from 'pg';
-import DBPostgres from '../../db/DBPostgreSQL';
+import DBPostgres from '../../dbs/DBPostgreSQL';
 import convertSnakeCaseToCamelCase from '../../utils/convertSnakeCaseToCamelCase';
 
 class ConfigModelPostgres {

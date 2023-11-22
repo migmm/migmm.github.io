@@ -33,8 +33,8 @@ export const validations = {
             if (value.length < 4) {
                 return 'E-mail must be at least 4 characters long.';
             }
-            if (!/^[a-zA-Z0-9@.]+$/.test(value)) {
-                return 'E-mail should only contain letters and numbers.';
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/.test(value)) {
+                return 'Please write a valid email.';
             }
             return true;
         },

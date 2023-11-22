@@ -55,6 +55,6 @@ class DBPostgres {
     }
 }
 
-DBPostgres.initializeDatabase();
+/* DBPostgres.initializeDatabase(); */
 
 export default DBPostgres;

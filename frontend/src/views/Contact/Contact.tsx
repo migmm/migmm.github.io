@@ -56,6 +56,8 @@ function Contact() {
                     const { status } = error.response;
                     if (status === 429) {
                         setError(validations.serverError.errorMessage);
+                    } else {
+                        setError(validations.commonError.errorMessage);
                     }
                 } else {
                     setError(validations.commonError.errorMessage);
