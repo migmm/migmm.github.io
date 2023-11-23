@@ -35,6 +35,8 @@
     "@aws-sdk/client-s3": "^3.332.0",
     "@aws-sdk/s3-request-presigner": "^3.332.0",
     "@types/bcrypt": "^5.0.0",
+    "argon": "^2.0.21",
+    "argon2": "^0.31.2",
     "aws-sdk": "^2.1377.0",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.0",

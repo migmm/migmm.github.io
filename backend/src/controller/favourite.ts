@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import api from '../api/favorites';
-//import bcrypt from 'bcrypt';
+/* import argon2 from 'argon2'; */
 import jwt from 'jsonwebtoken';
 /* 
 import dotEnvExtended from 'dotenv-extended';

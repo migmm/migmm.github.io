@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 
 import api from '../api/users';
 
@@ -53,7 +53,12 @@ const postUser = async (req: Request, res: Response) => {
         return res.status(401).json({ message: 'Existing email' });
     }
 
-    const hashedPwd = await bcrypt.hash(user.password, 10);
+    const hashedPwd = await argon2.hash(user.password, {
+        type: argon2.argon2id,
+        timeCost: 4,
+        memoryCost: 2 ** 16,
+        parallelism: 2,
+    });
     user.password = hashedPwd;
 
     try {
@@ -105,7 +110,12 @@ const putUser = async (req: Request, res: Response) => {
         }
         userToChange.email = email;
 
-        const hashedPwd = await bcrypt.hash(user.password, 10);
+        const hashedPwd = await argon2.hash(user.password, {
+            type: argon2.argon2id,
+            timeCost: 4,
+            memoryCost: 2 ** 16,
+            parallelism: 2,
+        });
         userToChange.password = hashedPwd;
 
         console.log('modified user', userToChange)

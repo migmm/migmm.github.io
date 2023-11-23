@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import api from '../api/resetPassword';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 
 
 interface ResetTokenPayload {
@@ -38,7 +38,12 @@ export const resetPassword = async (req: Request, res: Response) => {
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
-        const hashedPwd = await bcrypt.hash(newPassword.password, 10);
+        const hashedPwd = await argon2.hash(newPassword, {
+            type: argon2.argon2id,
+            timeCost: 4,
+            memoryCost: 2 ** 16,
+            parallelism: 2,
+        });
         foundUser.password = hashedPwd;
 
         // Update password in database

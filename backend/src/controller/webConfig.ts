@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 
 import api from '../api/webConfig';
 
@@ -53,7 +53,12 @@ const postWebConfig = async (req: Request, res: Response) => {
         return res.status(401).json({ message: 'Existing email' });
     }
 
-    const hashedPwd = await bcrypt.hash(webConfig.password, 10);
+    const hashedPwd = await argon2.hash(webConfig.password, {
+        type: argon2.argon2id,
+        timeCost: 4,
+        memoryCost: 2 ** 16,
+        parallelism: 2,
+    });
     webConfig.password = hashedPwd;
 
     try {
@@ -105,7 +110,12 @@ const putWebConfig = async (req: Request, res: Response) => {
         }
         webConfigToChange.email = email;
 
-        const hashedPwd = await bcrypt.hash(webConfig.password, 10);
+        const hashedPwd = await argon2.hash(webConfig.password, {
+            type: argon2.argon2id,
+            timeCost: 4,
+            memoryCost: 2 ** 16,
+            parallelism: 2,
+        });
         webConfigToChange.password = hashedPwd;
 
         console.log('modified webConfig', webConfigToChange)
