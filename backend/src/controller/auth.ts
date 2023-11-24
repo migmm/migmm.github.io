@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import api from '../api/auth';
-import argon2 from 'argon2';
+import { comparePasswords } from '../utils/bcryptHeper';
 import jwt from 'jsonwebtoken';
 import dotEnvExtended from 'dotenv-extended';
 
@@ -51,8 +51,7 @@ const postAuth = async (req:Request, res:Response) => {
         return res.status(401).json({ message: 'Unauthorized' })
     }
 
-    
-    const match = await argon2.verify(foundUser.password, password);
+    const match = await comparePasswords(password, foundUser.password);
 
     if (!match) return res.status(401).json({ message: 'Unauthorized' })
 
