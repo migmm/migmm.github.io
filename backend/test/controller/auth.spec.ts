@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import serverObj from '../../src/server';
-
+import testVariables from '../params';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -32,7 +32,7 @@ describe('Authentication Controller Test', () => {
         it('Should authenticate user and return access token', (done) => {
             chai.request(serverObj.server)
                 .post('/api/auth')
-                .send({ username: 'test1ed', password: 'testtestteste' })
+                .send({ username: testVariables.USERNAME_ADMIN, password: testVariables.PASSWORD_ADMIN })
                 .end((_err, res) => {
                     expect(res).to.have.status(201);
                     expect(res.body).to.have.property('accessToken');
@@ -47,7 +47,7 @@ describe('Authentication Controller Test', () => {
         it('Should not authenticate user and return error message', (done) => {
             chai.request(serverObj.server)
                 .post('/api/auth')
-                .send({ username: 'test1ed', password: 'testtesttest' })
+                .send({ username: testVariables.USERNAME_ADMIN, password: 'wrong-password' })
                 .end((_err, res) => {
                     expect(res).to.have.status(401);
                     expect(res.body).to.have.property('message', 'Unauthorized');
