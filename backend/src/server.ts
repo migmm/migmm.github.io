@@ -26,7 +26,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-
 app.use(cors(corsOptions));
 
 app.use(cookieParser());
@@ -63,8 +62,6 @@ app.use('/api/webconfig', routerWebConfig);
 app.use('/api/contact', routerContact);
 
 
-
-
 // in case of using another route
 app.all('*', (_req, res) => {
     res.sendFile(path.join(buildPath, 'index.html'));
@@ -75,19 +72,4 @@ const server = app.listen(PORT, () => console.log(`Server listening on port ${PO
 server.on('error', (error) => console.log('Error starting Express server: ' + error.message));
 
 
-
-
-import dotEnvExtended from 'dotenv-extended';
-dotEnvExtended.load();
-
-let allowedOrigins: string | any[];
-
-if (process.env.ALLOWED_ORIGIN && process.env.ALLOWED_ORIGIN !== '*') {
-    allowedOrigins = [process.env.ALLOWED_ORIGIN];
-    console.log("no")
-} else {
-    allowedOrigins = ['*'];
-    console.log("si")
-}
-
-export default allowedOrigins;
+export default { server, app } ;

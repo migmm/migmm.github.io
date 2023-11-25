@@ -91,9 +91,14 @@ const logout = async (req:Request, res:Response) => {
     res.json({ message: 'Cookie cleared' })
 }
 
+const test = async (_req:Request, res:Response) => {
+    return res.status(401).json({ message: 'Test message' })
+}
+
 
 export default {
     getAuth,
     postAuth,
-    logout
+    logout,
+    test
 };
