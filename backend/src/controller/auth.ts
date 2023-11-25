@@ -80,7 +80,7 @@ const logout = async (req:Request, res:Response) => {
 
     console.log('cookies',cookies)
 
-    if (!cookies?.jwt) return res.sendStatus(204) 
+    if (!cookies?.jwt) return res.sendStatus(204).json({ error: 'Cookie not found' })
 
     res.clearCookie('jwt', { 
         httpOnly: true, 
@@ -88,7 +88,7 @@ const logout = async (req:Request, res:Response) => {
         secure: true 
     })
 
-    res.json({ message: 'Cookie cleared' })
+    return res.sendStatus(200).json({ message: 'Cookie cleared' })
 }
 
 

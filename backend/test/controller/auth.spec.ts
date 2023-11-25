@@ -30,7 +30,7 @@ describe('Authentication Controller Test', () => {
                         console.log(authToken)
                     } else {
                         expect(res).to.have.status(429);
-                        expect(res.body).to.have.property('message', 'Too many login attemps, wait 10 min and tray again.');
+                        expect(res.body).to.have.property('error', 'Too many login attemps, wait 10 min and tray again.');
                     }
                     done();
                 });
