@@ -24,7 +24,6 @@ describe('Authentication Controller Test', () => {
                     expect(res.body).to.have.property('message', 'Test message');
                     done();
                 });
-            
         });
     });
 
@@ -40,14 +39,12 @@ describe('Authentication Controller Test', () => {
                     console.log(authToken)
                     done();
                 });
-                
-            
         });
 
         it('Should not authenticate user and return error message', (done) => {
             chai.request(serverObj.server)
                 .post('/api/auth')
-                .send({ username: testVariables.USERNAME_ADMIN, password: 'wrong-password' })
+                .send({ username: testVariables.USERNAME_ADMIN, password: 'testtesttest' })
                 .end((_err, res) => {
                     expect(res).to.have.status(401);
                     expect(res.body).to.have.property('message', 'Unauthorized');
