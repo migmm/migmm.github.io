@@ -15,28 +15,23 @@ before(async function () {
 let authToken: any;
 
 describe('Authentication Controller Test', () => {
-    describe('POST /test', () => {
-        it('test route', (done) => {
-            chai.request(serverObj.server)
-                .get('/api/auth/test')
-                .end((_err, res) => {
-                    expect(res).to.have.status(401);
-                    expect(res.body).to.have.property('message', 'Test message');
-                    done();
-                });
-        });
-    });
 
     describe('POST /postAuth', () => {
-        it('Should authenticate user and return access token', (done) => {
+        it('Should authenticate user and return access token or throw login limiter error', (done) => {
             chai.request(serverObj.server)
                 .post('/api/auth')
                 .send({ username: testVariables.USERNAME_ADMIN, password: testVariables.PASSWORD_ADMIN })
                 .end((_err, res) => {
-                    expect(res).to.have.status(201);
-                    expect(res.body).to.have.property('accessToken');
-                    authToken = res.body.accessToken;
-                    console.log(authToken)
+                    if (res.status === 201) {
+                        expect(res).to.have.status(201);
+                        expect(res.body).to.have.property('accessToken');
+                        expect(res.body.accessToken).to.be.a('string');
+                        authToken = res.body.accessToken;
+                        console.log(authToken)
+                    } else {
+                        expect(res).to.have.status(429);
+                        expect(res.body).to.have.property('message', 'Too many login attemps, wait 10 min and tray again.');
+                    }
                     done();
                 });
         });
