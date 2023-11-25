@@ -6,7 +6,7 @@ const createRequestLimiter = (maxAttempts: number, windowMinutes: number, messag
     return rateLimit({
         windowMs,
         max: maxAttempts,
-        message,
+        message: { error: message },
         statusCode: 429,
         headers: true,
     });
