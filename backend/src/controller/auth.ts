@@ -6,6 +6,8 @@ import dotEnvExtended from 'dotenv-extended';
 
 dotEnvExtended.load();
 
+const cookieName: string = process.env.COOKIE_NAME || 'jwt';
+
 interface User {
     id: string;
     username: string;
@@ -40,6 +42,7 @@ const postAuth = async (req: Request, res: Response) => {
     const { username, password } = req.body;
     console.log(username, password);
 
+
     try {
         if (!username || !password) {
             return res.status(400).json({ message: 'All fields are required' });
@@ -61,13 +64,13 @@ const postAuth = async (req: Request, res: Response) => {
         const accessToken = jwt.sign({ id: foundUser.id }, secretKey, { expiresIn: '1d' });
 
         const cookieOptions: any = {
-            //httpOnly: true,
-            sameSite: 'none',
-            //secure: true,
-            maxAge: 1000 * 365 * 24 * 60 * 60 * 1000,
+            httpOnly: process.env.HTTP_ONLY,
+            sameSite: process.env.SAME_SITE,
+            secure: process.env.SECURE,
+            maxAge: process.env.MAX_AGE,
         };
 
-        return res.cookie('jwt', accessToken, cookieOptions).status(201).json({ accessToken });
+        return res.cookie(cookieName, accessToken, cookieOptions).status(201).json({ accessToken });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
@@ -85,11 +88,11 @@ const logout = async (req: Request, res: Response) => {
             return res.status(204).json({ error: 'Cookie not found' });
         }
 
-        res.clearCookie('jwt', {
-            httpOnly: true,
-            sameSite: 'none',
-            secure: true,
-        });
+        res.clearCookie(cookieName, {
+            httpOnly: process.env.HTTP_ONLY,
+            sameSite: process.env.SAME_SITE,
+            secure: process.env.SECURE,
+        } as any);
 
         return res.status(200).json({ message: 'Cookie cleared' });
     } catch (error) {

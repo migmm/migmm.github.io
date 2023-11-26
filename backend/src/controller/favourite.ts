@@ -2,11 +2,11 @@ import { Request, Response } from 'express';
 import api from '../api/favorites';
 /* import argon2 from 'argon2'; */
 import jwt from 'jsonwebtoken';
-/* 
 import dotEnvExtended from 'dotenv-extended';
 
 dotEnvExtended.load();
- */
+
+const cookieName: string = process.env.COOKIE_NAME || 'jwt';
 
 
 interface UserPayload {
@@ -19,7 +19,7 @@ interface UserPayload {
 const addFavorite = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const token = req.cookies.jwt;
+        const token = req.cookies.cookieName;
 
         // Decode token
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as UserPayload;
@@ -57,7 +57,7 @@ const addFavorite = async (req: Request, res: Response) => {
 const removeFavorite = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const token = req.cookies.jwt;
+        const token = req.cookies.cookieName;
 
         // Decode token
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as UserPayload;

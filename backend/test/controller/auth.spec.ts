@@ -1,11 +1,16 @@
 import { describe, it } from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import dotEnvExtended from 'dotenv-extended';
 import serverObj from '../../src/server';
 import testVariables from '../testVariables';
 
+dotEnvExtended.load();
+
 chai.use(chaiHttp);
 const expect = chai.expect;
+
+const cookieName: string = process.env.COOKIE_NAME || 'jwt';
 
 before(async function () {
     serverObj.server;
@@ -52,7 +57,7 @@ describe('Authentication Controller Test', () => {
                 .post('/api/auth/logout')
                 .end((_err, res) => {
                     expect(res).to.have.status(204);
-                    expect(res).to.not.have.cookie('jwt');
+                    expect(res).to.not.have.cookie(cookieName);
                     done();
                 });
         });
@@ -63,7 +68,7 @@ describe('Authentication Controller Test', () => {
 
             chai.request(serverObj.server)
                 .get('/api/auth/test')
-                .set('Cookie', `jwt=${testVariables.JWT_TOKEN}`)
+                .set('Cookie', `${cookieName}=${testVariables.JWT_TOKEN}`)
                 .end((_err, res) => {
                     expect(res).to.have.status(200);
                     done();

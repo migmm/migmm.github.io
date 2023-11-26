@@ -4,6 +4,13 @@ import jwt from 'jsonwebtoken';
 import api from '../api/users';
 import rolesPermissions from '../config/userRoles';
 
+import dotEnvExtended from 'dotenv-extended';
+
+dotEnvExtended.load();
+
+const cookieName: string = process.env.COOKIE_NAME || 'jwt';
+
+
 interface UserPayload {
     id: string;
     email: string;
@@ -13,7 +20,7 @@ interface UserPayload {
 const authRole = (roles: string[]) => async (req: Request & { currentUser: UserPayload }, res: Response, next: NextFunction) => {
     try {
         // Get JWT token from HTTPS Cookies and ID from URL
-        const token = req.cookies.jwt;
+        const token = req.cookies.cookieName;
         const id: any = req.params.id;
         console.log('roles', roles)
 
