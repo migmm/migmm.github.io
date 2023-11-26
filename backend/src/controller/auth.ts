@@ -77,6 +77,7 @@ const logout = async (req: Request, res: Response) => {
     console.log(req.cookies);
 
     console.log('cookies', cookies);
+    
     try {
         if (!cookies?.jwt) {
             return res.status(204).json({ error: 'Cookie not found' });

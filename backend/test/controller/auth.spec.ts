@@ -7,7 +7,6 @@ import testVariables from '../params';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-
 before(async function () {
     serverObj.server;
 });
@@ -15,8 +14,7 @@ before(async function () {
 let authToken: any;
 
 describe('Authentication Controller Test', () => {
-
-    describe('POST /postAuth', () => {
+    describe('POST /login', () => {
         it('Should authenticate user and return access token or throw login limiter error', (done) => {
             chai.request(serverObj.server)
                 .post('/api/auth')
@@ -27,7 +25,7 @@ describe('Authentication Controller Test', () => {
                         expect(res.body).to.have.property('accessToken');
                         expect(res.body.accessToken).to.be.a('string');
                         authToken = res.body.accessToken;
-                        console.log(authToken)
+                        console.log(authToken);
                     } else {
                         expect(res).to.have.status(429);
                         expect(res.body).to.have.property('error', 'Too many login attemps, wait 10 min and tray again.');
@@ -43,6 +41,18 @@ describe('Authentication Controller Test', () => {
                 .end((_err, res) => {
                     expect(res).to.have.status(401);
                     expect(res.body).to.have.property('message', 'Unauthorized');
+                    done();
+                });
+        });
+    });
+
+    describe('POST /logout', () => {
+        it('Should clear the jwt cookie on logout', (done) => {
+            chai.request(serverObj.server)
+                .post('/api/auth/logout')
+                .end((_err, res) => {
+                    expect(res).to.have.status(204);
+                    expect(res).to.not.have.cookie('jwt');
                     done();
                 });
         });
