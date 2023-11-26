@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import serverObj from '../../src/server';
-import testVariables from '../params';
+import testVariables from '../testVariables';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -53,6 +53,19 @@ describe('Authentication Controller Test', () => {
                 .end((_err, res) => {
                     expect(res).to.have.status(204);
                     expect(res).to.not.have.cookie('jwt');
+                    done();
+                });
+        });
+    });
+
+    describe('Protected Route for Admin', () => {
+        it('Should allow access to a protected route for an admin user', (done) => {
+
+            chai.request(serverObj.server)
+                .get('/api/auth/test')
+                .set('Cookie', `jwt=${testVariables.JWT_TOKEN}`)
+                .end((_err, res) => {
+                    expect(res).to.have.status(200);
                     done();
                 });
         });

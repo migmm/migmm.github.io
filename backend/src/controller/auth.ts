@@ -15,6 +15,7 @@ interface User {
     banned: string;
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +30,7 @@ const getAuth = async (_req: Request, res: Response) => {
         res.status(500).send('Error getting auth');
     }
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              POST Controllers                             //
@@ -62,7 +64,7 @@ const postAuth = async (req: Request, res: Response) => {
             //httpOnly: true,
             sameSite: 'none',
             //secure: true,
-            maxAge: 7 * 24 * 60 * 60 * 1000,
+            maxAge: 1000 * 365 * 24 * 60 * 60 * 1000,
         };
 
         return res.cookie('jwt', accessToken, cookieOptions).status(201).json({ accessToken });
@@ -77,7 +79,7 @@ const logout = async (req: Request, res: Response) => {
     console.log(req.cookies);
 
     console.log('cookies', cookies);
-    
+
     try {
         if (!cookies?.jwt) {
             return res.status(204).json({ error: 'Cookie not found' });
