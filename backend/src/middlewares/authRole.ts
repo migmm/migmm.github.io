@@ -20,7 +20,7 @@ interface UserPayload {
 const authRole = (roles: string[]) => async (req: Request & { currentUser: UserPayload }, res: Response, next: NextFunction) => {
     try {
         // Get JWT token from HTTPS Cookies and ID from URL
-        const token = req.cookies.cookieName;
+        const token = req.cookies?.[cookieName];
         const id: any = req.params.id;
         console.log('roles', roles)
 

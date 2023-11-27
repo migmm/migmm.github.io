@@ -8,7 +8,7 @@ import dotEnvExtended from 'dotenv-extended';
 dotEnvExtended.load();
 
 const EMAIL_TO_SEND_MSG = process.env.EMAIL_SEND_MESSAGE || '';
-const WEBCHECK_INTERVAL = process.env.WEBCHECK_INTERVAL || '12';
+const WEBCHECK_INTERVAL = parseInt(process.env.WEBCHECK_INTERVAL || '720');
 
 let urlsArray: string[] = [];
 let urlsArrayWithError: string[] = [];
@@ -110,7 +110,7 @@ const generateErrorHtml = (errorUrls:any) => {
 
 */
 
-const convertToCronExpression = (value:any) => {
+const convertToCronExpression = (value: any) => {
     if (value < 1) {
         return `*/1 * * * *`;
     } else if (value < 60) {
@@ -121,7 +121,7 @@ const convertToCronExpression = (value:any) => {
         return `${minutes} ${hours} * * *`;
     } else if (value < 43200) {
         const days = Math.floor(value / 1440);
-        return `0 0 */${days} * *`;
+        return `0 */${days} * * *`;
     } else if (value < 525600) {
         const months = Math.floor(value / 43200);
         return `0 0 1 */${months} *`;
@@ -129,7 +129,7 @@ const convertToCronExpression = (value:any) => {
         const years = Math.floor(value / 525600);
         return `0 0 1 1 */${years}`;
     }
-}
+};
 
 
 export default checkWebsOnline;

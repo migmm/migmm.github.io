@@ -19,7 +19,7 @@ interface UserPayload {
 const addFavorite = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const token = req.cookies.cookieName;
+        const token = req.cookies?.[cookieName];
 
         // Decode token
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as UserPayload;

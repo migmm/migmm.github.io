@@ -67,7 +67,7 @@ const postAuth = async (req: Request, res: Response) => {
             httpOnly: process.env.HTTP_ONLY,
             sameSite: process.env.SAME_SITE,
             secure: process.env.SECURE,
-            maxAge: process.env.MAX_AGE,
+            maxAge: parseInt(process.env.MAX_AGE || '0', 10),
         };
 
         return res.cookie(cookieName, accessToken, cookieOptions).status(201).json({ accessToken });
