@@ -43,7 +43,7 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const token = Cookies.get('nombreDeTuCookie');
+        const token = Cookies.get(process.env.LOGIN_COOKIE || '');
 
         if (token) {
             const decodedToken: any = jwtDecode(token);
