@@ -3,7 +3,7 @@ export const validations = {
         required: true,
         errorMessage: 'Username is required.',
         validate: (value: any) => {
-            if (value.length < 6) {
+            if (value.length < 2) {
                 return 'Username must be at least 6 characters long.';
             }
             if (!/^[a-zA-Z0-9]+$/.test(value)) {
@@ -16,11 +16,8 @@ export const validations = {
         required: true,
         errorMessage: 'Password is required.',
         validate: (value: any) => {
-            if (value.length < 8) {
+            if (value.length < 2) {
                 return 'Password must be between 8 and 16 characters long.';
-            }
-            if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?':{}|<>]).{8,16}$/.test(value)) {
-                return 'Password must contain at least one digit, one uppercase letter, one lowercase letter, and two special characters.';
             }
             return true;
         },

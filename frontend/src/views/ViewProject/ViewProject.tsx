@@ -10,13 +10,13 @@ import Balloon from '../../components/Balloon/Balloon';
 
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
-import {ProjectData, HeroStylesProps} from './interface';
+import { ProjectData, HeroStylesProps, ViewProjectProps } from './interface';
 
 
-const ViewProject = () => {
+const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
     const { projectId } = useParams<{ projectId: string }>();
     const [projectData, setProjectData] = useState<ProjectData | null>(null);
-
+    console.log("user", user)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -34,12 +34,11 @@ const ViewProject = () => {
     }, [projectId]);
 
     const BalloonContainer = ({ tags }: any) => {
-
         const words: string[] = tags.split(',').map((tag: string) => tag.trim());
 
         const balloons = words.map((word: any, index: any) => (
             <Link to={`/search/${word}`}>
-                <Balloon key={index} className='balloon' innerText={word}/>
+                <Balloon key={index} className="balloon" innerText={word} />
             </Link>
         ));
 
@@ -62,11 +61,11 @@ const ViewProject = () => {
                 {projectData ? (
                     <>
                         <ActualRoute>
-                            <Link to='/'>
+                            <Link to="/">
                                 {' '}
                                 <FontAwesomeIcon icon={faHome} />
                             </Link>{' '}
-                            / <Link to='/projects'>Projects</Link> / {projectData.projectName}
+                            / <Link to="/projects">Projects</Link> / {projectData.projectName}
                         </ActualRoute>
                         <HeroStyles bg={projectData.coverImage}>
                             <HeroLeft>
@@ -74,11 +73,11 @@ const ViewProject = () => {
                                 <MyComponent htmlContent={projectData.headerTitle} />{' '}
                             </HeroLeft>
                             <HeroRight>
-                                <img src={projectData.coverImage} alt='Logo' />
+                                <img src={projectData.coverImage} alt="Logo" />
                             </HeroRight>
                         </HeroStyles>
                         <Content>
-                            <div className='information'>
+                            <div className="information">
                                 <H1 innerText={projectData.projectName} />
                                 <Paragraph innerText={`Category: ${projectData.category}`} />
                                 <Paragraph innerText={`Project Status: ${projectData.projectStatus}`} />
@@ -93,9 +92,11 @@ const ViewProject = () => {
                             </div>
                             <FormattedView content={projectData.editorHtml} />
                         </Content>
-                        <Link to={`/editproject/${projectData.id}`}>
-                            <button>Edit</button>
-                        </Link>
+                        {user && user.roles.includes('admin') && (
+                            <Link to={`/editproject/${projectData.id}`}>
+                                <button>Edit</button>
+                            </Link>
+                        )}
                     </>
                 ) : (
                     <div>Loading...</div>

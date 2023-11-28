@@ -21,6 +21,7 @@ import './index.css';
 import UserForm from './views/UserForm/UserForm';
 import axios from 'axios';
 import { apiURL } from './config/urls';
+import { LOGIN_COOKIE } from './config/cookieName';
 import FBChat from './components/FBChat/FBChat';
 
 
@@ -43,8 +44,9 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const token = Cookies.get(process.env.LOGIN_COOKIE || '');
-
+       
+        const token = Cookies.get(LOGIN_COOKIE);
+        console.log("token",token)
         if (token) {
             const decodedToken: any = jwtDecode(token);
             setUser(decodedToken);
@@ -84,7 +86,7 @@ const App = () => {
                     <Route path='/editcertificate/:certificateId' element={<FormCertificate />} />
                     <Route path='/addproject' element={<FormProject />} />
                     <Route path='/editproject/:projectId' element={<FormProject />} />
-                    <Route path='/viewproject/:projectId' element={<ViewProject />} />
+                    <Route path='/viewproject/:projectId'  element={<ViewProject user={user} />} />
                     <Route path='/newuser' element={<UserForm />} />
                     <Route path='*' element={<Navigate to='/' replace />} />
                 </Routes>

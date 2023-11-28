@@ -15,3 +15,7 @@ export interface ProjectData {
 export interface HeroStylesProps {
     bg: string;
 }
+
+export interface ViewProjectProps {
+    user: any;
+}

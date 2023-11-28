@@ -23,7 +23,6 @@ const LoginScreen: React.FC = () => {
 
     const [buttonMessage, setButtonMessage] = useState(false);
     const [error, setError] = useState('');
-    const formData = new FormData();
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
     const { errors, validateForm } = useValidation(validations);
 
@@ -34,25 +33,19 @@ const LoginScreen: React.FC = () => {
         setError('');
         setButtonMessage(true);
 
-        for (const key in fields) {
-            if (fields.hasOwnProperty(key)) {
-                if (fields.hasOwnProperty(key) && key !== 'showInLandPage' && key !== 'coverImage') {
-                    formData.append(key, fields[key]);
-                }
-            }
+        const data = {
+            ...fields,
         }
 
-        console.log('-- Start Form data --');
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
-        console.log('-- End Form data --');
 
+ 
+
+        console.log(validateForm(fields))
         if (validateForm(fields)) {
             try {
                 const response = await axios.post(
-                    `${apiURL}contact`, 
-                    formData, 
+                    `${apiURL}auth`, 
+                    data, 
                     {
                         headers: {
                         'Content-Type': 'application/json',
@@ -67,9 +60,11 @@ const LoginScreen: React.FC = () => {
                 if (error.response) {
                         const { status } = error.response;
                     if (status === 401) {
+                        console.log(error)
                             setError(validations.commonError.userOrPassIncorrect);
                     } 
                 } else {
+                    console.log(error)
                     setError(validations.commonError.errorMessage);
                     console.error(error);
                 }
@@ -87,13 +82,13 @@ const LoginScreen: React.FC = () => {
                     <form onSubmit={handleSubmit}>
                         <InputGroup>
                             <Label
-                                innerText='User'
-                                htmlFor='user'
+                                innerText='Username'
+                                htmlFor='username'
                             />
                             <Input
                                 type='text'
-                                id='user'
-                                name='user'
+                                id='username'
+                                name='username'
                                 onChange={(e : any) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError
