@@ -6,7 +6,12 @@ import dotEnvExtended from 'dotenv-extended';
 
 dotEnvExtended.load();
 
+
 const cookieName: string = process.env.COOKIE_NAME || 'jwt';
+const HTTP_ONLY = process.env.HTTP_ONLY;
+const SAME_SITE = process.env.SAME_SITE;
+const SECURE = process.env.SECURE;
+const MAX_AGE = parseDurationToMilliseconds(process.env.MAX_AGE || '');
 
 interface User {
     id: string;
@@ -33,15 +38,12 @@ const getAuth = async (_req: Request, res: Response) => {
     }
 };
 
-
 ///////////////////////////////////////////////////////////////////////////////
 //                              POST Controllers                             //
 ///////////////////////////////////////////////////////////////////////////////
 
 const postAuth = async (req: Request, res: Response) => {
     const { username, password } = req.body;
-    console.log(username, password);
-
 
     try {
         if (!username || !password) {
@@ -63,11 +65,12 @@ const postAuth = async (req: Request, res: Response) => {
 
         const accessToken = jwt.sign({ id: foundUser.id }, secretKey, { expiresIn: '1d' });
 
+        console.log(process.env.HTTP_ONLY);
         const cookieOptions: any = {
-            httpOnly: process.env.HTTP_ONLY,
-            sameSite: process.env.SAME_SITE,
-            secure: process.env.SECURE,
-            maxAge: parseInt(process.env.MAX_AGE || '0', 10),
+            httpOnly: HTTP_ONLY,
+            sameSite: SAME_SITE,
+            secure: SECURE,
+            maxAge: MAX_AGE,
         };
 
         return res.cookie(cookieName, accessToken, cookieOptions).status(201).json({ accessToken });
@@ -89,9 +92,9 @@ const logout = async (req: Request, res: Response) => {
         }
 
         res.clearCookie(cookieName, {
-            httpOnly: process.env.HTTP_ONLY,
-            sameSite: process.env.SAME_SITE,
-            secure: process.env.SECURE,
+            httpOnly: HTTP_ONLY,
+            sameSite: SAME_SITE,
+            secure: SECURE,
         } as any);
 
         return res.status(200).json({ message: 'Cookie cleared' });
@@ -100,6 +103,29 @@ const logout = async (req: Request, res: Response) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+function parseDurationToMilliseconds(durationString: string) {
+    const match = durationString.match(/^(\d+)([smhd])$/);
+
+    if (match) {
+        const value = parseInt(match[1], 10);
+        const unit = match[2];
+
+        switch (unit) {
+            case 's':
+                return value * 1000;
+            case 'm':
+                return value * 60 * 1000;
+            case 'h':
+                return value * 60 * 60 * 1000;
+            case 'd':
+                return value * 24 * 60 * 60 * 1000;
+            default:
+                return 0;
+        }
+    }
+    return 0;
+}
 
 
 export default {
