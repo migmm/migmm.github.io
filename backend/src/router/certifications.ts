@@ -1,13 +1,13 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import certificationsController from '../controller/certifications';
 import validationMiddleware from '../middlewares/validationMiddleware';
 import certificationSchema from '../model/validators/certification';
 import upload from '../middlewares/multer';
 import authRole from '../middlewares/authRole';
+import dotEnvExtended from 'dotenv-extended';
 
+dotEnvExtended.load();
 
-dotenv.config();
 
 const STORAGE = process.env.STORAGE_LOCATION || '';
 const routerCertifications = express.Router();
