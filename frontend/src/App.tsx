@@ -21,6 +21,8 @@ import './index.css';
 import UserForm from './views/UserForm/UserForm';
 import axios from 'axios';
 import { apiURL } from './config/urls';
+import FBChat from './components/FBChat/FBChat';
+
 
 interface DataItem {
     name: string;
@@ -67,6 +69,7 @@ const App = () => {
     return (
         <React.StrictMode>
             <BrowserRouter>
+                <FBChat pageId="184581498068766" />
                 {isLoading ? '' : <Header user={user} homeData={homeData} />}
                 <Routes>
                     <Route path='/' element={isLoading ? '' : <Home homeData={homeData} />} />
