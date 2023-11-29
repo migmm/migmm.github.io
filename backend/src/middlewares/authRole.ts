@@ -26,7 +26,7 @@ const authRole = (roles: string[]) => async (req: Request & { currentUser: UserP
 
         // Ckeck if you have a token, if not, you are unauthorized
         if (!token) {
-            return res.status(401).json({ message: 'Unauthorized.' });
+            return res.status(401).json({ message: 'Unasssssssssssssgorized.' });
         }
 
         // Decode token

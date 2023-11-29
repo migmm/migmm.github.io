@@ -9,7 +9,8 @@ const requestLimiter = createRequestLimiter(3, 10, 'Too many login attemps, wait
 
 
 routerAuth.get('/:user',  authRole(['admin']) as any, authController.getAuth);
-routerAuth.post('/', requestLimiter as any , authController.postAuth);
+routerAuth.post('/refresh', authController.refreshToken);
+routerAuth.post('/', requestLimiter as any , authController.login);
 routerAuth.post('/logout', authController.logout);
 
 

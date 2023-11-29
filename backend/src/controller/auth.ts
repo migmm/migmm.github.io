@@ -6,21 +6,23 @@ import dotEnvExtended from 'dotenv-extended';
 
 dotEnvExtended.load();
 
-
-const cookieName: string = process.env.COOKIE_NAME || 'jwt';
-const HTTP_ONLY = process.env.HTTP_ONLY;
-const SAME_SITE = process.env.SAME_SITE;
-const SECURE = process.env.SECURE;
+const ACCESS_TOKEN_SECRET: string = process.env.ACCESS_TOKEN_SECRET || '';
+const REFRESH_TOKEN_SECRET: string = process.env.REFRESH_TOKEN_SECRET || '';
+const ACCESS_TOKEN_EXPIRATION: string = process.env.ACCESS_TOKEN_EXPIRATION || '';
+const REFRESH_TOKEN_EXPIRATION: string = process.env.REFRESH_TOKEN_EXPIRATION || '';
+const COOKIE_NAME: string = process.env.COOKIE_NAME || '';
+const HTTP_ONLY: string = process.env.HTTP_ONLY || '';
+const SAME_SITE: string = process.env.SAME_SITE || '';
+const SECURE: string = process.env.SECURE || '';
 const MAX_AGE = parseDurationToMilliseconds(process.env.MAX_AGE || '');
 
-interface User {
-    id: string;
-    username: string;
-    name: string;
-    password: string;
-    role: string;
-    banned: string;
-}
+
+const cookieOptions: object = {
+    httpOnly: HTTP_ONLY,
+    sameSite: SAME_SITE,
+    secure: SECURE,
+    maxAge: MAX_AGE,
+};
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +44,7 @@ const getAuth = async (_req: Request, res: Response) => {
 //                              POST Controllers                             //
 ///////////////////////////////////////////////////////////////////////////////
 
-const postAuth = async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
     try {
@@ -50,8 +52,7 @@ const postAuth = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
-        const foundUser = (await api.getAuth('username', username)) as User;
-        console.log('user auth', foundUser);
+        const foundUser = (await api.getAuth('username', username))
 
         if (!foundUser) {
             return res.status(401).json({ message: 'Unauthorized' });
@@ -61,41 +62,81 @@ const postAuth = async (req: Request, res: Response) => {
 
         if (!match) return res.status(401).json({ message: 'Unauthorized' });
 
-        const secretKey: string = process.env.ACCESS_TOKEN_SECRET as string;
+        const accessToken = jwt.sign(
+            {
+                id: foundUser.id
+            },
+            ACCESS_TOKEN_SECRET,
+            {
+            expiresIn: ACCESS_TOKEN_EXPIRATION,
+        });
 
-        const accessToken = jwt.sign({ id: foundUser.id }, secretKey, { expiresIn: '1d' });
+        const refreshToken = jwt.sign(
+            {
+                id: foundUser.id,
+            },
+            REFRESH_TOKEN_SECRET,
+            {
+                expiresIn: REFRESH_TOKEN_EXPIRATION,
+            }
+        );
 
-        console.log(process.env.HTTP_ONLY);
-        const cookieOptions: any = {
-            httpOnly: HTTP_ONLY,
-            sameSite: SAME_SITE,
-            secure: SECURE,
-            maxAge: MAX_AGE,
-        };
+        res.cookie(COOKIE_NAME, accessToken, cookieOptions);
 
-        return res.cookie(cookieName, accessToken, cookieOptions).status(201).json({ accessToken });
+        return res.cookie(COOKIE_NAME, refreshToken, cookieOptions)
+                    .status(201).json({ accessToken });
+
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
+const refreshToken = (req: Request, res: Response) => {
+    const token = req.cookies?.[COOKIE_NAME];
+
+    try {
+        if (!token) return res.status(401).json({ message: 'Unauthorized' });
+
+        jwt.verify(token, REFRESH_TOKEN_SECRET, async (err: any, decoded: any) => {
+            if (err) return res.status(403).json({ message: 'Forbidden' });
+
+            const foundUser = await api.getAuth('username', decoded.username);
+
+            if (!foundUser) {
+                return res.status(401).json({ message: 'Unauthorized' });
+            }
+
+            const newAccessToken = jwt.sign(
+                {
+                    id: foundUser.id,
+                },
+                REFRESH_TOKEN_SECRET,
+                { expiresIn: REFRESH_TOKEN_EXPIRATION }
+            );
+            
+            res.cookie(COOKIE_NAME, newAccessToken, cookieOptions)
+            .status(201).json({ refreshToken: newAccessToken });
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error: Error refreshing token.' });
+    }
+};
+
 const logout = async (req: Request, res: Response) => {
     const cookies = await req.cookies;
-    console.log(req.cookies);
-
-    console.log('cookies', cookies);
 
     try {
         if (!cookies?.jwt) {
             return res.status(204).json({ error: 'Cookie not found' });
         }
 
-        res.clearCookie(cookieName, {
+        res.clearCookie(COOKIE_NAME, {
             httpOnly: HTTP_ONLY,
             sameSite: SAME_SITE,
             secure: SECURE,
-        } as any);
+        } as object);
 
         return res.status(200).json({ message: 'Cookie cleared' });
     } catch (error) {
@@ -127,9 +168,9 @@ function parseDurationToMilliseconds(durationString: string) {
     return 0;
 }
 
-
 export default {
     getAuth,
-    postAuth,
+    login,
+    refreshToken,
     logout,
 };
