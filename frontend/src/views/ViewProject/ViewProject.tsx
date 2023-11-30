@@ -18,7 +18,6 @@ const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
     const [projectData, setProjectData] = useState<ProjectData | null>(null);
     const { role } = useAppUser();
 
-    console.log('user', user);
     useEffect(() => {
         const fetchData = async () => {
             try {

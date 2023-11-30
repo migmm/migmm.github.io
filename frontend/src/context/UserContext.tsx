@@ -1,7 +1,9 @@
+// useAppUser.js
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface AppUserContextProps {
-    role: any;
+    role: string | null;
     updateUser: (newUser: any) => void;
 }
 
@@ -12,10 +14,10 @@ interface AppUserProviderProps {
 }
 
 export const AppUserProvider: React.FC<AppUserProviderProps> = ({ children }) => {
-    const [role, setUser] = useState<any>(null);
+    const [role, setRole] = useState<string | null>(null);
 
     const updateUser = (newUser: any) => {
-        setUser(newUser);
+        setRole(newUser?.role || null);
     };
 
     return <AppUserContext.Provider value={{ role, updateUser }}>{children}</AppUserContext.Provider>;

@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAppUser } from '../../../context/UserContext';
 
 const Navbar = (props: any, { user }: any) => {
+    const { role } = useAppUser();
+    
     return (
         <NavContainer>
             <nav>
@@ -16,7 +19,7 @@ const Navbar = (props: any, { user }: any) => {
                     <li>
                         <Link to='/certificates' onClick={props.closeMenu}>Certificates</Link>
                     </li>
-                    {user && user.roles.includes('admin') && (
+                    {role === 'admin' && (
                     <li>
                         <Link to='/curriculum' onClick={props.closeMenu}>Curriculum</Link>
                     </li>

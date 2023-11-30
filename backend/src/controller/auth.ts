@@ -64,7 +64,8 @@ const login = async (req: Request, res: Response) => {
 
         const accessToken = jwt.sign(
             {
-                id: foundUser.id
+                id: foundUser.id,
+                role: foundUser.role
             },
             ACCESS_TOKEN_SECRET,
             {
@@ -74,6 +75,7 @@ const login = async (req: Request, res: Response) => {
         const refreshToken = jwt.sign(
             {
                 id: foundUser.id,
+                role: foundUser.role
             },
             REFRESH_TOKEN_SECRET,
             {
@@ -110,6 +112,7 @@ const refreshToken = (req: Request, res: Response) => {
             const newAccessToken = jwt.sign(
                 {
                     id: foundUser.id,
+                    role: foundUser.role
                 },
                 REFRESH_TOKEN_SECRET,
                 { expiresIn: REFRESH_TOKEN_EXPIRATION }
