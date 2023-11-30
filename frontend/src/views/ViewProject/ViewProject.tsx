@@ -11,12 +11,14 @@ import Balloon from '../../components/Balloon/Balloon';
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
 import { ProjectData, HeroStylesProps, ViewProjectProps } from './interface';
-
+import { useAppUser } from '../../context/UserContext';
 
 const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
     const { projectId } = useParams<{ projectId: string }>();
     const [projectData, setProjectData] = useState<ProjectData | null>(null);
-    console.log("user", user)
+    const { role } = useAppUser();
+
+    console.log('user', user);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -92,7 +94,7 @@ const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
                             </div>
                             <FormattedView content={projectData.editorHtml} />
                         </Content>
-                        {user && user.roles.includes('admin') && (
+                        {role === 'admin' && (
                             <Link to={`/editproject/${projectData.id}`}>
                                 <button>Edit</button>
                             </Link>

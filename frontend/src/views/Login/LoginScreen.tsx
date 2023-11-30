@@ -13,10 +13,12 @@ import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 import useFormUtils from '../../hooks/useFormUtils';
+import { useAppUser } from '../../context/UserContext'; 
 
 import { apiURL } from '../../config/urls';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
+import jwtDecode from 'jwt-decode';
 
 
 const LoginScreen: React.FC = () => {
@@ -25,6 +27,7 @@ const LoginScreen: React.FC = () => {
     const [error, setError] = useState('');
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
     const { errors, validateForm } = useValidation(validations);
+    const { updateUser } = useAppUser();
 
     const navigate = useNavigate();
 
@@ -36,10 +39,7 @@ const LoginScreen: React.FC = () => {
         const data = {
             ...fields,
         }
-
-
- 
-
+        
         console.log(validateForm(fields))
         if (validateForm(fields)) {
             try {
@@ -54,6 +54,11 @@ const LoginScreen: React.FC = () => {
                 );
 
                 if (response.status === 201) {
+                    const { accessToken } = response.data;
+                    const decodedToken = jwtDecode(accessToken);
+                    console.log(decodedToken)
+                    updateUser(decodedToken);
+
                     navigate('/'); 
                 }
             } catch (error: any) {
@@ -120,7 +125,7 @@ const LoginScreen: React.FC = () => {
                             <Button
                                 type='submit'
                                 disabled={buttonMessage}
-                                innerText={buttonMessage ? 'Wait..' : 'Add'}
+                                innerText={buttonMessage ? 'Wait..' : 'Login'}
                             />
 
                             <Button
