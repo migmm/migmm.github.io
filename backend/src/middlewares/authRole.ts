@@ -8,7 +8,7 @@ import dotEnvExtended from 'dotenv-extended';
 
 dotEnvExtended.load();
 
-const cookieName: string = process.env.COOKIE_NAME || 'jwt';
+const COOKIE_NAME: string = process.env.COOKIE_NAME || 'jwt';
 
 
 interface UserPayload {
@@ -20,17 +20,17 @@ interface UserPayload {
 const authRole = (roles: string[]) => async (req: Request & { currentUser: UserPayload }, res: Response, next: NextFunction) => {
     try {
         // Get JWT token from HTTPS Cookies and ID from URL
-        const token = req.cookies?.[cookieName];
+        const token = req.cookies?.[COOKIE_NAME];
         const id: any = req.params.id;
         console.log('roles', roles)
 
         // Ckeck if you have a token, if not, you are unauthorized
         if (!token) {
-            return res.status(401).json({ message: 'Unasssssssssssssgorized.' });
+            return res.status(401).json({ message: 'Unauthorized.' });
         }
 
         // Decode token
-        const payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as UserPayload;
+        const payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET as string) as UserPayload;
         req.currentUser = payload;
 
         //Find user in database with te ID in payload
