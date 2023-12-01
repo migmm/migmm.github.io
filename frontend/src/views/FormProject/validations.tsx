@@ -24,7 +24,7 @@ export const validations = {
         errorMessage: 'Check this to view this project in landpage.',
     },
     gitURL: {
-        required: true,
+        required: false,
         errorMessage: 'Git URL is required.',
         validate: (value: any) => {
             if (!/^(?:http|https):\/\/(?:[\w-]+\.)+[\w]+(?:\/[\w-]+)*\/?$/.test(value)) {
