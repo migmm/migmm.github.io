@@ -15,6 +15,7 @@ import LabelError from '../../Styles/Form/LabelError/LabelError';
 import H1 from '../../Styles/H1/H1';
 import Checkbox from '../../Styles/Form/CheckBox/CheckBox';
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
+import Paragraph from '../../Styles/Paragraph/Paragraph';
 
 import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
@@ -232,6 +233,7 @@ const AddProject = () => {
                                 value={projectData?.deployURL || fields.deployURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
+                            <Paragraph innerText = 'If you leave the input blank, it will not be checked.'/>
                             <LabelError innerText={errors.deployURL} />
 
                             <Label htmlFor="tags" innerText="Tags *" />
