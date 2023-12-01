@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import api from '../api/auth';
-import { comparePasswords } from '../utils/bcryptHeper';
 import jwt from 'jsonwebtoken';
 import dotEnvExtended from 'dotenv-extended';
+import { comparePasswords } from '../utils/bcryptHeper';
+import parseDurationToMilliseconds from '../utils/parseDurationToMilliseconds'
+
 
 dotEnvExtended.load();
 
@@ -148,28 +150,6 @@ const logout = async (req: Request, res: Response) => {
     }
 };
 
-function parseDurationToMilliseconds(durationString: string) {
-    const match = durationString.match(/^(\d+)([smhd])$/);
-
-    if (match) {
-        const value = parseInt(match[1], 10);
-        const unit = match[2];
-
-        switch (unit) {
-            case 's':
-                return value * 1000;
-            case 'm':
-                return value * 60 * 1000;
-            case 'h':
-                return value * 60 * 60 * 1000;
-            case 'd':
-                return value * 24 * 60 * 60 * 1000;
-            default:
-                return 0;
-        }
-    }
-    return 0;
-}
 
 export default {
     getAuth,
