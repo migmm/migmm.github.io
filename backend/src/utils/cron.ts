@@ -18,11 +18,14 @@ const maxWaitTime = 60000;
 const getProjects = async () => {
     try {
         const projects = await api.getProjects();
-        urlsArray = projects.filter((element: any) => element.deployURL).map((element: any) => element.deployURL);
+        urlsArray = projects.filter(
+            (element: any) => element.deployURL !== '' && element.deployURL != null)
+            .map((element: any) => element.deployURL);
     } catch (error) {
         console.log('Error getting projects', error);
     }
 };
+
 
 const fetchData = async (url: string, startTime: number): Promise<void> => {
     try {
@@ -58,25 +61,31 @@ const fetchData = async (url: string, startTime: number): Promise<void> => {
 };
 
 const checkWebsOnline = () => {
-    const timeToCron =convertToCronExpression(WEBCHECK_INTERVAL);
+    const timeToCron = convertToCronExpression(WEBCHECK_INTERVAL);
 
     cron.schedule(timeToCron, async () => {
         const startTime = Date.now();
-
         await getProjects();
 
-        const fetchPromises = urlsArray.map((url) => fetchData(url, startTime));
-        await Promise.all(fetchPromises);
+        for (const url of urlsArray) {
+            try {
+                await fetchData(url, startTime);
+            } catch (error) {
+                console.error(`Error fetching data from ${url}:`, error);
+                urlsArrayWithError.push(url);
+            }
+        }
 
         if (urlsArrayWithError.length > 0) {
             console.log('Number of URLs with errors:', urlsArrayWithError.length);
             const htmlContent = generateErrorHtml(urlsArrayWithError);
-            console.log(htmlContent)
-            await sendMail(EMAIL_TO_SEND_MSG, 'Web errors', htmlContent );
+            console.log(htmlContent);
+            await sendMail(EMAIL_TO_SEND_MSG, 'Web errors', htmlContent);
             urlsArrayWithError = [];
         }
     });
 };
+
 
 const generateErrorHtml = (errorUrls:any) => {
     const title = "Web errors";
