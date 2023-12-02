@@ -19,6 +19,7 @@ import { apiURL } from '../../config/urls';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 
 const LoginScreen: React.FC = () => {
@@ -56,10 +57,16 @@ const LoginScreen: React.FC = () => {
                 if (response.status === 201) {
                     const { accessToken } = response.data;
                     const decodedToken = jwtDecode(accessToken);
-                    console.log(decodedToken)
                     updateUser(decodedToken);
 
-                    navigate('/'); 
+                    const tokenString = JSON.stringify(accessToken);
+                    Cookies.set('token', tokenString, {
+                        /*  
+                        secure: true, 
+                        httpOnly: true 
+                        */ 
+                    });
+                    navigate('/');
                 }
             } catch (error: any) {
                 if (error.response) {

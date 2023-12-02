@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { AppUserProvider } from './context/UserContext';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 import Certificates from './views/ViewCertificates/ViewCertificates';
 import Contact from './views/Contact/Contact';
@@ -18,10 +20,10 @@ import ViewProject from './views/ViewProject/ViewProject';
 
 import './index.css';
 import UserForm from './views/UserForm/UserForm';
-import axios from 'axios';
+import { useAppUser } from './context/UserContext';
 import { apiURL } from './config/urls';
-
 import FBChat from './components/FBChat/FBChat';
+
 
 interface DataItem {
     name: string;
@@ -39,6 +41,7 @@ interface DataItem {
 const App = () => {
     const [homeData, setHomeData] = useState<DataItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const { updateUser } = useAppUser();
 
     useEffect(() => {
         axios
@@ -53,31 +56,43 @@ const App = () => {
             });
     }, []);
 
+    useEffect(() => {
+        const storedToken = Cookies.get('token');
+        const parsedToken = storedToken ? JSON.parse(decodeURIComponent(storedToken)) : null;
+        
+        if (storedToken) {
+            try {
+                const tokenDecoded = jwtDecode(parsedToken);
+                updateUser(tokenDecoded);
+            } catch (error) {
+                console.error('Error decoding token:', error);
+            }
+        }
+    }, [updateUser]);
+
     return (
         <React.StrictMode>
             <BrowserRouter>
-                <AppUserProvider>
-                    <FBChat pageId="184581498068766" />
-                    {isLoading ? '' : <Header user={undefined} homeData={homeData} />}
-                    <Routes>
-                        <Route path="/" element={isLoading ? '' : <Home homeData={homeData} />} />
-                        <Route path="/projects" element={<Projects />} />
-                        <Route path="/search/:tag" element={<Projects />} />
-                        <Route path="/certificates" element={<Certificates />} />
-                        <Route path="/curriculum" element={<Curriculum />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/login" element={<LoginScreen />} />
-                        <Route path="/register" element={<RegisterScreen />} />
-                        <Route path="/addcertificate" element={<FormCertificate />} />
-                        <Route path="/editcertificate/:certificateId" element={<FormCertificate />} />
-                        <Route path="/addproject" element={<FormProject />} />
-                        <Route path="/editproject/:projectId" element={<FormProject />} />
-                        <Route path="/viewproject/:projectId" element={<ViewProject user={undefined} />} />
-                        <Route path="/newuser" element={<UserForm />} />
-                        <Route path="*" element={<Navigate to="/" replace />} />
-                    </Routes>
-                    {isLoading ? '' : <Footer homeData={homeData} />}
-                </AppUserProvider>
+                <FBChat pageId="184581498068766" />
+                {isLoading ? '' : <Header user={undefined} homeData={homeData} />}
+                <Routes>
+                    <Route path="/" element={isLoading ? '' : <Home homeData={homeData} />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/search/:tag" element={<Projects />} />
+                    <Route path="/certificates" element={<Certificates />} />
+                    <Route path="/curriculum" element={<Curriculum />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/login" element={<LoginScreen />} />
+                    <Route path="/register" element={<RegisterScreen />} />
+                    <Route path="/addcertificate" element={<FormCertificate />} />
+                    <Route path="/editcertificate/:certificateId" element={<FormCertificate />} />
+                    <Route path="/addproject" element={<FormProject />} />
+                    <Route path="/editproject/:projectId" element={<FormProject />} />
+                    <Route path="/viewproject/:projectId" element={<ViewProject user={undefined} />} />
+                    <Route path="/newuser" element={<UserForm />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+                {isLoading ? '' : <Footer homeData={homeData} />}
             </BrowserRouter>
         </React.StrictMode>
     );
