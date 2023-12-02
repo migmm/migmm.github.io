@@ -20,6 +20,7 @@ import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import jwtDecode from 'jwt-decode';
 import Cookies from 'js-cookie';
+import Checkbox from '../../Styles/Form/CheckBox/CheckBox';
 
 
 const LoginScreen: React.FC = () => {
@@ -29,6 +30,8 @@ const LoginScreen: React.FC = () => {
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
     const { errors, validateForm } = useValidation(validations);
     const { updateUser } = useAppUser();
+    const [rememberToken, setRememberToken] = useState(false);
+
 
     const navigate = useNavigate();
     
@@ -74,13 +77,16 @@ const LoginScreen: React.FC = () => {
                     const decodedToken = jwtDecode(accessToken);
                     updateUser(decodedToken);
 
-                    const tokenString = JSON.stringify(accessToken);
-                    Cookies.set('token', tokenString, {
-                        /*  
-                        secure: true, 
-                        httpOnly: true 
-                        */ 
-                    });
+                    if (rememberToken) {
+                        const tokenString = JSON.stringify(accessToken);
+                        Cookies.set('token', tokenString, {
+                            /*  
+                            secure: true, 
+                            httpOnly: true 
+                            */ 
+                        });
+                    }
+
                     navigate('/');
                 }
             } catch (error: any) {
@@ -137,12 +143,19 @@ const LoginScreen: React.FC = () => {
                             <LabelError
                                 innerText={errors.password}
                             />
+                            <Checkbox
+                                name="rememberToken"
+                                id="rememberToken"
+                                checked={rememberToken}
+                                onChange={() => setRememberToken(!rememberToken)}
+                                label="Stay connected"
+                            />
                         </InputGroup>
 
                         <LabelError
                             innerText={error}
                         />
-
+                        
                         <ButtonGroup>
                             <Button
                                 type='submit'
@@ -155,7 +168,7 @@ const LoginScreen: React.FC = () => {
                                 onClick={handleReset}
                                 innerText='Reset'
                             />
-                            </ButtonGroup>
+                        </ButtonGroup>
                     </form>
                 </div>
             </ContainerStyles>
