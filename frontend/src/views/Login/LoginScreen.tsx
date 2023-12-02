@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -31,6 +31,21 @@ const LoginScreen: React.FC = () => {
     const { updateUser } = useAppUser();
 
     const navigate = useNavigate();
+    
+    useEffect(() => {
+        const storedToken = Cookies.get('token');
+        const parsedToken = storedToken ? JSON.parse(decodeURIComponent(storedToken)) : null;
+        
+        if (storedToken) {
+            try {
+                const tokenDecoded = jwtDecode(parsedToken);
+                updateUser(tokenDecoded);
+                navigate('/');
+            } catch (error) {
+                console.error('Error decoding token:', error);
+            }
+        }
+    }, [navigate, updateUser]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
