@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import api from '../api/auth';
+import apiUser from '../api/users'
 import jwt from 'jsonwebtoken';
 import dotEnvExtended from 'dotenv-extended';
 import { comparePasswords } from '../utils/bcryptHeper';
@@ -85,6 +86,9 @@ const login = async (req: Request, res: Response) => {
             }
         );
 
+        foundUser.lastLogin = new Date();
+        await apiUser.updateUser(foundUser.id, foundUser);
+
         res.cookie(COOKIE_NAME, accessToken, cookieOptions);
 
         return res.cookie(COOKIE_NAME, refreshToken, cookieOptions)
@@ -120,6 +124,9 @@ const refreshToken = (req: Request, res: Response) => {
                 { expiresIn: REFRESH_TOKEN_EXPIRATION }
             );
             
+            foundUser.lastLogin = new Date();
+            await apiUser.updateUser(foundUser.id, foundUser);
+
             res.cookie(COOKIE_NAME, newAccessToken, cookieOptions)
             .status(201).json({ refreshToken: newAccessToken });
         });

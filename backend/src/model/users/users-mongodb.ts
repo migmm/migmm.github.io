@@ -40,6 +40,10 @@ const userSchema = new mongoose.Schema(
                 }
             ],
         },
+        lastLogin: {
+            type: Date,
+            default: Date.now,
+        },
         created_at: {
             type: Date,
             default: Date.now,
