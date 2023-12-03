@@ -6,11 +6,16 @@ import { Resize, modules, formats } from './config';
 
 const MAX_IMAGE_IN_QUILL_EDITOR = 10;
 
-const QuillEditor = ({ placeholder, onChange }: any) => {
-    const [editorHtml, setEditorHtml] = useState('');
+interface QuillEditorProps {
+    placeholder: string;
+    onChange: (html: string) => void;
+    value: string;
+}
+
+const QuillEditor = ({ placeholder, onChange, value }: QuillEditorProps) => {
     const [error, setError] = useState('');
 
-    const handleChange = (html: any) => {
+    const handleChange = (html: string) => {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
         const images = tempDiv.getElementsByTagName('img');
@@ -20,7 +25,6 @@ const QuillEditor = ({ placeholder, onChange }: any) => {
             return;
         }
 
-        setEditorHtml(html);
         onChange(html);
     };
 
@@ -28,7 +32,7 @@ const QuillEditor = ({ placeholder, onChange }: any) => {
         <QuillEditorContainer>
             <ReactQuill
                 onChange={handleChange}
-                value={editorHtml}
+                value={value}
                 modules={modules}
                 formats={formats}
                 bounds=".app"

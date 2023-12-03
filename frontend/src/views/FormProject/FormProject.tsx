@@ -22,13 +22,13 @@ import convertBase64ToBlob from '../../utils/base64toImage';
 import ContainerStyles from '../../Styles/Container/Container';
 
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
-import sampleObject from '../../dummy/sampleObject';
 
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import { apiURL } from '../../config/urls';
 import { ProjectData } from './Interfaces';
 import showdown from 'showdown';
+
 
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState<string>('');
@@ -66,13 +66,10 @@ const AddProject = () => {
             console.log('README.md found');
             const readmeContent = response.data;
 
-            console.log(readmeContent);
             const converted = new showdown.Converter();
-
             const html = converted.makeHtml(readmeContent);
-            console.log(html);
 
-            setEditorHtml(html);
+            handleEditorChange(html);
         } catch (error: any) {
             if (error.response && error.response.status === 404) {
                 console.log('README.md not found');
@@ -84,16 +81,6 @@ const AddProject = () => {
         }
     };
 
-    useEffect(() => {
-        if (projectId) {
-            setH1Text('Edit');
-            setProjectData(sampleObject);
-        } else {
-            setH1Text('New Project');
-            setProjectData(null);
-        }
-    }, [projectId]);
-
     const handleFileChange = (imageData: string) => {
         setImagePreview(imageData);
         handleChange('coverImage', imageData);
@@ -102,7 +89,39 @@ const AddProject = () => {
     const handleEditorChange = (value: string) => {
         setEditorHtml(value);
         handleChange('editorHtml', value);
-    };
+      };
+
+    useEffect(() => {
+        const fetchProjectDataToEdit = async () => {
+            if (projectId) {
+                setH1Text('Edit');
+                try {
+                    if (projectId) {
+                        const response = await axios.get(`${apiURL}projects/${projectId}`);
+
+                        handleChange('projectName', response.data.projectName);
+                        handleChange('projectStatus', response.data.projectStatus);
+                        handleChange('showInLandPage', response.data.showInLandPage);
+                        handleChange('gitURL', response.data.gitURL);
+                        handleChange('showReadme', response.data.showReadme);
+                        handleChange('deployURL', response.data.deployURL);
+                        handleChange('tags', response.data.tags);
+
+                        handleEditorChange(response.data.editorHtml)
+
+                        handleFileChange(response.data.coverImage);
+                    }
+                } catch (error) {
+                    console.error('Error fetching project data:', error);
+                }
+
+            } else {
+                setH1Text('New Project');
+                setProjectData(null);
+            }
+        }
+        fetchProjectDataToEdit();
+    }, [projectId]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -253,13 +272,14 @@ const AddProject = () => {
 
                             <Label htmlFor="project-description" innerText="Project description *" />
                             <ReactQuill value={projectData?.editorHtml || editorHtml} onChange={handleEditorChange} placeholder="Enter text..." />
+                            
                             <LabelError innerText={errors.editorHtml} />
                         </InputGroup>
 
                         <LabelError innerText={error} />
 
                         <ButtonGroup>
-                            <Button type="submit" disabled={buttonMessage} innerText={buttonMessage ? 'Wait..' : 'Add'} />
+                            <Button type="submit" disabled={buttonMessage} innerText={buttonMessage ? 'Wait..' : 'Save'} />
 
                             <Button type="reset" onClick={handleReset} innerText="Reset" />
                         </ButtonGroup>
