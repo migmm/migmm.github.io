@@ -1,21 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-
 import api from '../api/users';
 import rolesPermissions from '../config/userRoles';
-
+import { UserPayload } from '../interface/authRole';
 import dotEnvExtended from 'dotenv-extended';
 
 dotEnvExtended.load();
 
 const COOKIE_NAME: string = process.env.COOKIE_NAME || 'jwt';
 
-
-interface UserPayload {
-    id: string;
-    email: string;
-    role: string;
-}
 
 const authRole = (roles: string[]) => async (req: Request & { currentUser: UserPayload }, res: Response, next: NextFunction) => {
     try {
