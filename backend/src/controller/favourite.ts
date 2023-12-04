@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import api from '../api/favorites';
-/* import argon2 from 'argon2'; */
+import { UserPayload }  from '../interface/favourite';
 import jwt from 'jsonwebtoken';
 import dotEnvExtended from 'dotenv-extended';
 
@@ -8,13 +8,6 @@ dotEnvExtended.load();
 
 const cookieName: string = process.env.COOKIE_NAME || 'jwt';
 
-
-interface UserPayload {
-    id: number;
-    email: string;
-    role: string;
-    favourites: string [];
-}
 
 const addFavorite = async (req: Request, res: Response) => {
     try {
