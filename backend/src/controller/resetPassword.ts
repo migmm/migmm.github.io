@@ -2,13 +2,8 @@ import { Request, Response } from 'express';
 import api from '../api/resetPassword';
 import jwt from 'jsonwebtoken';
 import { hashPassword } from '../utils/bcryptHeper';
+import { ResetTokenPayload } from '../interface/resetPassword';
 
-
-interface ResetTokenPayload {
-    id: number;
-    email: string;
-    password: string;
-}
 
 export const resetPassword = async (req: Request, res: Response) => {
     const { resetToken } = req.params;

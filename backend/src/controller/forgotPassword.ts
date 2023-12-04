@@ -6,7 +6,6 @@ import api from '../api/forgotPassword';
 import { User } from '../interface/forgotPassword'
 
 
-
 const sendPasswordResetEmail = async (req: Request, res: Response) => {
     const { email } = req.body;
     try {
