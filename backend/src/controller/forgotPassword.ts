@@ -3,11 +3,9 @@ import sendMail from '../utils/mailSender';
 import { generatePasswordResetEmailContent } from '../utils/emailContentGenerator';
 import generateToken from '../utils/JWTtokenGenerator';
 import api from '../api/forgotPassword';
+import { User } from '../interface/forgotPassword'
 
-interface User {
-    id: string;
-    email: string;
-}
+
 
 const sendPasswordResetEmail = async (req: Request, res: Response) => {
     const { email } = req.body;
