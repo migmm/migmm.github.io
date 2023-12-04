@@ -37,8 +37,21 @@ export const validations = {
         required: false,
         errorMessage: 'Deploy URL is required.',
         validate: (value: any) => {
-            if (!/^(?:http|https):\/\/(?:[\w-]+\.)+[\w]+(?:\/[\w-]+)*\/?$/.test(value)) {
+            if (!/^(?:http|https):\/\/(?:[\w-]+\.)+[\w]+(?:\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?)?(?:\/[\w-]+)*\/?$/.test(value)) {
                 return 'Invalid URL format.';
+            }
+            return true;
+        },
+    },
+    tags: {
+        required: true,
+        errorMessage: 'At least one tag is required.',
+        validate: (value: any) => {
+            if (value.length < 4) {
+                return 'The tag must be at least 4 characters long.';
+            }
+            if (!/^[a-zA-Z0-9, ]+$/.test(value)) {
+                return 'Project title should only contain letters, numbers and commas.';
             }
             return true;
         },
@@ -55,11 +68,11 @@ export const validations = {
     },
     coverImage: {
         required: true,
-        errorMessage: 'Cover Image is required.',
+        errorMessage: 'Project Image is required.',
         validate: (value: any, formData?: Record<string, string>) => {
             
             if (!value) {
-                return 'Cover Image is required.';
+                return 'Project Image is required.';
             }
 
             const isBase64PNG = value.startsWith('data:image/png;base64');

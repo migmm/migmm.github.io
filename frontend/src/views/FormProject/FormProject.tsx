@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import ReactQuill from '../../components/Quill/Quill';
 import 'react-quill/dist/quill.snow.css';
@@ -51,6 +52,8 @@ const AddProject = () => {
     const [showReadme, setShowReadme] = useState(false);
     const [, setReadmeContent] = useState('');
 
+    const navigate = useNavigate();
+
     const fetchReadmeContent = async (githubURL: string) => {
         try {
             const urlParts = githubURL.split('/');
@@ -89,7 +92,7 @@ const AddProject = () => {
     const handleEditorChange = (value: string) => {
         setEditorHtml(value);
         handleChange('editorHtml', value);
-      };
+    };
 
     useEffect(() => {
         const fetchProjectDataToEdit = async () => {
@@ -139,6 +142,8 @@ const AddProject = () => {
         };
 
         console.log('Data:', data);
+        console.log(validateForm(fields))
+        console.log(errors)
 
         if (validateForm(fields)) {
             try {
@@ -150,7 +155,7 @@ const AddProject = () => {
                 });
 
                 if (response.status === 201) {
-                    /*  navigate('/'); */
+                    navigate('/');
                 }
             } catch (error: any) {
                 if (error.response) {
@@ -190,6 +195,16 @@ const AddProject = () => {
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
                             <LabelError innerText={errors.projectName} />
+                            <Label htmlFor="short-description" innerText="Short description *" />
+
+                            <Input
+                                type="text"
+                                id="shortDescription"
+                                name="shortDescription"
+                                value={projectData?.shortDescription || fields.shortDescription}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <LabelError innerText={errors.shortDescription} />
 
                             <Label htmlFor="project-status" innerText="Status *" />
                             <Select
@@ -267,7 +282,13 @@ const AddProject = () => {
                             <LabelError innerText={errors.tags} />
 
                             <Label htmlFor="cover-image" innerText="Cover Image *" />
-                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id="cover-image" name="coverImage" />
+
+                            <InputFile
+                                setImagePreview={handleFileChange }
+                                imagePreview={imagePreview}
+                                id='coverImage'
+                                name='coverImage'
+                            />
                             <LabelError innerText={errors.coverImage} />
 
                             <Label htmlFor="project-description" innerText="Project description *" />
