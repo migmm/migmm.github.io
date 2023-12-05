@@ -4,6 +4,7 @@ export interface ProjectData {
     category: string;
     projectStatus: string;
     deployURL: string;
+    gitURL: string;
     lastUpdate: string;
     tags: string;
     coverImage: string;

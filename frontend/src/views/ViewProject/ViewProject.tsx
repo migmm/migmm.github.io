@@ -81,7 +81,7 @@ const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
                         {role === 'admin' && (
                             <EditProject>
                                 <Link to={`/editproject/${projectData.id}`}>
-                                    <Button innerText='Edit project'/>
+                                    <Button innerText='Edit'/>
                                 </Link>
                             </EditProject>
                         )}
@@ -90,12 +90,9 @@ const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
                                 <H1 innerText={projectData.projectName} />
                                 <Paragraph innerText={`Category: ${projectData.category}`} />
                                 <Paragraph innerText={`Project Status: ${projectData.projectStatus}`} />
-                                <Paragraph>
-                                    <strong>Git URL:</strong> <a href={projectData.deployURL}>{projectData.deployURL}</a>
-                                </Paragraph>
-                                <Paragraph>
-                                    <strong>Deploy URL:</strong> <a href={projectData.deployURL}>{projectData.deployURL}</a>
-                                </Paragraph>
+                                <Paragraph innerText={`Git URL: <a href="${projectData.gitURL}">${projectData.gitURL}</a>`} />
+                                {projectData.deployURL && <Paragraph innerText={
+                                    `Deploy URL: <a href="${projectData.deployURL}">${projectData.deployURL}</a>`} />}
                                 <Paragraph innerText={`Last update: ${projectData.lastUpdate}`} />
                                 <BalloonContainer tags={projectData.tags} />
                             </div>

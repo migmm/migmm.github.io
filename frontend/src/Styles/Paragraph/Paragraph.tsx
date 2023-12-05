@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 function Paragraph(props : any) {
-    return <ParagraphStyles>{props.innerText}</ParagraphStyles>;
+    return <ParagraphStyles dangerouslySetInnerHTML={{ __html: props.innerText }} />;
 }
 
 const ParagraphStyles = styled.p`
