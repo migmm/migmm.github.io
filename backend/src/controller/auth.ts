@@ -107,9 +107,10 @@ const refreshToken = (req: Request, res: Response) => {
         if (!token) return res.status(401).json({ message: 'Unauthorized' });
 
         jwt.verify(token, REFRESH_TOKEN_SECRET, async (err: any, decoded: any) => {
+            console.log(decoded);
             if (err) return res.status(403).json({ message: 'Forbidden' });
 
-            const foundUser = await api.getAuth('username', decoded.username);
+            const foundUser = await api.getAuth('_id', decoded.id);
 
             if (!foundUser) {
                 return res.status(401).json({ message: 'Unauthorized' });
