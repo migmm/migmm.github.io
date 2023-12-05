@@ -72,4 +72,4 @@ const server = app.listen(PORT, () => console.log(`Server listening on port ${PO
 server.on('error', (error) => console.log('Error starting Express server: ' + error.message));
 
 
-export default { server, app } ;
+export default { server } ;
