@@ -7,6 +7,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { apiURL } from '../../config/urls';
 import FormattedView from './FormattedView';
 import Balloon from '../../components/Balloon/Balloon';
+import Button from '../../Styles/Form/Button/Button';
 
 import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
@@ -77,6 +78,13 @@ const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
                                 <img src={projectData.coverImage} alt="Logo" />
                             </HeroRight>
                         </HeroStyles>
+                        {role === 'admin' && (
+                            <EditProject>
+                                <Link to={`/editproject/${projectData.id}`}>
+                                    <Button innerText='Edit project'/>
+                                </Link>
+                            </EditProject>
+                        )}
                         <Content>
                             <div className="information">
                                 <H1 innerText={projectData.projectName} />
@@ -93,11 +101,6 @@ const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
                             </div>
                             <FormattedView content={projectData.editorHtml} />
                         </Content>
-                        {role === 'admin' && (
-                            <Link to={`/editproject/${projectData.id}`}>
-                                <button>Edit</button>
-                            </Link>
-                        )}
                     </>
                 ) : (
                     <div>Loading...</div>
@@ -117,6 +120,10 @@ const ProjectViewContainer = styled.main`
     @media (min-width: 768px) {
         max-width: 1500px;
     }
+`;
+
+const EditProject = styled.div`
+    text-align: right;
 `;
 
 const ActualRoute = styled.div`
