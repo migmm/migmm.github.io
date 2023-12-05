@@ -38,9 +38,9 @@ const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
     const BalloonContainer = ({ tags }: any) => {
         const words: string[] = tags.split(',').map((tag: string) => tag.trim());
 
-        const balloons = words.map((word: any, index: any) => (
-            <Link to={`/search/${word}`}>
-                <Balloon key={index} className="balloon" innerText={word} />
+        const balloons = words.map((word: any) => (
+            <Link key={word} to={`/search/${word}`}>
+                <Balloon className="balloon" innerText={word} />
             </Link>
         ));
 
