@@ -11,10 +11,9 @@ const COOKIE_NAME: string = process.env.COOKIE_NAME || 'jwt';
 
 const authRole = (roles: string[]) => async (req: Request & { currentUser: UserPayload }, res: Response, next: NextFunction) => {
     try {
-        // Get JWT token from HTTPS Cookies and ID from URL
+        // Get JWT token from HTTPS Cookies and ID from URL param
         const token = req.cookies?.[COOKIE_NAME];
         const id: any = req.params.id;
-        let userFromID = {};
         console.log('roles', roles);
 
         // Ckeck if you have a token, if not, you are unauthorized
@@ -40,7 +39,7 @@ const authRole = (roles: string[]) => async (req: Request & { currentUser: UserP
         // If there is any value in ID
         if (id) {
             // From the ID taken from URL find the user
-            userFromID = await api.getUser(id);
+            const userFromID = await api.getUser(id);
 
             // Check if user exist, if not, throw error
             if (!userFromID) {
