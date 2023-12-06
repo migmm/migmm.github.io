@@ -9,13 +9,13 @@ dotEnvExtended.load();
 
 const COOKIE_NAME: string = process.env.COOKIE_NAME || 'jwt';
 
-
 const authRole = (roles: string[]) => async (req: Request & { currentUser: UserPayload }, res: Response, next: NextFunction) => {
     try {
         // Get JWT token from HTTPS Cookies and ID from URL
         const token = req.cookies?.[COOKIE_NAME];
         const id: any = req.params.id;
-        console.log('roles', roles)
+        let userFromID = {};
+        console.log('roles', roles);
 
         // Ckeck if you have a token, if not, you are unauthorized
         if (!token) {
@@ -24,16 +24,11 @@ const authRole = (roles: string[]) => async (req: Request & { currentUser: UserP
 
         // Decode token
         const payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET as string) as UserPayload;
-        req.currentUser = payload;
 
         //Find user in database with te ID in payload
         const userAuth = await api.getUser(payload.id as any);
 
-        // From the ID taken from URL find the user
-        const userFromID = await api.getUser(id);
-
-        // Check if user exist, if not, throw error
-        if (!userFromID) {
+        if (!userAuth) {
             return res.status(404).json({ message: 'User not found.' });
         }
 
@@ -42,13 +37,24 @@ const authRole = (roles: string[]) => async (req: Request & { currentUser: UserP
             return res.status(403).json({ message: 'Forbidden.' });
         }
 
+        // If there is any value in ID
+        if (id) {
+            // From the ID taken from URL find the user
+            userFromID = await api.getUser(id);
+
+            // Check if user exist, if not, throw error
+            if (!userFromID) {
+                return res.status(404).json({ message: 'User not found.' });
+            }
+        }
+
         // Check if user is trying to modify their own information
         // If admin is logged just go on
         if (id && id !== userAuth.id && userAuth.role !== 'admin') {
             return res.status(403).json({ message: 'Forbidden.' });
         }
 
-          // Check if user has permission to get
+        // Check if user has permission to get
         if (req.body && req.method === 'GET' && !rolesPermissions[userAuth.role].canGet) {
             return res.status(403).json({ message: 'Forbidden.' });
         }
