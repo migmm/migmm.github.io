@@ -13,7 +13,6 @@ const getAuth = async (field:string, username:string) => {
     return user;
 };
 
-
 ///////////////////////////////////////////////////////////////////////////////
 //                                API Create                                 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -23,8 +22,18 @@ const createAuth = async (user:any) => {
     return createdUser;
 };
 
+///////////////////////////////////////////////////////////////////////////////
+//                                API Update                                 //
+///////////////////////////////////////////////////////////////////////////////
+
+const updateUser = async (id:number, user:any) => {
+    const updatedUser = await modelUsers.updateUser(id, user);
+    return updatedUser;    
+};
+
 
 export default {
     getAuth,
     createAuth,
+    updateUser,
 };

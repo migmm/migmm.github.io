@@ -1,11 +1,9 @@
 import { Request, Response } from 'express';
 import api from '../api/auth';
-import apiUser from '../api/users'
 import jwt from 'jsonwebtoken';
 import dotEnvExtended from 'dotenv-extended';
 import { comparePasswords } from '../utils/bcryptHeper';
-import parseDurationToMilliseconds from '../utils/parseDurationToMilliseconds'
-
+import parseDurationToMilliseconds from '../utils/parseDurationToMilliseconds';
 
 dotEnvExtended.load();
 
@@ -19,14 +17,12 @@ const SAME_SITE: string = process.env.SAME_SITE || '';
 const SECURE: string = process.env.SECURE || '';
 const MAX_AGE = parseDurationToMilliseconds(process.env.MAX_AGE || '');
 
-
 const cookieOptions: object = {
     httpOnly: HTTP_ONLY,
     sameSite: SAME_SITE,
     secure: SECURE,
     maxAge: MAX_AGE,
 };
-
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
@@ -55,7 +51,7 @@ const login = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
-        const foundUser = (await api.getAuth('username', username))
+        const foundUser = await api.getAuth('username', username);
 
         if (!foundUser) {
             return res.status(401).json({ message: 'Unauthorized' });
@@ -68,17 +64,18 @@ const login = async (req: Request, res: Response) => {
         const accessToken = jwt.sign(
             {
                 id: foundUser.id,
-                role: foundUser.role
+                role: foundUser.role,
             },
             ACCESS_TOKEN_SECRET,
             {
-            expiresIn: ACCESS_TOKEN_EXPIRATION,
-        });
+                expiresIn: ACCESS_TOKEN_EXPIRATION,
+            }
+        );
 
         const refreshToken = jwt.sign(
             {
                 id: foundUser.id,
-                role: foundUser.role
+                role: foundUser.role,
             },
             REFRESH_TOKEN_SECRET,
             {
@@ -87,13 +84,11 @@ const login = async (req: Request, res: Response) => {
         );
 
         foundUser.lastLogin = new Date();
-        await apiUser.updateUser(foundUser.id, foundUser);
+        await api.updateUser(foundUser.id, foundUser);
 
         res.cookie(COOKIE_NAME, accessToken, cookieOptions);
 
-        return res.cookie(COOKIE_NAME, refreshToken, cookieOptions)
-                    .status(201).json({ accessToken });
-
+        return res.cookie(COOKIE_NAME, refreshToken, cookieOptions).status(201).json({ accessToken });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
@@ -119,17 +114,16 @@ const refreshToken = (req: Request, res: Response) => {
             const newAccessToken = jwt.sign(
                 {
                     id: foundUser.id,
-                    role: foundUser.role
+                    role: foundUser.role,
                 },
                 REFRESH_TOKEN_SECRET,
                 { expiresIn: REFRESH_TOKEN_EXPIRATION }
             );
-            
-            foundUser.lastLogin = new Date();
-            await apiUser.updateUser(foundUser.id, foundUser);
 
-            res.cookie(COOKIE_NAME, newAccessToken, cookieOptions)
-            .status(201).json({ refreshToken: newAccessToken });
+            foundUser.lastLogin = new Date();
+            await api.updateUser(foundUser.id, foundUser);
+
+            res.cookie(COOKIE_NAME, newAccessToken, cookieOptions).status(201).json({ refreshToken: newAccessToken });
         });
     } catch (error) {
         console.error(error);
@@ -157,7 +151,6 @@ const logout = async (req: Request, res: Response) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
 
 export default {
     getAuth,
