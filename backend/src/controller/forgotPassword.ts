@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import sendMail from '../utils/mailSender';
 import { generatePasswordResetEmailContent } from '../utils/emailContentGenerator';
-import generateToken from '../utils/JWTtokenGenerator';
+import generateToken from '../utils/JWTtoken';
 import api from '../api/forgotPassword';
 import { User } from '../interface/forgotPassword'
 
@@ -21,7 +21,7 @@ const sendPasswordResetEmail = async (req: Request, res: Response) => {
         }
 
         // Generate password reset token
-        const token = generateToken({ id: foundUser.id, email: foundUser.email }, '1h');
+        const token = generateToken({ id: foundUser.id, role: foundUser.role }, '1h');
 
         // Generate email content
         const content = generatePasswordResetEmailContent('Password reset', token);
