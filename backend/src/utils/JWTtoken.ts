@@ -43,7 +43,7 @@ const verifyToken = async (token: string, refreshTokenSecret: string): Promise<a
         const decodedToken = jwt.verify(token, refreshTokenSecret);
         return decodedToken;
     } catch (error) {
-        throw error;
+        throw Error('Failed to verify');
     }
 };
 
