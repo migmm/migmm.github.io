@@ -8,6 +8,7 @@ import generateToken from '../utils/JWTtoken';
 
 dotEnvExtended.load();
 
+const ACCESS_TOKEN_SECRET: string = process.env.ACCESS_TOKEN_SECRET || '';
 const REFRESH_TOKEN_SECRET: string = process.env.REFRESH_TOKEN_SECRET || '';
 const ACCESS_TOKEN_EXPIRATION: string = process.env.ACCESS_TOKEN_EXPIRATION || '';
 const REFRESH_TOKEN_EXPIRATION: string = process.env.REFRESH_TOKEN_EXPIRATION || '';
@@ -61,17 +62,21 @@ const login = async (req: Request, res: Response) => {
 
         if (!match) return res.status(401).json({ message: 'Unauthorized' });
 
-        const accessToken = generateToken({ id: foundUser.id, role: foundUser.role }, ACCESS_TOKEN_EXPIRATION);
+        const accessToken = generateToken(
+            { 
+                id: foundUser.id, 
+                role: foundUser.role 
+            }, 
+            ACCESS_TOKEN_EXPIRATION
+        );
 
-        const refreshToken = jwt.sign(
-            {
-                id: foundUser.id,
-                role: foundUser.role,
-            },
-            REFRESH_TOKEN_SECRET,
-            {
-                expiresIn: REFRESH_TOKEN_EXPIRATION,
-            }
+        const refreshToken = generateToken(
+            { 
+                id: foundUser.id, 
+                role: foundUser.role 
+            }, 
+            REFRESH_TOKEN_EXPIRATION, 
+            REFRESH_TOKEN_SECRET
         );
 
         foundUser.lastLogin = new Date();
