@@ -16,6 +16,7 @@ import routerImages from './router/aws';
 import routerWebConfig from './router/webConfig';
 import routerContact from './router/contact';
 import checkWebsOnline from './utils/cron';
+import errorHandler from './utils/errorHandler';
 
 import path from 'path';
 
@@ -38,6 +39,7 @@ const buildPath = path.join(__dirname, 'public');
 
 app.use(express.static(buildPath));
 
+app.use(errorHandler);
 
 app.get('/', function (_req, res) {
     res.sendFile(path.join(buildPath, 'index.html'));
