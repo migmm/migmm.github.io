@@ -4,6 +4,7 @@ import dotEnvExtended from 'dotenv-extended';
 
 dotEnvExtended.load();
 
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET as string;
 
 // USAGE 
 // const token = generateToken(user, '2h');
@@ -13,8 +14,7 @@ const generateToken = (user: { id: String; role: string }, expiresIn: string = '
         email: user.role,
     };
 
-    const secretKey = process.env.ACCESS_TOKEN_SECRET as string;
-    const token = jwt.sign(payload, secretKey, { expiresIn });
+    const token = jwt.sign(payload, ACCESS_TOKEN_SECRET, { expiresIn });
 
     return token;
 };

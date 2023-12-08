@@ -4,10 +4,10 @@ import jwt from 'jsonwebtoken';
 import dotEnvExtended from 'dotenv-extended';
 import { comparePasswords } from '../utils/bcryptHeper';
 import parseDurationToMilliseconds from '../utils/parseDurationToMilliseconds';
+import generateToken from '../utils/JWTtoken';
 
 dotEnvExtended.load();
 
-const ACCESS_TOKEN_SECRET: string = process.env.ACCESS_TOKEN_SECRET || '';
 const REFRESH_TOKEN_SECRET: string = process.env.REFRESH_TOKEN_SECRET || '';
 const ACCESS_TOKEN_EXPIRATION: string = process.env.ACCESS_TOKEN_EXPIRATION || '';
 const REFRESH_TOKEN_EXPIRATION: string = process.env.REFRESH_TOKEN_EXPIRATION || '';
@@ -61,16 +61,7 @@ const login = async (req: Request, res: Response) => {
 
         if (!match) return res.status(401).json({ message: 'Unauthorized' });
 
-        const accessToken = jwt.sign(
-            {
-                id: foundUser.id,
-                role: foundUser.role,
-            },
-            ACCESS_TOKEN_SECRET,
-            {
-                expiresIn: ACCESS_TOKEN_EXPIRATION,
-            }
-        );
+        const accessToken = generateToken({ id: foundUser.id, role: foundUser.role }, ACCESS_TOKEN_EXPIRATION);
 
         const refreshToken = jwt.sign(
             {
