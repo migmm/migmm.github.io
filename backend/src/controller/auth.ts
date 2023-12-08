@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import api from '../api/auth';
-import jwt from 'jsonwebtoken';
 import dotEnvExtended from 'dotenv-extended';
 import { comparePasswords } from '../utils/bcryptHeper';
 import parseDurationToMilliseconds from '../utils/parseDurationToMilliseconds';
-import generateToken from '../utils/JWTtoken';
+import { generateToken, verifyToken } from '../utils/JWTtoken';
 
 dotEnvExtended.load();
 
@@ -62,19 +61,19 @@ const login = async (req: Request, res: Response) => {
         if (!match) return res.status(401).json({ message: 'Unauthorized' });
 
         const accessToken = generateToken(
-            { 
-                id: foundUser.id, 
-                role: foundUser.role 
-            }, 
+            {
+                id: foundUser.id,
+                role: foundUser.role,
+            },
             ACCESS_TOKEN_EXPIRATION
         );
 
         const refreshToken = generateToken(
-            { 
-                id: foundUser.id, 
-                role: foundUser.role 
-            }, 
-            REFRESH_TOKEN_EXPIRATION, 
+            {
+                id: foundUser.id,
+                role: foundUser.role,
+            },
+            REFRESH_TOKEN_EXPIRATION,
             REFRESH_TOKEN_SECRET
         );
 
@@ -90,41 +89,40 @@ const login = async (req: Request, res: Response) => {
     }
 };
 
-const refreshToken = (req: Request, res: Response) => {
+const refreshToken = async (req: Request, res: Response) => {
     const token = req.cookies?.[COOKIE_NAME];
 
     try {
         if (!token) return res.status(401).json({ message: 'Unauthorized' });
 
-        jwt.verify(token, REFRESH_TOKEN_SECRET, async (err: any, decoded: any) => {
-            console.log(decoded);
-            if (err) return res.status(403).json({ message: 'Forbidden' });
+        const decodedToken = await verifyToken(token, REFRESH_TOKEN_SECRET);
+        
+        const foundUser = await api.getAuth('_id', decodedToken.id);
 
-            const foundUser = await api.getAuth('_id', decoded.id);
+        if (!foundUser) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
 
-            if (!foundUser) {
-                return res.status(401).json({ message: 'Unauthorized' });
-            }
+        const newAccessToken = generateToken(
+            { 
+                id: foundUser.id, 
+                role: foundUser.role 
+            }, 
+            REFRESH_TOKEN_EXPIRATION, 
+            REFRESH_TOKEN_SECRET
+        );
 
-            const newAccessToken = generateToken(
-                { 
-                    id: foundUser.id, 
-                    role: foundUser.role 
-                }, 
-                REFRESH_TOKEN_EXPIRATION, 
-                REFRESH_TOKEN_SECRET
-            );
+        foundUser.lastLogin = new Date();
+        await api.updateUser(foundUser.id, foundUser);
 
-            foundUser.lastLogin = new Date();
-            await api.updateUser(foundUser.id, foundUser);
-
-            res.cookie(COOKIE_NAME, newAccessToken, cookieOptions).status(201).json({ refreshToken: newAccessToken });
-        });
+        res.cookie(COOKIE_NAME, newAccessToken, cookieOptions).status(201).json({ refreshToken: newAccessToken });
+    
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error: Error refreshing token.' });
     }
 };
+
 
 const logout = async (req: Request, res: Response) => {
     const cookies = await req.cookies;

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import sendMail from '../utils/mailSender';
 import { generatePasswordResetEmailContent } from '../utils/emailContentGenerator';
-import generateToken from '../utils/JWTtoken';
+import { generateToken } from '../utils/JWTtoken';
 import api from '../api/forgotPassword';
 import { User } from '../interface/forgotPassword'
 

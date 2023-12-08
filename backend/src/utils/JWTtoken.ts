@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-
 import dotEnvExtended from 'dotenv-extended';
 
 dotEnvExtended.load();
@@ -18,5 +17,20 @@ const generateToken = (user: { id: String; role: string }, expiresIn: string = '
     return token;
 };
 
+// USAGE 
+// const verifyToken = verifyToken(token, REFRESH_TOKEN_SECRET);
+const verifyToken = async (token: string, refreshTokenSecret: string): Promise<any> => {
+    try {
+        const decodedToken = jwt.verify(token, refreshTokenSecret);
+        return decodedToken;
+    } catch (error) {
+        throw error;
+    }
+};
 
-export default generateToken;
+
+
+export {
+    generateToken,
+    verifyToken
+};
