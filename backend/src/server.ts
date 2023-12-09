@@ -40,8 +40,6 @@ const buildPath = path.join(__dirname, 'public');
 app.use(express.static(buildPath));
 
 
-app.all('*',  errorHandler );
-
 app.get('/', function (_req, res) {
     res.sendFile(path.join(buildPath, 'index.html'));
 }); 
@@ -64,6 +62,7 @@ app.use('/api/webconfig', routerWebConfig);
 
 app.use('/api/contact', routerContact);
 
+app.all('*',  errorHandler );
 
 const PORT = config.PORT;
 const server = app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));

@@ -23,6 +23,7 @@ const cookieOptions: object = {
     maxAge: MAX_AGE,
 };
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //                               GET Controllers                              //
 ////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +38,7 @@ const getAuth = async (_req: Request, res: Response) => {
         res.status(500).send('Error getting auth');
     }
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              POST Controllers                             //
@@ -123,7 +125,6 @@ const refreshToken = async (req: Request, res: Response) => {
     }
 };
 
-
 const logout = async (req: Request, res: Response) => {
     const cookies = await req.cookies;
 
@@ -144,6 +145,7 @@ const logout = async (req: Request, res: Response) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
 
 export default {
     getAuth,
