@@ -16,11 +16,13 @@ import routerImages from './router/aws';
 import routerWebConfig from './router/webConfig';
 import routerContact from './router/contact';
 import checkWebsOnline from './utils/cron';
-import errorHandler from './utils/errorHandler';
+import { errorHandler } from './middlewares/errorHandler';
+
 
 import path from 'path';
 
 const app = express();
+;
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,11 +37,11 @@ app.use(express.json());
 checkWebsOnline();
 
 const buildPath = path.join(__dirname, 'public');
-/* const buildPath = path.join(__dirname, 'public'); */
+
 
 app.use(express.static(buildPath));
 
-app.use(errorHandler);
+app.all('*',  errorHandler );
 
 app.get('/', function (_req, res) {
     res.sendFile(path.join(buildPath, 'index.html'));
@@ -63,11 +65,6 @@ app.use('/api/webconfig', routerWebConfig);
 
 app.use('/api/contact', routerContact);
 
-
-// in case of using another route
-app.all('*', (_req, res) => {
-    res.sendFile(path.join(buildPath, 'index.html'));
-});
 
 const PORT = config.PORT;
 const server = app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));
