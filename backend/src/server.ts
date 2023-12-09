@@ -22,7 +22,6 @@ import { errorHandler } from './middlewares/errorHandler';
 import path from 'path';
 
 const app = express();
-;
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,8 +37,8 @@ checkWebsOnline();
 
 const buildPath = path.join(__dirname, 'public');
 
-
 app.use(express.static(buildPath));
+
 
 app.all('*',  errorHandler );
 
