@@ -7,6 +7,8 @@ import { Link, useParams } from 'react-router-dom';
 import { apiURL } from '../../config/urls';
 import ProductCard from './ProductCard';
 import ProjectTitle from '../../assets/images/projects-title.png';
+import Button from '../../Styles/Form/Button/Button';
+import { useAppUser } from '../../context/UserContext';
 
 
 interface DataItem {
@@ -22,6 +24,7 @@ interface HeroStylesProps {
 const ViewProject = () => {
     const { tag } :any= useParams<{ projectId: string }>();
     const [data, setData] = useState<DataItem[]>([]);
+    const { role } = useAppUser();
     
     useEffect(() => {
 
@@ -59,6 +62,13 @@ const ViewProject = () => {
                     {' '}
                 </HeroRight>
             </HeroStyles>
+            {role === 'admin' && (
+                <AddProject>
+                    <Link to='/addproject'>
+                        <Button innerText='Add new project'/>
+                    </Link>
+                </AddProject>
+            )}
             <Content>
                 <CardContainer>
                     {data.map((item) => (
@@ -93,6 +103,10 @@ const ProjectsViewContainer = styled.main`
     @media (min-width: 768px) {
         max-width: 1500px;
     }
+`;
+
+const AddProject = styled.div`
+    text-align: right;
 `;
 
 const ActualRoute = styled.div`
