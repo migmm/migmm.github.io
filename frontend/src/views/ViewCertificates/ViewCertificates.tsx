@@ -9,11 +9,14 @@ import { Link } from 'react-router-dom';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import CertificateTitle from '../../assets/images/certificates-title.png';
 import { DataItem, HeroStylesProps, CertificateData } from './interface';
+import Button from '../../Styles/Form/Button/Button';
+import { useAppUser } from '../../context/UserContext';
 
 const Certificates = () => {
     const [certifications, setCertifications] = useState<DataItem[]>([]);
     const [badges, setBadges] = useState<DataItem[]>([]);
-
+    const { role } = useAppUser();
+    
     useEffect(() => {
         axios
             .get(`${apiURL}certifications/`)
@@ -49,6 +52,13 @@ const Certificates = () => {
                 <HeroLeft>{'My best certifications.'}</HeroLeft>
                 <HeroRight> </HeroRight>
             </HeroStyles>
+            {role === 'admin' && (
+                <AddCertificate>
+                    <Link to='/addcertificate'>
+                        <Button innerText='Add new certification'/>
+                    </Link>
+                </AddCertificate>
+            )}
             <CertificationsContainer>
                 {/* Certifications */}
                 {certifications.length > 0 && (
@@ -155,6 +165,10 @@ const HeroRight = styled.div`
     @media (min-width: 950px) {
         width: 40%;
     }
+`;
+
+const AddCertificate = styled.div`
+    text-align: right;
 `;
 
 const ActualRoute = styled.div`
