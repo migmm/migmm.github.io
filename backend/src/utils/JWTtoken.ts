@@ -18,7 +18,7 @@ const generateToken = (user: { id: string; role: string }, expiresIn: string = '
     try {
         const payload = {
             id: user.id,
-            email: user.role,
+            role: user.role,
         };
 
         const token = jwt.sign(payload, type, { expiresIn });
