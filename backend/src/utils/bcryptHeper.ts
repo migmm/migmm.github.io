@@ -1,5 +1,3 @@
-// bcryptHelper.ts
-
 import * as bcrypt from 'bcryptjs';
 
 export async function hashPassword(password: string): Promise<string> {
