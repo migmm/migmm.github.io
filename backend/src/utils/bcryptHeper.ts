@@ -10,7 +10,7 @@ export async function hashPassword(password: string): Promise<string> {
     const hashedPassword = await bcrypt.hash(password, salt);
     return hashedPassword;
   } catch (error:any) {
-    throw new Error('Error al cifrar la contraseña: ' + error.message);
+    throw new Error('Error cyphering password: ' + error.message);
   }
 }
 
@@ -19,6 +19,6 @@ export async function comparePasswords(plainPassword: string, hashedPassword: st
     const match = await bcrypt.compare(plainPassword, hashedPassword);
     return match;
   } catch (error:any) {
-    throw new Error('Error al comparar contraseñas: ' + error.message);
+    throw new Error('Error comparing password: ' + error.message);
   }
 }
