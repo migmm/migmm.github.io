@@ -169,6 +169,7 @@ const HeroRight = styled.div`
 
 const AddCertificate = styled.div`
     text-align: right;
+    margin-top: 2em;
 `;
 
 const ActualRoute = styled.div`
