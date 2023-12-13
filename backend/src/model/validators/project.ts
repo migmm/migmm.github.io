@@ -12,6 +12,7 @@ const projectSchema = Joi.object({
     editorHtml: Joi.string().required(),
     created_at: Joi.date().optional(),
     modified_at: Joi.date().optional(),
+    titleCheck: Joi.string().optional(),
     tags: Joi.string().required(),
 });
 

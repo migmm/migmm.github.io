@@ -17,6 +17,7 @@ const projectSchema = new mongoose.Schema(
         headerLine: String,
         category: String,
         lastUpdate: Date,
+        titleCheck: String,
         created_at: { 
             type: Date, 
             default: Date.now 
