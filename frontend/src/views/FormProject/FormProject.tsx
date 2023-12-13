@@ -30,7 +30,6 @@ import { apiURL } from '../../config/urls';
 import { ProjectData } from './Interfaces';
 import showdown from 'showdown';
 
-
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState<string>('');
     const [editorHtml, setEditorHtml] = useState<string>('');
@@ -110,19 +109,18 @@ const AddProject = () => {
                         handleChange('deployURL', response.data.deployURL);
                         handleChange('tags', response.data.tags);
 
-                        handleEditorChange(response.data.editorHtml)
+                        handleEditorChange(response.data.editorHtml);
 
                         handleFileChange(response.data.coverImage);
                     }
                 } catch (error) {
                     console.error('Error fetching project data:', error);
                 }
-
             } else {
                 setH1Text('New Project');
                 setProjectData(null);
             }
-        }
+        };
         fetchProjectDataToEdit();
     }, [projectId]);
 
@@ -142,8 +140,8 @@ const AddProject = () => {
         };
 
         console.log('Data:', data);
-        console.log(validateForm(fields))
-        console.log(errors)
+        console.log(validateForm(fields));
+        console.log(errors);
 
         if (validateForm(fields)) {
             try {
@@ -267,9 +265,20 @@ const AddProject = () => {
                                 value={projectData?.deployURL || fields.deployURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <Paragraph innerText = 'If you leave the input blank, it will not be checked.'/>
+                            <Paragraph innerText="If you leave the input blank, it will not be checked." />
                             <LabelError innerText={errors.deployURL} />
 
+                            <Label htmlFor="title-check" innerText="Title to ckeck" />
+
+                            <Input
+                                type="text"
+                                id="title-check"
+                                name="titleCheck"
+                                value={projectData?.titleCheck || fields.titleCheck}
+                                onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            />
+                            <Paragraph innerText="Insert a title of your website for cron to check its online status." />
+                            <LabelError innerText={errors.titleCheck} />
                             <Label htmlFor="tags" innerText="Tags *" />
 
                             <Input
@@ -283,17 +292,12 @@ const AddProject = () => {
 
                             <Label htmlFor="cover-image" innerText="Cover Image *" />
 
-                            <InputFile
-                                setImagePreview={handleFileChange }
-                                imagePreview={imagePreview}
-                                id='coverImage'
-                                name='coverImage'
-                            />
+                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id="coverImage" name="coverImage" />
                             <LabelError innerText={errors.coverImage} />
 
                             <Label htmlFor="project-description" innerText="Project description *" />
                             <ReactQuill value={projectData?.editorHtml || editorHtml} onChange={handleEditorChange} placeholder="Enter text..." />
-                            
+
                             <LabelError innerText={errors.editorHtml} />
                         </InputGroup>
 

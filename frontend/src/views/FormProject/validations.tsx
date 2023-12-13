@@ -109,6 +109,10 @@ export const validations = {
             return true;
         },
     },
+    titleCheck: {
+        required: false,
+        errorMessage: 'Text format is required.',
+    },
     commonError: {
         required: false,
         errorMessage: 'An error occurred. Please try again later.',

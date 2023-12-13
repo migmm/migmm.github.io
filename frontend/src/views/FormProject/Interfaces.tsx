@@ -8,6 +8,7 @@ export interface ProjectData {
     showReadme: boolean;
     deployURL: string;
     editorHtml: string;
+    titleCheck: string;
     tags: string;
     lastUpdate: string;
 }
