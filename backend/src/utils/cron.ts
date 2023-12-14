@@ -11,21 +11,28 @@ const EMAIL_TO_SEND_MSG = process.env.EMAIL_SEND_MESSAGE || '';
 const WEBCHECK_INTERVAL = parseInt(process.env.WEBCHECK_INTERVAL || '720');
 
 let urlsArray: string[] = [];
+let projectTitles: string[] = [];
 let urlsArrayWithError: string[] = [];
 const maxWaitTime = 60000;
-
 
 const getProjects = async () => {
     try {
         const projects = await api.getProjects();
-        urlsArray = projects.filter(
-            (element: any) => element.deployURL !== '' && element.deployURL != null)
+        projectTitles = projects
+            .filter(
+                (element: any) => element.deployURL !== '' && element.deployURL != null
+            )
+            .map((element: any) => element.titleCheck);
+
+        urlsArray = projects
+            .filter(
+                (element: any) => element.deployURL !== '' && element.deployURL != null
+            )
             .map((element: any) => element.deployURL);
     } catch (error) {
         console.log('Error getting projects', error);
     }
 };
-
 
 const fetchData = async (url: string, startTime: number): Promise<void> => {
     try {
@@ -45,6 +52,15 @@ const fetchData = async (url: string, startTime: number): Promise<void> => {
 
                 const pageTitle = $('title').text();
                 console.log('Page title for', url + ':', pageTitle);
+
+                // Encuentra el índice de la URL actual en urlsArray
+                const index = urlsArray.indexOf(url);
+
+                // Compara el título de la página con titleCheck correspondiente en projectTitles
+                if (index !== -1 && projectTitles[index] !== pageTitle) {
+                    console.error(`Error: Title mismatch for ${url}. Expected "${projectTitles[index]}", but got "${pageTitle}"`);
+                    urlsArrayWithError.push(url);
+                }
             } else {
                 console.error('The request returned status code', response.status, 'for:', url);
                 urlsArrayWithError.push(url);
@@ -59,6 +75,7 @@ const fetchData = async (url: string, startTime: number): Promise<void> => {
         console.error('Error fetching data from:', url);
     }
 };
+
 
 const checkWebsOnline = () => {
     const timeToCron = convertToCronExpression(WEBCHECK_INTERVAL);
