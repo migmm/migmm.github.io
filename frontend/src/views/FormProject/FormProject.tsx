@@ -30,6 +30,10 @@ import { apiURL } from '../../config/urls';
 import { ProjectData } from './Interfaces';
 import showdown from 'showdown';
 
+const converted = new showdown.Converter();
+converted.setOption('tables', true);
+
+
 const AddProject = () => {
     const [imagePreview, setImagePreview] = useState<string>('');
     const [editorHtml, setEditorHtml] = useState<string>('');
@@ -68,7 +72,6 @@ const AddProject = () => {
             console.log('README.md found');
             const readmeContent = response.data;
 
-            const converted = new showdown.Converter();
             const html = converted.makeHtml(readmeContent);
 
             handleEditorChange(html);
