@@ -128,10 +128,31 @@ const generateMessageContent = (subject: string, name: string, email: string, ph
     return content;
 };
 
+const generateErrorHtml = (errorUrls:any) => {
+    const title = "Web errors";
+    const errorList = errorUrls.map((url:any) => `<li>${url}</li>`).join("\n");
+
+    return `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>${title}</title>
+        </head>
+        <body>
+            <h1>${title}</h1>
+            <ul>
+                ${errorList}
+            </ul>
+        </body>
+        </html>
+    `;
+}
+
 
 export { 
     generateCOnfirmationMail,
     generatePasswordResetEmailContent,
     generateMessageConfirmationMail,
     generateMessageContent,
+    generateErrorHtml,
 };
