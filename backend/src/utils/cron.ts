@@ -182,4 +182,5 @@ const handleErrorsAfterCheck = async (): Promise<void> => {
     urlsArrayWithError = [];
 };
 
+
 export default checkWebsOnline;
