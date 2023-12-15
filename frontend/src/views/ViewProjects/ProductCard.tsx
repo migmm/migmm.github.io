@@ -33,7 +33,7 @@ const CardLink = styled(Link)`
     width: 100%;
 
     @media (min-width: 950px) {
-        width: 100%;
+        width: 400px;
     }
 `;
 
