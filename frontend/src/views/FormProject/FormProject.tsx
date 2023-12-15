@@ -73,7 +73,7 @@ const AddProject = () => {
             const readmeContent = response.data;
 
             const html = converted.makeHtml(readmeContent);
-
+            console.log(html)
             handleEditorChange(html);
         } catch (error: any) {
             if (error.response && error.response.status === 404) {
