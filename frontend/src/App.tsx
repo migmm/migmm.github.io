@@ -23,6 +23,7 @@ import UserForm from './views/UserForm/UserForm';
 import { useAppUser } from './context/UserContext';
 import { apiURL } from './config/urls';
 import FBChat from './components/FBChat/FBChat';
+import Delete from './views/Delete/Delete';
 
 
 interface DataItem {
@@ -90,6 +91,7 @@ const App = () => {
                     <Route path="/editproject/:projectId" element={<FormProject />} />
                     <Route path="/viewproject/:projectId" element={<ViewProject user={undefined} />} />
                     <Route path="/newuser" element={<UserForm />} />
+                    <Route path="/delete/:type/:id" element={<Delete />}/>
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 {isLoading ? '' : <Footer homeData={homeData} />}

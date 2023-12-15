@@ -12,12 +12,12 @@ const ProductCard = ({ projectName, id, imageUrl }: any) => {
             <CardContainer className="card">
                 {role === 'admin' && (
                     <CardButtons>
-                      <Link to={`/editcertificate/${id}`}>
-    <FontAwesomeIcon icon={faEdit} size="2x" />
-</Link>
-<Link to={`/delete/${id}`}>
-    <FontAwesomeIcon icon={faTimes} size="2x" />
-</Link>
+                        <Link to={`/editproject/${id}`}>
+                            <FontAwesomeIcon icon={faEdit} size="2x" />
+                        </Link>
+                        <Link to={`/delete/projects/${id}`}>
+                            <FontAwesomeIcon icon={faTimes} size="2x" />
+                        </Link>
                     </CardButtons>
                 )}
                 <CardImage src={imageUrl} alt={projectName} />
