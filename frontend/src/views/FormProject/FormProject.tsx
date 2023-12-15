@@ -103,13 +103,15 @@ const AddProject = () => {
                 try {
                     if (projectId) {
                         const response = await axios.get(`${apiURL}projects/${projectId}`);
-
+                        console.log(response)
                         handleChange('projectName', response.data.projectName);
+                        handleChange('shortDescription', response.data.shortDescription);
                         handleChange('projectStatus', response.data.projectStatus);
                         handleChange('showInLandPage', response.data.showInLandPage);
                         handleChange('gitURL', response.data.gitURL);
                         handleChange('showReadme', response.data.showReadme);
                         handleChange('deployURL', response.data.deployURL);
+                        handleChange('titleCkeck', response.data.titleCkeck);
                         handleChange('tags', response.data.tags);
 
                         handleEditorChange(response.data.editorHtml);
