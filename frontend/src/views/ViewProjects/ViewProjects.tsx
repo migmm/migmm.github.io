@@ -107,6 +107,7 @@ const ProjectsViewContainer = styled.main`
 
 const AddProject = styled.div`
     text-align: right;
+    margin-top: 2em;
 `;
 
 const ActualRoute = styled.div`
