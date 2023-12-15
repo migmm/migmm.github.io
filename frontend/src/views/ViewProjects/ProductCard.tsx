@@ -2,23 +2,24 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useAppUser } from '../../context/UserContext';
 
-const ProductCard = ({ projectName, id, imageUrl, userRole }: any) => {
-    /*  const isAdmin = userRole === 'admin'; */
+const ProductCard = ({ projectName, id, imageUrl }: any) => {
+    const { role } = useAppUser();
 
     return (
         <CardLink to={`/viewproject/${id}`}>
             <CardContainer className="card">
-                {/* {isAdmin && ( */}
-                <CardButtons>
-                    <Link to={`/edit/${id}`}>
-                        <FontAwesomeIcon icon={faEdit} size="2x"/>
-                    </Link>
-                    <Link to={`/delete/${id}`}>
-                        <FontAwesomeIcon icon={faTimes} size="2x"/>
-                    </Link>
-                </CardButtons>
-                {/*    )} */}
+                {role === 'admin' && (
+                    <CardButtons>
+                        <Link to={`/editcertificate/{id}`}>
+                            <FontAwesomeIcon icon={faEdit} size="2x" />
+                        </Link>
+                        <Link to={`/delete/${id}`}>
+                            <FontAwesomeIcon icon={faTimes} size="2x" />
+                        </Link>
+                    </CardButtons>
+                )}
                 <CardImage src={imageUrl} alt={projectName} />
             </CardContainer>
         </CardLink>
