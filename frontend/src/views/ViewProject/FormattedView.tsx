@@ -103,6 +103,7 @@ const StyledContent = styled.div`
     code {
         font-family: monospace;
         color: #f3f3f3;
+        background-color: #161B22;
         font-size: 1em;
     }
 
@@ -115,5 +116,9 @@ const StyledContent = styled.div`
         border-radius: 10px;
         padding: 1em;
         margin: 20px 0 20px 0;
+    }
+
+    table {
+        margin: 1em 0 1em 0;
     }
 `;
