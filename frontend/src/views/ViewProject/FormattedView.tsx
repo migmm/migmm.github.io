@@ -103,12 +103,17 @@ const StyledContent = styled.div`
     code {
         font-family: monospace;
         color: #f3f3f3;
-        background-color: #000000;
         font-size: 1em;
-        margin: 1em 0 1em 0;
     }
 
     img {
         border-radius: 10px;
+    }
+
+    pre {
+        background-color: #161B22;
+        border-radius: 10px;
+        padding: 1em;
+        margin: 20px 0 20px 0;
     }
 `;
