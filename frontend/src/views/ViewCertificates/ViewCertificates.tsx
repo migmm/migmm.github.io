@@ -103,7 +103,7 @@ export default Certificates;
 const CertificatesViewContainer = styled.main`
     max-width: 1900px;
     margin: 0 auto;
-    padding: 1em;
+    margin-bottom: 6em;
 
     @media (min-width: 768px) {
         max-width: 1500px;
