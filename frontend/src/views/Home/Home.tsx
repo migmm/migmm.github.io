@@ -123,19 +123,19 @@ const Home = ({ homeData }: any) => {
                                         Javascript and in the backend I used Node.js, Express and MongoDB.'/>
                                 </CardInfoContainer>
                                 <CardLanguagesContainer>
-                                    <Link to="/search/">
+                                    <Link to="/search/HTML">
                                         <Balloon innerText='HTML'/>
                                     </Link>
-                                    <Link to="/search/">
+                                    <Link to="/search/CSS">
                                         <Balloon innerText='CSS'/>
                                     </Link>
-                                    <Link to="/search/">
-                                        <Balloon innerText='Javascrip'/>
+                                    <Link to="/search/Javascript">
+                                        <Balloon innerText='Javascript'/>
                                     </Link>
-                                    <Link to="/search/">
+                                    <Link to="/search/NodeJS">
                                         <Balloon innerText='NodeJS'/>
                                     </Link>
-                                    <Link to="/search/">
+                                    <Link to="/search/MongoDB">
                                         <Balloon innerText='MongoDB'/>
                                     </Link>
                                 </CardLanguagesContainer>
