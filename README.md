@@ -1,7 +1,9 @@
 # MIGUEDEV
 ## React, Node,JS, Express, MongoDB, PostgreSQL, AWS, Typescript.
 
- <img src="https://github.com/migmm/migmm.github.io/blob/main/frontend/public/logo512.png" alt="Logo"/>
+<div style="text-align: center;">
+    <img src="https://github.com/migmm/migmm.github.io/blob/main/frontend/public/logo512.png" alt="Logo"/>
+</div>
 
 
 ### Personal web project using React, Node,JS, Express, MongoDB, PostgreSQL, AWS.
