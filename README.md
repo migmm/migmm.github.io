@@ -8,13 +8,13 @@
 
 ### Personal web project using React, Node,JS, Express, MongoDB, PostgreSQL, AWS.
 
-### Technologies Used
+## Technologies Used
 
 In the frontend, React was employed alongside Styled Components using TypeScript.
 
 In the backend, NodeJS was utilized with Express, Mongoose, Pg, and both MongoDB and PostgreSQL.
 
-### Features
+## Features
 
 - Possibility to monitoring project deploys in order to know when a project is down.
 
@@ -22,7 +22,7 @@ In the backend, NodeJS was utilized with Express, Mongoose, Pg, and both MongoDB
 
 - Users can also choose where to store objects, with options including disk, AWS, or database.
 
-### Testing
+## Testing
 
 Testing is included in both the frontend and the backend, each with its respective command:
 
@@ -32,7 +32,7 @@ Jest was used for the frontend, and Mocha with Chai for the backend.
 
 The NYC library is also included for test coverage, displaying everything automatically after the test is conducted.
 
-### .env Files
+## .env Files
 
 There is a .env file for each stage:
 
@@ -42,11 +42,11 @@ There is a .env file for each stage:
 
 Each .env file can be configured with the necessary parameters for each stage, allowing more flexibility when performing different actions.
 
-### Security
+## Security
 
 Regarding security, roles and session cookies with a configurable expiration time are implemented.
 
-### Running the Project
+## Running the Project
 
 Firstly, install the dependencies for both the frontend and the backend:
 
@@ -61,7 +61,7 @@ In the Backend
 
     npm run dev
 
-### Deploy
+## Deploy
 
 For deployment, the project is configured to build in Full stack.
 
