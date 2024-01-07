@@ -1,25 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
-const InputFile = ({ setImagePreview, imagePreview } : any) => {
+const InputFile = ({ setImagePreview, imagePreview }: any) => {
     const inputFileRef = useRef<HTMLInputElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
 
-    const handleFileChange = (event : any) => {
+    const handleFileChange = (event: any) => {
         const file = event.target.files?.[0];
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-            setImagePreview(reader.result);
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
+        handleFile(file);
     };
 
-    const handleRemoveImage = (event : any) => {
+    const handleRemoveImage = (event: any) => {
         event.stopPropagation();
         setImagePreview('');
         if (inputFileRef.current) {
@@ -34,44 +26,58 @@ const InputFile = ({ setImagePreview, imagePreview } : any) => {
         event.preventDefault();
     };
 
+    const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        setIsDragging(true);
+    };
+
+    const handleDragLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        setIsDragging(false);
+        const file = event.dataTransfer.files?.[0];
+        handleFile(file);
+    };
+
+    const handleFile = (file: File | undefined) => {
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImagePreview(reader.result);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
-        <InputFileStyled>
+        <InputFileStyled onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} isDragging={isDragging} draggable="true">
             <InputImage
-                type='file'
-                id='image'
-                name='Image'
-                accept='image/png, image/jpeg, image/bmp'
+                type="file"
+                id="image"
+                name="Image"
+                accept="image/png, image/jpeg, image/bmp"
                 ref={inputFileRef}
                 onChange={handleFileChange}
             />
-            <LabelButton
-                htmlFor='image'
-                onClick={handleImagePreviewClick}
-            >
+            <LabelButton htmlFor="image" onClick={handleImagePreviewClick}>
                 Select file
             </LabelButton>
             {imagePreview && (
-                <ImagePreviewContainer 
-                    onClick={handleImagePreviewClick}
-                >
+                <ImagePreviewContainer onClick={handleImagePreviewClick}>
                     <ImagePreviewWrapper>
-                        <ImagePreview 
-                            src={imagePreview} 
-                            alt='Preview' 
-                            className='image-preview' 
-                        />
-                        <RemoveImageButton
-                            onClick={handleRemoveImage}
-                        >
-                        </RemoveImageButton>
+                        <ImagePreview src={imagePreview} alt="Preview" className="image-preview" />
+                        <RemoveImageButton onClick={handleRemoveImage}></RemoveImageButton>
                     </ImagePreviewWrapper>
                 </ImagePreviewContainer>
             )}
             {!imagePreview && (
-                <ImagePreviewPlaceholder  
-                    onClick={handleImagePreviewClick}
-                    >
-                    <i className='fas fa-upload fa-5x'></i>
+                <ImagePreviewPlaceholder onClick={handleImagePreviewClick}>
+                    <i className="fas fa-upload fa-5x"></i>
                 </ImagePreviewPlaceholder>
             )}
         </InputFileStyled>
@@ -80,13 +86,15 @@ const InputFile = ({ setImagePreview, imagePreview } : any) => {
 
 export default InputFile;
 
-
-const InputFileStyled = styled.div`
+const InputFileStyled = styled.div<{ isDragging: boolean }>`
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
     width: 100%;
+    border-radius: 20px;
+    padding: 1em;
+    background-color: ${(props) => (props.isDragging ? '#e2e2e2' : 'transparent')};
 `;
 
 const InputImage = styled.input`
@@ -175,11 +183,11 @@ const ImagePreviewPlaceholder = styled.div`
     justify-content: center;
     width: 200px;
     height: 200px;
-    border: 1px solid #EBEBEB;
+    border: 1px solid #ebebeb;
     margin-bottom: 1em;
     border-radius: 20px;
     background-color: #ffffff;
-    cursor:pointer;
+    cursor: pointer;
 
     :hover {
         background-color: #e2e2e2;
