@@ -140,7 +140,7 @@ const ImagePreviewWrapper = styled.div`
 
 const ImagePreview = styled.img`
     max-width: 100%;
-    max-height: 200px;
+    max-height: 196px;
     object-fit: contain;
     border-radius: 20px;
     margin-bottom: 1em;
