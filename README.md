@@ -21,6 +21,10 @@ In the backend, NodeJS was utilized with Express, Mongoose, Pg, and both MongoDB
 
 - Users can also choose where to store objects, with options including disk, AWS, or database.
 
+- You can edit project description like a "Word document" with images.
+
+- You can use your README.md un project description clicking in checkbox "use README". 
+
 ## Testing
 
 Testing is included in both the frontend and the backend, each with its respective command:
