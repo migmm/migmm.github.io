@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
@@ -11,15 +12,19 @@ import H1 from '../../Styles/H1/H1';
 import Select from '../../Styles/Form/Select/Select';
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 import InputFile from '../../Styles/Form/InputFile/InputFile';
-import { validations, initialFields } from './validations';
-import { useValidation } from '../../hooks/useValidations';
+
 import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
-import { apiURL } from '../../config/urls';
+
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 import ContainerStyles from '../../Styles/Container/Container';
-import { useParams } from 'react-router-dom';
+
+import { apiURL } from '../../config/urls';
+import { validations, initialFields } from './validations';
+import { useValidation } from '../../hooks/useValidations';
+
 import { CertificateData } from './Interfaces';
+import { useAppUser } from '../../context/UserContext';
 
 
 const AddCertificate = () => {
@@ -38,8 +43,15 @@ const AddCertificate = () => {
 
     const { certificateId } = useParams();
 
+    const { role } = useAppUser();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if(role === null || role !== 'admin'){
+            navigate('/');
+        }
+
         if (certificateId) {
             setH1Text('Edit');
         } else {
