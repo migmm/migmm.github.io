@@ -11,7 +11,7 @@
 
 In the frontend, React was employed alongside Styled Components using TypeScript.
 
-In the backend, NodeJS was utilized with Express, Mongoose, Pg, and both MongoDB and PostgreSQL.
+In the backend, NodeJS was utilized with Express, Mongoose, Pg, and both MongoDB and PostgreSQL, everything with Typescript.
 
 ## Features
 
