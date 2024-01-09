@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import {useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
 import ReactQuill from '../../components/Quill/Quill';
-import 'react-quill/dist/quill.snow.css';
+import showdown from 'showdown';
 
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
 import Button from '../../Styles/Form/Button/Button';
@@ -17,19 +15,19 @@ import H1 from '../../Styles/H1/H1';
 import Checkbox from '../../Styles/Form/CheckBox/CheckBox';
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
+import ContainerStyles from '../../Styles/Container/Container';
+import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 
 import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
-import ContainerStyles from '../../Styles/Container/Container';
-
-import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
 import { apiURL } from '../../config/urls';
 import { ProjectData } from './Interfaces';
-import showdown from 'showdown';
+
 import { useAppUser } from '../../context/UserContext';
+import 'react-quill/dist/quill.snow.css';
 
 const converted = new showdown.Converter();
 converted.setOption('tables', true);
