@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,6 +29,7 @@ import { useValidation } from '../../hooks/useValidations';
 import { apiURL } from '../../config/urls';
 import { ProjectData } from './Interfaces';
 import showdown from 'showdown';
+import { useAppUser } from '../../context/UserContext';
 
 const converted = new showdown.Converter();
 converted.setOption('tables', true);
@@ -56,6 +57,8 @@ const AddProject = () => {
     const [, setReadmeContent] = useState('');
 
     const navigate = useNavigate();
+
+    const { role } = useAppUser();
 
     const fetchReadmeContent = async (githubURL: string) => {
         try {
@@ -97,6 +100,10 @@ const AddProject = () => {
     };
 
     useEffect(() => {
+        if(role === null || role !== 'admin'){
+            navigate('/');
+        }
+
         const fetchProjectDataToEdit = async () => {
             if (projectId) {
                 setH1Text('Edit');
