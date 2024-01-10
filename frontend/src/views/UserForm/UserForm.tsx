@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 import CommonStyles from '../../Styles/CommonStyles/CommonStyles';
 import H1 from '../../Styles/H1/H1';
 import InputGroup from '../../Styles/Form/InputGroup/InputGroup';
 import Label from '../../Styles/Form/Label/Label';
 import Input from '../../Styles/Form/Input/Input';
 import LabelError from '../../Styles/Form/LabelError/LabelError';
-import axios from 'axios';
-import { useValidation } from '../../hooks/useValidations';
-import useFormUtils from '../../hooks/useFormUtils';
-import { initialFields, validations } from './validations';
+
 import InputFile from '../../Styles/Form/InputFile/InputFile';
 import Button from '../../Styles/Form/Button/Button';
 import ContainerStyles from '../../Styles/Container/Container';
-import { apiURL } from '../../config/urls';
 import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
+
+import { useValidation } from '../../hooks/useValidations';
+import { initialFields, validations } from './validations';
+import { apiURL } from '../../config/urls';
+import { useAppUser } from '../../context/UserContext';
+import useFormUtils from '../../hooks/useFormUtils';
 import convertBase64ToBlob from '../../utils/base64toImage';
 
 
 const UserForm = () => {
-
     const [imagePreview, setImagePreview] = useState('');
     const [error, setError] = useState('');
     const [buttonMessage, setButtonMessage] = useState(false);
@@ -26,10 +30,20 @@ const UserForm = () => {
     const { errors, validateForm } = useValidation(validations);
     const { fields, handleChange, handleReset } = useFormUtils(initialFields);
 
+    const navigate = useNavigate();
+
+    const { role } = useAppUser();
+
     const handleFileChange = (imageData: any) => {
         setImagePreview(imageData);
         handleChange('logo', imageData);
     };
+
+    useEffect(() => {
+        if (role === null || role !== 'admin') {
+            navigate('/');
+        }
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -48,11 +62,11 @@ const UserForm = () => {
 
         if (validateForm(fields)) {
             try {
-                console.log('send')
+                console.log('send');
                 const response = await axios.post(`${apiURL}users`, data, {
                     headers: {
-                        'Content-Type': 'application/json'
-                    }
+                        'Content-Type': 'application/json',
+                    },
                 });
 
                 if (response.status === 201) {
@@ -77,180 +91,115 @@ const UserForm = () => {
 
         setButtonMessage(false);
     };
-    
+
     return (
         <CommonStyles>
             <ContainerStyles>
-                <H1 innerText='Registration'/>
+                <H1 innerText="Registration" />
                 <div>
                     <form onSubmit={handleSubmit} noValidate>
-                    <InputGroup>
-                            <Label
-                                htmlFor='name'
-                                innerText='Your name *'
-                            />
+                        <InputGroup>
+                            <Label htmlFor="name" innerText="Your name *" />
                             <Input
-                                type='text'
-                                id='name'
-                                name='name'
+                                type="text"
+                                id="name"
+                                name="name"
                                 value={fields.name}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.name}
-                            />
+                            <LabelError innerText={errors.name} />
 
-                            <Label
-                                htmlFor='job-title'
-                                innerText='Your job title *'
-                            />
+                            <Label htmlFor="job-title" innerText="Your job title *" />
                             <Input
-                                type='text'
-                                id='job-title'
-                                name='jobTitle'
+                                type="text"
+                                id="job-title"
+                                name="jobTitle"
                                 value={fields.jobTitle}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.jobTitle}
-                            />
+                            <LabelError innerText={errors.jobTitle} />
 
-                            <Label
-                                htmlFor='location'
-                                innerText='Your location *'
-                            />
+                            <Label htmlFor="location" innerText="Your location *" />
                             <Input
-                                type='text'
-                                id='location'
-                                name='location'
+                                type="text"
+                                id="location"
+                                name="location"
                                 value={fields.location}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.location}
-                            />
+                            <LabelError innerText={errors.location} />
 
-                            <Label
-                                htmlFor='linkedin-url'
-                                innerText='LinkedIn URL'
-                            />
+                            <Label htmlFor="linkedin-url" innerText="LinkedIn URL" />
                             <Input
-                                type='text'
-                                id='linkedin-url'
-                                name='linkedinURL'
+                                type="text"
+                                id="linkedin-url"
+                                name="linkedinURL"
                                 value={fields.linkedinURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.linkedinURL}
-                            />
+                            <LabelError innerText={errors.linkedinURL} />
 
-                            <Label
-                                htmlFor='github-url'
-                                innerText='Github URL'
-                            />
+                            <Label htmlFor="github-url" innerText="Github URL" />
                             <Input
-                                type='text'
-                                id='github-url'
-                                name='githubURL'
+                                type="text"
+                                id="github-url"
+                                name="githubURL"
                                 value={fields.githubURL}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.githubURL}
-                            />
+                            <LabelError innerText={errors.githubURL} />
 
-                            <Label
-                                htmlFor='email'
-                                innerText='Email'
-                            />
+                            <Label htmlFor="email" innerText="Email" />
                             <Input
-                                type='text'
-                                id='email'
-                                name='email'
+                                type="text"
+                                id="email"
+                                name="email"
                                 value={fields.email}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.email}
-                            />
+                            <LabelError innerText={errors.email} />
 
-                            <Label
-                                htmlFor='whatsapp-number'
-                                innerText='Whatsapp Number'
-                            />
+                            <Label htmlFor="whatsapp-number" innerText="Whatsapp Number" />
                             <Input
-                                type='text'
-                                id='whatsapp-number'
-                                name='whatsappNumber'
+                                type="text"
+                                id="whatsapp-number"
+                                name="whatsappNumber"
                                 value={fields.whatsappNumber}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.whatsappNumber}
-                            />
+                            <LabelError innerText={errors.whatsappNumber} />
 
-                            <Label
-                                htmlFor='telegram-id'
-                                innerText='Telegram'
-                            />
+                            <Label htmlFor="telegram-id" innerText="Telegram" />
                             <Input
-                                type='text'
-                                id='telegram-id'
-                                name='telegramId'
+                                type="text"
+                                id="telegram-id"
+                                name="telegramId"
                                 value={fields.telegramId}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.telegramId}
-                            />
+                            <LabelError innerText={errors.telegramId} />
 
-                            <Label
-                                htmlFor='youtube-channel'
-                                innerText='Youtube Channel'
-                            />
+                            <Label htmlFor="youtube-channel" innerText="Youtube Channel" />
                             <Input
-                                type='text'
-                                id='youtube-channel'
-                                name='youtubeChannel'
+                                type="text"
+                                id="youtube-channel"
+                                name="youtubeChannel"
                                 value={fields.youtubeChannel}
                                 onChange={(e) => handleChange(e.target.name, e.target.value)}
                             />
-                            <LabelError
-                                innerText={errors.youtubeChannel}
-                            />
+                            <LabelError innerText={errors.youtubeChannel} />
 
-                            <Label
-                                htmlFor='logo'
-                                innerText='Your Logo *'
-                            />
-                            <InputFile
-                                setImagePreview={handleFileChange}
-                                imagePreview={imagePreview}
-                                id='logo'
-                                name='logo'
-                            />
-                            <LabelError
-                                innerText={errors.logo}
-                            />
+                            <Label htmlFor="logo" innerText="Your Logo *" />
+                            <InputFile setImagePreview={handleFileChange} imagePreview={imagePreview} id="logo" name="logo" />
+                            <LabelError innerText={errors.logo} />
                         </InputGroup>
 
-                        <LabelError
-                            innerText={error}
-                        />
+                        <LabelError innerText={error} />
 
                         <ButtonGroup>
-                            <Button
-                                type='submit'
-                                disabled={buttonMessage}
-                                innerText={buttonMessage ? 'Wait..' : 'Add'}
-                            />
+                            <Button type="submit" disabled={buttonMessage} innerText={buttonMessage ? 'Wait..' : 'Add'} />
 
-                            <Button
-                                type='reset'
-                                onClick={handleReset}
-                                innerText='Reset'
-                            />
+                            <Button type="reset" onClick={handleReset} innerText="Reset" />
                         </ButtonGroup>
                     </form>
                 </div>
