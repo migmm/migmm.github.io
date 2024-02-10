@@ -13,6 +13,7 @@ import H1 from '../../Styles/H1/H1';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
 import { ProjectData, HeroStylesProps, ViewProjectProps } from './interface';
 import { useAppUser } from '../../context/UserContext';
+import Preloader from '../../components/Preloader/Preloader';
 
 const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
     const { projectId } = useParams<{ projectId: string }>();
@@ -100,7 +101,7 @@ const ViewProject: React.FC<ViewProjectProps> = ({ user }) => {
                         </Content>
                     </>
                 ) : (
-                    <div>Loading...</div>
+                    <Preloader />
                 )}
             </div>
         </ProjectViewContainer>
