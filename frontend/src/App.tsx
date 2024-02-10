@@ -24,6 +24,7 @@ import { useAppUser } from './context/UserContext';
 import { apiURL } from './config/urls';
 import FBChat from './components/FBChat/FBChat';
 import Delete from './views/Delete/Delete';
+import Preloader from './components/Preloader/Preloader';
 
 
 interface DataItem {
@@ -77,7 +78,7 @@ const App = () => {
                 <FBChat pageId="184581498068766" />
                 {isLoading ? '' : <Header user={undefined} homeData={homeData} />}
                 <Routes>
-                    <Route path="/" element={isLoading ? '' : <Home homeData={homeData} />} />
+                    <Route path="/" element={isLoading ? <Preloader /> : <Home homeData={homeData} />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/search/:tag" element={<Projects />} />
                     <Route path="/certificates" element={<Certificates />} />

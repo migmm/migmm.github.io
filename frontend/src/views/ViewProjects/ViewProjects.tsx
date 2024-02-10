@@ -9,6 +9,7 @@ import ProductCard from './ProductCard';
 import ProjectTitle from '../../assets/images/projects-title.png';
 import Button from '../../Styles/Form/Button/Button';
 import { useAppUser } from '../../context/UserContext';
+import Preloader from '../../components/Preloader/Preloader';
 
 
 interface DataItem {
@@ -25,7 +26,8 @@ const ViewProject = () => {
     const { tag } :any= useParams<{ projectId: string }>();
     const [data, setData] = useState<DataItem[]>([]);
     const { role } = useAppUser();
-    
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
 
         let apiUrl = `${apiURL}projects/`;
@@ -42,12 +44,19 @@ const ViewProject = () => {
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, [tag]);
 
 
     return (
         <ProjectsViewContainer>
+            {isLoading ? (
+                <Preloader />
+            ) : (
+                <>
             <ActualRoute>
                 <Link to='/'>
                     {' '}
@@ -76,6 +85,8 @@ const ViewProject = () => {
                     ))}
                 </CardContainer>
             </Content>
+            </>
+            )}
         </ProjectsViewContainer>
     );
 };

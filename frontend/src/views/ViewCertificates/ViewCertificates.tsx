@@ -11,11 +11,13 @@ import CertificateTitle from '../../assets/images/certificates-title.png';
 import { DataItem, HeroStylesProps, CertificateData } from './interface';
 import Button from '../../Styles/Form/Button/Button';
 import { useAppUser } from '../../context/UserContext';
+import Preloader from '../../components/Preloader/Preloader';
 
 const Certificates = () => {
     const [certifications, setCertifications] = useState<DataItem[]>([]);
     const [badges, setBadges] = useState<DataItem[]>([]);
     const { role } = useAppUser();
+    const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
         axios
@@ -35,65 +37,74 @@ const Certificates = () => {
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, []);
 
     return (
         <CertificatesViewContainer>
-            <ActualRoute>
-                <Link to="/">
-                    {' '}
-                    <FontAwesomeIcon icon={faHome} />
-                </Link>{' '}
-                / <Link to="/certificates">Certificates</Link>
-                {''}
-            </ActualRoute>
-            <HeroStyles bg={CertificateTitle}>
-                <HeroLeft>{'My best certifications.'}</HeroLeft>
-                <HeroRight> </HeroRight>
-            </HeroStyles>
-            {role === 'admin' && (
-                <AddCertificate>
-                    <Link to='/addcertificate'>
-                        <Button innerText='Add new certification'/>
-                    </Link>
-                </AddCertificate>
+            {isLoading ? (
+                <Preloader />
+            ) : (
+                <>
+                    <ActualRoute>
+                        <Link to="/">
+                            {' '}
+                            <FontAwesomeIcon icon={faHome} />
+                        </Link>{' '}
+                        / <Link to="/certificates">Certificates</Link>
+                        {''}
+                    </ActualRoute>
+                    <HeroStyles bg={CertificateTitle}>
+                        <HeroLeft>{'My best certifications.'}</HeroLeft>
+                        <HeroRight> </HeroRight>
+                    </HeroStyles>
+                    {role === 'admin' && (
+                        <AddCertificate>
+                            <Link to='/addcertificate'>
+                                <Button innerText='Add new certification'/>
+                            </Link>
+                        </AddCertificate>
+                    )}
+                    <CertificationsContainer>
+                        {/* Certifications */}
+                        {certifications.length > 0 && (
+                            <>
+                                <H1 innerText="Certifications" />
+                                <CardsContainer>
+                                    {certifications.map((item) => (
+                                        <CertificateCard
+                                            key={item.id}
+                                            courseTitle={item.courseTitle}
+                                            courseImage={item.courseImage[0]}
+                                            urlCheck={item.urlCheck}
+                                        />
+                                    ))}
+                                </CardsContainer>
+                            </>
+                        )}
+    
+                        {/* Badges */}
+                        {badges.length > 0 && (
+                            <>
+                                <H1 innerText="Badges" />
+                                <CardsContainer>
+                                    {badges.map((item) => (
+                                        <CertificateCard
+                                            key={item.id}
+                                            courseTitle={item.courseTitle}
+                                            courseImage={item.courseImage[0]}
+                                            urlCheck={item.urlCheck}
+                                        />
+                                    ))}
+                                </CardsContainer>
+                            </>
+                        )}
+                    </CertificationsContainer>
+                </>
             )}
-            <CertificationsContainer>
-                {/* Certifications */}
-                {certifications.length > 0 && (
-                    <>
-                        <H1 innerText="Certifications" />
-                        <CardsContainer>
-                            {certifications.map((item) => (
-                                <CertificateCard
-                                    key={item.id}
-                                    courseTitle={item.courseTitle}
-                                    courseImage={item.courseImage[0]}
-                                    urlCheck={item.urlCheck}
-                                />
-                            ))}
-                        </CardsContainer>
-                    </>
-                )}
-
-                {/* Badges */}
-                {badges.length > 0 && (
-                    <>
-                        <H1 innerText="Badges" />
-                        <CardsContainer>
-                            {badges.map((item) => (
-                                <CertificateCard
-                                    key={item.id}
-                                    courseTitle={item.courseTitle}
-                                    courseImage={item.courseImage[0]}
-                                    urlCheck={item.urlCheck}
-                                />
-                            ))}
-                        </CardsContainer>
-                    </>
-                )}
-            </CertificationsContainer>
         </CertificatesViewContainer>
     );
 };
