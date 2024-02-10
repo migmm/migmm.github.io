@@ -5,22 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
 import { apiURL } from '../../config/urls';
+import {DataItem, HeroStylesProps } from './Interface'
 import ProductCard from './ProductCard';
 import ProjectTitle from '../../assets/images/projects-title.png';
 import Button from '../../Styles/Form/Button/Button';
 import { useAppUser } from '../../context/UserContext';
 import Preloader from '../../components/Preloader/Preloader';
 
-
-interface DataItem {
-    id: number;
-    projectName: string;
-    coverImage: string;
-}
-
-interface HeroStylesProps {
-    bg: string;
-}
 
 const ViewProject = () => {
     const { tag } :any= useParams<{ projectId: string }>();
