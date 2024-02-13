@@ -1,4 +1,4 @@
-// FeaturedProject.js
+
 import styled from 'styled-components';
 import H2 from '../../Styles/H2/H2';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
