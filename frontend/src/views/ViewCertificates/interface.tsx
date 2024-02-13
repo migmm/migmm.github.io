@@ -1,4 +1,5 @@
 export interface DataItem {
+    tags: any;
     courseTitle: any;
     id: number;
     courseImage: string;
