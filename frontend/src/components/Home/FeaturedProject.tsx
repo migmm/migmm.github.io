@@ -1,14 +1,16 @@
 
 import styled from 'styled-components';
-import H2 from '../../Styles/H2/H2';
+
 import Paragraph from '../../Styles/Paragraph/Paragraph';
 import { Link } from 'react-router-dom';
 import Balloon from '../Balloon/Balloon';
+import H2Black from '../../Styles/H2-Black/H2-Black';
+
 
 const FeaturedProject = () => {
     return (
         <ProjectContainer>
-            <H2> Featured project</H2>
+            <H2Black> Featured project</H2Black>
 
             {/*                 <p>Featured projects that I've developed</p> */}
 
@@ -24,7 +26,7 @@ const FeaturedProject = () => {
                         </CardLeftPart>
                         <CardRightPart>
                             <CardTitleContainer>
-                                <H2>Juguetería Cósmica</H2>
+                                <H2Black>Juguetería Cósmica</H2Black>
                             </CardTitleContainer>
                             <CardInfoContainer>
                                 <Paragraph
@@ -60,6 +62,7 @@ const FeaturedProject = () => {
         </ProjectContainer>
     );
 };
+
 
 export default FeaturedProject;
 
