@@ -6,6 +6,7 @@ import { setupScrollHandler } from './scrollHandler';
 
 import FeaturedProject from '../../components/Home/FeaturedProject';
 import SkillsSection from '../../components/Home/Skills';
+import ShortInfoSection from '../../components/Home/ShortInfo';
 
 
 const Home = ({ homeData }: any) => {
@@ -56,6 +57,7 @@ const Home = ({ homeData }: any) => {
                     </ContactIcons>
                 </HeroContainer>
             </HeroHeightReserver>
+            <ShortInfoSection />
             <SkillsSection />
             <FeaturedProject/>
         </HomeContainer>
