@@ -7,6 +7,7 @@ import { setupScrollHandler } from "./scrollHandler";
 
 import FeaturedProject from "../../components/Home/FeaturedProject";
 import SkillsSection from "../../components/Home/Skills";
+import H2Black from "../../Styles/H2-Black/H2-Black";
 
 
 const Home = ({ homeData }: any) => {
@@ -58,7 +59,7 @@ const Home = ({ homeData }: any) => {
                 </HeroContainer>
             </HeroHeightReserver>
             <ShortInfo>
-                <H2>About Me</H2>
+                <H2Black>About Me</H2Black>
                 <Paragraph
                     innerText="I have practical experience in languajes and technologies like PHP, JAVA, Javascript/Typescript and Node.JS with 
                     MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset."
@@ -174,18 +175,5 @@ const ShortInfo = styled.div`
             font-size: 1.5em;
         }
     }
-`;
-
-
-
-const H2 = styled.h2`
-    font-family: "Work Sans", sans-serif;
-    font-weight: 800;
-    font-size: 2em;
-    color: black;
-    margin-bottom: 1em;
-    width:100%;
-    text-align: center;
-    //margin-top: 0.5em;
 `;
 
