@@ -1,13 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import { isMobile } from "react-device-detect";
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { isMobile } from 'react-device-detect';
 
-import Paragraph from "../../Styles/Paragraph/Paragraph";
-import { setupScrollHandler } from "./scrollHandler";
+import { setupScrollHandler } from './scrollHandler';
 
-import FeaturedProject from "../../components/Home/FeaturedProject";
-import SkillsSection from "../../components/Home/Skills";
-import H2Black from "../../Styles/H2-Black/H2-Black";
+import FeaturedProject from '../../components/Home/FeaturedProject';
+import SkillsSection from '../../components/Home/Skills';
 
 
 const Home = ({ homeData }: any) => {
@@ -19,7 +17,7 @@ const Home = ({ homeData }: any) => {
 
     useEffect(() => {
         if (!isMobile) {
-            console.log("you are not on mobile");
+            console.log('you are not on mobile');
             const cleanupScrollHandler = setupScrollHandler(contactIcons.current, zoomElement.current || zoomElement, heroContainerFixed.current);
             return () => {
                 cleanupScrollHandler();
@@ -35,41 +33,30 @@ const Home = ({ homeData }: any) => {
                         <TextHome ref={zoomElement}>
                             Hi everyone!
                             <br /> My name is {data.name}.
-                            <br /> I'm a <span className="charge-text">{data.jobTitle}</span>,
+                            <br /> I'm a <span className='charge-text'>{data.jobTitle}</span>,
                             <br /> from {data.location}.
                         </TextHome>
                     </TextContainer>
                     <ContactIcons ref={contactIcons}>
-                        <a href={data.githubURL} target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-github fa-3x"></i>
+                        <a href={data.githubURL} target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-github fa-3x'></i>
                         </a>
-                        <a href={data.linkedinURL} target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-linkedin fa-3x"></i>
+                        <a href={data.linkedinURL} target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-linkedin fa-3x'></i>
                         </a>
-                        <a href={`mailto:${data.email}`} target="_blank" rel="noreferrer">
-                            <i className="fa fa-envelope fa-3x"></i>
+                        <a href={`mailto:${data.email}`} target='_blank' rel='noreferrer'>
+                            <i className='fa fa-envelope fa-3x'></i>
                         </a>
-                        <a href={`https://api.whatsapp.com/send?phone=${data.whatsappNumber}`} target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-whatsapp fa-3x"></i>
+                        <a href={`https://api.whatsapp.com/send?phone=${data.whatsappNumber}`} target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-whatsapp fa-3x'></i>
                         </a>
-                        <a href={`https://t.me/${data.telegramId}`} target="_blank" rel="noreferrer">
-                            <i className="fa-brands fa-telegram fa-3x"></i>
+                        <a href={`https://t.me/${data.telegramId}`} target='_blank' rel='noreferrer'>
+                            <i className='fa-brands fa-telegram fa-3x'></i>
                         </a>
                     </ContactIcons>
                 </HeroContainer>
             </HeroHeightReserver>
-            <ShortInfo>
-                <H2Black>About Me</H2Black>
-                <Paragraph
-                    innerText="I have practical experience in languajes and technologies like PHP, JAVA, Javascript/Typescript and Node.JS with 
-                    MongoDB and PostgreSQL and a working knowledge of React. All of this combined with a creative and innovative mindset."
-                />
-                <Paragraph
-                    innerText="With a flexible and goal-oriented approach, I can tackle complex challenges and develop innovative 
-                    solutions, adapting to diverse project environments and requirements."
-                />
-            </ShortInfo>
-            <SkillsSection/>
+            <SkillsSection />
             <FeaturedProject/>
         </HomeContainer>
     );
@@ -113,7 +100,7 @@ const TextContainer = styled.div`
 const TextHome = styled.p`
     text-align: center;
     font-size: 6vw;
-    font-family: "Work Sans", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     display: block;
     font-weight: 800;
     //word-spacing: -10px;
@@ -157,23 +144,3 @@ const ContactIcons = styled.div`
         }
     }
 `;
-
-const ShortInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 5em 3em;
-
-    p {
-        max-width: 900px;
-        text-align: center;
-
-        @media (min-width: 768px) {
-            font-size: 1.5em;
-        }
-    }
-`;
-
