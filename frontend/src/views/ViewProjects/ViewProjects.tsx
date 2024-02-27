@@ -72,7 +72,13 @@ const ViewProject = () => {
             <Content>
                 <CardContainer>
                     {data.map((item) => (
-                        <ProductCard key={item.id} id={item.id} projectName={item.projectName} imageUrl={item.coverImage} />
+                        <ProductCard
+                        key={item.id}
+                        id={item.id}
+                        projectName={item.projectName}
+                        imageUrl={item.coverImage}
+                        tags={item.tags} // Suponiendo que `item.tags` es un array de strings
+                    />
                     ))}
                 </CardContainer>
             </Content>

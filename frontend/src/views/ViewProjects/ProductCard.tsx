@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useAppUser } from '../../context/UserContext';
+import Paragraph from '../../Styles/Paragraph/Paragraph';
+import BalloonSmall from '../../components/BalloonSmall/BalloonSmall';
 
-const ProductCard = ({ projectName, id, imageUrl }: any) => {
+const ProductCard = ({ projectName, id, imageUrl,tags }: any) => {
     const { role } = useAppUser();
+    const tagArray = tags.split(",").map((tags: string) => tags.trim());
 
     return (
         <CardLink to={`/viewproject/${id}`}>
@@ -22,6 +25,12 @@ const ProductCard = ({ projectName, id, imageUrl }: any) => {
                 )}
                 <CardImage src={imageUrl} alt={projectName} />
             </CardContainer>
+            <Paragraph innerText={projectName} />
+            <TagsContainer>
+                    {tagArray.map((tag: string, index: number) => (
+                        <BalloonSmall key={index} innerText={tag} />
+                    ))}
+                </TagsContainer>
         </CardLink>
     );
 };
@@ -74,4 +83,11 @@ const CardImage = styled.img`
     height: 100%;
     object-fit: contain;
     padding: 1em;
+`;
+
+const TagsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5em;
+    height: 82px;
 `;
