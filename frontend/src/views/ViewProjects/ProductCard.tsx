@@ -41,6 +41,7 @@ const CardLink = styled(Link)`
     text-decoration: none;
     color: black;
     width: 100%;
+    margin-top: 3em;
 
     @media (min-width: 950px) {
         width: 400px;
