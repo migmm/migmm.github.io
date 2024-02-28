@@ -8,7 +8,18 @@ import BalloonSmall from '../../components/BalloonSmall/BalloonSmall';
 
 const ProductCard = ({ projectName, id, imageUrl,tags }: any) => {
     const { role } = useAppUser();
-    const tagArray = tags.split(",").map((tags: string) => tags.trim());
+
+    const BalloonContainer = ({ tags }: any) => {
+        const words: string[] = tags.split(',').map((tag: string) => tag.trim());
+
+        const balloons = words.map((word: any) => (
+            <Link key={word} to={`/search/${word}`}>
+                <BalloonSmall className="balloon" innerText={word} />
+            </Link>
+        ));
+
+        return <div style={{ display: 'flex', flexWrap: 'wrap' }}>{balloons}</div>;
+    };
 
     return (
         <CardLink to={`/viewproject/${id}`}>
@@ -27,10 +38,8 @@ const ProductCard = ({ projectName, id, imageUrl,tags }: any) => {
             </CardContainer>
             <Paragraph innerText={projectName} />
             <TagsContainer>
-                    {tagArray.map((tag: string, index: number) => (
-                        <BalloonSmall key={index} innerText={tag} />
-                    ))}
-                </TagsContainer>
+                <BalloonContainer tags={tags} />
+            </TagsContainer>
         </CardLink>
     );
 };
