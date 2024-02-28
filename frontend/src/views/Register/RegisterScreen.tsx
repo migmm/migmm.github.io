@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -17,6 +17,7 @@ import ButtonGroup from '../../Styles/Form/ButtonGroup/ButtonGroup';
 import { apiURL } from '../../config/urls';
 import { validations, initialFields } from './validations';
 import { useValidation } from '../../hooks/useValidations';
+import { useAppUser } from '../../context/UserContext';
 
 
 const RegisterScreen = () => {
@@ -27,6 +28,14 @@ const RegisterScreen = () => {
 
     const { errors, validateForm } = useValidation(validations);
     const { fields, handleChange, handleReset } = useFormUtils({initialFields});
+
+    const { role } = useAppUser();
+    
+    useEffect(() => {
+        if(role === null || role !== 'admin'){
+            navigate('/');
+        }
+    }, []);
 
     const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
