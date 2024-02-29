@@ -54,12 +54,12 @@ const LoginScreen: React.FC = () => {
         e.preventDefault();
         setError('');
         setButtonMessage(true);
-
+    
         const data = {
-            ...fields,
-        }
-        
-        console.log(validateForm(fields))
+            username: fields.username,
+            password: fields.password
+        };
+    
         if (validateForm(fields)) {
             try {
                 const response = await axios.post(
@@ -71,12 +71,12 @@ const LoginScreen: React.FC = () => {
                         },
                     }
                 );
-
+    
                 if (response.status === 201) {
                     const { accessToken } = response.data;
                     const decodedToken = jwtDecode(accessToken);
                     updateUser(decodedToken);
-
+    
                     if (rememberToken) {
                         const tokenString = JSON.stringify(accessToken);
                         Cookies.set('token', tokenString, {
@@ -86,15 +86,20 @@ const LoginScreen: React.FC = () => {
                             */ 
                         });
                     }
-
+    
                     navigate('/');
                 }
             } catch (error: any) {
+                setError('');
                 if (error.response) {
-                        const { status } = error.response;
+                    const { status } = error.response;
                     if (status === 401) {
                         console.log(error)
-                            setError(validations.commonError.userOrPassIncorrect);
+                        setError(validations.commonError.userOrPassIncorrect);
+                    } 
+                    if (status === 400) {
+                        console.log(error)
+                        setError(validations.commonError.errorMessage);
                     } 
                 } else {
                     console.log(error)
@@ -103,9 +108,10 @@ const LoginScreen: React.FC = () => {
                 }
             }
         }
-
+    
         setButtonMessage(false);
     };
+    
 
     return (
         <CommonStyles>
