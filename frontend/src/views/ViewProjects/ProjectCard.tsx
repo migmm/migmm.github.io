@@ -6,7 +6,7 @@ import { useAppUser } from '../../context/UserContext';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
 import BalloonSmall from '../../components/BalloonSmall/BalloonSmall';
 
-const ProductCard = ({ projectName, id, imageUrl,tags }: any) => {
+const ProjectCard = ({ projectName, id, imageUrl,tags }: any) => {
     const { role } = useAppUser();
 
     const BalloonContainer = ({ tags }: any) => {
@@ -44,7 +44,7 @@ const ProductCard = ({ projectName, id, imageUrl,tags }: any) => {
     );
 };
 
-export default ProductCard;
+export default ProjectCard;
 
 const CardLink = styled(Link)`
     text-decoration: none;

@@ -6,7 +6,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
 import { apiURL } from '../../config/urls';
 import {DataItem, HeroStylesProps } from './Interface'
-import ProductCard from './ProductCard';
+import ProjectCard from './ProjectCard';
 import ProjectTitle from '../../assets/images/projects-title.png';
 import Button from '../../Styles/Form/Button/Button';
 import { useAppUser } from '../../context/UserContext';
@@ -72,7 +72,7 @@ const ViewProject = () => {
             <Content>
                 <CardContainer>
                     {data.map((item) => (
-                        <ProductCard
+                        <ProjectCard
                         key={item.id}
                         id={item.id}
                         projectName={item.projectName}
