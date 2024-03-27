@@ -11,15 +11,18 @@ const ProjectCard = ({ projectName, id, imageUrl,tags }: any) => {
 
     const BalloonContainer = ({ tags }: any) => {
         const words: string[] = tags.split(',').map((tag: string) => tag.trim());
-
+    
         const balloons = words.map((word: any) => (
-            <Link key={word} to={`/search/${word}`}>
+            <div key={word} onClick={() => { }}>
                 <BalloonSmall className="balloon" innerText={word} />
-            </Link>
+            </div>
         ));
-
+    
         return <div style={{ display: 'flex', flexWrap: 'wrap' }}>{balloons}</div>;
     };
+    
+    
+    
 
     return (
         <CardLink to={`/viewproject/${id}`}>
