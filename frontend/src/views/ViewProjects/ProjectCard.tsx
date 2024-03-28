@@ -6,23 +6,20 @@ import { useAppUser } from '../../context/UserContext';
 import Paragraph from '../../Styles/Paragraph/Paragraph';
 import BalloonSmall from '../../components/BalloonSmall/BalloonSmall';
 
-const ProjectCard = ({ projectName, id, imageUrl,tags }: any) => {
+const ProjectCard = ({ projectName, id, imageUrl, tags }: any) => {
     const { role } = useAppUser();
 
     const BalloonContainer = ({ tags }: any) => {
         const words: string[] = tags.split(',').map((tag: string) => tag.trim());
-    
+
         const balloons = words.map((word: any) => (
-            <div key={word} onClick={() => { }}>
+            <Link key={word} to={`/search/${word}`}>
                 <BalloonSmall className="balloon" innerText={word} />
-            </div>
+            </Link>
         ));
-    
+
         return <div style={{ display: 'flex', flexWrap: 'wrap' }}>{balloons}</div>;
     };
-    
-    
-    
 
     return (
         <CardLink to={`/viewproject/${id}`}>
@@ -38,8 +35,8 @@ const ProjectCard = ({ projectName, id, imageUrl,tags }: any) => {
                     </CardButtons>
                 )}
                 <CardImage src={imageUrl} alt={projectName} />
+        
             </CardContainer>
-            <Paragraph innerText={projectName} />
             <TagsContainer>
                 <BalloonContainer tags={tags} />
             </TagsContainer>
@@ -57,6 +54,7 @@ const CardLink = styled(Link)`
 
     @media (min-width: 950px) {
         width: 400px;
+        height: 400px;
     }
 `;
 
@@ -102,5 +100,6 @@ const TagsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin-top: 0.5em;
-    height: 82px;
+    justify-content: center;
+    gap: 0.5em;
 `;
