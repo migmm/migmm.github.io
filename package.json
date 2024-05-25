@@ -1,0 +1,15 @@
+{
+    "name": "mweb",
+    "version": "1.0.0",
+    "scripts": {
+        "frontend:install": "cd frontend && npm install",
+        "frontend:build": "cd frontend && npm run build",
+        "frontend:run": "cd frontend && npm start",
+        "backend:install": "cd backend && npm install",
+        "backend:build": "cd backend && npm run build",
+        "backend:run": "cd backend && npm start",
+        "install": "npm run frontend:install && npm run backend:install",
+        "build": "npm run frontend:build && npm run backend:build",
+        "start": "npm run frontend:run & npm run backend:run"
+    }
+}
