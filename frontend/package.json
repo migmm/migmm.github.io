@@ -40,11 +40,13 @@
     "@types/react-draft-wysiwyg": "^1.13.4",
     "@types/react-router-dom": "^5.3.3",
     "@types/showdown": "^2.0.3",
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "cpx": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts  start",
-    "build": "react-scripts build && mv build/* ../dist/public",
+    "build": "react-scripts build && npm run copy-package",
+    "copy-package": "cpx \"./build/**/*\" \"../dist/public\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
