@@ -1,23 +1,23 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/server.ts',  // Punto de entrada de tu aplicación
+  entry: './src/server.ts',
   output: {
-    filename: 'bundle.js',  // Nombre del archivo de salida
-    path: path.resolve(__dirname, 'dist'),  // Directorio de salida
+    filename: 'server.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.ts', '.js'],  // Extensiones a resolver
+    extensions: ['.ts', '.js'],
   },
   module: {
     rules: [
       {
-        test: /\.ts$/,  // Transpilar archivos TypeScript
+        test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
   },
-  target: 'node',  // Especifica que el bundle es para Node.js
-  mode: 'production',  // Modo de producción para optimizar el bundle
+  target: 'node',
+  mode: 'production',
 };
