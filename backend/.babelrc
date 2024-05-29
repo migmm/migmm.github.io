@@ -1,5 +1,21 @@
 {
   "presets": [
-    "@babel/preset-env"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "> 0.25%",
+            "not dead"
+          ],
+          "node": "12"
+        },
+        "useBuiltIns": "usage",
+        "corejs": 3,
+        "modules": false,
+        "debug": false
+      }
+    ],
+    "@babel/preset-typescript"
   ]
 }
