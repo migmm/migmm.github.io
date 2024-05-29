@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "env-cmd -f .env.development ts-node-dev src/server.ts",
     "copy-package": "cpx \"./dist/server.js\" \"../dist/\"",
-    "copy-env":"cpx \"./.env\" \"../dist/\"",
+    "copy-env": "cpx \"./.env\" \"../dist/\"",
     "test": "env-cmd -f .env.test nyc --reporter=html mocha --reporter spec --timeout 5000 -r ts-node/register test/**/*.spec.ts"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
+    "@babel/preset-typescript": "^7.24.6",
     "@types/bcryptjs": "^2.4.6",
     "@types/chai": "^4.3.11",
     "@types/chai-http": "^4.2.0",
