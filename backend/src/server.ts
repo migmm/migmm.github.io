@@ -20,6 +20,7 @@ import { errorHandler } from './middlewares/errorHandler';
 
 
 import path from 'path';
+import loggerMiddleware from './middlewares/loggerMiddleware';
 
 const app = express();
 
@@ -39,6 +40,7 @@ const buildPath = path.join(__dirname, 'public');
 
 app.use(express.static(buildPath));
 
+app.use(loggerMiddleware);
 
 app.get('/', function (_req, res) {
     res.sendFile(path.join(buildPath, 'index.html'));
